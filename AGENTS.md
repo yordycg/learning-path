@@ -1,6 +1,22 @@
 # AI Interaction Guidelines & Rules
 
-This document defines the strict constraints and rules that any AI Assistant (LLM, Agent, or Copilot) must follow when assisting in this repository.
+This document defines the strict constraints and rules that any AI Assistant (LLM, Agent, or Copilot) must follow when assisting in this repository. opencode loads this file automatically (AGENTS.md standard).
+
+---
+
+## Repository Conventions
+
+- `docs/roadmap.md` is the **strategic** roadmap: phases, dates, projects, video templates, and references. Weekly plan tables do NOT live here.
+- Each `learning-*/README.md` is the **operational** home of its phase: progress tracker + weekly plan table + phase project + key references.
+- Weekly plan changes are edited ONLY in the phase README, never in `docs/roadmap.md`.
+- Canonical Phase 1 structure (`learning-c/`): `00-c-basics/`, `01-memory-pointers/`, `02-stack-heap/`, `03-makefiles/`, `04-syscalls-processes/`, `05-signals/`, `06-pipes-ipc/`, `07-file-descriptors/`, `08-debugging-gdb/`, `09-dsa-fundamentals/`, plus `chapter-01/` (K&R).
+
+## Build & Debug Commands
+
+- Compile: `gcc -Wall -Wextra -g <file>.c -o <bin>` (use the Makefile when present).
+- Memory check: `valgrind --leak-check=full ./<binary>`.
+- Debugger: `gdb ./<binary>`.
+- Make targets (when a Makefile exists): `make`, `make clean`.
 
 ---
 
