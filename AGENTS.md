@@ -10,6 +10,8 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 - Each `learning-*/README.md` is the **operational** home of its phase: progress tracker + weekly plan table + phase project + key references.
 - Weekly plan changes are edited ONLY in the phase README, never in `docs/roadmap.md`.
 - Canonical Phase 1 structure (`learning-c/`): `00-c-basics/`, `01-memory-pointers/`, `02-stack-heap/`, `03-makefiles/`, `04-syscalls-processes/`, `05-signals/`, `06-pipes-ipc/`, `07-file-descriptors/`, `08-debugging-gdb/`, `09-dsa-fundamentals/`, plus `chapter-01/` (K&R).
+- Each phase keeps a `status.md` (e.g. `learning-c/status.md`) with the current week's operational state, maintained by the AI at the end of every session.
+- At the start of a session, read the active phase `status.md` and `git log -1` — do NOT scan the whole repository to answer "what to do today".
 
 ## Build & Debug Commands
 
