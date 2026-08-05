@@ -43,12 +43,14 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 
 | Fase | Período | Foco | Stack |
 |------|---------|------|-------|
-| F1 | Meses 1–3 | Linux Internals, C & DSA base | C, GCC, Makefiles, Syscalls, DSA en C |
-| F2 | Meses 4–6 | Go + Python base + PostgreSQL + Seguridad | Go, Python, PostgreSQL, sqlx |
-| F3 | Meses 7–9 | Sistemas Distribuidos + Docker + Redis + Observabilidad | Docker, Redis, CI/CD, OpenTelemetry |
-| F4 | Meses 10–12 | Data Engineering + Python Experto | Python avanzado, Kafka, dbt, DuckDB |
-| F5 | Meses 13–15 | System Design, Arquitectura Formal & DDD | CQRS, Event Sourcing, Saga, K8s conceptual |
-| F6 | Meses 16–18 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
+| F1 | jun 14 – oct 18 2026 | Linux Internals, C & DSA base | C, GCC, Makefiles, Syscalls, DSA en C |
+| F2 | oct 19 2026 – ene 18 2027 | Go + Python base + PostgreSQL + Seguridad | Go, Python, PostgreSQL, sqlx |
+| F3 | ene 19 – abr 18 2027 | Sistemas Distribuidos + Docker + Redis + Observabilidad | Docker, Redis, CI/CD, OpenTelemetry |
+| F4 | abr 19 – jul 18 2027 | Data Engineering + Python Experto | Python avanzado, Kafka, dbt, DuckDB |
+| F5 | jul 19 – oct 18 2027 | System Design, Arquitectura Formal & DDD | CQRS, Event Sourcing, Saga, K8s conceptual |
+| F6 | oct 19 2027 – ene 18 2028 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
+
+> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~4.5 meses (jun 14 – oct 18) tras un arranque más lento de lo previsto. El resto de fases se corren ~6 semanas. Las referencias internas tipo "mes 5" son relativas a esta nueva línea de tiempo. El detalle de recuperación está en [`learning-c/README.md`](../learning-c/README.md).
 
 ---
 
@@ -93,7 +95,7 @@ Arquitectura y patrones
 ---
 
 ## FASE 1 — Linux Internals, C & DSA Fundamentos
-**Período:** Meses 1–3
+**Período:** Jun 14 – Oct 18 2026 (~4.5 meses)
 **Núcleo:** Fundamentos absolutos del sistema. Sin esto, todo lo demás es magia negra.
 
 ### Objetivos técnicos
@@ -177,6 +179,7 @@ Arquitectura y patrones
 learning-c/
 ├── Makefile
 ├── README.md
+├── 00-c-basics/          # funciones, arrays, strings, structs (tema de lenguaje)
 ├── 01-memory-pointers/
 │   ├── main.c
 │   └── README.md        # Qué aprendiste, qué falló, cómo lo resolviste
@@ -251,10 +254,14 @@ DSA - Hash Table Collision Resolution.md
 DSA - Binary Search and Loop Invariants.md
 ```
 
+### Recovery Plan F1 — S0 a S10
+
+> El plan semanal operativo de la fase vive en [`learning-c/README.md`](../learning-c/README.md). Las tablas semanales nunca van en el roadmap — solo en el README de la fase.
+
 ---
 
 ## FASE 2 — Go + Python Base + PostgreSQL Avanzado + Seguridad
-**Período:** Meses 4–6
+**Período:** Oct 19 2026 – Ene 18 2027
 **Núcleo:** Tu primer lenguaje de producción + Python desde ya + base de datos real + defensive coding.
 
 ### Sobre los dos lenguajes
@@ -433,7 +440,7 @@ AI - How to Write Effective Technical Prompts.md
 ---
 
 ## FASE 3 — Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD
-**Período:** Meses 7–9
+**Período:** Ene 19 – Abr 18 2027
 **Núcleo:** Tu sistema tiene múltiples piezas. Algo siempre falla. Y ahora puedes verlo.
 
 ### Videos por tema — Fase 3
@@ -573,7 +580,7 @@ DSA - Consistent Hashing Ring.md
 ---
 
 ## FASE 4 — Data Engineering + Python Experto
-**Período:** Meses 10–12
+**Período:** Abr 19 – Jul 18 2027
 **Núcleo:** El camino del Data Engineer. Python al nivel que el mercado paga bien.
 
 ### Videos por tema — Fase 4
@@ -724,7 +731,7 @@ dbt - Testing Data Quality with dbt test.md
 ---
 
 ## FASE 5 — System Design, Arquitectura Formal, DDD & Infraestructura
-**Período:** Meses 13–15
+**Período:** Jul 19 – Oct 18 2027
 **Núcleo:** Todo lo que sufriste ahora tiene nombre, diagrama y tradeoffs documentados.
 
 ### Por qué el mes 13 y no antes
@@ -866,7 +873,7 @@ System Design - Chat System.md
 ---
 
 ## FASE 6 — Portfolio, OSS, IA en Proyectos & Job Hunt
-**Período:** Meses 16–18
+**Período:** Oct 19 2027 – Ene 18 2028
 **Núcleo:** Convertir 15 meses de trabajo en empleo.
 
 ### Videos por tema — Fase 6
