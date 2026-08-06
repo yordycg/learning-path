@@ -13,7 +13,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | Directory | Topic | Status |
 |-----------|-------|--------|
 | `chapter-01/` | K&R chapter 01 exercises (hello, vars, loops, I/O, functions) | ✅ done |
-| `1-basics/06-functions/` | Functions, params/args (Beej 4, 18.1) | 🔄 in progress — file empty, fill it |
+| `1-basics/06-functions/` | Functions, params/args (Beej 4, 18.1) | ✅ done |
 | `1-basics/07-arrays/` | Arrays, array length, arrays to functions, matrix (Beej 6) | ✅ done |
 | `1-basics/08-strings/` | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7) | ✅ done |
 | `2-advanced/01-pointers/` | Pointer basics, pointers & arrays, pointers & functions (Beej 5) | 🟡 pending: pointer arithmetic, `void*`, double pointers (Beej 11, 23) |
@@ -29,6 +29,46 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `3-expert/02-dsa/` | Dynamic array, linked list, stack, queue, hash table, binary search, sorting | 🔴 not started |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
+
+---
+
+## Recursos por tema
+
+> Per-topic resources: the Beej chapter + the YouTube video when one exists (all videos live in `docs/roadmap.md` → *Videos por tema — Fase 1*). "Solo Beej" = no dedicated video, use Beej + Obsidian + K&R. Beej index: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html).
+
+| Dir | Beej | Video | Nota |
+|-----|------|-------|------|
+| `1-basics/01-hello-world/` | §2 | [Intro a C](https://www.youtube.com/watch?v=SC8uWXmDJs4) (Sorber) | compilación |
+| `1-basics/02-variables-constants/` | §3.1 | [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4) (Sorber) | |
+| `1-basics/03-data-types/` | §3.1.2, §14 · enum §22 · size_t §37 | [Learning C: Basic Types](https://www.youtube.com/watch?v=mib3ahMbq_0) + [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber) | |
+| `1-basics/04-operators/` | §3.2 | — | solo Beej |
+| `1-basics/05-flow-control/` | §3.3 | — | solo Beej |
+| `1-basics/06-functions/` | §4, CLI §18.1 | — | solo Beej + K&R |
+| `1-basics/07-arrays/` | §6 (matrix §6.5) | — | solo Beej |
+| `1-basics/08-strings/` | §7 | — | solo Beej |
+| `1-basics/09-standard-library/` | Beej § + `man 3` | — | solo Beej + man |
+| `2-advanced/01-pointers/` | §5, §6.6, §11 | [How to Check Your Pointers at Runtime](https://www.youtube.com/watch?v=yM9zteeTCiI) (Sorber) | |
+| `2-advanced/02-structs/` | §8 | [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber) | |
+| `2-advanced/03-unions/` | §20.9 | — | solo Beej |
+| `2-advanced/04-typedef-types/` | §10, type composition §32 | — | solo Beej |
+| `2-advanced/05-memory-management/` | §12 | [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) (Sorber) | stack no en Beej |
+| `2-advanced/06-scope/` | §13 | — | solo Beej |
+| `2-advanced/07-file-io/` | §9 | — | solo Beej |
+| `2-advanced/08-multifile-projects/` | §17 | — | solo Beej |
+| `2-advanced/09-preprocessor/` | §19 | — | solo Beej |
+| `2-advanced/10-error-handling/` | §15.3, §28 | — | solo Beej |
+| `2-advanced/11-tooling/` | — (no Beej) | [Makefiles](https://www.youtube.com/watch?v=l5KqE0DMG-Q), [auto vars](https://www.youtube.com/watch?v=G5dNorAoeCM), [Valgrind](https://www.youtube.com/watch?v=Sddn1UjzSAo), [GDB+Valgrind](https://www.youtube.com/watch?v=8JEEYwdrexc) | de roadmap |
+| `3-expert/01-advanced-pointers/` | §23 | — | solo Beej |
+| `3-expert/02-dsa/` | §20.3 | [Fiset intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) + [Fiset curso](https://www.youtube.com/watch?v=RBSGKlAvoiM) | Fiset |
+| `3-expert/03-oop-emulation/` | §20.7 | — | solo Beej |
+| `3-expert/04-bitwise/` | §24 | [What are Bit Masks](https://www.youtube.com/watch?v=Ew2QnDeTCCE) + [Set/Clear/Toggle a bit](https://www.youtube.com/watch?v=F9742wnBWRc) (Sorber) | |
+| `3-expert/05-threads-atomics/` | §39, §40 | [create/join threads](https://www.youtube.com/watch?v=uA8X5zNOGw8), [mutex/locks](https://www.youtube.com/watch?v=9axu8CUvOKY), [semáforos](https://www.youtube.com/watch?v=ukM_zzrIeXs), [making variables atomic](https://www.youtube.com/watch?v=_xX25ThomIo) (Sorber) | |
+| `3-expert/06-variadic-jumps/` | §25, §34 | — | solo Beej |
+| `3-expert/07-signals/` | §29 | [kill/signal/sigaction](https://www.youtube.com/watch?v=83M5-NPDeWs) + [intro corta](https://www.youtube.com/watch?v=5We_HtLlAbs) | |
+| `3-expert/08-modern-c/` | §32, §41 | — | solo Beej |
+| `4-systems/01-syscalls-processes/` | K&R 8 · `man 2` | [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) | |
+| `4-systems/02-pipes-ipc/` | — | [pipe()](https://www.youtube.com/watch?v=8AXEHrQTf3I) (Sorber) | |
+| `4-systems/03-file-descriptors/` | — | [Inside Linux File Descriptors](https://www.youtube.com/watch?v=saMebwRO-Q8) | |
 
 ---
 

@@ -120,9 +120,21 @@ Arquitectura y patrones
 |------|-------|-------|----------------|
 | Intro a C | [Learn C in minutes (lesson 0)](https://www.youtube.com/watch?v=SC8uWXmDJs4) | Jacob Sorber | 10 min |
 | Tipos, arrays, structs, punteros | [Learning C: Basic Types](https://www.youtube.com/watch?v=mib3ahMbq_0) | Jacob Sorber | 15 min |
+| Tipos y cómo se estructuran en memoria | [They're Just Bits! Types and Structuring Memory in C](https://www.youtube.com/watch?v=phYM4L1BBjI) | Jacob Sorber | 15 min |
 | Variables y memoria virtual | [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4) | Jacob Sorber | 12 min |
 | El Heap por dentro | [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) | Jacob Sorber | 18 min |
 | Verificar punteros en runtime | [How to Check Your Pointers at Runtime](https://www.youtube.com/watch?v=yM9zteeTCiI) | Jacob Sorber | 14 min |
+| Bitwise: máscaras | [What are Bit Masks, and how do I use them?](https://www.youtube.com/watch?v=Ew2QnDeTCCE) | Jacob Sorber | 3 min |
+| Bitwise: set/clear/toggle un bit | [How do I Set, Clear, and Toggle a Single Bit?](https://www.youtube.com/watch?v=F9742wnBWRc) | Jacob Sorber | 6 min |
+
+**Threads y sincronización (pthreads):**
+
+| Tema | Video | Canal | Duración aprox |
+|------|-------|-------|----------------|
+| Crear y unir threads | [How to create and join threads in C (pthreads)](https://www.youtube.com/watch?v=uA8X5zNOGw8) | Jacob Sorber | 14 min |
+| Race conditions, mutex y locks | [Safety and Speed Issues with Threads](https://www.youtube.com/watch?v=9axu8CUvOKY) | Jacob Sorber | 9 min |
+| Semáforos | [What is a semaphore? (Example in C)](https://www.youtube.com/watch?v=ukM_zzrIeXs) | Jacob Sorber | 13 min |
+| Variables atómicas | [Making variables atomic in C](https://www.youtube.com/watch?v=_xX25ThomIo) | Jacob Sorber | 8 min |
 
 **Makefiles:**
 
