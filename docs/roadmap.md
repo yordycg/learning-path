@@ -179,26 +179,47 @@ Arquitectura y patrones
 learning-c/
 ├── Makefile
 ├── README.md
-├── 00-c-basics/          # funciones, arrays, strings, structs (tema de lenguaje)
-├── 01-memory-pointers/
-│   ├── main.c
-│   └── README.md        # Qué aprendiste, qué falló, cómo lo resolviste
-├── 02-stack-heap/
-├── 03-makefiles/
-├── 04-syscalls-processes/
-│   ├── fork_exec.c
-│   └── open_read.c
-├── 05-signals/
-├── 06-pipes-ipc/
-├── 07-file-descriptors/
-├── 08-debugging-gdb/
-└── 09-dsa-fundamentals/
-    ├── dynamic_array.c
-    ├── linked_list.c
-    ├── stack.c
-    ├── queue.c
-    ├── hash_table.c
-    └── binary_search.c
+├── chapter-01/           # K&R (ruta aparte)
+├── 1-basics/             # Beej 2–7 + stdlib
+│   ├── 06-functions/
+│   ├── 07-arrays/
+│   ├── 08-strings/
+│   └── 09-standard-library/
+├── 2-advanced/           # Beej 8–19 + tooling
+│   ├── 01-pointers/
+│   │   ├── pointer-arithmetic.c
+│   │   └── README.md    # Qué aprendiste, qué falló, cómo lo resolviste
+│   ├── 02-structs/
+│   ├── 03-unions/
+│   ├── 04-typedef-types/
+│   ├── 05-memory-management/
+│   ├── 06-scope/
+│   ├── 07-file-io/
+│   ├── 08-multifile-projects/
+│   ├── 09-preprocessor/
+│   ├── 10-error-handling/
+│   └── 11-tooling/       # gcc, make, gdb & valgrind
+├── 3-expert/             # Beej 20+
+│   ├── 01-advanced-pointers/
+│   ├── 02-dsa/
+│   │   ├── dynamic_array.c
+│   │   ├── linked_list.c
+│   │   ├── stack.c
+│   │   ├── queue.c
+│   │   ├── hash_table.c
+│   │   └── binary_search.c
+│   ├── 03-oop-emulation/
+│   ├── 04-bitwise/
+│   ├── 05-threads-atomics/
+│   ├── 06-variadic-jumps/
+│   ├── 07-signals/
+│   └── 08-modern-c/
+└── 4-systems/            # OS: K&R 8, man 2 (no en Beej)
+    ├── 01-syscalls-processes/
+    │   ├── fork_exec.c
+    │   └── open_read.c
+    ├── 02-pipes-ipc/
+    └── 03-file-descriptors/
 ```
 
 ### Proyecto Principal — `mysh`

@@ -8,22 +8,25 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 ## Progress Tracker
 
+> Structure mirrors the Obsidian C vault in 3 language levels + a systems track. Numbers = study order within each level.
+
 | Directory | Topic | Status |
 |-----------|-------|--------|
 | `chapter-01/` | K&R chapter 01 exercises (hello, vars, loops, I/O, functions) | ✅ done |
-| `00-c-basics/functions/` | Functions (Beej 4) | 🔄 in progress — file empty, fill it |
-| `00-c-basics/arrays/` | Arrays, array length, arrays to functions (Beej 6) | ✅ done |
-| `00-c-basics/strings/` | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7) | ✅ done |
-| `00-c-basics/structs/` | Structs, initializers, copy, arrow operator (Beej 8) | ✅ done |
-| `01-memory-pointers/` | Pointer basics, pointers & arrays, pointers & functions (Beej 5) | 🟡 pending: pointer arithmetic, `void*`, double pointers (Beej 11, 23) |
-| `02-stack-heap/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | 🔴 not started |
-| `03-makefiles/` | Makefile rules, targets, dependencies, variables | 🔴 not started |
-| `04-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8) | 🔴 not started |
-| `05-signals/` | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29) | 🔴 not started |
-| `06-pipes-ipc/` | `pipe()`, FIFOs | 🔴 not started |
-| `07-file-descriptors/` | FDs under the hood, `dup`/`dup2`, redirection | 🔴 not started |
-| `08-debugging-gdb/` | GDB (breakpoints, backtrace, watch), Valgrind | 🔴 not started |
-| `09-dsa-fundamentals/` | Dynamic array, linked list, stack, queue, hash table, binary search, sorting | 🔴 not started |
+| `1-basics/06-functions/` | Functions, params/args (Beej 4, 18.1) | 🔄 in progress — file empty, fill it |
+| `1-basics/07-arrays/` | Arrays, array length, arrays to functions, matrix (Beej 6) | ✅ done |
+| `1-basics/08-strings/` | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7) | ✅ done |
+| `2-advanced/01-pointers/` | Pointer basics, pointers & arrays, pointers & functions (Beej 5) | 🟡 pending: pointer arithmetic, `void*`, double pointers (Beej 11, 23) |
+| `2-advanced/02-structs/` | Structs, initializers, copy, arrow operator (Beej 8) | ✅ done |
+| `2-advanced/07-file-io/` | File I/O: read/write text, formatted, binary (Beej 9) | ✅ done |
+| `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | 🔴 not started |
+| `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started |
+| `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8) | 🔴 not started |
+| `3-expert/07-signals/` | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29) | 🔴 not started |
+| `4-systems/02-pipes-ipc/` | `pipe()`, FIFOs | 🔴 not started |
+| `4-systems/03-file-descriptors/` | FDs under the hood, `dup`/`dup2`, redirection | 🔴 not started |
+| `2-advanced/11-tooling/` | GDB (breakpoints, backtrace, watch), Valgrind | 🔴 not started |
+| `3-expert/02-dsa/` | Dynamic array, linked list, stack, queue, hash table, binary search, sorting | 🔴 not started |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
 
