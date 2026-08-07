@@ -16,8 +16,9 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `1-basics/06-functions/` | Functions, params/args (Beej 4, 18.1) | ✅ done |
 | `1-basics/07-arrays/` | Arrays, array length, arrays to functions, matrix (Beej 6) | ✅ done |
 | `1-basics/08-strings/` | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7) | ✅ done |
-| `2-advanced/01-pointers/` | Pointer basics, pointers & arrays, pointers & functions (Beej 5) | 🟡 pending: pointer arithmetic, `void*`, double pointers (Beej 11, 23) |
+| `2-advanced/01-pointers/` | Pointer basics, pointers & arrays, pointers & functions, pointer arithmetic, `void*` (Beej 5, 11) | ✅ done (double pointers → `3-expert/01-advanced-pointers/`, Beej 23) |
 | `2-advanced/02-structs/` | Structs, initializers, copy, arrow operator (Beej 8) | ✅ done |
+| `2-advanced/04-typedef-types/` | `typedef`: structs, anonymous structs, type alias (Beej 10) | ✅ done |
 | `2-advanced/07-file-io/` | File I/O: read/write text, formatted, binary (Beej 9) | ✅ done |
 | `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | 🔴 not started |
 | `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started |
