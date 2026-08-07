@@ -39,7 +39,7 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 
 ---
 
-## Vista general de las 6 fases
+## Vista general de las 7 fases
 
 | Fase | Período | Foco | Stack |
 |------|---------|------|-------|
@@ -49,6 +49,7 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 | F4 | abr 19 – jul 18 2027 | Data Engineering + Python Experto | Python avanzado, Kafka, dbt, DuckDB |
 | F5 | jul 19 – oct 18 2027 | System Design, Arquitectura Formal & DDD | CQRS, Event Sourcing, Saga, K8s conceptual |
 | F6 | oct 19 2027 – ene 18 2028 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
+| F7 | Diferida — post-F6, sin fecha fija | Mobile multiplataforma | Kotlin, Compose Multiplatform, KMP, Ktor, SQLDelight |
 
 > **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~4.5 meses (jun 14 – oct 18) tras un arranque más lento de lo previsto. El resto de fases se corren ~6 semanas. Las referencias internas tipo "mes 5" son relativas a esta nueva línea de tiempo. El detalle de recuperación está en [`learning-c/README.md`](../learning-c/README.md).
 
@@ -1013,6 +1014,65 @@ Interview - Capacity Estimation Cheatsheet.md
 
 ---
 
+## FASE 7 — Mobile Multiplataforma (KMP + Compose Multiplatform)
+**Período:** Diferida — post-F6. Sin fecha fija. Ocurre en paralelo a la búsqueda de empleo y a los primeros meses del primer empleo.
+**Núcleo:** Kotlin y Compose Multiplatform como cliente de tu propio stack. Es el producto de salida que consume lo que construiste en F1–F6. No es un requisito de empleabilidad — es crecimiento posterior.
+
+> **Decisiones de diseño de esta fase (fijadas):**
+> - UI escrita en **Compose Multiplatform desde el día 1** (no Jetpack Compose Android primero): el código UI ya queda iOS-ready y el target iOS solo se compila cuando haya Mac.
+> - **Navegación multiplatform** (Voyager o Decompose) en vez de Navigation-Compose (Android-only) para no rehacerla al llegar iOS.
+> - **SQLDelight** (no Room), **Koin** (no Kodein).
+> - **Diferido hasta tener hardware/cuentas:** target iOS (requiere Mac + Xcode), publishing en Play Store/TestFlight (solo local/emulador por ahora). El código compartido queda listo para ambos.
+
+### Orden de aprendizaje
+
+1. **Kotlin lenguaje** — corrutinas y Flow mapeados contra goroutines/channels de Go; null-safety, sealed, extension functions, kotlinx.serialization. *(Opcional como intermezzo durante F1–F6 si necesitas respiro del stack backend.)*
+2. **Fundamentos de plataforma Android + Compose** — lifecycle, activity, ViewModel + StateFlow, state hoisting. Se aprende Android real (la plataforma disponible); no es rework, es base.
+3. **Núcleo KMP compartido** — mecanismo `expect/actual`, módulo shared, Ktor Client (mental model de tus APIs REST en Go se reutiliza), SQLDelight, Koin, kotlinx.serialization.
+4. **Estados de UI y Offline-First** — estados loading/error/empty sistemáticos; escritura local en SQLite y sincronización con Go + PostgreSQL al recuperar conexión; auth JWT con refresh.
+5. **Proyecto `mobile-app`** — integrador: consume `resilient-api`/`taskapi`/`capstone`.
+
+### Proyecto Principal — `mobile-app`
+
+**Cliente multiplatform (Android primero, iOS al tener Mac) del propio stack:**
+
+- Auth JWT con refresh (Keychain / EncryptedSharedPreferences)
+- Dashboard reactivo consumiendo `/analytics/summary` con estados loading/empty/error
+- Búsqueda semántica consumiendo `/search/semantic` (RAG con pgvector)
+- Offline-First: crear/leer tareas desde SQLite local, sincronizar con Go + PostgreSQL al volver en línea
+- Misma UI corriendo en Android e iOS desde un solo código Compose Multiplatform
+
+**Entregables:** README + ARCHITECTURE.md del módulo shared · app corriendo en emulador · (iOS + stores cuando haya Mac/cuentas).
+
+### Estructura de carpetas (se crea cuando llegue la fase, como el resto de `learning-*`)
+
+```
+learning-mobile/
+├── README.md
+├── status.md
+├── 1-kotlin-language/
+├── 2-android-compose/
+├── 3-kmp-core/
+├── 4-mobile-ui-states/
+└── mobile-app/
+```
+
+### Notas Zettelkasten — Fase 7
+
+```
+Kotlin - Coroutines vs Goroutines Mental Model.md
+Kotlin - Flow StateFlow SharedFlow.md
+Mobile - expect actual Mechanism.md
+Mobile - Compose Multiplatform Architecture.md
+Mobile - Offline First Sync Strategy.md
+Mobile - JWT Refresh Token Storage.md
+KMP - Ktor Client vs Retrofit.md
+KMP - SQLDelight Typed Queries.md
+Mobile - UI State Loading Error Empty.md
+```
+
+---
+
 ## El libro que amarra todo — DDIA
 
 *Designing Data-Intensive Applications* de Kleppmann. No se lee de corrido — se abre como referencia en el momento que corresponde:
@@ -1071,6 +1131,7 @@ Infraestructura:           Docker + Compose + GitHub Actions
 Observabilidad:            Prometheus + Grafana + OpenTelemetry
 IA aplicada:               Embeddings + pgvector + RAG básico
 Arquitectura:              System Design, CQRS, Event Sourcing, Saga, DDD, C4, ADRs
+Móvil (F7, diferido):      Kotlin + Compose Multiplatform + KMP (Ktor, SQLDelight, Koin)
 ```
 
 ---
