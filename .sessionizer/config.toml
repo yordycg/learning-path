@@ -1,0 +1,21 @@
+## Override de layout de Sessionizer para learning-path.
+## Layout: editor nvim-personal + terminal de soporte (equivale a `learn()`).
+
+[layout]
+focus = "editor"
+
+[tabs.dev]
+label = "dev"
+
+[[tabs.dev.panes]]
+id = "editor"
+title = "nvim"
+command = "env NVIM_APPNAME=nvim-personal nvim"
+
+[[tabs.dev.panes]]
+id = "terminal"
+from = "editor"
+title = "terminal"
+split = "right"
+ratio = 0.5
+command = "exec \"${SHELL:-sh}\""
