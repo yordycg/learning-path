@@ -107,7 +107,7 @@ Arquitectura y patrones
 - Señales UNIX: `SIGINT`, `SIGCHLD`, `SIGPIPE`
 - IPC con pipes y FIFOs
 - Makefiles: compilación, tests, limpieza
-- GDB y Valgrind desde el día 1
+- GDB y Valgrind cuando hay heap que inspeccionar (valgrind → S1, GDB → S6)
 - DSA: arrays, linked lists, stacks, queues, hash tables — implementados en C desde cero
 - Complejidad algorítmica: razonar sobre O(N), O(log N), O(1)
 

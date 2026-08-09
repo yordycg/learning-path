@@ -21,12 +21,12 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `2-advanced/04-typedef-types/` | `typedef`: structs, anonymous structs, type alias (Beej 10) | ✅ done |
 | `2-advanced/07-file-io/` | File I/O: read/write text, formatted, binary (Beej 9) | ✅ done |
 | `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | 🔴 not started |
-| `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started |
+| `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started **· se toca en `08-multifile-projects` (Beej §17)** |
 | `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8) | 🔴 not started |
 | `3-expert/07-signals/` | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29) | 🔴 not started |
 | `4-systems/02-pipes-ipc/` | `pipe()`, FIFOs | 🔴 not started |
 | `4-systems/03-file-descriptors/` | FDs under the hood, `dup`/`dup2`, redirection | 🔴 not started |
-| `2-advanced/11-tooling/` | GDB (breakpoints, backtrace, watch), Valgrind | 🔴 not started |
+| `2-advanced/11-tooling/` | GDB (breakpoints, backtrace, watch), Valgrind | 🔴 not started → **valgrind: S1 (heap) · GDB: S6** |
 | `3-expert/02-dsa/` | Dynamic array, linked list, stack, queue, hash table, binary search, sorting | 🔴 not started |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
@@ -79,7 +79,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 | Week | Dates | Topic | Resource | Deliverable | ✔ |
 |------|-------|-------|----------|-------------|---|
-| S0 | Aug 5–9 | Prep (mid-week start) | Beej 9–11 | Base Makefile `-Wall -Wextra -g`, valgrind OK, commit | [ ] |
+| S0 | Aug 5–9 | Prep (mid-week start) | Beej 9–11 | Beej 9–11 cerrados, catch-up, commit | [ ] |
 | S1 | Aug 10–16 | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5 | alloc with NULL check, `binary_search`, valgrind | [ ] |
 | S2 | Aug 17–23 | Syscalls + FDs | K&R 8, `man 2` | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [ ] |
 | S3 | Aug 24–30 | Processes | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`) | [ ] |

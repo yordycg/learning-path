@@ -11,13 +11,13 @@
 
 ## Current Week — S0 (Aug 5–9, 2026)
 
-> Prep (mid-week start) — close Beej 9–11, base Makefile, valgrind.
+> Prep (mid-week start) — close Beej 9–11 + catch-up buffer. Tooling deferred: valgrind → S1, Makefile → multifile (Beej §17), GDB → S6.
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
 | Mié 5 | Re-baseline F1 + estructura canónica + AGENTS.md; `functions.c` | — | [x] |
 | Jue 6 | Beej 9 file I/O + Beej 10 typedef + Beej 11 pointer arithmetic | [README → Recursos por tema](README.md#recursos-por-tema) (`01-pointers`, `04-typedef-types`) | [x] |
-| Vie 7 | Base Makefile + valgrind | [README → Recursos por tema](README.md#recursos-por-tema) (`11-tooling`: Makefiles, auto vars, Valgrind, GDB+Valgrind) | [ ] |
+| Vie 7 | Catch-up buffer / cierre Beej 9–11 | — | [ ] |
 | Sáb 8 | Catch-up buffer / Beej 12 si vas adelantado | Beej §12 (ver S1) | [ ] |
 | Dom 9 | Zettels + tick S0 + plan S1 | — | [ ] |
 
@@ -30,7 +30,7 @@
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
 | Lun 10 | Stack vs Heap, `malloc`/`free` | [README → `05-memory-management`](README.md#recursos-por-tema) | [ ] |
-| Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind | ídem | [ ] |
+| Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind (primera toma de contacto con valgrind, ya hay heap) | ídem | [ ] |
 | Mié 12 | Beej 12.4–12.5 + `binary_search` | ídem | [ ] |
 | Jue 13 | Buffer / refuerzo | — | [ ] |
 | Vie 14 | Buffer / avance | — | [ ] |
