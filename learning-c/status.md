@@ -30,8 +30,8 @@
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
 | Lun 10 | Stack vs Heap, `malloc`/`free` | [README → `05-memory-management`](README.md#recursos-por-tema) | [x] |
-| Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind (primera toma de contacto con valgrind, ya hay heap) | ídem | [ ] |
-| Mié 12 | Beej 12.4–12.5 + `binary_search` | ídem | [ ] |
+| Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind (primera toma de contacto con valgrind, ya hay heap) | ídem | [x] |
+| Mié 12 | Beej 12.4–12.5 + `binary_search` | ídem | [x] |
 | Jue 13 | Buffer / refuerzo | — | [ ] |
 | Vie 14 | Buffer / avance | — | [ ] |
 | Sáb 15 | Buffer / avance | — | [ ] |
@@ -41,6 +41,7 @@
 
 ## Session log
 
+- 2026-08-12 — Beej 12 closed: `4-change-allocated-size.c` (realloc + NULL-protection; fixed loop range `0..39`) and `5-complete-example.c` (growing readline: comma-operator loop, doubling `realloc` + temp-pointer shield, shrink-to-fit; fixed missing `return NULL;` on realloc failure). Both compiled `-Wall -Wextra -g`, no warnings, exit 0 incl. missing-file case. NOTA: valgrind no ejecutable en este entorno (falta libc6-dbg / glibc debuginfo); verificado por ejecución directa.
 - 2026-08-10 — Beej 12 dynamic memory allocation: created 1-allocating-deallocating.c, 2-error-checking.c, and 3-array-example.c (malloc, free, NULL protection, calloc, memset).
 - 2026-08-07 — Rediseñado `status.md` a plan día a día: tabla de la semana con tema + recursos (referencia a `README.md#recursos-por-tema`, fuente única) + checkbox por día; regla de operación; plantilla S1 provisional. Comprometido `chore(docs):`.
 - 2026-08-06 — Beej 10–11 closed: `2-advanced/04-typedef-types/typedef.c` (3 struct syntaxes + alias); `2-advanced/01-pointers/` split into `arithmetic-pointers.c` (incl. `my_strlen` subtraction), `void-pointers.c` (`my_memcpy`), `array-pointers.c` (array/pointer equivalence, fixed `*(a+i)` bug), `function-pointers.c`. All compiled `-Wall -Wextra -g`, no warnings. Committed `feat(c): learn typedef and pointer arithmetic (Beej 10-11)`. Next: Fri base Makefile + valgrind.
