@@ -17,7 +17,7 @@
 |-----|------|----------|--------|
 | Lun 10 | Stack vs Heap, `malloc`/`free` | [README → `05-memory-management`](README.md#recursos-por-tema) | [x] |
 | Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind (primera toma de contacto con valgrind, ya hay heap) | ídem | [x] |
-| Mié 12 | Beej 12.4–12.5 + `binary_search` | ídem | [x] |
+| Mié 12 | Beej 12.4–12.5 (growing readline) | ídem | [x] |
 | Jue 13 | Buffer / refuerzo | — | [ ] |
 | Vie 14 | Buffer / avance | — | [ ] |
 | Sáb 15 | Buffer / avance — **ej. 2 dynamic note recording cerrado** | — | [x] |

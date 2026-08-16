@@ -20,7 +20,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `2-advanced/02-structs/` | Structs, initializers, copy, arrow operator (Beej 8) | ✅ done |
 | `2-advanced/04-typedef-types/` | `typedef`: structs, anonymous structs, type alias (Beej 10) | ✅ done |
 | `2-advanced/07-file-io/` | File I/O: read/write text, formatted, binary (Beej 9) | ✅ done |
-| `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | 🔴 not started |
+| `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | ✅ done (Beej 12 cerrado; valgrind → 11-tooling, Zettel Stack vs Heap pendiente) |
 | `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started **· se toca en `08-multifile-projects` (Beej §17)** |
 | `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8) | 🔴 not started |
 | `3-expert/07-signals/` | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29) | 🔴 not started |
@@ -80,13 +80,13 @@ This phase covers the absolute foundations of systems programming. By working wi
 | Week | Dates | Topic | Resource | Deliverable | ✔ |
 |------|-------|-------|----------|-------------|---|
 | S0 | Aug 5–9 | Prep (mid-week start) | Beej 9–11 | Beej 9–11 cerrados, catch-up, commit | [ ] |
-| S1 | Aug 10–16 | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5 | alloc with NULL check, `binary_search`, valgrind | [ ] |
+| S1 | Aug 10–16 | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5 | alloc with NULL check, valgrind | [ ] |
 | S2 | Aug 17–23 | Syscalls + FDs | K&R 8, `man 2` | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [ ] |
 | S3 | Aug 24–30 | Processes | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`) | [ ] |
 | S4 | Aug 31 – Sep 6 | Signals | Beej 29 + videos | `sigaction`; **mysh v1.5** (Ctrl+C only kills child) | [ ] |
 | S5 | Sep 7–13 | Pipes / IPC | Sorber (pipe) video | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`) | [ ] |
 | S6 | Sep 14–20 | GDB deep dive | Sorber (debug) videos | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`) | [ ] |
-| S7 | Sep 21–27 | DSA: linked list | Beej 20.3 + Fiset | linked list from scratch; **mysh v3.0** (history) | [ ] |
+| S7 | Sep 21–27 | DSA: linked list | Beej 20.3 + Fiset | linked list from scratch + `binary_search`; **mysh v3.0** (history) | [ ] |
 | S8 | Sep 28 – Oct 4 | DSA: stack + queue | Fiset | manual stack and queue | [ ] |
 | S9 | Oct 5–11 | DSA: hash table + sorting | Beej 24 + Fiset | hash (separate chaining), merge sort | [ ] |
 | S10 | Oct 12–18 | Integration & close | — | full mysh demo + Phase 1 checklist done | [ ] |
