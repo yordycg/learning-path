@@ -79,8 +79,8 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 | Week | Dates          | Topic                        | Resource                   | Deliverable                                                              | ✔   |
 | ---- | -------------- | ---------------------------- | -------------------------- | ------------------------------------------------------------------------ | --- |
-| S0   | Aug 5–9        | Prep (mid-week start)        | Beej 9–11                  | Beej 9–11 cerrados, catch-up, commit                                     | [ ] |
-| S1   | Aug 10–16      | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5         | alloc with NULL check, valgrind                                          | [ ] |
+| S0   | Aug 5–9        | Prep (mid-week start)        | Beej 9–11                  | Beej 9–11 cerrados, catch-up, commit                                     | [x] |
+| S1   | Aug 10–16      | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5         | alloc with NULL check, valgrind                                          | [x] |
 | S2   | Aug 17–23      | Syscalls + FDs               | K&R 8, `man 2`             | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [ ] |
 | S3   | Aug 24–30      | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [ ] |
 | S4   | Aug 31 – Sep 6 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [ ] |

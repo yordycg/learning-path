@@ -9,33 +9,31 @@
 - Al terminar la semana: las filas se archivan en el *Session log* y se abre la siguiente con la plantilla de *Next Week*.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
-## Current Week — S1 (Aug 10–16)
+## Current Week — S2 (Aug 17–23)
 
-> Stack/Heap + `malloc`/`free` (Beej 12) + `binary_search`. Recursos: [`README → Recursos por tema`](README.md#recursos-por-tema) (`05-memory-management`).
+> Syscalls + FDs (K&R 8, `man 2`): `open`/`read`/`write`/`close`, `dup`/`dup2`. Proyecto: **mysh v0.5** (read + parse + builtins). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2).
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
-| Lun 10 | Stack vs Heap, `malloc`/`free` | [README → `05-memory-management`](README.md#recursos-por-tema) | [x] |
-| Mar 11 | `calloc`/`realloc` + patrón NULL-check + valgrind (primera toma de contacto con valgrind, ya hay heap) | ídem | [x] |
-| Mié 12 | Beej 12.4–12.5 (growing readline) | ídem | [x] |
-| Jue 13 | Buffer / refuerzo | — | [ ] |
-| Vie 14 | Buffer / avance | — | [ ] |
-| Sáb 15 | Buffer / avance — **ej. 2 dynamic note recording cerrado** | — | [x] |
-| Dom 16 | Zettels + tick S1 + plan S2 | — | [ ] |
+| Lun 17 | Syscalls intro + `open`/`close`, flags `O_*` | K&R 8.2, `man 2 open` | [ ] |
+| Mar 18 | `read`/`write` (buffers, bucle hasta EOF) | K&R 8.3–8.4, `man 2 read`/`write` | [ ] |
+| Mié 19 | FDs bajo el hood + `dup`/`dup2` (redirección) | `man 2 dup`, video FDs | [ ] |
+| Jue 20 | Buffer / refuerzo (errno, manejo de errores) | — | [ ] |
+| Vie 21 | Buffer / avance | — | [ ] |
+| Sáb 22 | **mysh v0.5**: read + parse + builtins (`cd`, `exit`, `echo`) | Recovery Plan S2 | [ ] |
+| Dom 23 | Zettels + tick S2 + plan S3 | — | [ ] |
 
 - **Blockers:** none
-
-## Next Week — S2 (Aug 17–23)
-
-> Syscalls + FDs (K&R 8, `man 2`). Plan día a día **provisional**: se abre el Dom 16 al tick de S1. Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2).
 
 ---
 
 ## Próxima sesión — TODO
 
-- Investigar + crear Zettels sobre **Stack vs Heap memory model**. Beej 12 no cubre stack (README nota: "stack no en Beej"). Recursos: Sorber — [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) + [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4). Zettel planificado: `C - Stack vs Heap Memory Model.md`.
+- Empezar S2: K&R 8.2 (`open`/`close`) + `man 2 open` (flags `O_RDONLY`/`O_WRONLY`/`O_CREAT`…). Zettel de S2 planificado: `Linux - File Descriptors and open-read-write.md`.
 
 ## Session log
+
+- 2026-08-16 — **S1 cerrada.** Zettel `C - Stack vs Heap Memory Model.md` creado en Obsidian: stack (LIFO, crece abajo, lifetime = scope) vs heap (crece arriba, lifetime manual), las 4 leyes del heap (use-after-free / double-free / leak / OOB), `malloc` como wrapper de `brk`/`mmap`. Tick S1 → `[x]` en Recovery Plan (README). S2 abierta: syscalls + FDs (K&R 8, `man 2`); deliverable **mysh v0.5** (Sáb 22).
 
 - 2026-08-15 — `2-dynamic-note-recording.c` (ej. 2) completed: growing-realloc pattern (capacity 1→2→4→8), invariant `count <= capacity`, temp-pointer shield on realloc failure, note range 0–7 (Chilean grading), EOF (Ctrl+D) = end of input via break, `buffer[32]` + `sscanf` per-line validation, senior-style comments + synced pseudocode. Compiled `-Wall -Wextra -g`, tested: averages, boundaries 0/7, rejection >7, `-1` only, Ctrl+D with/without notes. Committed `feat(c):`.
 - 2026-08-12 — Beej 12 closed: `4-change-allocated-size.c` (realloc + NULL-protection; fixed loop range `0..39`) and `5-complete-example.c` (growing readline: comma-operator loop, doubling `realloc` + temp-pointer shield, shrink-to-fit; fixed missing `return NULL;` on realloc failure). Both compiled `-Wall -Wextra -g`, no warnings, exit 0 incl. missing-file case. NOTA: valgrind no ejecutable en este entorno (falta libc6-dbg / glibc debuginfo); verificado por ejecución directa.
