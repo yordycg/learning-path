@@ -10,24 +10,24 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 > Structure mirrors the Obsidian C vault in 3 language levels + a systems track. Numbers = study order within each level.
 
-| Directory | Topic | Status |
-|-----------|-------|--------|
-| `chapter-01/` | K&R chapter 01 exercises (hello, vars, loops, I/O, functions) | ✅ done |
-| `1-basics/06-functions/` | Functions, params/args (Beej 4, 18.1) | ✅ done |
-| `1-basics/07-arrays/` | Arrays, array length, arrays to functions, matrix (Beej 6) | ✅ done |
-| `1-basics/08-strings/` | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7) | ✅ done |
-| `2-advanced/01-pointers/` | Pointer basics, pointers & arrays, pointers & functions, pointer arithmetic, `void*` (Beej 5, 11) | ✅ done (double pointers → `3-expert/01-advanced-pointers/`, Beej 23) |
-| `2-advanced/02-structs/` | Structs, initializers, copy, arrow operator (Beej 8) | ✅ done |
-| `2-advanced/04-typedef-types/` | `typedef`: structs, anonymous structs, type alias (Beej 10) | ✅ done |
-| `2-advanced/07-file-io/` | File I/O: read/write text, formatted, binary (Beej 9) | ✅ done |
-| `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12) | ✅ done (Beej 12 cerrado; valgrind → 11-tooling, Zettel Stack vs Heap pendiente) |
-| `2-advanced/11-tooling/` | Makefile rules, targets, dependencies, variables | 🔴 not started **· se toca en `08-multifile-projects` (Beej §17)** |
-| `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8) | 🔴 not started |
-| `3-expert/07-signals/` | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29) | 🔴 not started |
-| `4-systems/02-pipes-ipc/` | `pipe()`, FIFOs | 🔴 not started |
-| `4-systems/03-file-descriptors/` | FDs under the hood, `dup`/`dup2`, redirection | 🔴 not started |
-| `2-advanced/11-tooling/` | GDB (breakpoints, backtrace, watch), Valgrind | 🔴 not started → **valgrind: S1 (heap) · GDB: S6** |
-| `3-expert/02-dsa/` | Dynamic array, linked list, stack, queue, hash table, binary search, sorting | 🔴 not started |
+| Directory                          | Topic                                                                                             | Status                                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `chapter-01/`                      | K&R chapter 01 exercises (hello, vars, loops, I/O, functions)                                     | ✅ done                                                                          |
+| `1-basics/06-functions/`           | Functions, params/args (Beej 4, 18.1)                                                             | ✅ done                                                                          |
+| `1-basics/07-arrays/`              | Arrays, array length, arrays to functions, matrix (Beej 6)                                        | ✅ done                                                                          |
+| `1-basics/08-strings/`             | Strings: pointer vs array notation, `strlen`, `strcpy` (Beej 7)                                   | ✅ done                                                                          |
+| `2-advanced/01-pointers/`          | Pointer basics, pointers & arrays, pointers & functions, pointer arithmetic, `void*` (Beej 5, 11) | ✅ done (double pointers → `3-expert/01-advanced-pointers/`, Beej 23)            |
+| `2-advanced/02-structs/`           | Structs, initializers, copy, arrow operator (Beej 8)                                              | ✅ done                                                                          |
+| `2-advanced/04-typedef-types/`     | `typedef`: structs, anonymous structs, type alias (Beej 10)                                       | ✅ done                                                                          |
+| `2-advanced/07-file-io/`           | File I/O: read/write text, formatted, binary (Beej 9)                                             | ✅ done                                                                          |
+| `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12)                             | ✅ done (Beej 12 cerrado; valgrind → 11-tooling, Zettel Stack vs Heap pendiente) |
+| `2-advanced/11-tooling/`           | Makefile rules, targets, dependencies, variables                                                  | 🔴 not started **· se toca en `08-multifile-projects` (Beej §17)**               |
+| `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8)                              | 🔴 not started                                                                   |
+| `3-expert/07-signals/`             | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29)                                               | 🔴 not started                                                                   |
+| `4-systems/02-pipes-ipc/`          | `pipe()`, FIFOs                                                                                   | 🔴 not started                                                                   |
+| `4-systems/03-file-descriptors/`   | FDs under the hood, `dup`/`dup2`, redirection                                                     | 🔴 not started                                                                   |
+| `2-advanced/11-tooling/`           | GDB (breakpoints, backtrace, watch), Valgrind                                                     | 🔴 not started → **valgrind: S1 (heap) · GDB: S6**                               |
+| `3-expert/02-dsa/`                 | Dynamic array, linked list, stack, queue, hash table, binary search, sorting                      | 🔴 not started                                                                   |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
 
@@ -35,41 +35,41 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 ## Recursos por tema
 
-> Per-topic resources: the Beej chapter + the YouTube video when one exists (all videos live in `docs/roadmap.md` → *Videos por tema — Fase 1*). "Solo Beej" = no dedicated video, use Beej + Obsidian + K&R. Beej index: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html).
+> Per-topic resources: the Beej chapter + the YouTube video when one exists (all videos live in `docs/roadmap.md` → _Videos por tema — Fase 1_). "Solo Beej" = no dedicated video, use Beej + Obsidian + K&R. Beej index: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html).
 
-| Dir | Beej | Video | Nota |
-|-----|------|-------|------|
-| `1-basics/01-hello-world/` | §2 | [Intro a C](https://www.youtube.com/watch?v=SC8uWXmDJs4) (Sorber) | compilación |
-| `1-basics/02-variables-constants/` | §3.1 | [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4) (Sorber) | |
-| `1-basics/03-data-types/` | §3.1.2, §14 · enum §22 · size_t §37 | [Learning C: Basic Types](https://www.youtube.com/watch?v=mib3ahMbq_0) + [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber) | |
-| `1-basics/04-operators/` | §3.2 | — | solo Beej |
-| `1-basics/05-flow-control/` | §3.3 | — | solo Beej |
-| `1-basics/06-functions/` | §4, CLI §18.1 | — | solo Beej + K&R |
-| `1-basics/07-arrays/` | §6 (matrix §6.5) | — | solo Beej |
-| `1-basics/08-strings/` | §7 | — | solo Beej |
-| `1-basics/09-standard-library/` | Beej § + `man 3` | — | solo Beej + man |
-| `2-advanced/01-pointers/` | §5, §6.6, §11 | [How to Check Your Pointers at Runtime](https://www.youtube.com/watch?v=yM9zteeTCiI) (Sorber) | |
-| `2-advanced/02-structs/` | §8 | [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber) | |
-| `2-advanced/03-unions/` | §20.9 | — | solo Beej |
-| `2-advanced/04-typedef-types/` | §10, type composition §32 | — | solo Beej |
-| `2-advanced/05-memory-management/` | §12 | [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) (Sorber) | stack no en Beej |
-| `2-advanced/06-scope/` | §13 | — | solo Beej |
-| `2-advanced/07-file-io/` | §9 | — | solo Beej |
-| `2-advanced/08-multifile-projects/` | §17 | — | solo Beej |
-| `2-advanced/09-preprocessor/` | §19 | — | solo Beej |
-| `2-advanced/10-error-handling/` | §15.3, §28 | — | solo Beej |
-| `2-advanced/11-tooling/` | — (no Beej) | [Makefiles](https://www.youtube.com/watch?v=l5KqE0DMG-Q), [auto vars](https://www.youtube.com/watch?v=G5dNorAoeCM), [Valgrind](https://www.youtube.com/watch?v=Sddn1UjzSAo), [GDB+Valgrind](https://www.youtube.com/watch?v=8JEEYwdrexc) | de roadmap |
-| `3-expert/01-advanced-pointers/` | §23 | — | solo Beej |
-| `3-expert/02-dsa/` | §20.3 | [Fiset intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) + [Fiset curso](https://www.youtube.com/watch?v=RBSGKlAvoiM) | Fiset |
-| `3-expert/03-oop-emulation/` | §20.7 | — | solo Beej |
-| `3-expert/04-bitwise/` | §24 | [What are Bit Masks](https://www.youtube.com/watch?v=Ew2QnDeTCCE) + [Set/Clear/Toggle a bit](https://www.youtube.com/watch?v=F9742wnBWRc) (Sorber) | |
-| `3-expert/05-threads-atomics/` | §39, §40 | [create/join threads](https://www.youtube.com/watch?v=uA8X5zNOGw8), [mutex/locks](https://www.youtube.com/watch?v=9axu8CUvOKY), [semáforos](https://www.youtube.com/watch?v=ukM_zzrIeXs), [making variables atomic](https://www.youtube.com/watch?v=_xX25ThomIo) (Sorber) | |
-| `3-expert/06-variadic-jumps/` | §25, §34 | — | solo Beej |
-| `3-expert/07-signals/` | §29 | [kill/signal/sigaction](https://www.youtube.com/watch?v=83M5-NPDeWs) + [intro corta](https://www.youtube.com/watch?v=5We_HtLlAbs) | |
-| `3-expert/08-modern-c/` | §32, §41 | — | solo Beej |
-| `4-systems/01-syscalls-processes/` | K&R 8 · `man 2` | [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) | |
-| `4-systems/02-pipes-ipc/` | — | [pipe()](https://www.youtube.com/watch?v=8AXEHrQTf3I) (Sorber) | |
-| `4-systems/03-file-descriptors/` | — | [Inside Linux File Descriptors](https://www.youtube.com/watch?v=saMebwRO-Q8) | |
+| Dir                                 | Beej                                | Video                                                                                                                                                                                                                                                                     | Nota             |
+| ----------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `1-basics/01-hello-world/`          | §2                                  | [Intro a C](https://www.youtube.com/watch?v=SC8uWXmDJs4) (Sorber)                                                                                                                                                                                                         | compilación      |
+| `1-basics/02-variables-constants/`  | §3.1                                | [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4) (Sorber)                                                                                                                                                                                       |                  |
+| `1-basics/03-data-types/`           | §3.1.2, §14 · enum §22 · size_t §37 | [Learning C: Basic Types](https://www.youtube.com/watch?v=mib3ahMbq_0) + [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber)                                                                                                                       |                  |
+| `1-basics/04-operators/`            | §3.2                                | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `1-basics/05-flow-control/`         | §3.3                                | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `1-basics/06-functions/`            | §4, CLI §18.1                       | —                                                                                                                                                                                                                                                                         | solo Beej + K&R  |
+| `1-basics/07-arrays/`               | §6 (matrix §6.5)                    | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `1-basics/08-strings/`              | §7                                  | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `1-basics/09-standard-library/`     | Beej § + `man 3`                    | —                                                                                                                                                                                                                                                                         | solo Beej + man  |
+| `2-advanced/01-pointers/`           | §5, §6.6, §11                       | [How to Check Your Pointers at Runtime](https://www.youtube.com/watch?v=yM9zteeTCiI) (Sorber)                                                                                                                                                                             |                  |
+| `2-advanced/02-structs/`            | §8                                  | [They're Just Bits!](https://www.youtube.com/watch?v=phYM4L1BBjI) (Sorber)                                                                                                                                                                                                |                  |
+| `2-advanced/03-unions/`             | §20.9                               | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/04-typedef-types/`      | §10, type composition §32           | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/05-memory-management/`  | §12                                 | [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) (Sorber)                                                                                                                                                                              | stack no en Beej |
+| `2-advanced/06-scope/`              | §13                                 | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/07-file-io/`            | §9                                  | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/08-multifile-projects/` | §17                                 | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/09-preprocessor/`       | §19                                 | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/10-error-handling/`     | §15.3, §28                          | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `2-advanced/11-tooling/`            | — (no Beej)                         | [Makefiles](https://www.youtube.com/watch?v=l5KqE0DMG-Q), [auto vars](https://www.youtube.com/watch?v=G5dNorAoeCM), [Valgrind](https://www.youtube.com/watch?v=Sddn1UjzSAo), [GDB+Valgrind](https://www.youtube.com/watch?v=8JEEYwdrexc)                                  | de roadmap       |
+| `3-expert/01-advanced-pointers/`    | §23                                 | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `3-expert/02-dsa/`                  | §20.3                               | [Fiset intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) + [Fiset curso](https://www.youtube.com/watch?v=RBSGKlAvoiM)                                                                                                                                                   | Fiset            |
+| `3-expert/03-oop-emulation/`        | §20.7                               | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `3-expert/04-bitwise/`              | §24                                 | [What are Bit Masks](https://www.youtube.com/watch?v=Ew2QnDeTCCE) + [Set/Clear/Toggle a bit](https://www.youtube.com/watch?v=F9742wnBWRc) (Sorber)                                                                                                                        |                  |
+| `3-expert/05-threads-atomics/`      | §39, §40                            | [create/join threads](https://www.youtube.com/watch?v=uA8X5zNOGw8), [mutex/locks](https://www.youtube.com/watch?v=9axu8CUvOKY), [semáforos](https://www.youtube.com/watch?v=ukM_zzrIeXs), [making variables atomic](https://www.youtube.com/watch?v=_xX25ThomIo) (Sorber) |                  |
+| `3-expert/06-variadic-jumps/`       | §25, §34                            | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `3-expert/07-signals/`              | §29                                 | [kill/signal/sigaction](https://www.youtube.com/watch?v=83M5-NPDeWs) + [intro corta](https://www.youtube.com/watch?v=5We_HtLlAbs)                                                                                                                                         |                  |
+| `3-expert/08-modern-c/`             | §32, §41                            | —                                                                                                                                                                                                                                                                         | solo Beej        |
+| `4-systems/01-syscalls-processes/`  | K&R 8 · `man 2`                     | [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber)                                                                                                                                                                                                            |                  |
+| `4-systems/02-pipes-ipc/`           | —                                   | [pipe()](https://www.youtube.com/watch?v=8AXEHrQTf3I) (Sorber)                                                                                                                                                                                                            |                  |
+| `4-systems/03-file-descriptors/`    | —                                   | [Inside Linux File Descriptors](https://www.youtube.com/watch?v=saMebwRO-Q8)                                                                                                                                                                                              |                  |
 
 ---
 
@@ -77,19 +77,19 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 > Re-baseline plan (2026-08). Weeks run Monday→Sunday; S0 is partial (Wed Aug 5 – Sun Aug 9). Every week: 1 atomic commit, compile with `-Wall -Wextra -g`, and run valgrind on anything using dynamic memory. Day-by-day detail stays flexible in Obsidian; this table is the tracker.
 
-| Week | Dates | Topic | Resource | Deliverable | ✔ |
-|------|-------|-------|----------|-------------|---|
-| S0 | Aug 5–9 | Prep (mid-week start) | Beej 9–11 | Beej 9–11 cerrados, catch-up, commit | [ ] |
-| S1 | Aug 10–16 | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5 | alloc with NULL check, valgrind | [ ] |
-| S2 | Aug 17–23 | Syscalls + FDs | K&R 8, `man 2` | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [ ] |
-| S3 | Aug 24–30 | Processes | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`) | [ ] |
-| S4 | Aug 31 – Sep 6 | Signals | Beej 29 + videos | `sigaction`; **mysh v1.5** (Ctrl+C only kills child) | [ ] |
-| S5 | Sep 7–13 | Pipes / IPC | Sorber (pipe) video | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`) | [ ] |
-| S6 | Sep 14–20 | GDB deep dive | Sorber (debug) videos | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`) | [ ] |
-| S7 | Sep 21–27 | DSA: linked list | Beej 20.3 + Fiset | linked list from scratch + `binary_search`; **mysh v3.0** (history) | [ ] |
-| S8 | Sep 28 – Oct 4 | DSA: stack + queue | Fiset | manual stack and queue | [ ] |
-| S9 | Oct 5–11 | DSA: hash table + sorting | Beej 24 + Fiset | hash (separate chaining), merge sort | [ ] |
-| S10 | Oct 12–18 | Integration & close | — | full mysh demo + Phase 1 checklist done | [ ] |
+| Week | Dates          | Topic                        | Resource                   | Deliverable                                                              | ✔   |
+| ---- | -------------- | ---------------------------- | -------------------------- | ------------------------------------------------------------------------ | --- |
+| S0   | Aug 5–9        | Prep (mid-week start)        | Beej 9–11                  | Beej 9–11 cerrados, catch-up, commit                                     | [ ] |
+| S1   | Aug 10–16      | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5         | alloc with NULL check, valgrind                                          | [ ] |
+| S2   | Aug 17–23      | Syscalls + FDs               | K&R 8, `man 2`             | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [ ] |
+| S3   | Aug 24–30      | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [ ] |
+| S4   | Aug 31 – Sep 6 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [ ] |
+| S5   | Sep 7–13       | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [ ] |
+| S6   | Sep 14–20      | GDB deep dive                | Sorber (debug) videos      | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`)            | [ ] |
+| S7   | Sep 21–27      | DSA: linked list             | Beej 20.3 + Fiset          | linked list from scratch + `binary_search`; **mysh v3.0** (history)      | [ ] |
+| S8   | Sep 28 – Oct 4 | DSA: stack + queue           | Fiset                      | manual stack and queue                                                   | [ ] |
+| S9   | Oct 5–11       | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort                                     | [ ] |
+| S10  | Oct 12–18      | Integration & close          | —                          | full mysh demo + Phase 1 checklist done                                  | [ ] |
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
@@ -100,6 +100,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 A mini UNIX shell written from scratch in C.
 
 ### Requirements:
+
 - Execute external commands with `fork` + `exec` (no usage of `system()`).
 - Handle I/O redirection (`>`, `<`, `>>`) and multi-stage pipes (`cmd1 | cmd2 | cmd3`).
 - Custom signal handling (e.g., `Ctrl+C` kills the child process, not the shell).
@@ -110,8 +111,8 @@ A mini UNIX shell written from scratch in C.
 
 ## Key Reference Materials
 
-- *The C Programming Language* (K&R) – Chapters 1 to 8.
-- *Computer Systems: A Programmer's Perspective* (CS:APP) – Chapters 1 to 9.
-- *The Algorithm Design Manual* (Skiena) – Chapters 1 to 4.
+- _The C Programming Language_ (K&R) – Chapters 1 to 8.
+- _Computer Systems: A Programmer's Perspective_ (CS:APP) – Chapters 1 to 9.
+- _The Algorithm Design Manual_ (Skiena) – Chapters 1 to 4.
 - [Beej's Guide to C](https://beej.us/guide/bgc/html/split/index.html) – main C language resource for Phase 1.
 - Linux Man Pages – Sections 2 (`man 2 syscall`) and 3 (`man 3 library`).
