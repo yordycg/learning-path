@@ -11,17 +11,17 @@
 
 ## Current Week — S2 (Aug 17–23)
 
-> Syscalls + FDs (K&R 8, `man 2`): `open`/`read`/`write`/`close`, `dup`/`dup2`. Proyecto: **mysh v0.5** (read + parse + builtins). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2).
+> Syscalls + FDs (K&R 8, `man 2`): `open`/`read`/`write`/`close`, `dup`/`dup2`. Proyecto: **mysh v0.5** (read + parse + builtins). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2). Recursos completos: [`README → Recursos por tema`](README.md#recursos-por-tema) (filas `4-systems/*`).
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
-| Lun 17 | Syscalls intro + `open`/`close`, flags `O_*` | K&R 8.2, `man 2 open` | [ ] |
-| Mar 18 | `read`/`write` (buffers, bucle hasta EOF) | K&R 8.3–8.4, `man 2 read`/`write` | [ ] |
-| Mié 19 | FDs bajo el hood + `dup`/`dup2` (redirección) | `man 2 dup`, video FDs | [ ] |
-| Jue 20 | Buffer / refuerzo (errno, manejo de errores) | — | [ ] |
-| Vie 21 | Buffer / avance | — | [ ] |
-| Sáb 22 | **mysh v0.5**: read + parse + builtins (`cd`, `exit`, `echo`) | Recovery Plan S2 | [ ] |
-| Dom 23 | Zettels + tick S2 + plan S3 | — | [ ] |
+| Lun 17 | **¿Qué es un syscall?** (modo usuario vs kernel, trap, wrapper libc) + primer `open`/`close` | [kernel-internals.org/syscalls](https://kernel-internals.org/syscalls/) · [Suraj Narwade — Understanding system calls](https://surajincloud.substack.com/p/understanding-system-calls-in-linux) · K&R 8.2, `man 2 open` | [ ] |
+| Mar 18 | **¿Qué es un FD?** (tabla 0/1/2, todo es un archivo) + `read`/`write` | [Tech Fairy — Inside Linux FDs](https://www.youtube.com/watch?v=saMebwRO-Q8) · [Utah CS4400 — clips FD](https://my.eng.utah.edu/~cs4400/file-descriptor.html) · K&R 8.3–8.4, `man 2 read`/`write` | [ ] |
+| Mié 19 | `dup`/`dup2` + redirección → **cómo lo usará mysh** | [Kris Jordan — dup2](https://www.youtube.com/watch?v=PIb2aShU_H4) · [Baeldung — dup2 redirect stdout](https://www.baeldung.com/linux/c-dup2-redirect-stdout) · `man 2 dup`/`dup2` | [ ] |
+| Jue 20 | **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo | [Brennan — Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/) (solo parte v0.5) · [UCI 143A — HW2 Shell](https://ics.uci.edu/~aburtsev/143A/hw/hw2-shell/hw2-shell.html) | [ ] |
+| Vie 21 | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`) | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ] |
+| Sáb 22 | **mysh v0.5**: read + parse + builtins (`cd`, `exit`, `echo`) | Brennan + UCI (solo parte v0.5) | [ ] |
+| Dom 23 | Zettels + tick S2 + plan S3 | Zettel: `Linux - File Descriptors and open-read-write.md` | [ ] |
 
 - **Blockers:** none
 
