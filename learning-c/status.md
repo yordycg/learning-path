@@ -9,23 +9,9 @@
 - Al terminar la semana: las filas se archivan en el *Session log* y se abre la siguiente con la plantilla de *Next Week*.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
-## Current Week — S0 (Aug 5–9, 2026)
+## Current Week — S1 (Aug 10–16)
 
-> Prep (mid-week start) — close Beej 9–11 + catch-up buffer. Tooling deferred: valgrind → S1, Makefile → multifile (Beej §17), GDB → S6.
-
-| Día | Tema | Recursos | Estado |
-|-----|------|----------|--------|
-| Mié 5 | Re-baseline F1 + estructura canónica + AGENTS.md; `functions.c` | — | [x] |
-| Jue 6 | Beej 9 file I/O + Beej 10 typedef + Beej 11 pointer arithmetic | [README → Recursos por tema](README.md#recursos-por-tema) (`01-pointers`, `04-typedef-types`) | [x] |
-| Vie 7 | Catch-up buffer / cierre Beej 9–11 | — | [ ] |
-| Sáb 8 | Catch-up buffer / Beej 12 si vas adelantado | Beej §12 (ver S1) | [ ] |
-| Dom 9 | Zettels + tick S0 + plan S1 | — | [ ] |
-
-- **Blockers:** none
-
-## Next Week — S1 (Aug 10–16)
-
-> Stack/Heap + `malloc`/`free` (Beej 12) + `binary_search`. Plan día a día **provisional**: se ajusta el Dom 9 al planear S1. Recursos: [`README → Recursos por tema`](README.md#recursos-por-tema) (`05-memory-management`).
+> Stack/Heap + `malloc`/`free` (Beej 12) + `binary_search`. Recursos: [`README → Recursos por tema`](README.md#recursos-por-tema) (`05-memory-management`).
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
@@ -34,13 +20,24 @@
 | Mié 12 | Beej 12.4–12.5 + `binary_search` | ídem | [x] |
 | Jue 13 | Buffer / refuerzo | — | [ ] |
 | Vie 14 | Buffer / avance | — | [ ] |
-| Sáb 15 | Buffer / avance | — | [ ] |
+| Sáb 15 | Buffer / avance — **ej. 2 dynamic note recording cerrado** | — | [x] |
 | Dom 16 | Zettels + tick S1 + plan S2 | — | [ ] |
+
+- **Blockers:** none
+
+## Next Week — S2 (Aug 17–23)
+
+> Syscalls + FDs (K&R 8, `man 2`). Plan día a día **provisional**: se abre el Dom 16 al tick de S1. Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2).
 
 ---
 
+## Próxima sesión — TODO
+
+- Investigar + crear Zettels sobre **Stack vs Heap memory model**. Beej 12 no cubre stack (README nota: "stack no en Beej"). Recursos: Sorber — [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) + [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4). Zettel planificado: `C - Stack vs Heap Memory Model.md`.
+
 ## Session log
 
+- 2026-08-15 — `2-dynamic-note-recording.c` (ej. 2) completed: growing-realloc pattern (capacity 1→2→4→8), invariant `count <= capacity`, temp-pointer shield on realloc failure, note range 0–7 (Chilean grading), EOF (Ctrl+D) = end of input via break, `buffer[32]` + `sscanf` per-line validation, senior-style comments + synced pseudocode. Compiled `-Wall -Wextra -g`, tested: averages, boundaries 0/7, rejection >7, `-1` only, Ctrl+D with/without notes. Committed `feat(c):`.
 - 2026-08-12 — Beej 12 closed: `4-change-allocated-size.c` (realloc + NULL-protection; fixed loop range `0..39`) and `5-complete-example.c` (growing readline: comma-operator loop, doubling `realloc` + temp-pointer shield, shrink-to-fit; fixed missing `return NULL;` on realloc failure). Both compiled `-Wall -Wextra -g`, no warnings, exit 0 incl. missing-file case. NOTA: valgrind no ejecutable en este entorno (falta libc6-dbg / glibc debuginfo); verificado por ejecución directa.
 - 2026-08-10 — Beej 12 dynamic memory allocation: created 1-allocating-deallocating.c, 2-error-checking.c, and 3-array-example.c (malloc, free, NULL protection, calloc, memset).
 - 2026-08-07 — Rediseñado `status.md` a plan día a día: tabla de la semana con tema + recursos (referencia a `README.md#recursos-por-tema`, fuente única) + checkbox por día; regla de operación; plantilla S1 provisional. Comprometido `chore(docs):`.
