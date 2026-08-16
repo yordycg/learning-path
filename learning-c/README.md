@@ -94,6 +94,19 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
+**Conceptos previos por semana** (análisis 2026-08-16): al abrir cada semana, incluir como día de concepto lo que aún no está cubierto. Detalle operativo en `status.md → Backlog`.
+
+| Semana | Concepto previo a incluir al abrirla |
+|--------|---------------------------------------|
+| S3 | ¿Qué es un proceso? (PCB/PID, imagen de memoria) + `execvp` y búsqueda en `PATH` (por qué no `system()`) |
+| S4 | Alcance v1.5 **simplificado**: el shell ignora `SIGINT` mientras espera al hijo. Process groups / terminal de control → diferidos (fuera del alcance de mysh) |
+| S5 | Semántica de pipes: `read` bloquea, EOF al cerrarse todos los write-ends, tamaño de buffer; **diseñar la cadena en papel** antes de codear |
+| S6 | Valgrind **no ejecutable** en este entorno (falta glibc debuginfo) → fallback **AddressSanitizer** (`-fsanitize=address`) para heap checks |
+| S7 | **Big O** (Fiset intro) + linked list con patrón **head-return** (evita `Node**`, Beej 23 diferido) |
+| S8 | (secuela directa de S7 — sin concepto nuevo) |
+| S9 | **Recursión** (día de concepto antes de merge sort) |
+| S10 | — |
+
 ---
 
 ## Phase 1 Project: mysh

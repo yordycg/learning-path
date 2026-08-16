@@ -7,6 +7,8 @@
 - Cada día preguntas "¿qué toca hoy?" → se responde con la fila de hoy de *Current Week* + sus recursos.
 - Al cierre de sesión: marcar `[ ]` → `[x]` en la fila del día y añadir entrada al *Session log*.
 - Al terminar la semana: las filas se archivan en el *Session log* y se abre la siguiente con la plantilla de *Next Week*.
+- **Concept-first:** cada semana se abre con los día(s) de concepto antes de los ejercicios. Todo concepto nuevo se investiga y se le asigna recurso antes de codearlo (nada se da por hecho).
+- En el tick semanal (Dom): consultar el *Backlog — conceptos previos (S3–S10)* para incluir el concepto pendiente de la semana que se abre.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
 ## Current Week — S2 (Aug 17–23)
@@ -30,6 +32,17 @@
 ## Próxima sesión — TODO
 
 - Empezar S2: K&R 8.2 (`open`/`close`) + `man 2 open` (flags `O_RDONLY`/`O_WRONLY`/`O_CREAT`…). Zettel de S2 planificado: `Linux - File Descriptors and open-read-write.md`.
+
+## Backlog — conceptos previos (S3–S10)
+
+> Análisis 2026-08-16. Al abrir cada semana, incluir como día de concepto lo que aún no se ha visto. Detalle: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10).
+
+- **S3** — ¿Qué es un proceso? (PCB/PID, imagen de memoria) + `execvp`/`PATH` (por qué no `system()`).
+- **S4** — v1.5 simplificado: shell ignora `SIGINT` mientras espera al hijo. Process groups diferidos.
+- **S5** — Semántica de pipes (blocking, EOF, buffer) + diseño de la cadena en papel antes de codear.
+- **S6** — Valgrind no corre en este entorno → fallback **AddressSanitizer** (`-fsanitize=address`).
+- **S7** — Big O (Fiset intro) + linked list **head-return** (evita `Node**`, Beej 23 diferido).
+- **S9** — Recursión (día de concepto antes de merge sort).
 
 ## Session log
 
