@@ -17,7 +17,7 @@
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
-| Lun 17 | **¿Qué es un syscall?** (modo usuario vs kernel, trap, wrapper libc) + primer `open`/`close` | [kernel-internals.org/syscalls](https://kernel-internals.org/syscalls/) · [Suraj Narwade — Understanding system calls](https://surajincloud.substack.com/p/understanding-system-calls-in-linux) · K&R 8.2, `man 2 open` | [ ] |
+| Lun 17 | **¿Qué es un syscall?** (modo usuario vs kernel, trap, wrapper libc) + primer `open`/`close` | [kernel-internals.org/syscalls](https://kernel-internals.org/syscalls/) · [Suraj Narwade — Understanding system calls](https://surajincloud.substack.com/p/understanding-system-calls-in-linux) · K&R 8.2, `man 2 open` | [x] |
 | Mar 18 | **¿Qué es un FD?** (tabla 0/1/2, todo es un archivo) + `read`/`write` | [Tech Fairy — Inside Linux FDs](https://www.youtube.com/watch?v=saMebwRO-Q8) · [Utah CS4400 — clips FD](https://my.eng.utah.edu/~cs4400/file-descriptor.html) · K&R 8.3–8.4, `man 2 read`/`write` | [ ] |
 | Mié 19 | `dup`/`dup2` + redirección → **cómo lo usará mysh** | [Kris Jordan — dup2](https://www.youtube.com/watch?v=PIb2aShU_H4) · [Baeldung — dup2 redirect stdout](https://www.baeldung.com/linux/c-dup2-redirect-stdout) · `man 2 dup`/`dup2` | [ ] |
 | Jue 20 | **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo | [Brennan — Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/) (solo parte v0.5) · [UCI 143A — HW2 Shell](https://ics.uci.edu/~aburtsev/143A/hw/hw2-shell/hw2-shell.html) | [ ] |
@@ -31,7 +31,7 @@
 
 ## Próxima sesión — TODO
 
-- Empezar S2: K&R 8.2 (`open`/`close`) + `man 2 open` (flags `O_RDONLY`/`O_WRONLY`/`O_CREAT`…). Zettel de S2 planificado: `Linux - File Descriptors and open-read-write.md`.
+- S2 D2 (Mar 18): ¿Qué es un FD? (tabla 0/1/2, todo es un archivo) + `read`/`write` (K&R 8.3–8.4). Al revisar, corregir el terminador de `1-open-close.c`: `read` no agrega `\0`, hoy `printf("%s", buf)` funciona de casualidad → opción segura `write(1, buf, line)` o `buf[line]='\0'`.
 
 ## Backlog — conceptos previos (S3–S10)
 
@@ -45,6 +45,8 @@
 - **S9** — Recursión (día de concepto antes de merge sort).
 
 ## Session log
+
+- 2026-08-17 — **S2 D1 (Lun) cerrado.** Concepto syscall (modo usuario vs kernel, trap, wrapper libc) en notas Obsidian. Código: `4-systems/01-syscalls-processes/1-open-close.c` — `open("data/data.txt", O_RDONLY)` + chequeo `== -1`, bucle `read(file, buf, size_buf)` > 0 mostrando con `printf("%s", buf)`, `close()` con chequeo. Depurado con Sócrates: faltaba `<fcntl.h>` (`implicit declaration of open`); segfault por `printf("%s", line)` (imprimía el byte-count, no la data — la data va en `buf`). Compila `-Wall -Wextra -g` sin warnings. NOTA: `buf` sin `\0` (read no lo agrega) → refinar con `write(1, buf, line)` o `buf[line]='\0'` en D2. Commit `feat(c): first open/close with read (S2)`.
 
 - 2026-08-16 — **S1 cerrada.** Zettel `C - Stack vs Heap Memory Model.md` creado en Obsidian: stack (LIFO, crece abajo, lifetime = scope) vs heap (crece arriba, lifetime manual), las 4 leyes del heap (use-after-free / double-free / leak / OOB), `malloc` como wrapper de `brk`/`mmap`. Tick S1 → `[x]` en Recovery Plan (README). S2 abierta: syscalls + FDs (K&R 8, `man 2`); deliverable **mysh v0.5** (Sáb 22).
 
