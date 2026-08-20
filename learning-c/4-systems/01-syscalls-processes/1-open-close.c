@@ -1,8 +1,25 @@
 /*
- * Practica Basica:
- * - Abrir un archivo en modo lectura, mostrar en cli
- * y luego cerrar.
- * - Usar obligatoriamante: open, close
+ * FD:
+ * - Tabla FDs:
+ *   - 0 = STDIN (terminal input/keyboard).
+ *   - 1 = STDOUT (terminal screen ).
+ *   - 2 = STDERR (Terminal screen for errors).
+ * - open()
+ *
+ * - Input/Ouput: Cada llamada retorna un recuento de bytes que es el numero
+ *   de los bytes transferidos.
+ *   - fd -> File Descriptor.
+ *   - buf -> Buffer: donde vendran o iran los datos.
+ *   - n -> numero de bytes a transferir.
+ *      - n = 1 = un caracter a la vez ("unbuffered").
+ *      - n = 512 = corresponde un bloque fisico con muchos dispositivos perifericos.
+ *
+ *   - write(fd, buf, n): Retorna el el numero de bytes escritors.
+ *      - n bytes != return n bytes -> ERROR.
+ *   - read(fd, buf, n): Puede retornar un numero menor a los bytes solicitados, depende
+ *     del contenido a leer.
+ *      - Retornar 0 == EOF.
+ *      - Retornar -1 == ERROR.
  *
  * Pseudocodigo:
  *
@@ -32,7 +49,8 @@ int main(void)
     }
 
     while ((line = read(file, buf, size_buf)) > 0)
-        printf("%s", buf);
+        /* fd 1 = STDOUT = Terminal Screen */
+        write(1, buf, line);
 
     if (close(file) == -1) {
         printf("ERROR: No se pudo cerrar el archivo");
