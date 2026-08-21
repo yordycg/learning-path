@@ -17,8 +17,9 @@ It contains code snippets, atomic exercises, conceptual proofs of concept (PoCs)
 
 ## Repository Structure
 
-The code is organized by technology and core concepts corresponding to the roadmap phases:
+The code is organized by technology, core concepts, and standalone projects:
 
+- [`projects/`](./projects/) - Standalone roadmap projects (e.g., `projects/mysh/`) managed as independent Git repositories with their own commit history, source code (`src/`), build system (`Makefile`), and architecture docs (`docs/`).
 - [`learning-c/`](./learning-c/) - Linux Internals, Memory Management (Stack/Heap), Syscalls, IPC, Signals and basic DSA in C.
 - [`learning-go/`](./learning-go/) - Go fundamentals, Concurrency (Goroutines, Channels), idiomatic error handling, testing, and HTTP.
 - [`learning-postgres/`](./learning-postgres/) - Advanced SQL, schema design, index analysis (`EXPLAIN ANALYZE`), and transaction isolation.

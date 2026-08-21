@@ -4,24 +4,24 @@
 
 ## Cómo operar este archivo
 
-- Cada día preguntas "¿qué toca hoy?" → se responde con la fila de hoy de *Current Week* + sus recursos.
-- Al cierre de sesión: marcar `[ ]` → `[x]` en la fila del día y añadir entrada al *Session log*.
-- Al terminar la semana: las filas se archivan en el *Session log* y se abre la siguiente con la plantilla de *Next Week*.
+- Cada día preguntas "¿qué toca hoy?" → se responde con la fila de hoy de _Current Week_ + sus recursos.
+- Al cierre de sesión: marcar `[ ]` → `[x]` en la fila del día y añadir entrada al _Session log_.
+- Al terminar la semana: las filas se archivan en el _Session log_ y se abre la siguiente con la plantilla de _Next Week_.
 - **Concept-first:** cada semana se abre con los día(s) de concepto antes de los ejercicios. Todo concepto nuevo se investiga y se le asigna recurso antes de codearlo (nada se da por hecho).
-- En el tick semanal (Dom): consultar el *Backlog — conceptos previos (S3–S10)* para incluir el concepto pendiente de la semana que se abre.
+- En el tick semanal (Dom): consultar el _Backlog — conceptos previos (S3–S10)_ para incluir el concepto pendiente de la semana que se abre.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
 ## Modelo de alternancia (a partir de ago 24)
 
 > Este roadmap y el de AI (`../ai-learning-path/`) se dedican **semanas completas alternadas** (lunes → domingo), no en paralelo. **Sem 2 (31 ago – 6 sep)** es la semana de este roadmap. Próxima: Sem 3 (7–13 sep) = AI; Sem 4 (14–20 sep) = este roadmap.
 
-| Semana | Fechas | Roadmap activo |
-|--------|--------|----------------|
-| Sem 1 | 24–30 ago | AI (Fase 0) |
-| Sem 2 | 31 ago – 6 sep | **Learning-path (S3)** |
-| Sem 3 | 7–13 sep | AI (Fase 0 W2) |
-| Sem 4 | 14–20 sep | Learning-path (S4) |
-| ... | ... | alternando |
+| Semana | Fechas         | Roadmap activo         |
+| ------ | -------------- | ---------------------- |
+| Sem 1  | 24–30 ago      | AI (Fase 0)            |
+| Sem 2  | 31 ago – 6 sep | **Learning-path (S3)** |
+| Sem 3  | 7–13 sep       | AI (Fase 0 W2)         |
+| Sem 4  | 14–20 sep      | Learning-path (S4)     |
+| ...    | ...            | alternando             |
 
 - **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) archivos/directorios a crear con ruta exacta, (2) notas `.md` a crear con su nombre exacto, (3) recursos con **nombre + link**, y (4) zettels de Obsidian con nombre.
 
@@ -31,15 +31,15 @@
 
 > Processes (K&R 8, `man 2`, Sorber fork video): `fork`/`exec`/`wait`, zombies. Proyecto: **mysh v1.0** (comandos externos, `execvp` + búsqueda en `PATH`, **sin** `system()`). Concepto previo a incluir: ¿Qué es un proceso? (PCB/PID, imagen de memoria). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S3).
 
-| Día | Tema | Recursos | Estado |
-|-----|------|----------|--------|
-| Lun 31 | **¿Qué es un proceso?** (PCB/PID, imagen de memoria, estado) + por qué mysh no usa `system()` | K&R 8.6 · [Sorber — fork](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · `man 2 fork`/`execve` | [ ] |
-| Mar 1 | **`fork`**: creación de proceso hijo, copia de memoria, fork/exec split | [Sorber — fork explained](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · K&R 8.6 · `man 2 fork` | [ ] |
-| Mié 2 | **`exec` family + `wait`**: reemplazo de imagen, zombies y reaping | [Sorber — exec](https://www.youtube.com/watch?v=-_7BcxBr4P4) · K&R 8.6 · `man 2 execve`/`wait` | [ ] |
-| Jue 3 | **`execvp` + PATH**: búsqueda del binario en `$PATH`, por qué `execvp` y no `system()` | [Sorber — execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) · `man 3 execvp`/`man 7 environ` | [ ] |
-| Vie 4 | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`) | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ] |
-| Sáb 5 | **mysh v1.0**: fork + execvp para comandos externos, esperar hijo (sin `system()`) | Brennan (parte v1.0) + UCI 143A | [ ] |
-| Dom 6 | Zettels + tick S3 + plan S4 | Zettel: `Linux - Processes and fork.md` | [ ] |
+| Día    | Tema                                                                                          | Recursos                                                                                                                                           | Estado |
+| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Lun 31 | **¿Qué es un proceso?** (PCB/PID, imagen de memoria, estado) + por qué mysh no usa `system()` | K&R 8.6 · [Sorber — fork](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · `man 2 fork`/`execve`                                                     | [ ]    |
+| Mar 1  | **`fork`**: creación de proceso hijo, copia de memoria, fork/exec split                       | [Sorber — fork explained](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · K&R 8.6 · `man 2 fork`                                                    | [ ]    |
+| Mié 2  | **`exec` family + `wait`**: reemplazo de imagen, zombies y reaping                            | [Sorber — exec](https://www.youtube.com/watch?v=-_7BcxBr4P4) · K&R 8.6 · `man 2 execve`/`wait`                                                     | [ ]    |
+| Jue 3  | **`execvp` + PATH**: búsqueda del binario en `$PATH`, por qué `execvp` y no `system()`        | [Sorber — execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) · `man 3 execvp`/`man 7 environ`                                                    | [ ]    |
+| Vie 4  | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`)                | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ]    |
+| Sáb 5  | **mysh v1.0**: fork + execvp para comandos externos, esperar hijo (sin `system()`)            | Brennan (parte v1.0) + UCI 143A                                                                                                                    | [ ]    |
+| Dom 6  | Zettels + tick S3 + plan S4                                                                   | Zettel: `Linux - Processes and fork.md`                                                                                                            | [ ]    |
 
 - **Blockers:** none
 

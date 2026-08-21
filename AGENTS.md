@@ -14,8 +14,10 @@ This document defines the strict constraints and rules that any AI Assistant (LL
   - `2-advanced/` — Beej 8–19 + tooling (pointers, structs, unions, typedef/type composition, memory mgmt, scope, file I/O, multifile, preprocessor, error handling, gcc/make/gdb/valgrind)
   - `3-expert/` — Beej 20+ (advanced pointers, DSA, OOP emulation, bitwise, threads/atomics, variadic/jumps, signals, modern C)
   - `4-systems/` — OS topics NOT in Beej/Obsidian (syscalls, processes, pipes, file descriptors — K&R 8, `man 2`)
+- Roadmap projects live in `projects/<project-name>/` (e.g., `projects/mysh/`) as standalone Git repositories with their own commit history, `Makefile`, `src/`, and `docs/`.
+- **Note Separation:** Conceptual theory lives in Obsidian Zettelkasten (`000 Zettelkasten/`). Project architecture, specs, REPL design, and pseudocode live in `projects/<project-name>/docs/`.
 - Each phase keeps a `status.md` (e.g. `learning-c/status.md`) with the current week's operational state, maintained by the AI at the end of every session.
-- At the start of a session, read the active phase `status.md` and `git log -1` — do NOT scan the whole repository to answer "what to do today".
+- **Context Window Efficiency:** At session start, read ONLY the active phase `status.md` and `git log -1`. Do NOT scan the whole repository or Obsidian notes to answer "what to do today"—read specific notes/docs on demand.
 
 ## 📂 Obsidian Zettelkasten Integration
 - **Vault Absolute Path:** `/home/yordycg/workspace/personal/obsidian-notes`
