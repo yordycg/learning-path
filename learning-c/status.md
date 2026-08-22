@@ -13,6 +13,8 @@
 
 ## Current Week — S2 (Aug 17–23)
 
+> **AI Engineering Parallel Track (S2):** Fase 0 (AI Literacy) — Lectura sobre Tokens y BPE + diseño del script `cli-llm` en Python con OpenRouter. Guía operativa en `../ai-learning-path/00-ai-literacy/README.md`.
+
 > Syscalls + FDs (K&R 8, `man 2`): `open`/`read`/`write`/`close`, `dup`/`dup2`. Proyecto: **mysh v0.5** (read + parse + builtins). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2). Recursos completos: [`README → Recursos por tema`](README.md#recursos-por-tema) (filas `4-systems/*`).
 
 | Día | Tema | Recursos | Estado |
