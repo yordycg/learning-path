@@ -1,3 +1,7 @@
+---
+description: Query and read notes from the user's Obsidian Zettelkasten vault
+---
+
 # Skill: Obsidian Zettelkasten Query (`obsidian-query`)
 
 ## Purpose

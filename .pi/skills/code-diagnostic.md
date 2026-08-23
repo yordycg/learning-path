@@ -1,3 +1,7 @@
+---
+description: Guide independent debugging using system tools instead of fixing code
+---
+
 # Skill: Diagnostic Debugging Support (`code-diagnostic`)
 
 ## Purpose

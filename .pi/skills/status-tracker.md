@@ -1,3 +1,7 @@
+---
+description: Track and update operational roadmap status and session progress
+---
+
 # Skill: Operational Status Tracker (`status-tracker`)
 
 ## Purpose

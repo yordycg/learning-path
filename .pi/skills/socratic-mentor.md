@@ -1,3 +1,7 @@
+---
+description: Enforce strict Socratic mentorship and prevent spoonfeeding
+---
+
 # Skill: Socratic Mentor Loop (`socratic-mentor`)
 
 ## Purpose
