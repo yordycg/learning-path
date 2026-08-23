@@ -17,6 +17,11 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 - Each phase keeps a `status.md` (e.g. `learning-c/status.md`) with the current week's operational state, maintained by the AI at the end of every session.
 - At the start of a session, read the active phase `status.md` and `git log -1` — do NOT scan the whole repository to answer "what to do today".
 
+## 📂 Obsidian Zettelkasten Integration
+- **Vault Absolute Path:** `/home/yordycg/workspace/personal/obsidian-notes`
+- **Strict Search Rule:** When asked to check notes, search and read **exclusively** inside `/home/yordycg/workspace/personal/obsidian-notes`.
+- **FORBIDDEN:** Never run `find` or `grep` across `/home/yordycg` or parent directories. Target the vault path directly.
+
 ## Build & Debug Commands
 
 - Compile: `gcc -Wall -Wextra -g <file>.c -o <bin>` (use the Makefile when present).
