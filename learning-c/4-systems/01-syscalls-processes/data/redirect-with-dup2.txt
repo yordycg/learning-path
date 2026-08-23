@@ -1,0 +1,1 @@
+IMPRIMIENDO STDOUT DESPUES del dup2... esto esta en el archivo .txt!!
