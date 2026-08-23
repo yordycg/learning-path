@@ -21,7 +21,7 @@
 |-----|------|----------|--------|
 | Lun 17 | **¿Qué es un syscall?** (modo usuario vs kernel, trap, wrapper libc) + primer `open`/`close` | [kernel-internals.org/syscalls](https://kernel-internals.org/syscalls/) · [Suraj Narwade — Understanding system calls](https://surajincloud.substack.com/p/understanding-system-calls-in-linux) · K&R 8.2, `man 2 open` | [x] |
 | Mar 18 | **¿Qué es un FD?** (tabla 0/1/2, todo es un archivo) + `read`/`write` | [Tech Fairy — Inside Linux FDs](https://www.youtube.com/watch?v=saMebwRO-Q8) · [Utah CS4400 — clips FD](https://my.eng.utah.edu/~cs4400/file-descriptor.html) · K&R 8.3–8.4, `man 2 read`/`write` | [x] |
-| Mié 19 | `dup`/`dup2` + redirección → **cómo lo usará mysh** | [Kris Jordan — dup2](https://www.youtube.com/watch?v=PIb2aShU_H4) · [Baeldung — dup2 redirect stdout](https://www.baeldung.com/linux/c-dup2-redirect-stdout) · `man 2 dup`/`dup2` | [ ] |
+| Mié 19 | `dup`/`dup2` + redirección → **cómo lo usará mysh** | [Kris Jordan — dup2](https://www.youtube.com/watch?v=PIb2aShU_H4) · [Baeldung — dup2 redirect stdout](https://www.baeldung.com/linux/c-dup2-redirect-stdout) · `man 2 dup`/`dup2` | [x] |
 | Jue 20 | **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo | [Brennan — Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/) (solo parte v0.5) · [UCI 143A — HW2 Shell](https://ics.uci.edu/~aburtsev/143A/hw/hw2-shell/hw2-shell.html) | [ ] |
 | Vie 21 | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`) | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ] |
 | Sáb 22 | **mysh v0.5**: read + parse + builtins (`cd`, `exit`, `echo`) | Brennan + UCI (solo parte v0.5) | [ ] |
@@ -33,7 +33,7 @@
 
 ## Próxima sesión — TODO
 
-- S2 D3 (Mié 19): `dup`/`dup2` + redirección (K&R 8.3–8.4, `man 2 dup`/`dup2`) — cómo lo usará mysh v0.5.
+- S2 D4 (Jue 20): **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo (Brennan + UCI 143A, solo parte v0.5).
 
 ## Backlog — conceptos previos (S3–S10)
 
@@ -47,6 +47,8 @@
 - **S9** — Recursión (día de concepto antes de merge sort).
 
 ## Session log
+
+- 2026-08-23 — **S2 D3 (Mié 19) cerrado.** Concepto `dup`/`dup2` + redirección: duplicar entradas de la tabla de FDs; el `>` de un shell es un `dup2(fd, 1)`. Ejercicio `4-systems/01-syscalls-processes/3-dup2-redirect.c`: patrón `open → dup2 → close` redirigiendo stdout a `data/redirect-with-dup2.txt` (`O_CREAT | O_TRUNC | O_WRONLY`, 0600, chequeo `== -1`). Lección del día: buffering de stdio — sin `\n` el `printf` "ANTES" se flushaba después del `dup2` y también caía al archivo (line-buffering solo en TTY, full buffering por pipe); con `\n` el primer mensaje sale por terminal y el segundo se guarda. Nota Obsidian nueva `Redirection and dup2 - Linux.md` (dup vs dup2, caso `oldfd == newfd`, patrón completo) + enlaces cruzados con la nota FD. Compila `-Wall -Wextra -g` sin warnings. Commit `d0181f5`.
 
 - 2026-08-20 — **S2 D2 (Mar 18) cerrado.** Concepto FD (tabla 0/1/2, todo es un archivo) en notas Obsidian. Ejercicio `4-systems/01-syscalls-processes/2-read-write.c`: copiar input de terminal (fd 0) a `data/data.txt` (`O_WRONLY | O_CREAT | O_TRUNC`, 0644). Diseño con bucle externo de `read` hasta EOF (Ctrl+D) y bucle interno anti-partial-write (`write_ptr` + descuento de pendiente, chequeos `== -1` en open/write/close). Tipos: `ssize_t` para retornos de read/write, `size_t` para tamaño de buffer, `int` para open/close; includes `<fcntl.h>`/`<unistd.h>`. Compila `-Wall -Wextra -g` sin warnings y persiste el input tecleado. En `1-open-close.c` aplicado el fix del terminador: `write(1, buf, line)` (read no agrega `\0`). Commit `f7984f2`.
 
