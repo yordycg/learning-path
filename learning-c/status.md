@@ -11,21 +11,35 @@
 - En el tick semanal (Dom): consultar el *Backlog — conceptos previos (S3–S10)* para incluir el concepto pendiente de la semana que se abre.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
-## Current Week — S2 (Aug 17–23)
+## Modelo de alternancia (a partir de ago 24)
 
-> **AI Engineering Parallel Track (S2):** Fase 0 (AI Literacy) — Lectura sobre Tokens y BPE + diseño del script `cli-llm` en Python con OpenRouter. Guía operativa en `../ai-learning-path/00-ai-literacy/README.md`.
+> Este roadmap y el de AI (`../ai-learning-path/`) se dedican **semanas completas alternadas** (lunes → domingo), no en paralelo. **Sem 2 (31 ago – 6 sep)** es la semana de este roadmap. Próxima: Sem 3 (7–13 sep) = AI; Sem 4 (14–20 sep) = este roadmap.
 
-> Syscalls + FDs (K&R 8, `man 2`): `open`/`read`/`write`/`close`, `dup`/`dup2`. Proyecto: **mysh v0.5** (read + parse + builtins). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S2). Recursos completos: [`README → Recursos por tema`](README.md#recursos-por-tema) (filas `4-systems/*`).
+| Semana | Fechas | Roadmap activo |
+|--------|--------|----------------|
+| Sem 1 | 24–30 ago | AI (Fase 0) |
+| Sem 2 | 31 ago – 6 sep | **Learning-path (S3)** |
+| Sem 3 | 7–13 sep | AI (Fase 0 W2) |
+| Sem 4 | 14–20 sep | Learning-path (S4) |
+| ... | ... | alternando |
+
+- **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) archivos/directorios a crear con ruta exacta, (2) notas `.md` a crear con su nombre exacto, (3) recursos con **nombre + link**, y (4) zettels de Obsidian con nombre.
+
+## Current Week — S3 (Aug 31 – Sep 6)
+
+> **AI Engineering Parallel Track:** en Semanas alternadas (ver arriba). Esta es la semana de este roadmap (C/procesos). Guía de IA en `../ai-learning-path/`.
+
+> Processes (K&R 8, `man 2`, Sorber fork video): `fork`/`exec`/`wait`, zombies. Proyecto: **mysh v1.0** (comandos externos, `execvp` + búsqueda en `PATH`, **sin** `system()`). Concepto previo a incluir: ¿Qué es un proceso? (PCB/PID, imagen de memoria). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S3).
 
 | Día | Tema | Recursos | Estado |
 |-----|------|----------|--------|
-| Lun 17 | **¿Qué es un syscall?** (modo usuario vs kernel, trap, wrapper libc) + primer `open`/`close` | [kernel-internals.org/syscalls](https://kernel-internals.org/syscalls/) · [Suraj Narwade — Understanding system calls](https://surajincloud.substack.com/p/understanding-system-calls-in-linux) · K&R 8.2, `man 2 open` | [x] |
-| Mar 18 | **¿Qué es un FD?** (tabla 0/1/2, todo es un archivo) + `read`/`write` | [Tech Fairy — Inside Linux FDs](https://www.youtube.com/watch?v=saMebwRO-Q8) · [Utah CS4400 — clips FD](https://my.eng.utah.edu/~cs4400/file-descriptor.html) · K&R 8.3–8.4, `man 2 read`/`write` | [x] |
-| Mié 19 | `dup`/`dup2` + redirección → **cómo lo usará mysh** | [Kris Jordan — dup2](https://www.youtube.com/watch?v=PIb2aShU_H4) · [Baeldung — dup2 redirect stdout](https://www.baeldung.com/linux/c-dup2-redirect-stdout) · `man 2 dup`/`dup2` | [x] |
-| Jue 20 | **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo | [Brennan — Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/) (solo parte v0.5) · [UCI 143A — HW2 Shell](https://ics.uci.edu/~aburtsev/143A/hw/hw2-shell/hw2-shell.html) | [ ] |
-| Vie 21 | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`) | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ] |
-| Sáb 22 | **mysh v0.5**: read + parse + builtins (`cd`, `exit`, `echo`) | Brennan + UCI (solo parte v0.5) | [ ] |
-| Dom 23 | Zettels + tick S2 + plan S3 | Zettel: `Linux - File Descriptors and open-read-write.md` | [ ] |
+| Lun 31 | **¿Qué es un proceso?** (PCB/PID, imagen de memoria, estado) + por qué mysh no usa `system()` | K&R 8.6 · [Sorber — fork](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · `man 2 fork`/`execve` | [ ] |
+| Mar 1 | **`fork`**: creación de proceso hijo, copia de memoria, fork/exec split | [Sorber — fork explained](https://www.youtube.com/watch?v=Pzd9G9R7Kmo) · K&R 8.6 · `man 2 fork` | [ ] |
+| Mié 2 | **`exec` family + `wait`**: reemplazo de imagen, zombies y reaping | [Sorber — exec](https://www.youtube.com/watch?v=-_7BcxBr4P4) · K&R 8.6 · `man 2 execve`/`wait` | [ ] |
+| Jue 3 | **`execvp` + PATH**: búsqueda del binario en `$PATH`, por qué `execvp` y no `system()` | [Sorber — execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) · `man 3 execvp`/`man 7 environ` | [ ] |
+| Vie 4 | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`) | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ] |
+| Sáb 5 | **mysh v1.0**: fork + execvp para comandos externos, esperar hijo (sin `system()`) | Brennan (parte v1.0) + UCI 143A | [ ] |
+| Dom 6 | Zettels + tick S3 + plan S4 | Zettel: `Linux - Processes and fork.md` | [ ] |
 
 - **Blockers:** none
 
@@ -33,7 +47,7 @@
 
 ## Próxima sesión — TODO
 
-- S2 D4 (Jue 20): **Diseño del shell**: REPL loop (read → parse → execute), solo conceptos + pseudocódigo (Brennan + UCI 143A, solo parte v0.5).
+- S3 D1 (Lun 31): **¿Qué es un proceso?** (PCB/PID, imagen de memoria) + por qué mysh no usa `system()` (K&R 8.6, Sorber fork, `man 2 fork`).
 
 ## Backlog — conceptos previos (S3–S10)
 
@@ -48,7 +62,7 @@
 
 ## Session log
 
-- 2026-08-23 — **S2 D3 (Mié 19) cerrado.** Concepto `dup`/`dup2` + redirección: duplicar entradas de la tabla de FDs; el `>` de un shell es un `dup2(fd, 1)`. Ejercicio `4-systems/01-syscalls-processes/3-dup2-redirect.c`: patrón `open → dup2 → close` redirigiendo stdout a `data/redirect-with-dup2.txt` (`O_CREAT | O_TRUNC | O_WRONLY`, 0600, chequeo `== -1`). Lección del día: buffering de stdio — sin `\n` el `printf` "ANTES" se flushaba después del `dup2` y también caía al archivo (line-buffering solo en TTY, full buffering por pipe); con `\n` el primer mensaje sale por terminal y el segundo se guarda. Nota Obsidian nueva `Redirection and dup2 - Linux.md` (dup vs dup2, caso `oldfd == newfd`, patrón completo) + enlaces cruzados con la nota FD. Compila `-Wall -Wextra -g` sin warnings. Commit `d0181f5`.
+- 2026-08-24 — **S2 cerrada.** v0.5 mysh terminada en pseudocódigo (deliverable S2 completo): REPL (read → parse → execute), lectura byte a byte con `read(0,&c,1)` + buffer creciente con `realloc`/temp-pointer shield, parseo con `strtok` → `args[]` NULL-terminado, dispatch de builtins `cd`/`echo`/`exit` con `strcmp == 0`, guard de línea vacía → `CONTINUE`, `chdir(args[1]) == -1` con guard `args[1] != NULL` y error → `CONTINUE` (no cierra el shell), `status = 1` inicial / `exit` → 0, `malloc`/`free` en lados opuestos del loop resueltos (use-after-free eliminado). NOTA para el C real: `echo` debe separar args con espacios y añadir `\n`. Pendiente D5 (errno) absorbido como concepto de refuerzo en S3 Vie 28. Tick S2 → `[x]` en Recovery Plan. S3 abierta (fork/exec/wait, mysh v1.0). Concepto `dup`/`dup2` + redirección: duplicar entradas de la tabla de FDs; el `>` de un shell es un `dup2(fd, 1)`. Ejercicio `4-systems/01-syscalls-processes/3-dup2-redirect.c`: patrón `open → dup2 → close` redirigiendo stdout a `data/redirect-with-dup2.txt` (`O_CREAT | O_TRUNC | O_WRONLY`, 0600, chequeo `== -1`). Lección del día: buffering de stdio — sin `\n` el `printf` "ANTES" se flushaba después del `dup2` y también caía al archivo (line-buffering solo en TTY, full buffering por pipe); con `\n` el primer mensaje sale por terminal y el segundo se guarda. Nota Obsidian nueva `Redirection and dup2 - Linux.md` (dup vs dup2, caso `oldfd == newfd`, patrón completo) + enlaces cruzados con la nota FD. Compila `-Wall -Wextra -g` sin warnings. Commit `d0181f5`.
 
 - 2026-08-20 — **S2 D2 (Mar 18) cerrado.** Concepto FD (tabla 0/1/2, todo es un archivo) en notas Obsidian. Ejercicio `4-systems/01-syscalls-processes/2-read-write.c`: copiar input de terminal (fd 0) a `data/data.txt` (`O_WRONLY | O_CREAT | O_TRUNC`, 0644). Diseño con bucle externo de `read` hasta EOF (Ctrl+D) y bucle interno anti-partial-write (`write_ptr` + descuento de pendiente, chequeos `== -1` en open/write/close). Tipos: `ssize_t` para retornos de read/write, `size_t` para tamaño de buffer, `int` para open/close; includes `<fcntl.h>`/`<unistd.h>`. Compila `-Wall -Wextra -g` sin warnings y persiste el input tecleado. En `1-open-close.c` aplicado el fix del terminador: `write(1, buf, line)` (read no agrega `\0`). Commit `f7984f2`.
 
