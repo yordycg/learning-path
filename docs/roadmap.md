@@ -43,7 +43,7 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 
 | Fase | Período | Foco | Stack |
 |------|---------|------|-------|
-| F1 | jun 14 – oct 18 2026 | Linux Internals, C & DSA base | C, GCC, Makefiles, Syscalls, DSA en C |
+| F1 | jun 14 – dic 13 2026 | Linux Internals, C & DSA base | C, GCC, Makefiles, Syscalls, DSA en C |
 | F2 | oct 19 2026 – ene 18 2027 | Go + Python base + PostgreSQL + Seguridad | Go, Python, PostgreSQL, sqlx |
 | F3 | ene 19 – abr 18 2027 | Sistemas Distribuidos + Docker + Redis + Observabilidad | Docker, Redis, CI/CD, OpenTelemetry |
 | F4 | abr 19 – jul 18 2027 | Data Engineering + Python Experto | Python avanzado, Kafka, dbt, DuckDB |
@@ -51,7 +51,7 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 | F6 | oct 19 2027 – ene 18 2028 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
 | F7 | Diferida — post-F6, sin fecha fija | Mobile multiplataforma | Kotlin, Compose Multiplatform, KMP, Ktor, SQLDelight |
 
-> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~4.5 meses (jun 14 – oct 18) tras un arranque más lento de lo previsto. El resto de fases se corren ~6 semanas. Las referencias internas tipo "mes 5" son relativas a esta nueva línea de tiempo. El detalle de recuperación está en [`learning-c/README.md`](../learning-c/README.md).
+> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~6 meses (jun 14 – dic 13 2026) por la nueva **alternancia semanal** con el track de IA y el modelo de **20h/semana** (Lun/Sáb/Dom 4h + Mar–Vie 2h). Fuente del ritmo: [`calendario.md`](../calendario.md). **Nota:** las fechas de F2–F6 se recalculan tras medir el ritmo real de la primera S-week (S3) y no están fijadas aún.
 
 ---
 
@@ -96,7 +96,7 @@ Arquitectura y patrones
 ---
 
 ## FASE 1 — Linux Internals, C & DSA Fundamentos
-**Período:** Jun 14 – Oct 18 2026 (~4.5 meses)
+**Período:** Jun 14 – Dic 13 2026 (~6 meses)
 **Núcleo:** Fundamentos absolutos del sistema. Sin esto, todo lo demás es magia negra.
 
 ### Objetivos técnicos
