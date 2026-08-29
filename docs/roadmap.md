@@ -51,7 +51,7 @@ Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura l
 | F6 | oct 19 2027 – ene 18 2028 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
 | F7 | Diferida — post-F6, sin fecha fija | Mobile multiplataforma | Kotlin, Compose Multiplatform, KMP, Ktor, SQLDelight |
 
-> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~6 meses (jun 14 – dic 13 2026) por la nueva **alternancia semanal** con el track de IA y el modelo de **20h/semana** (Lun/Sáb/Dom 4h + Mar–Vie 2h). Fuente del ritmo: [`calendario.md`](../calendario.md). **Nota:** las fechas de F2–F6 se recalculan tras medir el ritmo real de la primera S-week (S3) y no están fijadas aún.
+> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~6 meses (jun 14 – dic 13 2026) por el modelo de **20h/semana** (Lun/Sáb/Dom 4h + Mar–Vie 2h) y la operación en **bloques estacionales** con el track de IA: **semestre universitario (31 ago – 22 nov 2026) = LP 100%**, sprint de IA en vacaciones (desde 23 nov 2026). Fuente del ritmo: [`calendario.md`](../calendario.md). **Nota:** las fechas de F2–F6 se recalculan tras medir el ritmo real de la primera S-week (S3) y no están fijadas aún.
 
 ---
 
