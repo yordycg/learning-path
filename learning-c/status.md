@@ -11,23 +11,27 @@
 - En el tick semanal (Dom): consultar el _Backlog — conceptos previos (S3–S10)_ para incluir el concepto pendiente de la semana que se abre.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
-## Modelo de alternancia (a partir de ago 24)
+## Modelo estacional (a partir de ago 31)
 
-> Este roadmap y el de AI (`../ai-learning-path/`) se dedican **semanas completas alternadas** (lunes → domingo), no en paralelo. **Sem 2 (31 ago – 6 sep)** es la semana de este roadmap. Próxima: Sem 3 (7–13 sep) = AI; Sem 4 (14–20 sep) = este roadmap.
+> Este roadmap y el de IA (`../ai-learning-path/`) operan en **bloques estacionales**: durante el semestre universitario (31 ago – 22 nov 2026) este roadmap es **LP 100%**, semanas contiguas. El de IA está pausado (Fase 0 cerrada). **S3 (31 ago – 6 sep)** abre el tramo LP contiguo; S-weeks S3–S10 van seguidas (ver [`calendario.md`](../calendario.md)).
 
-| Semana | Fechas         | Roadmap activo         |
-| ------ | -------------- | ---------------------- |
-| Sem 1  | 24–30 ago      | AI (Fase 0)            |
-| Sem 2  | 31 ago – 6 sep | **Learning-path (S3)** |
-| Sem 3  | 7–13 sep       | AI (Fase 0 W2)         |
-| Sem 4  | 14–20 sep      | Learning-path (S4)     |
-| ...    | ...            | alternando             |
+| Semana universitaria | Fechas | LP |
+| -------------------- | ------ | -- |
+| 4 | 31 ago – 6 sep | **S3: procesos** |
+| 5 | 7–13 sep | S4: señales |
+| 6 | 14–20 sep | S5: pipes |
+| 7 | 21–27 sep | S6: GDB/ASan |
+| 8 | 28 sep – 4 oct | S7: DSA linked list |
+| 9 | 5–11 oct | S8: stack+queue |
+| 10 | 12–18 oct | S9: hash+sorting |
+| 11 | 19–25 oct | S10: integración |
+| 12–15 | 26 oct – 22 nov | F1 continuación (a definir) |
 
 - **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) archivos/directorios a crear con ruta exacta, (2) notas `.md` a crear con su nombre exacto, (3) recursos con **nombre + link**, y (4) zettels de Obsidian con nombre.
 
 ## Current Week — S3 (Aug 31 – Sep 6)
 
-> **AI Engineering Parallel Track:** en Semanas alternadas (ver arriba). Esta es la semana de este roadmap (C/procesos). Guía de IA en `../ai-learning-path/`.
+> **AI Engineering:** pausado durante el semestre (modelo estacional, ver arriba). Esta es la semana de este roadmap (C/procesos). Sprint de IA en vacaciones → `../ai-learning-path/`.
 
 > Processes (K&R 8, `man 2`, Sorber fork video): `fork`/`exec`/`wait`, zombies. Proyecto: **mysh v1.0** (comandos externos, `execvp` + búsqueda en `PATH`, **sin** `system()`). Concepto previo a incluir: ¿Qué es un proceso? (PCB/PID, imagen de memoria). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S3).
 
