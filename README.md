@@ -26,7 +26,7 @@ The code is organized by technology, core concepts, and standalone projects:
 - [`learning-python-base/`](./learning-python-base/) - Python automation scripting, typing (mypy), testing with pytest, and tooling.
 - [`learning-distributed/`](./learning-distributed/) - Containerization (Docker Compose), caching (Redis), resilience patterns, and observability (Prometheus, OpenTelemetry).
 - [`learning-data-engineering/`](./learning-data-engineering/) - Event streaming (Kafka), analytics database engines (DuckDB), data modeling (dbt), and advanced Python.
-- [`ai-learning-path`](../ai-learning-path/) - Parallel AI Engineering track: LLMs, RAG, Agentic Systems, Evaluation, and Production AI.
+- [`ai-learning-path`](../ai-learning-path/) - AI Engineering track (LLMs, RAG, Agentic Systems, Evaluation, Production). Operado en **bloques estacionales**: este repo durante el semestre, sprint de IA en vacaciones.
 
 ---
 
