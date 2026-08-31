@@ -4,38 +4,46 @@
 
 ---
 
-## Cómo aprender en este roadmap — El método ajustado
+## Cómo aprender en este roadmap — El método ajustado (ago 2026)
 
-Tu cerebro aprende por **activación**, no por recepción pasiva. Los libros te duermen porque son unidireccionales. Los videos te activan porque disparan el impulso de codear. Este roadmap usa eso a tu favor.
+Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas guían todo el roadmap:
 
-### El flujo diario de las 1.5h de teoría (reemplaza la lectura de libros)
+1. **Inverted Project-Based Learning** — el proyecto genera la necesidad, no al revés. No estudias teoría "por si acaso"; cada concepto entra porque `mysh`/`taskapi`/`eventpipe` lo exigen en ese momento. La teoría se aprende **justo cuando el problema la pide**.
+2. **Just-In-Time Learning** — los libros, videos y man pages pasan a ser **referencia puntual**, no lectura lineal. Se abren solo cuando el código falla y necesitas la sección exacta. Así usan los libros los engineers en la vida real.
+3. **Code-First Notes + código autodocumentado** — las notas viven en el código, no en Obsidian. Escribes el intento primero y tus comentarios en el `.c` son la nota. Obsidian es un subproducto que la IA genera al cierre.
+
+> El principio detrás de "código primero": **productive failure** (fallar con intención). Intentar resolver antes de ver la solución crea preguntas reales en tu cerebro → el recurso posterior se recuerda mucho mejor que consumirlo primero.
+
+### El flujo diario (reemplaza "teoría → código")
 
 ```
-1. Elegir el tema del día (ej: "pipes en Linux")
-2. Ver el video del tema — 15 a 25 min máximo
-3. Cerrar el video. Abrir Obsidian.
-4. Escribir la nota atómica con TUS palabras — 20 min
-   Si no puedes escribirlo sin ver el video, vuélvelo a ver.
-5. Abrir Neovim → empieza el bloque de 2h de código
-6. Cuando algo no funciona y no entiendes por qué
-   → AHORA abres el libro o man pages como referencia puntual
+1. Contexto (2 min) — QUÉ hace el concepto, sin el CÓMO.
+   Ej: "fork() crea un nuevo proceso. Tú decides cómo."
+2. Código primero (20-30 min) — intentas usar el concepto sin leer nada.
+   Fallas con propósito → generas preguntas reales.
+   Escribes comentarios en el .c sobre lo que crees que pasa.
+3. Recurso just-in-time (15-25 min) — ahora abres el video/man,
+   buscando respuestas a las preguntas que el código ya te generó.
+4. Corregir + ejercicios progresivos (60-90 min) — ajustas tu código,
+   luego básico → aplicado → integrado con el proyecto.
+5. Comentarios en el .c = notas (10 min) — APRENDÍ / DUDA RESUELTA /
+   CONECTA CON. Ese bloque de comentarios ES tu nota.
+6. La IA genera el Zettel en Obsidian al cierre — a partir de tus
+   comentarios, con la jerarquía conectada (MOC). No tocas Obsidian.
 ```
 
-> El paso 4 es donde ocurre el aprendizaje real. No en el video — sino cuando intentas reconstruirlo desde tu memoria.
+> El aprendizaje real ocurre en los pasos 2 y 4 — cuando intentas construir desde tu memoria — no en el video.
 
-### El rol de los libros cambia
+### Horario semanal base (20h/semana)
 
-Los libros no desaparecen — pasan a ser **referencia de consulta, no lectura lineal**. Cuando tu código falla y no entiendes por qué, abres K&R o CS:APP en la sección exacta. Así usan los libros los engineers en la vida real.
+| Día | Horas | Actividad |
+|-----|-------|-----------|
+| Lunes | 4h | Código primero + recurso JIT + ejercicios + bloque del proyecto |
+| Martes – Viernes | 2h c/u | Código primero del tema del día → recurso JIT → comentarios en el `.c` |
+| Sábado | 4h | Bloque masivo del Proyecto Principal |
+| Domingo | 4h | Refactor, revisar Zettels, ejercicios de integración, planear semana |
 
-### Horario semanal base
-
-| Día | Bloque | Actividad |
-|-----|--------|-----------|
-| Lunes – Viernes | 15–25 min | Video del tema del día |
-| Lunes – Viernes | 20–30 min | Nota atómica en Obsidian con tus palabras |
-| Lunes – Viernes | 2h | Código: implementar lo que viste |
-| Sábado | 4–5h | Bloque masivo del Proyecto Principal |
-| Domingo | Flexible | Refactor, revisar Zettels, planear semana |
+> Fuente del ritmo semanal: [`calendario.md`](calendario.md). Durante el semestre (31 ago – 22 nov 2026) este roadmap es LP 100%; en vacaciones el sprint IA absorbe las horas (30–35h/sem).
 
 ---
 
@@ -190,7 +198,7 @@ Arquitectura y patrones
 
 ### Videos por tema — Fase 1
 
-> Cada video es 15–25 min. Ver → Obsidian → codear. No ver el siguiente hasta implementar el anterior.
+> Cada video es 15–25 min y se usa **just-in-time**: códigas primero, y el video solo se abre cuando el código falla (busca respuestas a tus preguntas reales). No ver el siguiente hasta implementar el anterior.
 
 **C y memoria:**
 
@@ -339,13 +347,13 @@ Lección: cada extremo del pipe debe cerrarse en TODOS los procesos que no lo us
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes | Video de C/memoria (15 min) → Obsidian (20 min) → ejercicio de punteros (2h) |
-| Martes | Video de syscall del tema (15 min) → Obsidian → implementar en código (2h) |
-| Miércoles | Video de Linux internals (15 min) → Obsidian → integrar al shell (2h) |
-| Jueves | Video de DSA — Fiset sección correspondiente (20 min) → implementar estructura en C (2h) |
-| Viernes | GDB/Valgrind sobre el código de la semana (1.5h) → commit + README del subtema (1h) |
-| Sábado | 4–5h bloque mysh: feature nueva + debuggear + documentar |
-| Domingo | Refactor, revisar Zettels, planear semana siguiente |
+| Lunes (4h) | Código primero: punteros/memoria (intento) → recurso JIT (15 min) → ejercicios progresivos + comentarios en el `.c` |
+| Martes (2h) | Código primero: syscall del tema → recurso JIT (man/video) → implementar + comentarios |
+| Miércoles (2h) | Código primero: Linux internals → recurso JIT → integrar al shell + comentarios |
+| Jueves (2h) | Código primero: DSA — Fiset sección (solo referencia) → implementar estructura en C + comentarios |
+| Viernes (2h) | GDB/ASan sobre el código de la semana → commit + repasar comentarios del `.c` |
+| Sábado (4h) | Bloque mysh: feature nueva + debuggear + documentar |
+| Domingo (4h) | Refactor, revisar Zettels (IA), ejercicios de integración, planear semana siguiente |
 
 ### Notas Zettelkasten — Fase 1
 
@@ -518,12 +526,12 @@ wrk -t4 -c100 -d30s http://localhost:8080/api/tasks
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes–Martes | Go: video (15 min) → Obsidian → goroutines/channels/interfaces (2h) |
-| Miércoles | PostgreSQL: video de índices o EXPLAIN → Obsidian → queries en el proyecto (2h) |
-| Jueves | Python: scripts de automatización reales para taskapi (1.5h) + DSA un problema (1h) |
-| Viernes | Seguridad: aplicar checklist a taskapi (1.5h) + modelado de datos (1h) |
-| Sábado | 4–5h bloque taskapi: features + tests + benchmarks |
-| Domingo | Refactor, Zettels, planear |
+| Lunes–Martes (4h/2h) | Go: código primero (goroutines/channels/interfaces) → recurso JIT → ejercicios + comentarios |
+| Miércoles (2h) | PostgreSQL: código primero (índices o EXPLAIN) → recurso JIT → queries en el proyecto + comentarios |
+| Jueves (2h) | Python: scripts de automatización reales para taskapi (1h) + DSA un problema (1h) |
+| Viernes (2h) | Seguridad: aplicar checklist a taskapi (1h) + modelado de datos (1h) |
+| Sábado (4h) | Bloque taskapi: features + tests + benchmarks |
+| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
 
 ### Notas Zettelkasten — Fase 2
 
@@ -662,12 +670,12 @@ wrk -t2 -c50 -d10s http://localhost:8080/api/tasks
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes–Martes | Docker: video (20 min) → Obsidian → dockerizar taskapi (2h) |
-| Miércoles | Redis: docs + video → Obsidian → cache-aside en código (2h) |
-| Jueves | DDIA cap. correspondiente + observabilidad (Prometheus o OTel) (3.5h) |
-| Viernes | CI/CD con GitHub Actions + DSA grafos (3.5h) |
-| Sábado | 4–5h bloque resilient-api: integrar todo, verificar en Grafana |
-| Domingo | Refactor, Zettels, planear |
+| Lunes–Martes (4h/2h) | Docker: código primero (dockerizar taskapi) → recurso JIT (docs/video) → corregir + comentarios |
+| Miércoles (2h) | Redis: código primero (cache-aside) → recurso JIT (docs) → corregir + comentarios |
+| Jueves (2h) | DDIA cap. correspondiente (solo referencia puntual) + observabilidad (Prometheus/OTel) en código |
+| Viernes (2h) | CI/CD con GitHub Actions + DSA grafos (1h c/u) |
+| Sábado (4h) | Bloque resilient-api: integrar todo, verificar en Grafana |
+| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
 
 ### Notas Zettelkasten — Fase 3
 
@@ -828,12 +836,12 @@ psql -c "SELECT COUNT(*) FROM events_raw"   # debe ser IDÉNTICO
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes–Martes | Python experto: video (15 min) → Obsidian → generators/decorators/async (2h) |
-| Miércoles | Kafka: video tutorial → Obsidian → producer + consumer en código (2h) |
-| Jueves | DDIA caps. 10–11 (referencia) + Lambda/Kappa architecture video (3.5h) |
-| Viernes | dbt models + DuckDB analytics sobre datos propios (3.5h) |
-| Sábado | 4–5h bloque eventpipe: integrar todos los componentes |
-| Domingo | Refactor, Zettels, planear |
+| Lunes–Martes (4h/2h) | Python experto: código primero (generators/decorators/async) → recurso JIT (Fluent Python cap. puntual) → corregir + comentarios |
+| Miércoles (2h) | Kafka: código primero (producer + consumer) → recurso JIT (video/docs) → corregir + comentarios |
+| Jueves (2h) | DDIA caps. 10–11 (solo referencia puntual) + Lambda/Kappa en diseño del pipeline |
+| Viernes (2h) | dbt models + DuckDB analytics sobre datos propios (1h c/u) |
+| Sábado (4h) | Bloque eventpipe: integrar todos los componentes |
+| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
 
 ### Notas Zettelkasten — Fase 4
 
@@ -963,13 +971,13 @@ architecture-docs/
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes | ByteByteGo video del tema (15 min) → Obsidian → leer system-design-primer sección (2h) |
-| Martes | Implementar patrón de la semana en código de prueba (CQRS, Saga, etc.) (3.5h) |
-| Miércoles | Alex Xu libro cap. correspondiente + escribir ADR o RFC (3.5h) |
-| Jueves | DDD: modelar dominio de taskapi. DDIA cap. restante. (3.5h) |
-| Viernes | Mock System Design 45 min (timer, papel) + 2 problemas Leetcode medium (3.5h) |
-| Sábado | 4–5h bloque architecture-docs: caso SD completo o diagrama C4 |
-| Domingo | Refactor Zettels de arquitectura, planear |
+| Lunes (4h) | Código primero del patrón del tema (CQRS, Saga, etc.) → recurso JIT (ByteByteGo/system-design-primer sección) → corregir + comentarios |
+| Martes (2h) | Implementar patrón de la semana en código de prueba |
+| Miércoles (2h) | Alex Xu libro cap. correspondiente (solo referencia puntual) + escribir ADR o RFC |
+| Jueves (2h) | DDD: modelar dominio de taskapi. DDIA cap. restante (referencia puntual). |
+| Viernes (2h) | Mock System Design 45 min (timer, papel) + 2 problemas Leetcode medium |
+| Sábado (4h) | Bloque architecture-docs: caso SD completo o diagrama C4 |
+| Domingo (4h) | Refactor, Zettels (IA), revisar ADRs/RFCs, planear |
 
 ### Notas Zettelkasten — Fase 5
 
@@ -1101,10 +1109,10 @@ label:"good first issue" language:Python
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes–Miércoles | Leetcode o contribución OSS — 1h máximo. No más. |
-| Jueves–Viernes | Portfolio refinement, aplicaciones a empleos, posts técnicos |
-| Sábado | Mock interview (45 min) o trabajo en capstone |
-| Domingo | Retrospectiva semanal de job hunt, ajustar estrategia |
+| Lunes (4h) | Capstone: código primero del feature de la semana → recurso JIT → corregir + comentarios |
+| Martes–Viernes (2h c/u) | Leetcode o contribución OSS — 1h máximo. No más. Resto: portfolio/apps/posts |
+| Sábado (4h) | Mock interview (45 min) + trabajo en capstone |
+| Domingo (4h) | Retrospectiva semanal de job hunt, revisar Zettels, ajustar estrategia |
 
 ### Notas Zettelkasten — Fase 6
 
@@ -1264,7 +1272,7 @@ Ese perfil es competitivo para roles mid-level desde el primer empleo.
 ---
 
 *Idioma del código: English only*
-*Sistema de notas: Obsidian Flat Zettelkasten*
+*Sistema de notas: Código autodocumentado (comentarios en `.c`) + Obsidian MOC generado por IA*
 *Entorno: Linux (Arch/Fedora), Neovim, Warp terminal*
 
 ---
