@@ -73,6 +73,11 @@ Infraestructura
 ├── F5 (M13-15)→ Kubernetes conceptual
 └── F6 (M16-18)→ Terraform básico (opcional)
 
+Cloud (AWS)
+├── F3 (M7-9)  → Núcleo universal (IAM, EC2, S3, Lambda, VPC, CloudWatch) + deploy resilient-api a AWS (ECS + RDS + Secrets Manager)
+├── F4 (M10-12)→ Data lake en AWS: S3 + Glue + Athena; Kinesis/MSK opcional (par con Kafka)
+└── F6 (M16-18)→ Capstone en AWS + certificaciones (CLF-C02 → SAA-C03 + DEA-C01)
+
 Observabilidad
 └── F3 (M7-9)  → Logs JSON + Prometheus/Grafana + OpenTelemetry
 
@@ -92,6 +97,78 @@ Arquitectura y patrones
 ├── F4 (M10-12)→ Lambda Architecture, Kappa Architecture
 └── F5 (M13-15)→ CQRS, Event Sourcing, Saga, Microservicios
 ```
+
+---
+
+## Disciplina transversal — Cloud (AWS)
+
+> **Por qué entra:** el stack del roadmap (PostgreSQL, Redis, Kafka, dbt, Docker) mapea 1:1 con servicios AWS. En el mercado LatAm AWS domina. Sin cloud, el perfil Backend/Data Engineer queda incompleto. La estrategia es *integrarlo* a los proyectos existentes, no crear semanas nuevas.
+
+### Servicios a aprender (no "todo AWS")
+
+**Núcleo universal** — aparece en toda oferta, aprender en F3:
+
+| Servicio | Por qué |
+|----------|---------|
+| IAM | Seguridad e identidad — el primero que se aprende |
+| EC2 | Cómputo base — entender servidores en la nube |
+| S3 | Object storage — storage universal + data lake |
+| Lambda | Serverless — event-driven + integración de pipelines |
+| VPC | Networking conceptual — subnets, security groups |
+| CloudWatch | Logs + métricas — par directo de Prometheus/OTel |
+
+**Backend (F3 — deploy de `resilient-api`):**
+
+| Servicio | Qué reemplaza/complementa |
+|----------|--------------------------|
+| ECS / EKS | Docker compose → deploy de contenedores en AWS |
+| RDS (PostgreSQL) | Tu PostgreSQL de `taskapi` manejado en la nube |
+| API Gateway | Frente al Go HTTP server |
+| Secrets Manager | Variables de entorno y secrets en producción |
+| CloudFront | CDN + distribución global |
+
+**Data Engineering (F4 — variante AWS de `eventpipe`):**
+
+| Servicio | Rol en el pipeline |
+|----------|--------------------|
+| S3 | Data lake — almacena eventos raw |
+| Glue | ETL serverless — equivalente a dbt runner |
+| Athena | SQL sobre S3 — equivalente a DuckDB en la nube |
+| Redshift | Data warehouse analítico |
+| Kinesis Data Streams | Streaming — par conceptual de Kafka |
+| MSK (Managed Kafka) | Tu Kafka de `eventpipe` manejado en AWS |
+| Step Functions | Orquestación de pipelines — equivalente a Airflow/MWAA |
+| EventBridge | Event bus — integra todos los servicios |
+
+**IaC:** Terraform (ya en F6 como opcional, cloud-agnostic) o CloudFormation/CDK.
+
+### Recursos de aprendizaje
+
+| Recurso | Tipo | Cuándo |
+|---------|------|--------|
+| [AWS Skill Builder](https://skillbuilder.aws) | Cursos oficiales gratuitos + labs | F3 — inicio |
+| [AWS Ramp-Up Guide: Data Engineer](https://aws.amazon.com/training/ramp-up-guides/) | Ruta oficial de aprendizaje | F4 |
+| [freeCodeCamp — AWS Certified Cloud Practitioner](https://www.youtube.com/watch?v=NhDYbskXRgc) | Video 4h gratuito | F3 — CLF intro |
+| TechWorld with Nana (ya en roadmap F3) | Docker + deploy a AWS | F3 |
+| [AWS Academy](https://aws.amazon.com/training/awsacademy/) | **Vía tu universidad** — Learner Lab con créditos + vouchers de examen | Desde ya |
+
+> **Cuenta AWS:** ya tienes $50 de créditos del curso de Admin de BD. Úsalos. Estrategia de costo: **free tier + budget alert en $5** (AWS Console → Billing → Budgets) + preferir servicios serverless (Lambda, S3, Athena cobran por uso; casi gratis en escala de estudiante).
+
+### Certificaciones — al final del roadmap (F6)
+
+> Estrategia: **primero construyes la base + el hands-on** (F1–F5), luego el examen se rinde cuando ya tienes experiencia de proyecto. Esto hace que el examen sea revisión, no estudio desde cero.
+
+| Cert | Foco | Cuándo | Costo |
+|------|------|--------|-------|
+| CLF-C02 Cloud Practitioner | Fundamentos cloud + overview de servicios | F6 inicio | ~$100 USD |
+| SAA-C03 Solutions Architect Associate | Arquitectura backend + deploy | F6 | ~$150 USD |
+| DEA-C01 Data Engineer Associate | Data pipelines + S3/Glue/Athena/Redshift | F6 | ~$150 USD |
+
+**Cómo conseguir vouchers gratuitos o con descuento:**
+- **AWS Academy** (vía universidad): vouchers 50–100% off + Learner Labs gratuitos. Consultar a tu institución si está inscrita.
+- **AWS 16 Days of Cloud** (evento anual ~abril/mayo y noviembre/diciembre): vouchers 100% gratis para CLF y descuentos para Associate. Monitorear [@AWScloud](https://twitter.com/awscloud) y el newsletter de AWS.
+- **50% off voucher**: al aprobar cualquier certificación AWS, recibes automáticamente un voucher del 50% para el siguiente examen.
+- **AWS re/Start / AWS Educate**: programas estudiantiles con acceso gratuito a labs y materiales.
 
 ---
 
@@ -571,6 +648,7 @@ learning-distributed/
 - Tracing OpenTelemetry: ver el flujo completo en un trace
 - `docker compose up` levanta todo
 - GitHub Actions: PR bloqueado si tests fallan
+- **(Cloud — opcional F3)** Deploy de `resilient-api` a AWS: ECS Fargate + RDS PostgreSQL + Secrets Manager para credentials + CloudWatch para logs. Free tier alcanza para la demo. Seguir tutorial TechWorld Nana "Deploy Docker to AWS ECS".
 
 **Verificar que el Circuit Breaker funciona:**
 ```bash
@@ -731,6 +809,20 @@ kafka-consumer-groups.sh --reset-offsets --to-earliest --group event-processor -
 python event_processor.py
 psql -c "SELECT COUNT(*) FROM events_raw"   # debe ser IDÉNTICO
 ```
+
+**Variante AWS (opcional F4) — mismo pipeline en la nube:**
+```
+[taskapi en ECS] → produce events → [MSK (Kafka manejado)]
+                                           ↓
+                             [Lambda o ECS: event_processor]
+                                           ↓
+                                    [S3: events_raw/]           ← data lake
+                                           ↓
+                                 [Glue ETL: staging → marts]
+                                           ↓
+                              [Athena: analytics queries SQL]
+```
+> Usar esta variante para practicar los servicios DEA-C01. Free tier de S3/Athena/Glue alcanza para un pipeline de prueba. MSK tiene costo — usar Kinesis Data Streams como alternativa free-tier.
 
 ### Horario semanal — Fase 4
 
@@ -989,6 +1081,22 @@ label:"good first issue" language:Python
 
 > No necesitas dynamic programming avanzado para roles Backend/Data Jr.
 
+### Certificaciones AWS — F6 (job hunt)
+
+> Al llegar a F6 ya tienes 15 meses de build + los proyectos desplegados en AWS (F3/F4). Los exámenes se vuelven revisión, no estudio desde cero.
+
+**Ruta recomendada:**
+1. **CLF-C02** Cloud Practitioner — entrada (~$100). Rápido (1–2 semanas de repaso). Da el voucher 50% off para el siguiente.
+2. **SAA-C03** Solutions Architect Associate — el estándar para backend. Con el 50% off: ~$75.
+3. **DEA-C01** Data Engineer Associate — mapea directo a tu track DE (F4). Con el 50% off: ~$75.
+
+**Estrategia de costo cero / bajo:**
+- **AWS Academy** (vía universidad): vouchers 50–100% off + labs. Confirmar con tu institución si está inscrita.
+- **AWS 16 Days of Cloud** (~abril y noviembre cada año): vouchers 100% gratis para CLF.
+- Orden sugerido: CLF → SAA → DEA-C01. Total con descuentos: ~$150–$250 para las tres.
+
+**Capstone en AWS:** al terminar F6, el capstone corre en la nube (ECS + RDS + S3/Glue/Athena). Esto es demo real para entrevistas y refuerza las certs.
+
 ### Horario semanal — Fase 6
 
 | Día | Actividad |
@@ -1129,8 +1237,10 @@ Transformaciones:          dbt
 Caché:                     Redis
 Infraestructura:           Docker + Compose + GitHub Actions
 Observabilidad:            Prometheus + Grafana + OpenTelemetry
+Cloud (AWS):               S3 · ECS · RDS · Lambda · Glue · Athena · Kinesis · IAM · CloudWatch
 IA aplicada:               Embeddings + pgvector + RAG básico
 Arquitectura:              System Design, CQRS, Event Sourcing, Saga, DDD, C4, ADRs
+Certificaciones (F6):      AWS CLF-C02 · SAA-C03 · DEA-C01 (Data Engineer Associate)
 Móvil (F7, diferido):      Kotlin + Compose Multiplatform + KMP (Ktor, SQLDelight, Koin)
 ```
 
@@ -1146,6 +1256,7 @@ El engineer que sale de este roadmap:
 - Cuando algo explota en producción, sabe mirarlo: logs, métricas, traces
 - Puede dibujar la arquitectura de un sistema y defender cada decisión
 - Escribe código seguro por defecto, no como afterthought
+- Despliega y opera sistemas en AWS — no solo localmente en docker compose
 - Usa IA con criterio — como herramienta, no como muleta
 
 Ese perfil es competitivo para roles mid-level desde el primer empleo.
@@ -1155,3 +1266,39 @@ Ese perfil es competitivo para roles mid-level desde el primer empleo.
 *Idioma del código: English only*
 *Sistema de notas: Obsidian Flat Zettelkasten*
 *Entorno: Linux (Arch/Fedora), Neovim, Warp terminal*
+
+---
+
+## Apéndice opcional — Linux Admin (RHCSA)
+
+> **Fuera de ruta crítica.** El track principal (F1–F6) te lleva a Backend/Data Engineer. Este apéndice cubre temas de **administración de sistemas** que RHCSA incluye pero que F1 no toca directamente. Útil para el curso universitario de Admin de BD, para entornos sin contenedores, y como diferencial DevOps-adjacent. No agrega semanas al roadmap — se estudia en tiempos muertos (vacaciones, entre fases, o mientras usas el servidor de la materia).
+
+### Temas RHCSA no cubiertos por F1
+
+| Tema | Comandos clave | Por qué importa |
+|------|---------------|-----------------|
+| Gestión de paquetes | `dnf install/remove/update`, `rpm -qa`, `yum` | Administrar servidores RHEL/Fedora/CentOS |
+| Gestión de servicios (systemd) | `systemctl enable/disable/start/stop/status`, `journalctl -u` | Gestionar servicios en producción Linux |
+| Configuración de red | `nmcli`, `ip a`, `ip route`, `ss -tuln` | Diagnosticar conectividad en servidores |
+| Firewall | `firewall-cmd --add-port`, `firewall-cmd --list-all` | Abrir puertos para servicios (complementa F3 security) |
+| SSH | `sshd_config`, `ssh-keygen`, `authorized_keys` | Acceso remoto a servidores/EC2 |
+| SELinux | `getenforce`, `setenforce`, `restorecon`, `chcon` | Seguridad MAC en RHEL — común en entornos corporativos |
+| Usuarios y grupos avanzado | `id`, `groups`, `visudo`, sudoers | Administración multiusuario real |
+| Montaje de discos | `lsblk`, `mount`, `umount`, `/etc/fstab` | Gestión de storage en servidores |
+| Bash scripting básico | `for`, `while`, `if`, `cron`, `crontab -e` | Automatización de tareas admin |
+
+> **Nota:** F1 ya cubre procesos (`ps`, `kill`, `fork`), permisos (`chmod`, `chown`) y la jerarquía del filesystem a mayor profundidad. Los temas de la tabla son los que F1 **no** cubre.
+
+### Recursos
+
+| Recurso | Tipo |
+|---------|------|
+| Guía básica del profesor (en `~/Downloads/`) | Punto de partida — cheat-sheet de comandos |
+| [Guía Completa de Comandos Linux — Linuxize](https://linuxize.com) | Referencia web, buscar por comando |
+| [Fundamentals of Red Hat Enterprise Linux — edX](https://www.edx.org/learn/linux/red-hat-red-hat-enterprise-linux-technical-overview) | **Gratis**, curso oficial Red Hat |
+| [Linux Filesystem Hierarchy — TLD Project](https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/) | Referencia del filesystem |
+| [GNU Bash Reference](https://www.gnu.org/software/bash/manual/bash.html) | Referencia oficial scripting |
+
+### Certificación RHCSA (muy opcional)
+
+La certificación RHCSA (EX200) cuesta ~$400 USD y requiere examen práctico en vivo (3 horas en una terminal RHEL). Es valiosa para roles de SRE/DevOps/Sysadmin, pero **no es la ruta principal de este roadmap**. Si en algún momento trabajas en un entorno RHEL corporativo o te interesa el track SRE/Infra, este apéndice es la base. Mejor momento para considerarla: después de F6, si el primer empleo apunta a infra/DevOps en lugar de backend puro.
