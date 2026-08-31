@@ -52,6 +52,20 @@ Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas
 
 > En F5 y AWS no hay `.c` que escribir: el "fallar primero" se hace sobre el **diseño** (whiteboard/ADR) y sobre la **consola/CLI** respectivamente. El principio se mantiene — producción antes de referencia.
 
+### Fuentes transversales de consulta (AlgoMaster)
+
+[AlgoMaster.io](https://algomaster.io/courses) es una fuente única con cursos interactivos que cubren casi todo el roadmap. No son videos para "ver antes" — son **lectura JIT** cuando el código falla o el concepto no hace click. Uso por fase:
+
+| Fase | Curso AlgoMaster | Cuándo abrirlo |
+|------|------------------|----------------|
+| F1 | [Operating Systems](https://algomaster.io/learn/operating-systems) | S3-S10: procesos, signals, pipes, FDs, malloc, threads |
+| F2 | [SQL Interview](https://algomaster.io/learn/sql-interview/course-roadmap) | índices, EXPLAIN, ACID/MVCC, normalización |
+| F4 | [SQL Interview](https://algomaster.io/learn/sql-interview/course-roadmap) | window functions, star/snowflake, patrones DE |
+| F5 | [System Design Fundamentals](https://algomaster.io/learn/system-design/course-introduction) | casi todo el temario de F5 + hands-on en código |
+| F6 | [AI Engineering](https://algomaster.io/learn/ai-engineering/course-roadmap) | LLMs, RAG, agents (opcional) |
+
+**Repo gratuito:** [awesome-system-design-resources](https://github.com/ashishps1/awesome-system-design-resources) — referencia abierta del mismo autor para System Design, sin paywall.
+
 ### Horario semanal base (20h/semana)
 
 | Día | Horas | Actividad |
@@ -289,6 +303,9 @@ Arquitectura y patrones
 | *CS:APP* — Bryant & O'Hallaron | Para entender qué hace el hardware con tu código |
 | *The Algorithm Design Manual* — Skiena | Caps. 1–4 cuando necesites profundizar en DSA |
 
+**Lectura JIT interactiva (AlgoMaster):**
+- [Operating Systems (AlgoMaster)](https://algomaster.io/learn/operating-systems) — curso interactivo de OS en C: procesos (fork/exec/wait, PCB, zombies, signals, process groups), scheduling, threads, sync, IPC (pipes/FIFOs/sockets), I/O (epoll/io_uring), malloc/paging/COW/mmap, file systems (FDs, inodes), containers. Abrir por **sección/tema** como referencia cuando el man page o el video no hacen click (método JIT). Ej: S3 procesos → sección "Processes".
+
 ### Repositorio — Fase 1
 
 ```
@@ -485,6 +502,7 @@ DSA - Binary Search and Loop Invariants.md
 **Recursos web de referencia:**
 - [use-the-index-luke.com](https://use-the-index-luke.com) — cómo funcionan los B-Tree indexes. Gratuito. Leer cuando trabajes con índices en el proyecto.
 - [go.dev/tour](https://go.dev/tour) — empezar aquí la semana 1 de Go.
+- [SQL Interview (AlgoMaster.io)](https://algomaster.io/learn/sql-interview/course-roadmap) — curso interactivo de SQL de bases a avanzado: window functions, joins, subqueries/CTEs, índices + EXPLAIN, ACID/MVCC, normalización, star/snowflake, patrones de entrevista. Abrir por **sección/tema** (método JIT) cuando el código SQL o el `EXPLAIN ANALYZE` no hagan click.
 
 ### Libros como referencia
 
@@ -795,6 +813,9 @@ DSA - Consistent Hashing Ring.md
 | DuckDB docs | [duckdb.org/docs](https://duckdb.org/docs) |
 | Buscar en YouTube | "dbt tutorial beginner 2024" y "duckdb python tutorial" |
 
+**SQL analítico (AlgoMaster):**
+- [SQL Interview (AlgoMaster.io)](https://algomaster.io/learn/sql-interview/course-roadmap) — secciones clave para Data Engineering: window functions (running totals, gaps and islands), patrones de entrevista (funnel/cohorts, sessionization, top-N per group), star/snowflake schema, EXPLAIN. Abrir por **sección/tema** (método JIT) al modelar marts en dbt o escribir queries analíticas en DuckDB.
+
 ### Arquitecturas de datos — al mes 11
 
 > Cuando diseñes tu pipeline y necesites decidir entre batch y streaming, ESE momento estudias estas arquitecturas.
@@ -985,6 +1006,9 @@ A estas alturas has construido un shell en C, una REST API en Go, un sistema dis
 | DDIA completo — Kleppmann | Terminar los capítulos restantes |
 | *Building Microservices* — Sam Newman | Al estudiar microservicios vs monolito |
 | [microservices.io](https://microservices.io) | Catálogo de patrones — Chris Richardson |
+
+**Lectura JIT interactiva (AlgoMaster):**
+- [System Design Fundamentals (AlgoMaster.io)](https://algomaster.io/learn/system-design/course-introduction) — curso interactivo completo que cubre el temario de F5: core concepts (scalability, CAP, consistent hashing), networking, load balancing, APIs (REST/gRPC/JWT/OAuth), caching, databases (B+/LSM trees, sharding, replicas), arquitecturas (microservices, CQRS, event sourcing), distributed systems (Raft, SAGA, outbox), big data (Lambda/Kappa), observabilidad, seguridad. Con **ejercicios hands-on en código** — encaja con el método code-first. Abrir por **sección/tema** como referencia puntual.
 
 ### Repositorio — Fase 5
 
