@@ -30,15 +30,15 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 
 | Skill | Cuando usarla |
 |-------|---------------|
-| `status-tracker` | Inicio de sesión: leer `status.md` de la fase activa + `git log -1`. Cierre: actualizar `status.md`, plan semanal y session log. |
-| `obsidian-query` | Consultar/leer notas conceptuales en Obsidian. Buscar y leer SOLO dentro del vault. |
+| `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con el **Contrato diario** (árbol de contexto → contexto 2 min → archivo `.c` → recurso JIT → exercises → plantilla comentarios). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
+| `obsidian-query` | Consultar/leer notas conceptuales en Obsidian (modo READ, solo dentro del vault) y **generar Zettels al cierre** (modo WRITE, desde los comentarios del `.c` siguiendo `Template__Technical-Zettel` y enlazando al MOC). |
 | `socratic-mentor` | Responder dudas o errores de estudio: probe → plan → teach. Nunca dar la respuesta directa. |
-| `code-diagnostic` | Debugging o errores: instruir con herramientas del sistema (`gdb`, `valgrind`, `EXPLAIN ANALYZE`) en lugar de reescribir código. |
+| `code-diagnostic` | Debugging o errores: instruir con herramientas del sistema (`gdb`, **AddressSanitizer** como primaria, `EXPLAIN ANALYZE`) en lugar de reescribir código. valgrind no corre en este entorno. |
 
 ## Build & Debug Commands
 
 - Compile: `gcc -Wall -Wextra -g <file>.c -o <bin>` (use the Makefile when present).
-- Memory check: `valgrind --leak-check=full ./<binary>`.
+- Memory check: `valgrind --leak-check=full ./<binary>` (si no corre: fallback **AddressSanitizer** `gcc -fsanitize=address`).
 - Debugger: `gdb ./<binary>`.
 - Make targets (when a Makefile exists): `make`, `make clean`.
 
