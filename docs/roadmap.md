@@ -298,13 +298,18 @@ learning-c/
 ├── chapter-01/           # K&R (ruta aparte)
 ├── 1-basics/             # Beej 2–7 + stdlib
 │   ├── 06-functions/
+│   │   ├── functions.c
+│   │   └── exercises/    # opcional: 01-*.c, 02-*.c, 03-*.c
 │   ├── 07-arrays/
+│   │   └── exercises/
 │   ├── 08-strings/
+│   │   └── exercises/
 │   └── 09-standard-library/
+│       └── exercises/
 ├── 2-advanced/           # Beej 8–19 + tooling
 │   ├── 01-pointers/
 │   │   ├── pointer-arithmetic.c
-│   │   └── README.md    # Qué aprendiste, qué falló, cómo lo resolviste
+│   │   └── exercises/    # opcional
 │   ├── 02-structs/
 │   ├── 03-unions/
 │   ├── 04-typedef-types/
@@ -323,20 +328,30 @@ learning-c/
 │   │   ├── stack.c
 │   │   ├── queue.c
 │   │   ├── hash_table.c
-│   │   └── binary_search.c
+│   │   ├── binary_search.c
+│   │   └── exercises/    # opcional
 │   ├── 03-oop-emulation/
 │   ├── 04-bitwise/
 │   ├── 05-threads-atomics/
 │   ├── 06-variadic-jumps/
 │   ├── 07-signals/
+│   │   └── exercises/
 │   └── 08-modern-c/
 └── 4-systems/            # OS: K&R 8, man 2 (no en Beej)
     ├── 01-syscalls-processes/
-    │   ├── fork_exec.c
-    │   └── open_read.c
+    │   ├── 1-open-close.c
+    │   ├── 2-read-write.c
+    │   ├── 3-dup2-redirect.c
+    │   ├── 4-process.c   # concepto del día (intento requerido)
+    │   ├── 5-fork-basic.c
+    │   └── exercises/    # opcional: 01-fork-pid.c, 02-fork-zombie.c, 03-fork-mysh.c
     ├── 02-pipes-ipc/
+    │   └── exercises/
     └── 03-file-descriptors/
+        └── exercises/
 ```
+
+> **Convención `exercises/`:** cada directorio de tema puede tener una carpeta `exercises/` con archivos `01-<desc>.c`, `02-<desc>.c`, `03-<desc>.c`. **Siempre opcionales.** Los crea el estudiante; la IA describe qué implementar en cada uno como parte de la respuesta diaria. El `03-*.c` es siempre la integración con el proyecto de fase (mysh, taskapi, etc.). El archivo del concepto del día (`4-process.c`, `5-fork-basic.c`) es el **intento requerido** — los exercises son profundización opcional.
 
 ### Proyecto Principal — `mysh`
 
@@ -360,6 +375,32 @@ Root cause: close() del read-end no se llama en el proceso correcto
 Fix: mover close() antes del waitpid()
 Lección: cada extremo del pipe debe cerrarse en TODOS los procesos que no lo usan
 ```
+
+### Ritmo del proyecto semana a semana
+
+El proyecto de cada fase se construye **incrementalmente** — nunca de golpe al final. La regla del sábado:
+
+| Tipo de semana | Qué pasa el sábado |
+|---------------|---------------------|
+| Semana con milestone de mysh | Avanzar mysh a la versión de la semana (código real, commit, `git tag vX.Y`) |
+| Semana DSA sin milestone (S8–S9) | Bloque extendido en `3-expert/02-dsa/` — son los DSA que mysh v3.0 usa |
+| Semana de integración (S10) | mysh demo completa + checklist de fase |
+
+```
+v0.5 → S2   REPL read→parse→execute (pseudocódigo, hecho)
+v1.0 → S3   comandos externos: fork + execvp + PATH (sin system())
+v1.5 → S4   señales: Ctrl+C mata solo al hijo
+v2.0 → S5   pipes: cmd1 | cmd2 | cmd3
+v2.5 → S6   redirección: > < >>
+v3.0 → S7   historial con linked list
+```
+
+**Git workflow (`projects/mysh/` es su propio repo):**
+- Commits por feature durante el bloque del sábado (Conventional Commits, ej: `feat(mysh): add execvp PATH lookup`)
+- Al cerrar cada versión: `git tag v1.0`, `git tag v1.5`, etc.
+- El historial refleja exactamente cuándo entró cada feature
+
+> El patrón del sábado se repite en todas las fases con su proyecto: F2 `taskapi`, F3 `resilient-api`, F4 `eventpipe`, F5 `architecture-docs`, F6 `capstone`. Siempre incremental, una versión/feature por semana.
 
 ### Horario semanal — Fase 1
 

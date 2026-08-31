@@ -27,7 +27,8 @@
 | 11 | 19–25 oct | S10: integración |
 | 12–15 | 26 oct – 22 nov | F1 continuación (a definir) |
 
-- **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) árbol de contexto (OS → Process → fork → mysh), (2) contexto breve de 2 min (QUÉ hace el concepto, sin el CÓMO), (3) archivo `.c` a crear con ruta exacta + comando gcc, (4) recurso **just-in-time** (nombre + link, se abre SOLO si el código falla), (5) 3 ejercicios progresivos (básico → aplicado → integrado con mysh), y (6) plantilla de comentarios para el `.c`. El Zettel de Obsidian lo genera la IA al cierre desde los comentarios — no es tarea del usuario.
+- **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) árbol de contexto (OS → Process → fork → mysh), (2) contexto breve de 2 min (QUÉ hace el concepto, sin el CÓMO), (3) archivo `.c` a crear con ruta exacta + comando gcc, (4) recurso **just-in-time** (nombre + link, se abre SOLO si el código falla), (5) 3 ejercicios progresivos opcionales (básico → aplicado → integrado con mysh) en `exercises/01-*.c`, `02-*.c`, `03-*.c`, y (6) plantilla de comentarios para el `.c`. El Zettel de Obsidian lo genera la IA al cierre desde los comentarios — no es tarea del usuario.
+- **Sábado = milestone del proyecto:** el sábado avanza `mysh` a la versión de la semana (`v1.0` en S3). Commits por feature + `git tag vX.Y` al cerrar la versión. Detalle: `docs/roadmap.md → Ritmo del proyecto semana a semana`.
 
 ## Current Week — S3 (Aug 31 – Sep 6)
 
