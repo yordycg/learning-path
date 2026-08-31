@@ -7,7 +7,7 @@
 - Cada día preguntas "¿qué toca hoy?" → se responde con la fila de hoy de _Current Week_ + sus recursos.
 - Al cierre de sesión: marcar `[ ]` → `[x]` en la fila del día y añadir entrada al _Session log_.
 - Al terminar la semana: las filas se archivan en el _Session log_ y se abre la siguiente con la plantilla de _Next Week_.
-- **Concept-first:** cada semana se abre con los día(s) de concepto antes de los ejercicios. Todo concepto nuevo se investiga y se le asigna recurso antes de codearlo (nada se da por hecho).
+- **Code-first:** cada día empieza con el intento de código (sin leer). Solo cuando el código falla se abre el recurso just-in-time. Todo concepto nuevo se codifica primero, se falla con propósito, y luego se asigna el recurso.
 - En el tick semanal (Dom): consultar el _Backlog — conceptos previos (S3–S10)_ para incluir el concepto pendiente de la semana que se abre.
 - Los recursos completos por tema viven en [`README.md → Recursos por tema`](README.md#recursos-por-tema) (fuente única); aquí solo se referencian.
 
@@ -27,7 +27,7 @@
 | 11 | 19–25 oct | S10: integración |
 | 12–15 | 26 oct – 22 nov | F1 continuación (a definir) |
 
-- **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) archivos/directorios a crear con ruta exacta, (2) notas `.md` a crear con su nombre exacto, (3) recursos con **nombre + link**, y (4) zettels de Obsidian con nombre.
+- **Contrato diario de respuesta (obligatorio para la IA):** al pedir "¿qué toca hoy?", la respuesta **siempre** incluye: (1) árbol de contexto (OS → Process → fork → mysh), (2) contexto breve de 2 min (QUÉ hace el concepto, sin el CÓMO), (3) archivo `.c` a crear con ruta exacta + comando gcc, (4) recurso **just-in-time** (nombre + link, se abre SOLO si el código falla), (5) 3 ejercicios progresivos (básico → aplicado → integrado con mysh), y (6) plantilla de comentarios para el `.c`. El Zettel de Obsidian lo genera la IA al cierre desde los comentarios — no es tarea del usuario.
 
 ## Current Week — S3 (Aug 31 – Sep 6)
 
@@ -35,15 +35,15 @@
 
 > Processes (K&R 8, `man 2`, Sorber fork video): `fork`/`exec`/`wait`, zombies. Proyecto: **mysh v1.0** (comandos externos, `execvp` + búsqueda en `PATH`, **sin** `system()`). Concepto previo a incluir: ¿Qué es un proceso? (PCB/PID, imagen de memoria). Referencia: [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) (S3).
 
-| Día    | Tema                                                                                          | Recursos                                                                                                                                           | Estado |
-| ------ | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| Lun 31 | **¿Qué es un proceso?** (PCB/PID, imagen de memoria, estado) + por qué mysh no usa `system()` | K&R 8.6 · [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) · `man 2 fork`/`execve` · OSTEP caps. 4–6                                                          | [ ]    |
-| Mar 1  | **`fork`**: creación de proceso hijo, copia de memoria, fork/exec split                       | [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) · K&R 8.6 · `man 2 fork`                                                                                     | [ ]    |
-| Mié 2  | **`exec` family + `wait`**: reemplazo de imagen, zombies y reaping                            | [exec/execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) (Sorber) · K&R 8.6 · `man 2 execve`/`wait` · TLPI caps. 24–27                                                    | [ ]    |
-| Jue 3  | **`execvp` + PATH**: búsqueda del binario en `$PATH`, por qué `execvp` y no `system()`        | [exec/execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) (Sorber) · `man 3 execvp`/`man 7 environ`                                                                        | [ ]    |
-| Vie 4  | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`)                | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | [ ]    |
-| Sáb 5  | **mysh v1.0**: fork + execvp para comandos externos, esperar hijo (sin `system()`)            | Brennan (parte v1.0) + UCI 143A                                                                                                                    | [ ]    |
-| Dom 6  | Zettels + tick S3 + plan S4                                                                   | Zettel: `Linux - Processes and fork.md`                                                                                                            | [ ]    |
+| Día    | Tema                                                                                          | Archivo (intento code-first)                      | Recurso JIT                                                                                                                                  | Zettel al cierre (IA)                          | Estado |
+| ------ | --------------------------------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------ |
+| Lun 31 | **¿Qué es un proceso?** (PCB/PID, imagen de memoria, estado) + por qué mysh no usa `system()` | `4-systems/01-syscalls-processes/4-process.c`     | K&R 8.6 · [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) · `man 2 fork`/`execve` · OSTEP caps. 4–6                            | `Linux - What is a Process.md`                  | [ ]    |
+| Mar 1  | **`fork`**: creación de proceso hijo, copia de memoria, fork/exec split                       | `4-systems/01-syscalls-processes/5-fork-basic.c`  | [fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) (Sorber) · K&R 8.6 · `man 2 fork`                                                       | `Linux - Fork and Process Creation.md`          | [ ]    |
+| Mié 2  | **`exec` family + `wait`**: reemplazo de imagen, zombies y reaping                            | `4-systems/01-syscalls-processes/6-exec-wait.c`   | [exec/execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) (Sorber) · K&R 8.6 · `man 2 execve`/`wait` · TLPI caps. 24–27                       | `Linux - exec and Zombie Reaping.md`            | [ ]    |
+| Jue 3  | **`execvp` + PATH**: búsqueda del binario en `$PATH`, por qué `execvp` y no `system()`        | `4-systems/01-syscalls-processes/7-execvp-path.c` | [exec/execvp](https://www.youtube.com/watch?v=-_7BcxBr4P4) (Sorber) · `man 3 execvp`/`man 7 environ`                                          | `Linux - execvp and PATH Lookup.md`             | [ ]    |
+| Vie 4  | Buffer / refuerzo — **errno** (`perror`/`strerror`, gotcha de guardar `errno`)                | `4-systems/01-syscalls-processes/8-errno.c`       | glibc [Checking for Errors](https://www.sourceware.org/glibc/manual/latest/html_node/Checking-for-Errors.html) · `man 3 errno`/`perror`/`strerror` | `Linux - errno and Error Handling.md`           | [ ]    |
+| Sáb 5  | **mysh v1.0**: fork + execvp para comandos externos, esperar hijo (sin `system()`)            | `projects/mysh/src/mysh.c` (v1.0)                 | Brennan (parte v1.0) + UCI 143A                                                                                                              | `Linux - Processes and fork.md` (proyecto)      | [ ]    |
+| Dom 6  | Zettels + tick S3 + plan S4                                                                   | —                                                 | —                                                                                                                                            | Revisar Zettels IA + abrir S4                   | [ ]    |
 
 - **Blockers:** none
 
@@ -57,7 +57,7 @@
 
 ## Próxima sesión — TODO
 
-- S3 D1 (Lun 31): **¿Qué es un proceso?** (PCB/PID, imagen de memoria) + por qué mysh no usa `system()` (K&R 8.6, Sorber fork, `man 2 fork`). Contexto en `MOC - Processes` (Obsidian).
+- S3 D2 (Mar 1): **`fork`** — code-first: intentar `4-systems/01-syscalls-processes/5-fork-basic.c` sin leer, fallar con propósito, luego recurso JIT ([Sorber fork](https://www.youtube.com/watch?v=ss1-REMJ9GA), `man 2 fork`). Contexto en `MOC - Processes` (Obsidian). Ejercicios: básico (PID/PPID) → aplicado (zombie + waitpid) → integrado (esqueleto fork+wait en mysh). Zettel al cierre: `Linux - Fork and Process Creation.md`.
 
 ## Backlog — conceptos previos (S3–S10)
 

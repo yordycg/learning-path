@@ -34,6 +34,24 @@ Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas
 
 > El aprendizaje real ocurre en los pasos 2 y 4 — cuando intentas construir desde tu memoria — no en el video.
 
+### El artefacto del día según la fase
+
+"Code-first" no siempre es un archivo `.c`. El principio es el mismo — **produce antes de consumir, falla con intención** — pero el artefacto cambia por fase:
+
+| Fase / Tema | "Código primero" es | Artefacto del día |
+|-------------|---------------------|-------------------|
+| F1 · Lenguajes (C) | Archivo `.c` | `4-fork-basic.c`, `linked_list.c` |
+| F2 · Go / Python | Archivo `.go` / `.py` | `goroutine_demo.go`, `log_parser.py` |
+| F2 · PostgreSQL | Escribir la query primero | `index_query.sql` + `EXPLAIN ANALYZE` |
+| F3 · Docker / CI | Config primero | `Dockerfile`, `docker-compose.yml`, `.github/workflows/ci.yml` |
+| F3 · Redis | Código `.go` + CLI | `cache_aside.go`, comandos `redis-cli` |
+| F4 · Kafka / dbt | Producer/modelo primero | `producer.py`, `stg_events.sql` |
+| **F5 · System Design** | **Diseño primero — no es código** | Whiteboard 45 min + `url-shortener.md` (ADR/RFC) |
+| **F6 · AWS / Cloud** | **Acción primero — no es archivo** | Intentar en consola/CLI/Terraform, fallar, luego docs |
+| F7 · Mobile (Kotlin) | Archivo `.kt` | `MainActivity.kt`, `Composable.kt` |
+
+> En F5 y AWS no hay `.c` que escribir: el "fallar primero" se hace sobre el **diseño** (whiteboard/ADR) y sobre la **consola/CLI** respectivamente. El principio se mantiene — producción antes de referencia.
+
 ### Horario semanal base (20h/semana)
 
 | Día | Horas | Actividad |
