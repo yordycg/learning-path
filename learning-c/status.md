@@ -49,9 +49,15 @@
 
 ---
 
+## Cambios de método & notas (2026-08-31)
+
+- **Nuevo flujo diario (aprobado):** contexto breve (2 min) → **código primero** (intento sin leer, fallar con propósito) → video/recurso (15-25 min, ahora con preguntas reales) → código corregido + ejercicios progresivos → comentarios en el `.c` → yo genero el Zettel al cierre.
+- **Obsidian sale del flujo diario:** ya no escribes notas a mano. Tú escribes comentarios en el código; yo leo el `.c` y genero la nota en Obsidian con la jerarquía conectada.
+- **Estructura MOC en Obsidian:** notas índice renombradas a `MOC - <Tema>.md` (31), nuevo `MOC - Home.md` (MoC de MoCs) y `MOC - Processes.md` (clúster S3). Hubs de concepto general (`Functions.md`, `Loops.md`) completados con sus variantes por lenguaje.
+
 ## Próxima sesión — TODO
 
-- S3 D1 (Lun 31): **¿Qué es un proceso?** (PCB/PID, imagen de memoria) + por qué mysh no usa `system()` (K&R 8.6, Sorber fork, `man 2 fork`).
+- S3 D1 (Lun 31): **¿Qué es un proceso?** (PCB/PID, imagen de memoria) + por qué mysh no usa `system()` (K&R 8.6, Sorber fork, `man 2 fork`). Contexto en `MOC - Processes` (Obsidian).
 
 ## Backlog — conceptos previos (S3–S10)
 
@@ -65,6 +71,8 @@
 - **S9** — Recursión (día de concepto antes de merge sort).
 
 ## Session log
+
+- 2026-08-31 — **Reorganización Obsidian a MOC + nuevo método de estudio.** Auditoría de las ~655 notas del vault: identificadas 41 notas índice; 31 renombradas a `MOC - <Tema>.md` (9 lenguajes + 22 dominios) con cirugía de links (no quedan referencias a nombres viejos; `[[Database]]` case-insensitive mapeado a `MOC - DataBase`). Creados `MOC - Home.md` (MoC de MoCs agrupando por dominio: Lenguajes, OS/Linux, DSA, DB, Web, Mobile, Backend, IA, Tools, Arquitectura) y `MOC - Processes.md` (clúster S3: OS Processes, PCB, Diagram - Status of Process, Unix Process Pattern, System Calls, FDs, dup2, Unix, conectado a MOC - Operating Systems). Hubs de concepto general completados con sus variantes: Functions.md (+C/Dart/Kotlin/Python), Loops.md (+Bash/C/C++/C-Sharp/Dart/JS/Python), Variables.md (+C/Python/C-Sharp/Dart/JS/Kotlin), Arrays.md (+Kotlin/TS/C), Constantes.md (+C-Sharp), Scope.md (+C++), Estructuras Condicionales.md (fix typo `]]]` + Dart/JS/Python). Notas concepto (Unix, ML, DL, API, Backend, Cloud) intactas. **Nuevo flujo diario aprobado:** código primero → video → ejercicios progresivos → notas IA desde comentarios del `.c`. ZenNotes auto-backup `4bfa646` + commit `62b9ef7`.
 
 - 2026-08-24 — **S2 cerrada.** v0.5 mysh terminada en pseudocódigo (deliverable S2 completo): REPL (read → parse → execute), lectura byte a byte con `read(0,&c,1)` + buffer creciente con `realloc`/temp-pointer shield, parseo con `strtok` → `args[]` NULL-terminado, dispatch de builtins `cd`/`echo`/`exit` con `strcmp == 0`, guard de línea vacía → `CONTINUE`, `chdir(args[1]) == -1` con guard `args[1] != NULL` y error → `CONTINUE` (no cierra el shell), `status = 1` inicial / `exit` → 0, `malloc`/`free` en lados opuestos del loop resueltos (use-after-free eliminado). NOTA para el C real: `echo` debe separar args con espacios y añadir `\n`. Pendiente D5 (errno) absorbido como concepto de refuerzo en S3 Vie 28. Tick S2 → `[x]` en Recovery Plan. S3 abierta (fork/exec/wait, mysh v1.0). Concepto `dup`/`dup2` + redirección: duplicar entradas de la tabla de FDs; el `>` de un shell es un `dup2(fd, 1)`. Ejercicio `4-systems/01-syscalls-processes/3-dup2-redirect.c`: patrón `open → dup2 → close` redirigiendo stdout a `data/redirect-with-dup2.txt` (`O_CREAT | O_TRUNC | O_WRONLY`, 0600, chequeo `== -1`). Lección del día: buffering de stdio — sin `\n` el `printf` "ANTES" se flushaba después del `dup2` y también caía al archivo (line-buffering solo en TTY, full buffering por pipe); con `\n` el primer mensaje sale por terminal y el segundo se guarda. Nota Obsidian nueva `Redirection and dup2 - Linux.md` (dup vs dup2, caso `oldfd == newfd`, patrón completo) + enlaces cruzados con la nota FD. Compila `-Wall -Wextra -g` sin warnings. Commit `d0181f5`.
 
