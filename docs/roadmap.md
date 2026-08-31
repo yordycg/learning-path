@@ -285,8 +285,10 @@ Arquitectura y patrones
 |------|-------|-------|----------------|
 | Intro a estructuras de datos | [Data Structures intro — William Fiset](https://www.youtube.com/watch?v=Qmt0QwzEmh0) | WilliamFiset | 12 min |
 | Curso completo de estructuras | [Data Structures Easy to Advanced — Full](https://www.youtube.com/watch?v=RBSGKlAvoiM) | freeCodeCamp/Fiset | 8h (ver por secciones) |
+| Problemas reales por estructura | [70 Leetcode problems in 5+ hours (every data structure)](https://www.youtube.com/watch?v=lvO88XxNAzs) | Stoney codes | 5h+ (ver por secciones) |
 
 > Para el curso de Fiset: ver solo la sección que corresponde al tema de la semana. No es para ver completo de una vez.
+> El video de Stoney codes es referencia de **problemas reales por estructura** (arrays, hashmap, stack, tree, etc.) — útil para el `03-*.c` integrado con mysh y para F6 (Leetcode). Ver solo la sección de la estructura de la semana, método JIT.
 
 **Playlists de referencia del canal Jacob Sorber:**
 - [C programming playlist](https://www.youtube.com/playlist?list=PLs87dCfSJbLf-nPShgl5WhVkcgxRKZndb)
@@ -1171,6 +1173,9 @@ label:"good first issue" language:Python
 | Árboles básicos | 10 | Para completar el perfil |
 
 > No necesitas dynamic programming avanzado para roles Backend/Data Jr.
+
+**Recursos de patrones de solución:**
+- [70 Leetcode problems in 5+ hours (every data structure)](https://www.youtube.com/watch?v=lvO88XxNAzs) — Stoney codes. Recorre 70 problemas cubriendo todas las estructuras (arrays, hashmap, stack, queue, linked list, tree, graph) con la lógica de solución de cada uno. Ver por secciones como referencia de patrones mientras resuelves los 80 problemas.
 
 ### Certificaciones AWS — F6 (job hunt)
 
