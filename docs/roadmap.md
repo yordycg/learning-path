@@ -290,6 +290,10 @@ Arquitectura y patrones
 > Para el curso de Fiset: ver solo la sección que corresponde al tema de la semana. No es para ver completo de una vez.
 > El video de Stoney codes es referencia de **problemas reales por estructura** (arrays, hashmap, stack, tree, etc.) — útil para el `03-*.c` integrado con mysh y para F6 (Leetcode). Ver solo la sección de la estructura de la semana, método JIT.
 
+**Método de práctica (Silver.dev, en español):**
+- [Big(O) Notation + método de entrenamiento](https://docs.silver.dev/interview-ready/data-structures-algorithms/big-o-notation) — el método de práctica de entrevistas (resolver sin ver solución → ver → repetir → grabarse) refuerza el code-first. Útil en S7 cuando se abre Big O.
+- [PDF de CTCI (Cracking the Coding Interview)](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) — gratis, libro clásico con ejercicios de cada estructura. Referencia de consulta.
+
 **Playlists de referencia del canal Jacob Sorber:**
 - [C programming playlist](https://www.youtube.com/playlist?list=PLs87dCfSJbLf-nPShgl5WhVkcgxRKZndb)
 - [Debugging C playlist](https://www.youtube.com/playlist?list=PL9IEJIKnBJjHGWPN_S9NS_Ky1-tC8ZrUI)
@@ -1009,6 +1013,11 @@ A estas alturas has construido un shell en C, una REST API en Go, un sistema dis
 | *Building Microservices* — Sam Newman | Al estudiar microservicios vs monolito |
 | [microservices.io](https://microservices.io) | Catálogo de patrones — Chris Richardson |
 
+**Cómo evalúa el entrevistador (Silver.dev):**
+- [System Design Meta](https://docs.silver.dev/interview-ready/system-design-interviews/system-design-meta) — las 3 escuelas de entrevistadores (teórico / pragmático / problem-solver) y qué espera cada una. Saber esto cambia cómo preparas y presentas. En español.
+- [System Design: OpenSea](https://docs.silver.dev/interview-ready/system-design-interviews/open-sea) — caso real resuelto.
+- [HelloInterview — challenge gratuito bit.ly](https://www.hellointerview.com/practice/system-design/cmh10dwcb00y307adjz132feh?q=non-functional-requirements) — practicar SD con o sin entrevistador real.
+
 **Lectura JIT interactiva (AlgoMaster):**
 - [System Design Fundamentals (AlgoMaster.io)](https://algomaster.io/learn/system-design/course-introduction) — curso interactivo completo que cubre el temario de F5: core concepts (scalability, CAP, consistent hashing), networking, load balancing, APIs (REST/gRPC/JWT/OAuth), caching, databases (B+/LSM trees, sharding, replicas), arquitecturas (microservices, CQRS, event sourcing), distributed systems (Raft, SAGA, outbox), big data (Lambda/Kappa), observabilidad, seguridad. Con **ejercicios hands-on en código** — encaja con el método code-first. Abrir por **sección/tema** como referencia puntual.
 
@@ -1116,6 +1125,40 @@ System Design - Chat System.md
 
 **Mock interviews:**
 - [interviewing.io](https://interviewing.io) — anónimas con engineers reales
+
+### Entrevistas y ofertas — Silver.dev (recursos en español)
+
+> [Silver.dev](https://docs.silver.dev/) es una agencia argentina (startups EEUU + devs LatAm) con documentación abierta de preparación de entrevistas, en español. Cubre el gap de F6: CV, screening, behavioral y negociación. Método: "resolver sin ver solución → ver → repetir → grabarse" — alineado con el code-first.
+
+**Consiguiendo entrevistas (CV + LinkedIn):**
+- [Preparando LinkedIn](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/preparando-linkedin)
+- [Preparando el CV](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/preparando-el-cv)
+- [Consiguiendo Entrevistas](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/consiguiendo-entrevistas)
+
+**Recruiter screening (la primera llamada):**
+- [Trabajando con Recruiters](https://docs.silver.dev/interview-ready/recruiter-screening/trabajando-con-recruiters)
+- [Guía de Screening Call](https://docs.silver.dev/interview-ready/recruiter-screening/guia-de-screening)
+- [Entendiendo Procesos de Entrevistas](https://docs.silver.dev/interview-ready/recruiter-screening/procesos-de-entrevistas)
+
+**Behavioral (preguntas clásicas + storytelling):**
+- [Behavioral I: Preguntas Clásicas](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-preguntas-clasicas) — lista de preguntas con DO/DON'Ts (contame de vos, por qué esta posición, valores, conflicto, desafío técnico, proyecto fallido)
+- [Behavioral II: Storytelling](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-storytelling)
+- [Behavioral III: Cultura Americana](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-cultura-americana)
+
+**Manejando ofertas (negociación):**
+- [Negociando Salarios](https://docs.silver.dev/interview-ready/manejando-ofertas/negociando-salarios) — framework Harvard: intereses vs posiciones, palanca, tácticas (screening call, "improve this offer", "compensation philosophy", soft NO)
+- [Evaluando Equities & Ofertas](https://docs.silver.dev/interview-ready/manejando-ofertas/evaluando-ofertas)
+- [Entendiendo Perfiles y Seniority](https://docs.silver.dev/interview-ready/manejando-ofertas/perfiles-y-seniority)
+
+**Takehomes y live coding:**
+- [Guía de Takehomes](https://docs.silver.dev/interview-ready/takehomes/guia-de-takehomes)
+- [Code Reviewing](https://docs.silver.dev/interview-ready/takehomes/code-reviewing)
+- [Automated Challenges](https://docs.silver.dev/interview-ready/live-coding/automated-challenges)
+
+**Recursos transversales:**
+- [PDF de CTCI (Cracking the Coding Interview)](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) — gratis, clásico de entrevistas
+- [Repo de challenges Interview Ready](https://github.com/conanbatt/interview-ready) — práctica por tema
+- [HelloInterview](https://www.hellointerview.com/) — práctica de system design con/sin entrevistador real (paga, challenge gratuito bit.ly)
 
 ### Proyecto Final — `capstone`
 
