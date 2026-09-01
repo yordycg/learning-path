@@ -2,6 +2,10 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-01 (tarde) — S3 D2 cerrado
+
+`fork` — creación de procesos. Archivo principal `4-systems/01-syscalls-processes/5-fork-basic.c`: `fork()` crea un hijo (copia de memoria, espacios separados, contenido idéntico), retornos gestionados en 3 ramas (`-1` error, `0` hijo, `child_pid` padre). Ejercicio `exercise/1-for-pid.c` (PID/PPID): debugging socrático con 3 iteraciones — (1) ambas ramas imprimían el PID del hijo (padre usaba `child_pid`), (2) el padre imprimía `getppid()` = PID del **shell** (su padre, no él), (3) fix: `getpid()` en la rama padre + invariante `getppid()` del hijo == `getpid()` del padre. Lección clave: `getppid()` devuelve el padre *del que la llama*, no el propio PID. Aprendido que el scheduler decide el orden de ejecución (sin garantías) y que la coordinación se gestiona con `wait()`/pipe/otros mecanismos de sincronización. Zettel Obsidian `Linux - Fork and Process Creation.md` generado y enlazado en `MOC - Processes`. Mar 1 → `[x]`. Próxima: Mié 2 `exec` family + `wait` (zombies y reaping), `6-exec-wait.c`.
+
 ## 2026-08-31 (tarde) — S3 D1 cerrado
 
 Estudiado ¿qué es un proceso? (PCB/PID, imagen de memoria, estados) + por qué mysh no usa `system()` — notas conceptuales escritas por el usuario (última vez a mano; de aquí en adelante las genera la IA al cierre desde los comentarios del `.c`). **Método actualizado en docs:** roadmap reescrito a code-first + just-in-time + inverted PBL (`4941595`), tabla "el artefacto del día según la fase" + status.md con contrato diario code-first (`ed50e18`), convención `exercises/01-*.c` opcionales + ritmo del sábado (milestone mysh semana a semana, git tags) (`cf8ab52` en learning-path, `0ce8d55` en projects/mysh). Lun 31 → `[x]`. Próxima: Mar 1 `fork` (5-fork-basic.c).
