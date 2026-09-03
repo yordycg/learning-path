@@ -78,6 +78,7 @@ int main(void)
     if (child_pid == 0) {
         // Proceso hijo:
 
+        /* Usando modo: lista de argumentos */
         char *args_list[] = {"ls", "-l", NULL};
 
         if (execvp(args_list[0], args_list) == -1) {
