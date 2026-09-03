@@ -2,6 +2,16 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-03 (mañana) — S3 D4 cerrado
+
+`execvp` + PATH — la `p` hace el PATH lookup. Archivo principal `4-systems/01-syscalls-processes/7-execvp-path.c`: experimento A/B sobre el andamiaje `fork` → `exec` → `wait` de D3. **Movimiento A:** `execvp` con un comando inexistente → falla y deja `errno`. **Movimiento B:** contraste `execv("ls",...)` (sin `p`) → falla `ENOENT` "No such file or directory" porque trata `"ls"` como ruta literal relativa al cwd y NO busca en `$PATH`; `execv("/usr/bin/ls",...)` → funciona; `execvp("ls",...)` (con `p`) → funciona porque recorre `$PATH`. Conclusión del día: la `p` solo añade el PATH lookup cuando el nombre NO lleva `/`; si lleva `/`, `execvp` se comporta como `execv`. Comentarios `@learn` y `@new_questions` R// correctos en el archivo.
+
+**De regalo (adelanto de D5, no el foco de D4):** error-handling real en el patrón fork/exec/wait — `perror`/`errno` vistos de pasada, y `wait(&status)` + `WIFEXITED(status)`/`WEXITSTATUS(status)` para PROPAGAR el código real del hijo al `$?` del programa (antes `main` devolvía `0` aunque el hijo fallara → `echo $?` mentía; se arregló devolviendo `WEXITSTATUS(status)`). Usuario descubrió la diferencia entre `printf` (imprimir) y `return` (devolver a la shell). Definición formal de errno/perror/WIF* queda para D5.
+
+**Nota metodológica (error mío, corregido):** pedí revisar el manejo de errores y me llevé al usuario por el rabbit hole de la propagación de estado (`WIFSIGNALED`/`WTERMSIG`, `128+`, fall-through) — contenido de D5/robustez de mysh, NO de D4. El usuario me frenó con feedback válido: me estaba haciendo ver conceptos nuevos fuera de plan y sin sintaxis clara sobre la marcha. Reconocido, frenado a tiempo, y re-anclado al objetivo real de D4 (A/B del PATH). Lección: anclar cada sesión a la fila del día y no abrir cajas de temas futuros aunque el usuario pregunte; dar tarjeta-patrón canónica de sintaxis cuando pida estructura en vez de hacerlo buscar a ciegas.
+
+**Pendientes anotados para mysh/robustez (NO de D4, se aplazan):** rama `WIFSIGNALED`/`WTERMSIG` (muerte por señal) aún sin implementar en el padre — fall-through a `return 0` si el hijo es matado por señal. Exercises de D3 `02` (zombie en `Z`) y `03` (proto-mysh) siguen abiertos. Jue 3 → `[x]`. Próxima: Vie 4 errno (`8-errno.c`). Zettel D4 `Linux - execvp and PATH Lookup.md` generado + enlazado en `MOC - Processes`.
+
 ## 2026-09-02 (tarde) — S3 D3 cerrado
 
 `exec` family + `wait` — reemplazo de imagen de proceso + reaping. Archivo principal `4-systems/01-syscalls-processes/6-exec-wait.c`: `fork` → hijo hace `execvp("ls", {"ls","-l","/tmp",NULL})` (array NULL-terminado, `argv[0]` = nombre del programa, imita a la shell) → padre `wait(&status)`. Compila `-Wall -Wextra -g` sin warnings, ejecuta bien (salida `ls -l /tmp`, exit 0).
