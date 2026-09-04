@@ -2,6 +2,11 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-04 (mañana) — S3 D5 cerrado
+
+`errno` + manejo de errores formalizado sobre el andamiaje `fork` → `exec` → `wait` de D3/D4. Principal `4-systems/01-syscalls-processes/8-errno.c`: fork + `execvp` de un binario inexistente (`ERROR__`) para **forzar** la rama de error real — `strerror(errno)` imprime "No such file or directory" y el padre propaga el código con `WEXITSTATUS(status)` → exit code `1` (no disfrazado de `0`). Gotcha del día (debate mentoría): `errno` es una variable **global** y *cualquiera* otra llamada de libc puede pisarla aunque no falle → la regla "léelo ya o guárdalo en un int local". No se escribió un bug a propósito; se documentó el contrato en comentario y se confirmó que el patrón usado (leer `strerror(errno)` en la misma expresión que el `exec` fallido) es el seguro. Exercise `03` aplicado a mysh: `exercise/2-errno.c` — reporta "Binario no encontrado" legible y sale con `1`. Zettel `Linux - errno and Error Handling.md` generado y enlazado en `MOC - Processes`. Próximo: **milestone mysh v1.0 (Sábado)** — comando externo con `fork`+`execvp`+`wait` sin `system()`.
+
+
 ## 2026-09-03 (mañana) — S3 D4 cerrado
 
 `execvp` + PATH — la `p` hace el PATH lookup. Archivo principal `4-systems/01-syscalls-processes/7-execvp-path.c`: experimento A/B sobre el andamiaje `fork` → `exec` → `wait` de D3. **Movimiento A:** `execvp` con un comando inexistente → falla y deja `errno`. **Movimiento B:** contraste `execv("ls",...)` (sin `p`) → falla `ENOENT` "No such file or directory" porque trata `"ls"` como ruta literal relativa al cwd y NO busca en `$PATH`; `execv("/usr/bin/ls",...)` → funciona; `execvp("ls",...)` (con `p`) → funciona porque recorre `$PATH`. Conclusión del día: la `p` solo añade el PATH lookup cuando el nombre NO lleva `/`; si lleva `/`, `execvp` se comporta como `execv`. Comentarios `@learn` y `@new_questions` R// correctos en el archivo.
