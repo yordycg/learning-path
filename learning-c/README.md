@@ -85,14 +85,14 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S0   | Aug 5–9        | Prep (mid-week start)        | Beej 9–11                  | Beej 9–11 cerrados, catch-up, commit                                     | [x] |
 | S1   | Aug 10–16      | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5         | alloc with NULL check, valgrind                                          | [x] |
 | S2   | Aug 17–23      | Syscalls + FDs               | K&R 8, `man 2`             | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [x] |
-| S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [ ] |
-| S4   | Sep 14–20 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [ ] |
-| S5   | Sep 28 – Oct 4 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [ ] |
-| S6   | Oct 12–18 | GDB deep dive                | Sorber (debug) videos      | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`)            | [ ] |
-| S7   | Oct 26 – Nov 1 | DSA: linked list             | Beej 20.3 + Fiset          | linked list from scratch + `binary_search`; **mysh v3.0** (history)      | [ ] |
-| S8   | Nov 9–15 | DSA: stack + queue           | Fiset                      | manual stack and queue                                                   | [ ] |
-| S9   | Nov 23–29 | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort                                     | [ ] |
-| S10  | Dec 7–13 | Integration & close          | —                          | full mysh demo + Phase 1 checklist done                                  | [ ] |
+| S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [x] |
+| S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [ ] |
+| S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [ ] |
+| S6   | Sep 21–27 | GDB deep dive                | Sorber (debug) videos      | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`)            | [ ] |
+| S7   | Sep 28 – Oct 4 | DSA: linked list             | Beej 20.3 + Fiset          | linked list from scratch + `binary_search`; **mysh v3.0** (history)      | [ ] |
+| S8   | Oct 5–11 | DSA: stack + queue           | Fiset                      | manual stack and queue                                                   | [ ] |
+| S9   | Oct 12–18 | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort                                     | [ ] |
+| S10  | Oct 19–25 | Integration & close          | —                          | full mysh demo + Phase 1 checklist done                                  | [ ] |
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
