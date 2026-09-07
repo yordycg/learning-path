@@ -2,6 +2,10 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-07 — S4 D1 cerrado
+
+Inicio de Semana 4 (Signals): concepto de señal como interrupción por software (*software interrupt*), ciclo de vida (generada → pendiente → entregada; TLPI cap. 20) y disposiciones por defecto en Linux (`man 7 signal`: Term, Core, Ign, Stop, Cont). Archivo principal `3-expert/07-signals/1-signals-intro.c`: proceso hijo en bucle con auto-envío sincrónico `raise(SIGINT)`, padre inspeccionando estado con `wait(&status)` + `WIFSIGNALED`/`WTERMSIG` y propagando el código estándar `128 + señal` (`$?` = 130). Experimento con `raise(SIGCHLD)` comprobó que las señales con disposición `Ign` no interrumpen la ejecución. Ejercicio aplicado a mysh `3-expert/07-signals/exercises/01-mysh-preview.c`: verificación empírica de grupos de procesos (`getpgrp()`) demostrando que padre e hijo heredan y comparten el *Foreground Process Group* asignado por la terminal (TTY); presionar `Ctrl+C` envía la señal a todo el grupo a la vez y mata a ambos procesos, motivando la necesidad de ignorar `SIGINT` en la shell para el hito `mysh v1.5` del sábado. Zettel `Linux - Signals Intro.md` generado y enlazado en `MOC - Processes`. Próximo: Mar 8 — instalación de handlers con `sigaction` (`2-signal-sigaction.c`).
+
 ## 2026-09-06 — S3 Dom: CIERRE DE SEMANA S3 (Processes)
 
 Semana S3 (Aug 31 – Sep 6) cerrada: procesos con `fork`/`exec`/`wait`, zombies y reaping, `execvp`+PATH, `errno`. **MILESTONE mysh v1.0** (Sáb 5, `git tag -a v1.0`): externos con fork+execvp+wait sin `system()`, propagación de estado `WIF*`/`128+señal`, `fflush` en prompt. 8 Zettels de la semana generados y enlazados (MOC - Processes / MOC - C). Blocker: none. Pendiente opcional diferido a S4+: exercises zombie de D3. Próximo: **abrir S4 (Signals)** para Lun 7 — conceptos: qué es una señal, disposiciones, `signal()` vs `sigaction()`, `kill`/`raise`, handler async-safe; milestone **mysh v1.5** (Ctrl+C mata solo al hijo).
