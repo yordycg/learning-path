@@ -2,6 +2,23 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-09 — S4 D3 cerrado
+
+Disposiciones de señales en `fork`/`exec` (corazón del milestone mysh v1.5). Principal `3-expert/07-signals/3-fork-exec-disposition.c` construido y depurado en vivo con **2 experimentos verificados**:
+
+- **Experimento A — fork hereda:** `sigaction(SIGINT)` instalado ANTES del `fork`; el hijo, sin re-instalar nada, hereda el handler por copia. Loop `while(count<3) pause()` con contador global `volatile sig_atomic_t` incrementado en el handler; tras sobrevivir 3 SIGINT sale con `0` → padre ve `WIFEXITED` → conclusión "heredó". Evidencia: "SIGINT recibido!" ×3 en el hijo.
+- **Experimento B — exec resetea:** el hijo hace `execvp` de `sleep 5` (con `sleep(1)` del padre para dar tiempo al exec); el exec reemplaza la imagen y resetea el handler capturado a `SIG_DFL`; el SIGINT del padre ahora MATA al hijo → `WIFSIGNALED` + `exit=130` (128+2). Evidencia: la AUSENCIA de "SIGINT recibido!" (el hijo ya no lo atrapa).
+
+**Bugs cazados por el alumno en ruta (lección valiosa de diagnóstico):**
+1. *Deadlock por orden*: `wait(&status)` ANTES de los `kill` → el padre se bloquea esperando a un hijo que nunca recibe la señal. Fix: enviar señales ANTES de `wait`.
+2. *Coalescencia de señales estándar*: disparar 3 `kill(SIGINT)` en loop apretado puede fusionarse (no se ponen en cola) → `count` no llegaba a 3. Fix: `sleep(1)` entre envíos.
+3. *`argv` mal formado*: `{"sleep(5)", NULL}` → `execvp` busca un binario llamado "sleep(5)" → `ENOENT`. Fix: separar programa de args `{"sleep", "5", NULL}` (convención argv[0]).
+4. *Carrera kill-vs-exec*: el SIGINT podía llegar antes de que el exec completara el reset → el hijo aún con el handler lo atrapaba (se vio "SIGINT recibido!"). Fix: `sleep(1)` del padre entre `fork` y `kill`.
+
+**Concepto anclado:** familia `exec*` (`execl/execlp/execle/execv/execvp/execve/execvpe`) = wrappers de la MISMA syscall `execve` → TODAS resetean igual las señales; las diferencias son solo `l`/`v`/`p`/`e` (args/PATH/entorno). Precisión conceptual: exec **no** es un "reseteo selectivo" sino que el kernel **reemplaza toda la imagen del proceso**; los handlers capturados vuelven a `SIG_DFL`, pero `SIG_IGN` se mantiene.
+
+**Pendiente diferido (a retomar antes del milestone Sáb 12):** demostrar la 2ª mitad de la asimetría — que `SIG_IGN` SOBREVIVE al exec. Es el gotcha que obliga al hijo de mysh v1.5 a resetear SIGINT a `SIG_DFL` entre `fork` y `execvp` (si el shell ignora SIGINT, el hijo lo hereda y lo conserva → nunca moriría con Ctrl+C). Ver date 2026-09-08 para el contexto de D2. Próximo: Jue 10 — `SIGCHLD` + reaping async (`4-sigchld-reap.c`).
+
 ## 2026-09-08 — S4 D2 cerrado
 
 Instalación de handlers + `sigaction` — el alumno escribió el código *sin* ver el recurso JIT (code-first): definió `struct sigaction sa`, asignó `sa.sa_handler`, y configuró la entrega. Principal `3-expert/07-signals/2-signals-sigaction.c`: `volatile sig_atomic_t count`, handler que incrementa en `SIGINT` y escribe con `write()` (async-signal-safe, no `printf`), `pause()` en bucle hasta 3 señales, luego `exit`. Cabecera documental muy rica: `sa_handler` vs `sa_sigaction` (comparten memoria, nunca a la vez), `sa_mask`/`sa_flags`/`SA_RESTART`/`SA_SIGINFO`, plantilla base de handler, disposiciones `SIG_DFL`/`SIG_IGN`/custom, `signal mask` del kernel (entrega retrasada hasta desbloquear), `raise()` vs `kill()`. Compila limpio `-Wall -Wextra -g`.
