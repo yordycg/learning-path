@@ -2,6 +2,39 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-10 — S4 D4 cerrado
+
+`SIGCHLD` + reaping asíncrono — el concepto más difícil de la semana. Archivo principal `3-expert/07-signals/4-sigchld-reap.c`, escrito code-first (sin abrir el recurso JIT) y depurado en **5 iteraciones** hasta llegar al flujo correcto:
+
+```c
+sigaction(SIGCHLD, &sa, NULL);   // ANTES del fork
+pid_t child_pid = fork();
+/* hijo:  */ sleep(5); exit(7);
+/* padre: */ pause();  return child_status;
+/* handler: drena en bucle con waitpid(-1, &wstatus, WNOHANG) hasta <= 0 */
+```
+
+**Evidencia de cierre:** `wall=5000ms` (el padre espera de verdad, no 3ms), `exit=7` (el código del hijo se propagó vía `WEXITSTATUS` → `child_status` → `main`, imposible si el handler no hubiera reapeado) y **cero zombies** residuales en `ps` tras 40 ejecuciones seguidas.
+
+**Iteraciones y bugs cazados por el alumno:**
+
+1. *`WIFEXITED(pid)` con un PID en vez del status word* — las macros `WIF*`/`WEXITSTATUS` reciben el **word crudo** que el kernel escribió vía `waitpid`, no el PID. Corregido a `WIFEXITED(wstatus)` y compañía.
+2. *Variable con dos roles* — el mismo `int` era el buffer de salida de `waitpid` (word crudo del kernel) **y** el `$?` final. Separado en `int wstatus` (local al handler) + `volatile sig_atomic_t child_status` (compartida con `main`).
+3. *`volatile` mal ubicado* — al inicio estaba en el buffer de `waitpid`, lo que producía `-Wdiscarded-qualifiers`; el alumno lo quitó de ahí, correcto. La discusión derivó en entender **dónde SÍ va**: solo en la variable compartida entre handler y resto del programa (`child_status`).
+4. *Auto-envío de `SIGCHLD`* — primer intento con `kill(child_pid, SIGCHLD)`: conceptualmente invertido. `SIGCHLD` lo genera el **kernel** cuando el hijo cambia de estado; `kill(pid, sig)` manda la señal **al destinatario** `pid`. Como el hijo había heredado el handler por `fork` (D3), el `SIGCHLD` autocontenido no despertaba al padre, e incluso interrumpía el `sleep` del hijo.
+5. *El padre no esperaba* — `return child_status;` justo después del `kill` mataba al padre a los 3ms, sin que el handler se ejecutara nunca (`wall=3ms`, `exit=0` siempre). Resuelto con `pause()`: el padre se duerme hasta que el kernel entrega `SIGCHLD`.
+
+**Correcciones de fondo del mentor (orden por dependencias, aplicado tras feedback del alumno):** la sesión se atascó por lanzar demasiadas preguntas socráticas a la vez; se corrigió el método a **un problema por iteración** con verificación explícita, lo que destrabó el día.
+
+**Conceptos anclados en el `@learn` del `.c`:** `waitpid()` (firma, `pid=-1`, `WNOHANG` → retorno `0` = nadie listo **en ese instante**, no bloquea; `-1` + `errno` = `ECHILD`; async-signal-safe), status word ≠ exit code, notificación síncrona (`wait`) vs asíncrona (handler + `WNOHANG` + `pause`), `volatile sig_atomic_t` para estado compartido con el handler, y zombie vs huérfano (zombie = hijo no recogido con padre vivo; huérfano = padre muere primero y el hijo se reparenta a `init`/PPID 1).
+
+**Pendientes anotados:**
+- **Diferido a D5/refuerzo:** race *lost wakeup* de `pause()` (si el hijo muere **antes** de que el padre alcance `pause()`, se duerme para siempre) → solución canónica `sigprocmask` (bloquear `SIGCHLD`) + `sigsuspend`. En este ejercicio no se manifestó porque el hijo tarda 5s.
+- **Diferido de D3, antes del milestone Sáb 12:** demostrar que `SIG_IGN` **sobrevive** al `exec` (2ª mitad de la asimetría). Es el gotcha que obliga al hijo de mysh v1.5 a resetear `SIGINT` a `SIG_DFL` entre `fork` y `execvp`.
+- Coalescencia/drenaje quedó implícito en el bucle `while` del handler; el Zettel lo documenta explícitamente.
+
+Zettel `Linux - SIGCHLD and Asynchronous Reaping.md` generado y enlazado al `MOC - Processes`. Próximo: **Vie 11** — async-signal-safe + `SA_RESTART` (`5-signal-safety.c`).
+
 ## 2026-09-09 — S4 D3 cerrado
 
 Disposiciones de señales en `fork`/`exec` (corazón del milestone mysh v1.5). Principal `3-expert/07-signals/3-fork-exec-disposition.c` construido y depurado en vivo con **2 experimentos verificados**:
