@@ -2,6 +2,36 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-11 — S4 D5 cerrado (async-signal-safe + `SA_RESTART`)
+
+Cierre de la teoría de señales. Archivo principal `3-expert/07-signals/5-signal-safety.c`, escrito code-first y depurado en iteraciones sobre el mismo patrón: **un problema por iteración** (método corregido en D4 y que funcionó bien aquí).
+
+**El experimento del día = dos corridas del mismo binario, cambiando solo `sa_flags`:**
+
+| Corrida | `sa_flags` | Salida observada | Lectura |
+| --- | --- | --- | --- |
+| **A** | `0` | `[MSJ]: Envio este msj desd el handler!` + `[ERROR]: Interrupted system call` · exit `0` | El handler corre, pero `read` **se corta**: devuelve `-1` y el kernel deja `errno = EINTR` |
+| **B** | `SA_RESTART` | `[MSJ]: Envio este msj desd el handler!` · exit `124` (timeout) | El handler corre igual, pero el kernel **reinicia** `read`: el proceso sigue bloqueado, `main` no se entera |
+
+Es decir: el handler se ejecutó en ambos casos (mismo `write`, misma señal `SIGUSR1` del hijo tras `sleep(1)`); la única diferencia es **qué le pasó a la syscall interrumpida**. Esa es la respuesta que el día necesitaba para `mysh`: en el `read` del prompt **no** se quiere un `SA_RESTART` ciego, porque el shell nunca recuperaría el control del bucle para reevaluar su estado.
+
+**Bugs cazados por el alumno (con el mentor señalando, no corrigiendo):**
+
+1. *`char *buf[1024]`* — 1024 **punteros** (8192 bytes), no 1024 chars. Compilaba **sin un solo warning** porque `read` recibe `void *` y `char **` se convierte implícitamente. Lección: las conversiones implícitas a `void *` esconden bugs de tipo; el conteo real (`sizeof`) se comprobó en máquina.
+2. *`read(STDERR_FILENO, ...)`* — leía del fd de salida de errores. El programa "funcionaba" en las pruebas porque el test redirigía **stdin** y fd 2 seguía siendo un pipe: **funcionaba por accidente**, la peor clase de evidencia. Corregido a `STDIN_FILENO`.
+3. *`errno = EINTR;` dentro del handler* — el anti-patrón central del día: **asignar** la causa en vez de **leerla**. Además estaba al final del handler, luego de que `write` y `strlen` hubieran podido pisar `errno`. Corregido al contrato real: `int saved_errno = errno;` al entrar y `errno = saved_errno;` antes de retornar. Se discutió por qué el bug no explotaba (el kernel reescribe `errno` al salir de `read`) y por qué eso lo vuelve más peligroso, no menos.
+4. *`_POSIX_C_SOURCE` después de `#include <string.h>`* — el compilador lo cazó con `warning: '_POSIX_C_SOURCE' redefined`: un feature-test macro debe ir **antes del primer `#include`**, si no glibc ya fijó su default y el define llega tarde.
+
+**Verificación empírica en vez de asumir:** se llevó al alumno a `man 7 signal-safety` cuando dudó de `strlen` dentro del handler — `strlen` **sí** es async-signal-safe (*Added in POSIX.1-2008 TC2*), junto a `strcpy`/`memcpy`/`strchr`. La duda era legítima y la respuesta se leyó, no se inventó.
+
+**Conceptos anclados en el `@learn` del `.c`:** señal como interrupción asíncrona de una syscall lenta; `EINTR` como causa que reporta el **kernel**; `sa_flags = 0` vs `SA_RESTART` como política de reinicio; lista de funciones async-signal-safe y **reentrancia** como criterio intuitivo (`printf` y `malloc` fuera por el buffer/lock de stdio y el heap global); longitud de literales en compile-time (`sizeof(lit) - 1`) para no depender de `strlen`; y el contrato de `errno` (*save on entry / restore before return*).
+
+**Documentación generada (regla de atomicidad aplicada):** dos Zettels en lugar de uno, porque el `@learn` respondía a dos preguntas distintas — `Linux - Async-Signal-Safe Functions.md` (qué es legal dentro del handler + `errno`) y `Linux - EINTR and SA_RESTART.md` (qué le pasa a la syscall interrumpida + la decisión para la shell). Ambos enlazados desde `MOC - Processes` (sección *Señales y Comunicación Asíncrona*). Verificado que no queden enlaces fantasma.
+
+**Diferido (acordado con el alumno):** el exercise `03-sigign-survives-exec.c` (pendiente de D3 — demostrar que `SIG_IGN` sobrevive al `execvp`) y la decisión sobre el `volatile sig_atomic_t status` muerto en `5-signal-safety.c`. **Ambos se resuelven mañana antes del milestone `mysh v1.5`.**
+
+---
+
 ## 2026-09-10 — S4 D4 cerrado
 
 `SIGCHLD` + reaping asíncrono — el concepto más difícil de la semana. Archivo principal `3-expert/07-signals/4-sigchld-reap.c`, escrito code-first (sin abrir el recurso JIT) y depurado en **5 iteraciones** hasta llegar al flujo correcto:
