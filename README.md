@@ -30,6 +30,19 @@ The code is organized by technology, core concepts, and standalone projects:
 
 ---
 
+## Ergonomía de Ejecución (`Justfile`)
+
+El repositorio cuenta con recetas automáticas para compilar y probar código sin teclear flags manuales:
+
+```bash
+just status       # Despliega el panel operativo de la semana (status.md)
+just run <file>   # Compila y ejecuta con ASan + UBSan en C, o -race en Go
+just test <file>  # Ejecuta y valida el código de retorno ($?)
+just check <file> # Comprobación de sintaxis estática rápida
+just mysh         # Compila el proyecto semanal mysh
+just clean        # Limpia binarios generados en build/
+```
+
 ## Core Principles Applied
 
 1. **No Code Spoonfed:** All logic, pointers, and structures are written manually. No dependency on AI code generation tools for foundational learning.

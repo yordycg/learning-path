@@ -24,23 +24,28 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 - **Strict Search Rule:** When asked to check notes, search and read **exclusively** inside `/home/yordycg/workspace/personal/obsidian-notes`.
 - **FORBIDDEN:** Never run `find` or `grep` across `/home/yordycg` or parent directories. Target the vault path directly.
 
-## 🧠 Local Skills (`~/.agents/skills/`)
+## 🧠 Memoria Dinámica y Skills (`.agents/` y `~/.agents/skills/`)
 
-> Single shared skills directory, tool-agnostic (read by opencode, pi, and any tool following the Agent Skills spec). Load the matching skill for its scenario.
+- **Perfil Cognitivo del Alumno:** `.agents/learnings.md` almacena los puntos ciegos, tendencias y gotchas superados del desarrollador. La IA debe leerlo al inicio y actualizarlo al cierre de sesión para calibrar futuras katas.
+- **Skills Compartidas (`~/.agents/skills/`):**
 
 | Skill | Cuando usarla |
 |-------|---------------|
-| `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con **La Kata del Día** (árbol de contexto → objetivo → archivo + compilación estricta → especificación técnica I/O y exit code → comando verificación → recurso JIT → plantilla comentarios). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
+| `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con **La Kata del Día** (árbol de contexto + Milestone Bridge → objetivo → archivo + comando `just run` → especificación técnica I/O y exit code → `just test` → recurso JIT → plantilla comentarios). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
 | `obsidian-query` | Consultar/leer notas conceptuales en Obsidian (modo READ, solo dentro del vault) y **generar Zettels al cierre** (modo WRITE, parseando `@title`, `@phase`, `@learn`, resolviendo `@open_questions`, y enlazando `@connect_with` al MOC). |
 | `socratic-mentor` | Responder dudas o errores de estudio: probe → plan → teach. Unconditional Truths, 3B1B, grafo ASCII nativo en terminal, quizzes interactivos. Nunca dar la respuesta directa. |
 | `code-diagnostic` | Debugging o errores multi-lenguaje: guiar con herramientas nativas del runtime (C: ASan/gdb/strace, Go: race/dlv, Python: pytest/pdb, SQL: EXPLAIN ANALYZE) en lugar de reescribir código. |
 
-## Build & Debug Commands
+## Build & Debug Commands (Ergonomía con `Justfile`)
 
-- Compile: `gcc -Wall -Wextra -Werror -pedantic -g -fsanitize=address,undefined <file>.c -o <bin>` (use the Makefile when present).
+- Ejecutar / Compilar (estricto con ASan/UBSan): `just run <archivo.c>`
+- Verificar salida y código de retorno: `just test <archivo.c>`
+- Chequeo de sintaxis rápido: `just check <archivo.c>`
+- Compilar proyecto mysh: `just mysh`
+- Limpiar binarios: `just clean`
+- Manual (fallback): `gcc -Wall -Wextra -Werror -pedantic -g -fsanitize=address,undefined <file>.c -o <bin>`
 - Memory check: AddressSanitizer (`-fsanitize=address`) como primaria; fallback `gdb ./<binary>`.
 - Debugger: `gdb ./<binary>`.
-- Make targets (when a Makefile exists): `make`, `make clean`.
 
 ---
 
