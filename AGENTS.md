@@ -31,9 +31,9 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 | Skill | Cuando usarla |
 |-------|---------------|
 | `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con **La Kata del Día** (árbol de contexto → objetivo → archivo + compilación estricta → especificación técnica I/O y exit code → comando verificación → recurso JIT → plantilla comentarios). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
-| `obsidian-query` | Consultar/leer notas conceptuales en Obsidian (modo READ, solo dentro del vault) y **generar Zettels al cierre** (modo WRITE, desde los comentarios del `.c` siguiendo `Template__Technical-Zettel` y enlazando al MOC). |
+| `obsidian-query` | Consultar/leer notas conceptuales en Obsidian (modo READ, solo dentro del vault) y **generar Zettels al cierre** (modo WRITE, parseando `@title`, `@phase`, `@learn`, resolviendo `@open_questions`, y enlazando `@connect_with` al MOC). |
 | `socratic-mentor` | Responder dudas o errores de estudio: probe → plan → teach. Unconditional Truths, 3B1B, grafo ASCII nativo en terminal, quizzes interactivos. Nunca dar la respuesta directa. |
-| `code-diagnostic` | Debugging o errores: instruir con herramientas del sistema (`gdb`, **AddressSanitizer** como primaria, `EXPLAIN ANALYZE`) en lugar de reescribir código. valgrind no corre en este entorno. |
+| `code-diagnostic` | Debugging o errores multi-lenguaje: guiar con herramientas nativas del runtime (C: ASan/gdb/strace, Go: race/dlv, Python: pytest/pdb, SQL: EXPLAIN ANALYZE) en lugar de reescribir código. |
 
 ## Build & Debug Commands
 
