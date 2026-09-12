@@ -15,8 +15,12 @@ This document defines the strict constraints and rules that any AI Assistant (LL
   - `3-expert/` — Beej 20+ (advanced pointers, DSA, OOP emulation, bitwise, threads/atomics, variadic/jumps, signals, modern C)
   - `4-systems/` — OS topics NOT in Beej/Obsidian (syscalls, processes, pipes, file descriptors — K&R 8, `man 2`)
 - Roadmap projects live in `projects/<project-name>/` (e.g., `projects/mysh/`) as standalone Git repositories with their own commit history, `Makefile`, `src/`, and `docs/`.
-- **Note Separation:** Conceptual theory lives in Obsidian Zettelkasten (`000 Zettelkasten/`). Project architecture, specs, REPL design, and pseudocode live in `projects/<project-name>/docs/`.
+- **Note Separation & Authorship:** Conceptual theory lives in Obsidian Zettelkasten (`000 Zettelkasten/`). Project architecture, specs, REPL design, and pseudocode live in `projects/<project-name>/docs/` and are **authored 100% by the developer**. The AI acts strictly as peer reviewer and never authors project docs.
 - Each phase keeps a `status.md` (e.g. `learning-c/status.md`) with the current week's operational state, maintained by the AI at the end of every session.
+- **Cadencia Semanal:**
+  - *Lunes a Viernes (Katas de Concepto):* Adquisición atómica; la IA especifica la Kata del Día y el alumno resuelve el código.
+  - *Sábado (Milestone de Proyecto):* Integración acumulativa; el alumno diseña y redacta en `projects/*/docs/` y programa en `projects/*/src/`; la IA sólo desafía el diseño y valida.
+  - *Domingo (Retrospectiva & Tick):* Revisión de Zettels en Obsidian y avance semanal de `status.md`.
 - **Context Window Efficiency:** At session start, read ONLY the active phase `status.md` and `git log -1`. Do NOT scan the whole repository or Obsidian notes to answer "what to do today"—read specific notes/docs on demand.
 
 ## 📂 Obsidian Zettelkasten Integration
@@ -31,9 +35,9 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 
 | Skill | Cuando usarla |
 |-------|---------------|
-| `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con **La Kata del Día** (árbol de contexto + Milestone Bridge → objetivo → archivo + comando `just run` → especificación técnica I/O y exit code → `just test` → recurso JIT → plantilla comentarios). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
+| `status-tracker` | Inicio de sesión: leer `status.md` (panel) de la fase activa + `git log -1`. Responder "¿qué toca hoy?" con **La Kata del Día** (Lun–Vie: reto + spec + JIT + @annotations) o con **Apertura de Diseño de Milestone** (Sáb: desafío socrático para que el alumno diseñe en `projects/*/docs/`). Cierre: `[x]` + entrada al `session-log.md` + actualizar Historial. |
 | `obsidian-query` | Consultar/leer notas conceptuales en Obsidian (modo READ, solo dentro del vault) y **generar Zettels al cierre** (modo WRITE, parseando `@title`, `@phase`, `@learn`, resolviendo `@open_questions`, y enlazando `@connect_with` al MOC). |
-| `socratic-mentor` | Responder dudas o errores de estudio: probe → plan → teach. Unconditional Truths, 3B1B, grafo ASCII nativo en terminal, quizzes interactivos. Nunca dar la respuesta directa. |
+| `socratic-mentor` | Responder dudas o errores de estudio: probe → plan → teach. Unconditional Truths, 3B1B, grafo ASCII nativo en terminal, quizzes interactivos. En proyectos, revisión de pares socrática. Nunca dar la respuesta directa. |
 | `code-diagnostic` | Debugging o errores multi-lenguaje: guiar con herramientas nativas del runtime (C: ASan/gdb/strace, Go: race/dlv, Python: pytest/pdb, SQL: EXPLAIN ANALYZE) en lugar de reescribir código. |
 
 ## Build & Debug Commands (Ergonomía con `Justfile`)
@@ -49,9 +53,12 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 
 ---
 
-## 🚫 Rule 1: Strict No-Spoonfeeding
-- **DO NOT** generate, autocomplete, or write the final implementation code for C files, Go structures, or data engineering pipelines.
-- **DO** provide high-level explanations, ASCII diagrams, architecture patterns, and pseudocode.
+## 🚫 Rule 1: Strict No-Spoonfeeding & Authorship Boundary
+- **DO NOT** generate, autocomplete, or write the final implementation code for C files, Go structures, or data pipelines.
+- **DO** provide high-level explanations, terminal-native ASCII diagrams, and conceptual walkthroughs.
+- **The Authorship Boundary:**
+  - **(A) Pedagogical Illustration (Chat Only):** Ephemeral analogies, toy sketches, or 3–5 line generic pseudocode snippets in the chat to clarify a concept during instruction.
+  - **(B) Project Design & Code (Student Exclusive):** In `projects/<project-name>/docs/*.md` and `projects/<project-name>/src/*`, the developer writes 100% of the problem definition, architecture choices, trade-off analysis, pseudocode, and implementation. The AI is strictly forbidden from writing, prefabricating, or autocompleting project design documents.
 - The developer must write 100% of the production and study code.
 
 ## 🧭 Rule 2: Socratic Problem Solving & Cognitive Load Guardrails
