@@ -13,7 +13,15 @@
 
 ## Contrato diario de respuesta (obligatorio para la IA)
 
-Al pedir "¿qué toca hoy?", responder **siempre** con: (1) árbol de contexto (OS → Process → fork → mysh), (2) contexto de 2 min (QUÉ hace el concepto, sin el CÓMO), (3) archivo `.c` a crear con ruta exacta + comando gcc, (4) recurso **just-in-time** (nombre + link, se abre SOLO si el código falla), (5) 3 ejercicios progresivos opcionales en `exercises/01-*.c` / `02-*.c` / `03-*.c` (básico → aplicado → integrado con mysh), y (6) plantilla de comentarios para el `.c`. El Zettel de Obsidian lo genera la IA al cierre desde los comentarios.
+Al pedir "¿qué toca hoy?", responder siempre con **La Kata del Día (Reto Único Ejecutable)**:
+1. **Árbol de contexto:** Cadena jerárquica (ej. `OS → Process → fork → mysh`).
+2. **La Kata del Día (Reto Principal):** Objetivo preciso en 1 oración + archivo `.c` a crear con ruta exacta + comando de compilación estricto (`gcc -Wall -Wextra -Werror -pedantic -g -fsanitize=address,undefined`).
+3. **Especificación Técnica (Contrato de Aceptación):** Syscalls/APIs clave requeridas + flujo de ejecución esperado + salida esperada en terminal y código de retorno (`echo $?` o `WIFEXITED`) + comando de prueba en 1 línea.
+4. **Recurso Just-in-Time (JIT):** Nombre + link, se abre **SOLO** si el código falla o falta la firma.
+5. **Plantilla de comentarios para el `.c`:** `APRENDÍ` / `DUDA RESUELTA` / `CONECTA CON`.
+6. *(Opcional)* **Stretch Goal (Romper el Código):** 1 caso de borde para experimentar solo tras superar la Kata principal.
+
+> **Reglas de Interacción:** Single-Focus (1 sola pregunta a la vez). Si el desarrollador modifica código o ejecuta comandos, el código **ES** la respuesta (anular preguntas previas sin acumular deuda). Diagramas en el chat en **cajas ASCII nativas**; el Zettel de Obsidian lo genera la IA al cierre con sintaxis Mermaid.
 
 **Sábado = milestone del proyecto:** avanza `mysh` a la versión de la semana (`v1.0` en S3). Commits por feature + `git tag vX.Y`. Detalle: `docs/roadmap.md → Ritmo del proyecto semana a semana`.
 
