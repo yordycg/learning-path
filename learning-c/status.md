@@ -14,7 +14,7 @@
 ## Contrato diario de respuesta (obligatorio para la IA)
 
 Al pedir "¿qué toca hoy?", responder siempre con **La Kata del Día (Reto Único Ejecutable)**:
-1. **Árbol de contexto:** Cadena jerárquica (ej. `OS → Process → fork → mysh`).
+1. **Árbol de contexto + Milestone Bridge:** Cadena jerárquica (ej. `OS → Process → fork → mysh`) + **Impacto en el Proyecto del Sábado** (1 oración precisa explicando por qué dominar este concepto hoy es indispensable para la versión o feature de `mysh` del sábado).
 2. **La Kata del Día (Reto Principal):** Objetivo preciso en 1 oración + archivo `.c` a crear con ruta exacta + comando de compilación estricto (`gcc -Wall -Wextra -Werror -pedantic -g -fsanitize=address,undefined`).
 3. **Especificación Técnica (Contrato de Aceptación):** Syscalls/APIs clave requeridas + flujo de ejecución esperado + salida esperada en terminal y código de retorno (`echo $?` o `WIFEXITED`) + comando de prueba en 1 línea.
 4. **Recurso Just-in-Time (JIT):** Nombre + link, se abre **SOLO** si el código falla o falta la firma.
