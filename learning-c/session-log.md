@@ -2,6 +2,35 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-12 — S4 D6 / MILESTONE `mysh v1.5` (señales: Ctrl+C mata solo al hijo)
+
+Milestone de la semana de señales. Sesión de **diseño primero, código después**: se redactó por completo `projects/mysh/docs/pseudocode-v1.5.md` **antes** de tocar `src/`, y recién entonces se implementó y verificó en frío.
+
+**El patrón implementado (par asimétrico):**
+
+| Proceso | Disposición de `SIGINT` | Cuándo |
+| --- | --- | --- |
+| **Padre (`mysh`)** | `SIG_IGN` | una vez, antes del REPL |
+| **Hijo** | `SIG_DFL` | entre `fork()` y `execvp()` |
+
+Por qué el hijo debe resetear: `fork` copia las disposiciones (el hijo nace con `SIG_IGN`) y `exec` **conserva `SIG_IGN`** (solo resetea handlers capturados). Sin el reset, el binario externo también ignoraría Ctrl+C. Resultado: Ctrl+C mata al hijo, el padre lo reporta con `WIFSIGNALED` → `128 + 2 = 130`, y el shell sobrevive.
+
+**Verificación empírica (sin terminal interactiva):**
+- D1: `kill -INT` al proceso `mysh` con stdin abierto → **sigue vivo** (el padre ignora).
+- D2: `kill -INT` al `sleep` hijo → **muere** (probó el reset a `SIG_DFL`).
+
+**Decisiones de diseño tomadas por el alumno:**
+- Interfaz `sigaction()` sobre `signal()` (mayor especificidad).
+- `SIG_IGN` **permanente** (comportamiento tipo bash/zsh): Ctrl+C en el prompt NO cierra `mysh` (se descartó `SIG_DFL`-en-prompt / `SIG_IGN`-solo-alrededor-del-wait).
+- **`$?` (expansión) NO entra en v1.5** — aplazado. Efecto directo: la checklist NO podía usar `echo $?` *dentro* de mysh (no hay expansión); se corrigió a `exit` + `echo $?` en el **shell anfitrión**.
+- **Ventana fork↔reset** documentada como riesgo aceptado (fallo benigno y auto-reparable); la solución canónica (`sigprocmask`: *bloquear*, no *ignorar*) quedó diferida → `Open Questions`.
+
+**Commits + tag:** `docs(mysh): add v1.5 signal-handling design (delta over v1.0)` → `feat(mysh): ignore SIGINT in shell and reset child before exec` → `git tag -a v1.5`.
+
+**Lección de documentación (delta anclado):** en vez de reescribir el pseudocódigo entero, el doc de v1.5 quedó como **delta sobre v1.0**: lista anclada D1/D2 (ancla = función/branch + landmark relativo) + diff `+/-` con hunks `@@ ancla @@`. Se limpiaron los anti-patrones del primer borrador (ramas comentadas `// IF builtin...`, `@open_questions` suelto y con typos).
+
+**Pendientes de cierre (para Dom 13):** exercise `exercises/02-sigign-survives-exec.c` (evidencia de que `SIG_IGN` sobrevive al `exec`) y decisión del `status` muerto en `5-signal-safety.c`.
+
 ## 2026-09-11 — S4 D5 cerrado (async-signal-safe + `SA_RESTART`)
 
 Cierre de la teoría de señales. Archivo principal `3-expert/07-signals/5-signal-safety.c`, escrito code-first y depurado en iteraciones sobre el mismo patrón: **un problema por iteración** (método corregido en D4 y que funcionó bien aquí).

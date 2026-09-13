@@ -17,6 +17,14 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 
 ## Perfil Cognitivo y Registro de Puntos Ciegos (IA append-only)
 
+- **[2026-09-12 - S4 D6 / Milestone mysh v1.5]: Documentar cambios como *delta anclado*, no reescribir.**
+  - *Patrón aprendido:* un design doc de una versión que evoluciona no repite el pseudocódigo entero; escribe el **delta sobre la versión anterior**: lista anclada (`D1. <ancla>, <landmark relativo>: <cambio>`) + un diff `+/-` con hunks `@@ <ancla> @@`. El ancla es un nombre/rama estable (`main`, `pid == 0`, `execvp`), **nunca** un número de línea.
+  - *Anti-patrones a vigilar en los docs:* ramas comentadas tipo `// IF builtin-cd...` (placeholders disfrazados), `@open_questions` suelto en vez de sección `Open Questions`, y mezcla de idioma dentro de un mismo documento.
+
+- **[2026-09-12 - S4 D6 / Milestone mysh v1.5]: No asumir features de shell que no se implementaron.**
+  - *Gotcha cazado:* la checklist de v1.5 verificaba `echo $?` *dentro* de mysh, pero el tokenizer no expande `$?` → imprime `$?` literal. `last_status` se observa por el **exit code de mysh** (`exit` + `echo $?` en el shell anfitrión), no por expansión interna.
+  - *Regla de alcance:* features fuera del milestone (p. ej. `$?`) no se cuelan en la versión; se aplazan y se registran como `Open Questions`. El tag de la versión debe significar una sola cosa.
+
 - **[2026-09-12 - S4 D6 / Milestone mysh v1.5]: Anti-patrón de autoría del diseño de proyectos por la IA.**
   - *Gotcha cazado:* La IA redactó el documento completo `projects/mysh/docs/pseudocode-v1.5.md` (problema, solución, diagrama, decisiones y checklist), robándole al desarrollador la fase cognitiva de mayor valor (identificar el problema → evaluar trade-offs → elegir arquitectura → formular pseudocódigo).
   - *Regla fija e inquebrantable:* En días de Milestone (Sábado), la IA tiene PROHIBIDO diseñar la solución o redactar archivos en `projects/<p>/docs/*.md`. La IA actúa como Peer Reviewer Socrático que desafía con preguntas críticas después de que el alumno redacta su propuesta.
