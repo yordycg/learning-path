@@ -86,7 +86,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S1   | Aug 10–16      | Stack/Heap + `malloc`/`free` | Beej 12, 12.4–12.5         | alloc with NULL check, valgrind                                          | [x] |
 | S2   | Aug 17–23      | Syscalls + FDs               | K&R 8, `man 2`             | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [x] |
 | S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [x] |
-| S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [ ] |
+| S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [x] |
 | S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [ ] |
 | S6   | Sep 21–27 | GDB deep dive                | Sorber (debug) videos      | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`)            | [ ] |
 | S7   | Sep 28 – Oct 4 | DSA: linked list             | Beej 20.3 + Fiset          | linked list from scratch + `binary_search`; **mysh v3.0** (history)      | [ ] |

@@ -2,6 +2,25 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-13 — Tick S4 (cierre de semana: Signals)
+
+Semana **S4 (Sep 7–13)** cerrada. Resumen de los 6 días — detalle en las entradas de abajo:
+
+| Día | Tema | Estado |
+| --- | --- | --- |
+| D1 (Lun 7) | Signals intro (software interrupts, disposiciones default, `raise()`) | ✅ |
+| D2 (Mar 8) | Instalar handlers: `signal()` vs `sigaction()`, `SIG_DFL`/`SIG_IGN`, `volatile sig_atomic_t` | ✅ |
+| D3 (Mié 9) | Disposiciones en `fork`/`exec` (handler→DFL, `SIG_IGN` sobrevive) | ✅ |
+| D4 (Jue 10) | `SIGCHLD` + reaping asíncrono (`waitpid(WNOHANG)`) | ✅ |
+| D5 (Vie 11) | async-signal-safe + `EINTR`/`SA_RESTART` | ✅ |
+| D6 (Sáb 12) | **MILESTONE `mysh v1.5`** (taggeado) | ✅ |
+
+- **Proyecto:** `mysh v1.5` — padre `SIG_IGN`, hijo reset a `SIG_DFL` antes de `execvp`; `Ctrl-C` mata solo al hijo (exit `130`), no al shell.
+- **Zettels (7):** `Linux - Signals Intro` · `sigaction and Handler Installation` · `Signal Dispositions across fork and exec` · `SIGCHLD and Asynchronous Reaping` · `Async-Signal-Safe Functions` · `EINTR and SA_RESTART` · `C - mysh v1.5 Ignoring SIGINT`.
+- **Pendientes saldados:** exercise `02-sigign-survives-exec.c` (commiteado + push) y el código muerto de `5-signal-safety.c` eliminado.
+- **Diferido:** ventana `fork↔reset` → `sigprocmask` (Open Question).
+- **Próximo:** **S5 — Pipes/IPC → `mysh v2.0`** (`cmd1 | cmd2 | cmd3`).
+
 ## 2026-09-12 — S4 D6 / MILESTONE `mysh v1.5` (señales: Ctrl+C mata solo al hijo)
 
 Milestone de la semana de señales. Sesión de **diseño primero, código después**: se redactó por completo `projects/mysh/docs/pseudocode-v1.5.md` **antes** de tocar `src/`, y recién entonces se implementó y verificó en frío.
