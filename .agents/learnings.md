@@ -54,3 +54,14 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 ## Registro de Decisiones de Arquitectura y Gotchas Resueltos
 - `mysh v1.0`: Eliminado el uso de `system()`. Procesos externos implementados con `fork()` + `execvp()` + `waitpid()`. Propagación de códigos con macros `WIFEXITED`, `WEXITSTATUS`, `WIFSIGNALED` (`128 + WTERMSIG`).
 - Flujo de salida: En shells interactivos usar siempre `fflush(stdout)` tras imprimir el prompt para asegurar que los buffers de stdio se vacíen en modo interactivo.
+
+- **[2026-09-14 - S5 D1 / Pipes Intro]: stdio (`FILE *`) vs syscalls sobre fd crudo.**
+  - *Gotcha cazado:* Confusión sobre "cuántas formas hay de leer/escribir". El pipe entrega `int fd`, no `FILE *`; se usa `read()`/`write()` (retornan `ssize_t`, pueden ser parciales, van directo al kernel), no `fread`/`fwrite`/`printf` (buffered, sobre `FILE *`, requieren `flush`).
+  - *Anti-patrón:* iterar el buffer buscando `'\n'` o `EOF` para encontrar el fin de línea. El *boundary* es el **count que devuelve `read`**; `EOF` es el centinela de retorno (no un byte). El loop correcto para flujo desconocido es `while ((n = read(...)) > 0)`.
+
+- **[2026-09-14 - S5 D1 / Pipes Intro]: `close(write-end)` = "no escribo MÁS", no "ya escribí".**
+  - *Modelo anclado:* el EOF (`read` → `0`) solo se produce cuando se cierran **todas las referencias a ambos extremos** (contador de referencias del kernel). Un lector de un solo `read` nunca lo percibe; solo un lector en bucle hasta EOF. Verificado con `timeout 2`: sin `close` → exit `124` (bloqueo), con `close` → exit `0`.
+  - *Consecuencia para `mysh v2.0`:* en `cmd1 | cmd2`, si `cmd1` deja un write-end abierto, `cmd2` espera para siempre. El cierre de extremos es requisito, no higiene.
+
+- **[2026-09-14 - entorno]: El vault `obsidian-notes` auto-sincroniza vía ZenNotes.**
+  - *Gotcha de entorno:* el plugin `ZenNotes` corre `git add/commit/push` automático (`vault: auto-sync (ZenNotes)`); un commit manual del Zettel puede encontrar el working tree ya limpio. No forzar el commit manual del vault: verificar `git log`/`git status` después de escribir la nota.
