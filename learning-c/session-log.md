@@ -2,6 +2,18 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-14 — S5 D1 / Kata 1: Intro a Pipes (`pipe()` y sus dos extremos)
+
+Arranca **S5 (Pipes/IPC → mysh v2.0)**. Kata code-first en `3-expert/08-pipes/1-pipe-intro.c`.
+
+- **Lo construido:** `pipe(fd)` **antes** del `fork()` (ambos heredan copias de `fd[0]`/`fd[1]`); padre `write()` al `fd[1]`, hijo lee `fd[0]` y vuelca a `STDOUT_FILENO`; cada proceso cierra el extremo que no usa (`close(fd[1])` hijo, `close(fd[0])` padre).
+- **Correcciones de concepto:** el mapeo de extremos estaba invertido en el `@learn` (`fd[0]` read **recibe**, `fd[1]` write **envía**); se eliminó un scan del buffer buscando `\n`/`EOF` — el boundary es el **count que devuelve `read`**, y `EOF` es el centinela de retorno, no un byte del buffer.
+- **Evidencia bloqueo vs EOF:** con el hijo en `while ((n = read(...)) > 0)` y el `close(fd[1])` del padre **comentado**, `timeout 2` devuelve **124** (el `read` queda bloqueado esperando más datos); al **descomentar** el `close`, el 2º `read` devuelve `0` → EOF → el programa sale en milisegundos con **0**.
+- **Detalle de ergonomía:** `write(STDOUT_FILENO, buf, n)` (copia contada, no necesita `'\0'`) en vez de `printf("%s")` (copia delimitada, sí lo necesita); este es el mismo eje que la Opción A/B del caso borde (`size_buf - 1` para reservar el terminador).
+- **Aprendizajes anclados:** `close(write-end)` = "no escribo MÁS" (produce el EOF); el pipe se libera cuando se cierran **todas** las referencias a **ambos** extremos (contador de referencias del kernel); `read`/`write` son syscalls sobre fd crudos (`ssize_t`, parciales), no stdio.
+- **Zettel:** `Linux - Pipes Intro` generado y enlazado en `MOC - Processes`.
+- **Próximo:** Mar 15 — `dup2` conecta procesos (`2-dup2-connect.c`).
+
 ## 2026-09-13 — Tick S4 (cierre de semana: Signals)
 
 Semana **S4 (Sep 7–13)** cerrada. Resumen de los 6 días — detalle en las entradas de abajo:
