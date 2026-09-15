@@ -65,3 +65,12 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 
 - **[2026-09-14 - entorno]: El vault `obsidian-notes` auto-sincroniza vía ZenNotes.**
   - *Gotcha de entorno:* el plugin `ZenNotes` corre `git add/commit/push` automático (`vault: auto-sync (ZenNotes)`); un commit manual del Zettel puede encontrar el working tree ya limpio. No forzar el commit manual del vault: verificar `git log`/`git status` después de escribir la nota.
+
+- **[2026-09-15 - S5 D2 / dup2]: `exec` es de un solo sentido; no confundir con `fork`.**
+  - *Principio anclado:* `execvp` en éxito **nunca retorna**: reemplaza la imagen en el mismo PID. `fork` retorna dos veces (PID/0) y el padre se entera por el valor de retorno; `exec` no retorna y **no notifica** al padre (el único canal hijo→padre es terminación + `wait()`/`SIGCHLD`).
+  - *Regla de diseño:* en un mismo proceso, "consumir con un comando `exec`" (p. ej. `execvp("cat")`) y "`waitpid` + `status`" son **mutuamente excluyentes**. Si el padre se transforma en `cat`, el exit status del productor se pierde (queda para `init` o para un `waitpid` de otra etapa).
+
+- **[2026-09-15 - S5 D2 / dup2]: La redirección es transparente para comandos `exec`.**
+  - *Modelo anclado:* `dup2(a, b)` no copia datos, re-apunta `b` al mismo objeto del kernel que `a`. Tras `dup2(fd[1], STDOUT_FILENO)`, `ls` escribe a su `stdout` y ya cae al pipe → **no** se necesita `write()` en el productor; con `execvp("cat")` el padre lee el pipe por su `stdin` → **no** se necesita `read()`.
+  - *Contraste:* `write()`/`read()` manuales solo aplican cuando el proceso sigue siendo *mi programa* y yo decido consumir/producir el flujo.
+  - *Consecuencia para `mysh v2.0`:* el `dup2` es la pieza que enchufa cada etapa del pipeline a `stdin`/`stdout`, sin que los comandos sepan que hay un pipe.

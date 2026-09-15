@@ -2,6 +2,21 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-15 — S5 D2 / Kata 2: Conectar procesos con `dup2`
+
+Kata code-first en `3-expert/08-pipes/2-dup2-connect.c`. Cierre con el **pipe funcionando de punta a punta**.
+
+- **Lo construido:** `pipe(fd)` → `fork()` → en el hijo `dup2(fd[1], STDOUT_FILENO)` + `close(fd[0])` + `close(fd[1])` + `execvp("ls", "-la")`; en el padre `dup2(fd[0], STDIN_FILENO)` + los mismos `close` + `execvp("cat")`. La salida de `ls` fluye por el pipe y `cat` la volca a la terminal. Compilación limpia (ASan+UBSan) y `exit=0`.
+- **Modelo mental corregido (dudas de la sesión):**
+  - `dup2(a, b)` **no copia datos**: re-apunta el fd `b` al mismo objeto del kernel que `a` (cierra `b` si estaba abierto).
+  - Con comandos `exec`, **no se necesita `write`/`read`**: el pipe es transparente porque `ls` escribe a su `stdout` y `cat` lee de su `stdin`, que el `dup2` ya conectó.
+  - **`exec` es una puerta de un solo sentido**: en éxito **nunca retorna** (mismo PID, imagen nueva) → "consumir con `cat`" y "`waitpid`+`status`" son **mutuamente excluyentes** en el mismo proceso.
+  - Confusión deshecha: `exec` **no** devuelve nada al proceso que hizo el fork (eso es `fork`, que sí retorna dos veces). El único canal hijo → padre es terminación + `wait()`/`SIGCHLD`.
+- **Deuda anotada:** el `exit=0` observado fue de **`cat`**, no de `ls`; el estado del hijo se pierde hasta reapizarlo → Kata 4 (Jue 17, `waitpid` y zombies del pipeline).
+- **Limpieza:** eliminado `#include <sys/wait.h>` sin uso del archivo.
+- **Zettel:** `Linux - Connecting Processes with dup2` generado y enlazado en `MOC - Processes`.
+- **Próximo:** Mié 16 — EOF y cierre de write-ends (`3-expert/08-pipes/3-pipe-eof.c`).
+
 ## 2026-09-14 — S5 D1 / Kata 1: Intro a Pipes (`pipe()` y sus dos extremos)
 
 Arranca **S5 (Pipes/IPC → mysh v2.0)**. Kata code-first en `3-expert/08-pipes/1-pipe-intro.c`.
