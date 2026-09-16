@@ -2,6 +2,21 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-16 — S5 D3 / Kata 3: EOF y cierre de write-ends
+
+Kata code-first en `3-expert/08-pipes/3-pipe-eof.c`. Cierre con el **mecanismo de EOF demostrado por experimento controlado**.
+
+- **Lo construido:** `pipe(fd)` → `fork()`; el padre `close(fd[0])`, `write()` al `fd[1]` y `close(fd[1])`; el hijo `close(fd[1])`, itera `while ((n = read(fd[0], buf, size_buf)) > 0)` volcando a `STDOUT_FILENO`, cierra `fd[0]` y sale con `_exit()`. El padre reapiza con `waitpid` + `WIFEXITED`/`WIFSIGNALED`.
+- **Experimento de variable única (evidencia):** cambiando **solo** `close(fd[1])` del hijo y midiendo con `timeout 2 ./bin; echo $?`:
+  - `close` **activo** → `exit=0` en ms (EOF → fin del bucle).
+  - `close` **comentado** → `exit=124` (`read` bloqueado; el `timeout` lo mata). El `124` no es crash, es un proceso colgado.
+- **Modelo anclado:** el EOF no depende de los datos sino del **contador `writers`** del objeto del pipe en el kernel; `fork()` **duplica el file descriptor, no el objeto** → el write-end heredado del hijo mantiene `writers > 0` aunque el padre cierre el suyo. Regla: **cada proceso cierra el extremo que no usa**.
+- **Dudas resueltas:** (1) por qué EOF ⇔ contador a cero (`man 7 pipe` §I/O on pipes); (2) qué es un **VLA** — `int size_buf; char buf[size_buf];` es de tamaño runtime en stack; fix `#define BUF_SIZE 1024`.
+- **Errores de ruta cazados:** una primera corrida dio `exit=0` por un **binario previo** en `build/`; se aclaró verificando timestamps (`stat`) → la corrida real (recompilada) daba `124` con el `close` comentado.
+- **Limpieza:** cabecera `@title` corregida (era copia de D2), `@learn` redactado con el modelo propio, hijo migrado de `exit()` a `_exit()`.
+- **Zettel:** `Linux - Pipe EOF and Closing Ends` generado y enlazado a `MOC - Processes`.
+- **Próximo:** Jue 17 — esperar N hijos (`3-expert/08-pipes/4-pipeline-wait.c`).
+
 ## 2026-09-15 — S5 D2 / Kata 2: Conectar procesos con `dup2`
 
 Kata code-first en `3-expert/08-pipes/2-dup2-connect.c`. Cierre con el **pipe funcionando de punta a punta**.

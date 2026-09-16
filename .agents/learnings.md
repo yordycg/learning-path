@@ -74,3 +74,11 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
   - *Modelo anclado:* `dup2(a, b)` no copia datos, re-apunta `b` al mismo objeto del kernel que `a`. Tras `dup2(fd[1], STDOUT_FILENO)`, `ls` escribe a su `stdout` y ya cae al pipe → **no** se necesita `write()` en el productor; con `execvp("cat")` el padre lee el pipe por su `stdin` → **no** se necesita `read()`.
   - *Contraste:* `write()`/`read()` manuales solo aplican cuando el proceso sigue siendo *mi programa* y yo decido consumir/producir el flujo.
   - *Consecuencia para `mysh v2.0`:* el `dup2` es la pieza que enchufa cada etapa del pipeline a `stdin`/`stdout`, sin que los comandos sepan que hay un pipe.
+
+- **[2026-09-16 - S5 D3 / Pipe EOF]: El EOF del pipe es el contador `writers` del kernel, no los datos.**
+  - *Modelo anclado:* `read` → `0` requiere que **todas** las referencias al write-end se cierren; `fork()` **duplica el descriptor, no el objeto**, así que el write-end heredado de un hijo mantiene el pipe vivo aunque el padre cierre el suyo. Regla: cada proceso cierra el extremo que no usa.
+  - *Diagnóstico:* `exit=124` bajo `timeout` **no es un crash**: es un proceso bloqueado en `read`. Y una corrida con `exit=0` **antes** de recompilar puede venir de un **binario viejo en `build/`** → verificar el binario con `stat`/`ls -l` antes de dar por buena la evidencia.
+
+- **[2026-09-16 - S5 D3]: VLA accidental y `_exit()` en el hijo.**
+  - *Gotcha:* `int size_buf = 1024; char buf[size_buf];` es un **VLA** (tamaño runtime en stack, opcional en C11). Preferir `#define BUF_SIZE 1024` / `enum`.
+  - *Regla ya conocida reaplicada:* el hijo post-`fork` sale con `_exit()` (no `exit()`/`return`) para no flushear buffers de stdio copiados.
