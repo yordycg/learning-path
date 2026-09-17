@@ -2,6 +2,24 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-17 — S5 D4 / Kata 4: Esperar N hijos (`waitpid` en pipeline)
+
+Kata code-first en `3-expert/08-pipes/4-pipeline-wait.c`. Cierre con el **pipeline `ls -la | grep .c | wc -l` funcionando de punta a punta y los 3 hijos reapizados**.
+
+- **Lo construido:** loop de `i = 0..2` → `pipe()` **en el padre antes del fork** solo si `i < childs-1` (N-1 = 2 pipes); el hijo `i` hace `dup2(prev_read, STDIN)` y `dup2(fd[1], STDOUT)`; el padre cierra en cada vuelta el write-end que pasa al hijo y el `prev_read` viejo, y actualiza `prev_read = fd[0]`. Al final del loop, `waitpid(-1, ...)` en bucle reapiza los 3 y solo guarda `status` cuando `pid == last_child`.
+- **Evidencia:** `strace -f -e trace=wait4` muestra los 3 `wait4(0, ...)` con PIDs distintos (105624/105625/105626) y el `-1 ECHILD` que cierra el loop. Salida `14`, `exit=0`.
+- **Errores de arquitectura recorridos (y superados) en la sesión:**
+  1. `pipe()` creado **dentro del hijo** → pipe privado, inalcanzable por los hermanos; `ls` moría con `SIGPIPE` y `grep` leía/escribía el mismo pipe. Regla anclada: **el pipe se crea en el PADRE antes del fork, los hijos solo heredan**.
+  2. `prev_read` declarado **dentro del loop** → se perdía entre iteraciones (basura). Debe sobrevivir fuera del loop.
+  3. El padre cerraba el `fd[0]` que acababa de guardar como `prev_read` → el hijo siguiente no podía heredarlo.
+  4. `case 0` sin `break` → `-Werror=implicit-fallthrough`.
+  5. Última iteración creaba un **pipe basura** (leak de fds); corregido con `if (i < childs - 1)`.
+  6. Intentar que el **hijo** reportara `last_child` (`==` en vez de `=`, `getppid()` en vez de `getpid()`) → imposible: tras `fork` la memoria no se comparte y `exec` la borra. El PID ya lo tiene el padre como **valor de retorno de `fork()`**.
+- **Concepto clave:** `waitpid(-1, ...)` reapiza a los N, pero el status solo se guarda en `pid == last_child`; así el `$?` es el de la última etapa **aunque los hijos mueran en cualquier orden**. Esto resuelve la **deuda de D2** (el `exit` de `ls` se perdía).
+- **Pendiente de pulido (no bloqueante):** `waitpid(0)` → `-1` idiomático; `int last_child = -1` defensivo.
+- **Zettel:** `Linux - Waiting on a Pipeline` generado y enlazado a `MOC - Processes`.
+- **Próximo:** Vie 18 — gotchas de pipes (`SIGPIPE`/`EPIPE`, buffer, `pipe2`) en `5-pipe-gotchas.c`.
+
 ## 2026-09-16 — S5 D3 / Kata 3: EOF y cierre de write-ends
 
 Kata code-first en `3-expert/08-pipes/3-pipe-eof.c`. Cierre con el **mecanismo de EOF demostrado por experimento controlado**.
