@@ -2,6 +2,23 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-18 — S5 D5 / Kata 5: Gotchas de pipes (`SIGPIPE`, buffer, `pipe2`)
+
+Kata code-first en `3-expert/08-pipes/5-pipe-gotchas.c`. Cierre con los **3 experimentos A/B/C verificados** y un hallazgo de semántica de shell.
+
+- **A — `SIG_DFL` (proceso muere):** el kernel mata al padre dentro del `write()` → `exit=141` (`128+13`), **sin** mensaje y **sin** llegar al `exit(status)`. Aprendizaje: la disposición por defecto y el handler son caminos **excluyentes**.
+- **B — handler (proceso sobrevive):** el handler imprime su mensaje, `write()` retorna `-1` con `errno=EPIPE` y el programa reporta `"Broken pipe"`. El exit code pasa a ser **política del programador** (se eligió `1` vía `exit(EXIT_FAILURE)`).
+- **C — buffer/`pipe2`:** `PIPE_BUF=4096`, `F_GETPIPE_SZ=65536`, `pipe2(O_CLOEXEC)` → `FD_CLOEXEC` seteado (leído con `F_GETFD`).
+- **Errores y nudos recorridos:**
+  1. Primer intento: el padre nunca cerraba su **read-end** → el kernel seguía viendo un lector → `write()` con éxito → handler nunca corría (`exit=0`). Regla: para que `SIGPIPE` se entregue deben cerrarse **todos** los read-ends.
+  2. `pipe2(fd, ...)` **sobreescribía `fd`** del `pipe()` original (leak de FDs); corregido con su propio arreglo `int cfd[2]`.
+  3. Confusión **`return`/`exit` y status hijo vs padre:** se ancló que **nadie puede reapear su propia muerte** — `waitpid()` solo reapea hijos; el `141` lo observa el shell que lanzó el proceso. El `exit(status)` final es un único punto de salida del padre, no algo que corra cuando el kernel ya lo mató.
+  4. Confusión del contrato (error de la spec IA): se había pedido "mensaje del handler **y** 141"; imposible en la misma corrida.
+- **Hallazgo de shell (verificado en bash):** `$?` de un pipeline por defecto = estado de la **última etapa** (`yes | head -n 1` → `0`); con `set -o pipefail` = primer fallo de la cadena (→ `141`). `mysh` ya guarda el status de la última etapa (Kata 4) → **imita el default de bash**; `pipefail` queda como Open Question para el milestone.
+- **Deuda no bloqueante:** la escritura parcial no se observó porque `8192` divide exacto la capacidad (`65536`); probar con un bloque que no divida (p. ej. `10000`). `<linux/limits.h>` redundante.
+- **Zettel:** `Linux - Pipe Gotchas (SIGPIPE, buffer)` generado y enlazado a `MOC - Processes`.
+- **Próximo:** Sáb 19 — **MILESTONE `mysh v2.0`** (pipelines); diseño íntegramente del alumno.
+
 ## 2026-09-17 — S5 D4 / Kata 4: Esperar N hijos (`waitpid` en pipeline)
 
 Kata code-first en `3-expert/08-pipes/4-pipeline-wait.c`. Cierre con el **pipeline `ls -la | grep .c | wc -l` funcionando de punta a punta y los 3 hijos reapizados**.
