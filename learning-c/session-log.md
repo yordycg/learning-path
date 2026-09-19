@@ -2,6 +2,22 @@
 
 > **Append-only archive.** Nuevas entradas arriba. Referenciado desde [`status.md`](status.md). Este archivo es historia; el panel operativo (semana/día actual, próximo día) vive en `status.md`.
 
+## 2026-09-19 — S5 CIERRE + MILESTONE `mysh v2.0` + PIVOTE DE RUMBO
+
+Cierre completo de S5 en una sesión: milestone `mysh v2.0` + tick semanal + definición de rumbo.
+
+**Milestone `mysh v2.0` (pipelines de N procesos) — peer review con evidencia real.** El alumno autoró `projects/mysh/docs/pseudocode-v2.0.md` (delta anclado) y `src/mysh.c` en Modo B (cero cucharas). La IA revisó recompilando estricto (`-Wall -Wextra -Werror -pedantic -fsanitize=address,undefined`) y ejecutando baterías.
+
+- **3 hallazgos cazados y corregidos en el mismo día:** (1) `char **cmds[128]` en pila → **stack-buffer-overflow** con 129 etapas (ASan: `index 128 out of bounds`), corregido a buffer dinámico en heap con `realloc`/doblado y chequeo `num_cmds >= max_cmds` **antes** de escribir; (2) `echo hola mundo | wc -w` devolvía `0` porque el built-in escribe con `printf` (stdio block-buffered sobre el pipe) y `_exit()` **no vacía stdio** → corregido con `fflush(stdout)` antes de `_exit`; (3) `ls|wc` (sin espacios) no se parseaba → normalización léxica que inserta espacios alrededor de `|`.
+- **Verificado:** 130/500/1000 etapas con **stderr 0 bytes** bajo ASan/UBSan; `yes | head -n 1` no cuelga (SIGPIPE default); `true | false` → `1`, `false | true | true` → `0` (solo la última etapa); sin leaks de FD (`5 → 5` tras 30 pipelines).
+- **Anclaje conceptual:** el bug de `cmds[128]` es la **misma clase** que el `char *buf[1024]` de S4 — arreglo en pila cuyo tamaño depende de la entrada del usuario. Regla: si el tamaño lo fija la entrada, va al heap.
+
+**Pivote de rumbo (checkpoint de motivación, resuelto hoy).** El alumno reportó pérdida de motivación con el bloque de sistemas/syscalls y con `mysh` como vehículo. Decisión: **`mysh` se pausa en `v2.0`** (no se borra; queda para W12–15) y **S6–S9 pasan a DSA en C**. Reformulación clave del alumno: el objetivo de DSA no es "implementar X", sino **criterio de selección** — saber *reconocer* qué estructura y qué algoritmo usar y *justificar por qué*. GDB/ASan se pliegan **JIT** dentro de las semanas de DSA (se elimina la semana dedicada a GDB). Descartado el adelanto F2 inmediato; F2 queda en el bloque reservado.
+
+**Zettel:** `C - mysh v2.0 Pipelines` (cara de proyecto; enlaza a la teoría de `MOC - Processes`) con Open Questions heredadas: `pipefail`, `O_CLOEXEC`, tabs.
+**Pendiente del alumno:** commit atómico (`feat(mysh)` + `docs(mysh)`) y `git tag -a v2.0`.
+**Próximo:** S6 D1 — **Big O** en `3-expert/02-dsa/1-big-o.c`.
+
 ## 2026-09-18 — S5 D5 / Kata 5: Gotchas de pipes (`SIGPIPE`, buffer, `pipe2`)
 
 Kata code-first en `3-expert/08-pipes/5-pipe-gotchas.c`. Cierre con los **3 experimentos A/B/C verificados** y un hallazgo de semántica de shell.

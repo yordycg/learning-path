@@ -82,3 +82,15 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 - **[2026-09-16 - S5 D3]: VLA accidental y `_exit()` en el hijo.**
   - *Gotcha:* `int size_buf = 1024; char buf[size_buf];` es un **VLA** (tamaño runtime en stack, opcional en C11). Preferir `#define BUF_SIZE 1024` / `enum`.
   - *Regla ya conocida reaplicada:* el hijo post-`fork` sale con `_exit()` (no `exit()`/`return`) para no flushear buffers de stdio copiados.
+
+- **[2026-09-19 - S5 cierre / Milestone mysh v2.0]: Si el tamaño lo fija la entrada del usuario, el arreglo va al heap.**
+  - *Gotcha reincidente:* `char **cmds[128]` en pila + 129 etapas → **stack-buffer-overflow** (ASan: `index 128 out of bounds`). Es la **misma clase** que el `char *buf[1024]` de S4: un arreglo en pila cuyo tamaño depende de la entrada. Corregir con heap + crecimiento geométrico (`malloc(16)` + `realloc(*2)`) y el chequeo de límite **antes** de escribir.
+  - *Regla de verificación:* para bugs de memoria, forzar el borde con la entrada real (generar 130/500/1000 pipes) y compilar con `-fsanitize=address,undefined`; el compilador no avisa de este error.
+
+- **[2026-09-19 - S5 cierre]: `stdio` block-buffered + built-in + `_exit` = datos perdidos.**
+  - *Gotcha:* un built-in (`echo`) que escribe con `printf` dentro de un pipe y sale con `_exit(0)` **pierde su salida**: al redirigir `STDOUT` a un pipe, libc pasa `stdout` a block-buffering y `_exit` no vacía el buffer. `echo hola | wc -w` daba `0`.
+  - *Regla:* `fflush(stdout)` antes de `_exit` en cualquier built-in que escriba en un pipe. El modo de buffering se fija en la primera operación sobre el stream y se **hereda por `fork`** (por eso el bug solo aparecía con stdout redirigido).
+  - *Decisión de rumbo:* `mysh` se **pausa en `v2.0`** como portfolio; el vehículo de la fase pasa a ser el **problema** (DSA). El criterio de éxito de DSA no es "implementar X" sino **selección**: reconocer qué estructura/algoritmo y justificar por qué.
+
+- **[2026-09-19 - entorno / vault]: Diferir el commit manual del vault.**
+  - Reconfirmado: `ZenNotes` auto-sincroniza el vault; al generar Zettels, verificar `git log`/`git status` del vault después de escribir y no forzar commits manuales.

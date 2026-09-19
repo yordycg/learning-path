@@ -22,12 +22,12 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `2-advanced/07-file-io/`           | File I/O: read/write text, formatted, binary (Beej 9)                                             | ✅ done                                                                          |
 | `2-advanced/05-memory-management/` | Stack vs Heap, `malloc`/`calloc`/`realloc`/`free`, valgrind (Beej 12)                             | ✅ done (Beej 12 cerrado; valgrind → 11-tooling, Zettel Stack vs Heap pendiente) |
 | `2-advanced/11-tooling/`           | Makefile rules, targets, dependencies, variables                                                  | 🔴 not started **· se toca en `08-multifile-projects` (Beej §17)**               |
-| `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8)                              | 🔴 not started                                                                   |
-| `3-expert/07-signals/`             | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29)                                               | 🔴 not started                                                                   |
-| `4-systems/02-pipes-ipc/`          | `pipe()`, FIFOs                                                                                   | 🔴 not started                                                                   |
-| `4-systems/03-file-descriptors/`   | FDs under the hood, `dup`/`dup2`, redirection                                                     | 🔴 not started                                                                   |
-| `2-advanced/11-tooling/`           | GDB (breakpoints, backtrace, watch), Valgrind                                                     | 🔴 not started → **valgrind: S1 (heap) · GDB: S6**                               |
-| `3-expert/02-dsa/`                 | Dynamic array, linked list, stack, queue, hash table, binary search, sorting                      | 🔴 not started                                                                   |
+| `4-systems/01-syscalls-processes/` | `open`/`read`/`write`/`close`, `fork`/`exec`/`wait`, zombies (K&R 8)                              | ✅ done (S2–S3)                                                                  |
+| `3-expert/07-signals/`             | `SIGINT`, `SIGTERM`, `SIGCHLD`, `SIGPIPE` (Beej 29)                                               | ✅ done (S4)                                                                     |
+| `4-systems/02-pipes-ipc/`          | `pipe()`, FIFOs                                                                                   | ✅ done (S5)                                                                     |
+| `4-systems/03-file-descriptors/`   | FDs under the hood, `dup`/`dup2`, redirection                                                     | ✅ done (S2/S5)                                                                  |
+| `2-advanced/11-tooling/`           | GDB (breakpoints, backtrace, watch), Valgrind                                                     | 🟡 valgrind→ASan (S1) · **GDB: pliegue JIT en S6–S9** (ya no semana dedicada)    |
+| `3-expert/02-dsa/`                 | Dynamic array, linked list, stack, queue, hash table, binary search, sorting                      | 🔄 **in progress (S6–S9)** — foco en **criterio de selección** (cuándo usar qué) |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
 
@@ -87,12 +87,12 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S2   | Aug 17–23      | Syscalls + FDs               | K&R 8, `man 2`             | `open/read/write/close`, `dup2`; **mysh v0.5** (read + parse + builtins) | [x] |
 | S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [x] |
 | S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [x] |
-| S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [ ] |
-| S6   | Sep 21–27 | GDB deep dive                | Sorber (debug) videos      | `watch`/`bt`, valgrind on shell; **mysh v2.5** (`>` `<` `>>`)            | [ ] |
-| S7   | Sep 28 – Oct 4 | DSA: linked list             | Beej 20.3 + Fiset          | linked list from scratch + `binary_search`; **mysh v3.0** (history)      | [ ] |
-| S8   | Oct 5–11 | DSA: stack + queue           | Fiset                      | manual stack and queue                                                   | [ ] |
-| S9   | Oct 12–18 | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort                                     | [ ] |
-| S10  | Oct 19–25 | Integration & close          | —                          | full mysh demo + Phase 1 checklist done                                  | [ ] |
+| S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [x] |
+| S6   | Sep 21–27 | DSA: Big O + dynamic array   | Fiset + Silver.dev         | análisis de complejidad + dynamic array; **criterio array vs lista**; GDB/ASan JIT | [ ] |
+| S7   | Sep 28 – Oct 4 | DSA: linked list             | Beej 20.3 + Fiset          | linked list desde cero + `binary_search`; **criterio lista vs array**    | [ ] |
+| S8   | Oct 5–11 | DSA: stack + queue           | Fiset                      | stack y queue manuales; **criterio LIFO/FIFO y elección de backing store** | [ ] |
+| S9   | Oct 12–18 | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort; **criterio de búsqueda vs orden**  | [ ] |
+| S10  | Oct 19–25 | Integration & close          | —                          | retos de selección + Phase 1 checklist done                              | [ ] |
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
@@ -103,8 +103,8 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S3 | ¿Qué es un proceso? (PCB/PID, imagen de memoria) + `execvp` y búsqueda en `PATH` (por qué no `system()`) |
 | S4 | Alcance v1.5 **simplificado**: el shell ignora `SIGINT` mientras espera al hijo. Process groups / terminal de control → diferidos (fuera del alcance de mysh) |
 | S5 | Semántica de pipes: `read` bloquea, EOF al cerrarse todos los write-ends, tamaño de buffer; **diseñar la cadena en papel** antes de codear |
-| S6 | Valgrind **no ejecutable** en este entorno (falta glibc debuginfo) → fallback **AddressSanitizer** (`-fsanitize=address`) para heap checks |
-| S7 | **Big O** (Fiset intro) + linked list con patrón **head-return** (evita `Node**`, Beej 23 diferido) |
+| S6 | **Big O** (Fiset intro + Silver.dev) y complejidad amortizada — antes de la primera estructura. Valgrind no ejecutable → fallback **AddressSanitizer** para heap checks (JIT). |
+| S7 | Linked list con patrón **head-return** (evita `Node**`, Beej 23 diferido) + tabla de decisión array vs lista. |
 | S8 | (secuela directa de S7 — sin concepto nuevo) |
 | S9 | **Recursión** (día de concepto antes de merge sort) |
 | S10 | — |
@@ -112,6 +112,8 @@ This phase covers the absolute foundations of systems programming. By working wi
 ---
 
 ## Phase 1 Project: mysh
+
+> **⏸️ PAUSADO en `v2.0` (decisión 2026-09-19).** El shell dejó de ser el vehículo de la fase: S6–S9 = DSA en C con foco en criterio de selección. `mysh` **no se borra** — repo congelado en `projects/mysh/` (tags `v0.5`, `v1.0`, `v1.5`, `v2.0`) como pieza de portfolio; `v2.5` (redirección `>` `<` `>>`) y el resto quedan diferidos al bloque reservado W12–15 si se retoma.
 
 A mini UNIX shell written from scratch in C.
 
