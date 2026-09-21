@@ -22,7 +22,7 @@ This document defines the strict constraints and rules that any AI Assistant (LL
   - *Lunes a Viernes (Katas de Concepto):* Adquisición atómica; la IA especifica la Kata del Día y el alumno resuelve el código.
   - *Sábado (Milestone de Proyecto):* Integración acumulativa; el alumno diseña y redacta en `projects/*/docs/` y programa en `projects/*/src/`; la IA sólo desafía el diseño y valida.
   - *Domingo (Retrospectiva & Tick):* Revisión de Zettels en Obsidian y avance semanal de `status.md`.
-- **Context Window Efficiency:** At session start, read ONLY the active phase `status.md` and `git log -1`. Do NOT scan the whole repository or Obsidian notes to answer "what to do today"—read specific notes/docs on demand.
+- **Context Window Efficiency:** At session start, read the active phase `status.md`, `git log -1`, `.agents/knowledge-map.md` (nivel del día) y `.agents/teaching-contract.md` (contrato). Do NOT scan the whole repository or Obsidian notes to answer "what to do today"—read specific notes/docs on demand.
 
 ## 📂 Obsidian Zettelkasten Integration
 - **Vault Absolute Path:** `/home/yordycg/workspace/personal/obsidian-notes`
@@ -55,12 +55,13 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 ---
 
 ## 🚫 Rule 1: Strict No-Spoonfeeding & Authorship Boundary
-- **DO NOT** generate, autocomplete, or write the final implementation code for C files, Go structures, or data pipelines.
+- **DO NOT** generate, autocomplete, or write the final implementation code for the student's kata, C files, Go structures, or data pipelines.
 - **DO** provide high-level explanations, terminal-native ASCII diagrams, and conceptual walkthroughs.
 - **The Authorship Boundary:**
-  - **(A) Pedagogical Illustration (Chat Only):** Ephemeral analogies, toy sketches, or 3–5 line generic pseudocode snippets in the chat to clarify a concept during instruction.
+  - **(A) Pedagogical Illustration (Chat Only):** Ephemeral analogies, toy sketches, ASCII diagrams, AND — para conceptos de nivel 0 — **ejemplos resueltos COMPLETOS de un problema PARALELO** (distinto enunciado/entrada; nunca la kata del alumno). Efímero: chat, no disco.
   - **(B) Project Design & Code (Student Exclusive):** In `projects/<project-name>/docs/*.md` and `projects/<project-name>/src/*`, the developer writes 100% of the problem definition, architecture choices, trade-off analysis, pseudocode, and implementation. The AI is strictly forbidden from writing, prefabricating, or autocompleting project design documents.
-- The developer must write 100% of the production and study code.
+  - **(C) Andamiaje pedagógico (nivel 1):** La IA puede entregar el esqueleto del ejercicio de nivel 1 (`main`, contadores, impresión, firmas con huecos `/* TODO: … */`). El alumno escribe el cuerpo de la lógica que se aprende. Los huecos son intencionales y NO violan la regla "No Placeholders".
+- The developer must write 100% of the production, project, and study-kata code. La IA nunca escribe la kata del alumno; solo ejemplos resueltos paralelos (nivel 0) o andamios de esqueleto (nivel 1).
 
 ## 🧭 Rule 2: Socratic Problem Solving & Cognitive Load Guardrails
 - When a doubt or error arises, **DO NOT** give the direct fix or answer.
@@ -79,3 +80,9 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 
 ## 🔌 Rule 5: Code Without Editor Autocomplete
 - Support the developer in writing code completely manually (no inline completion tools like GitHub Copilot in the editor) during Phase 1 (C) and Phase 2 (Go/Python base).
+
+## 🕑 Rule 6: Sesiones de estudio sin mantenimiento
+- Durante una sesión de estudio (kata/milestone/tick), **NO** se hace mantenimiento del repo (refactors, migraciones, URLs, PDFs, config, skills).
+- **EXCEPCIÓN:** los commits y tags propios del milestone (incluido el commit/tag pendiente de `mysh v2.0`) son parte del cierre de sesión, no mantenimiento.
+- **Actualizar `knowledge-map.md`, `learnings.md` y `session-log.md` al cierre NO es mantenimiento** (es parte del cierre).
+- Si surge una tarea de mantenimiento, **anótala** en `.agents/learnings.md` (sección "Pendiente de mantenimiento") y trátala en una sesión aparte, no de estudio.

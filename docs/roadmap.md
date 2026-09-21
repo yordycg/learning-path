@@ -9,30 +9,27 @@
 Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas guían todo el roadmap:
 
 1. **Inverted Project-Based Learning** — el proyecto genera la necesidad, no al revés. No estudias teoría "por si acaso"; cada concepto entra porque `mysh`/`taskapi`/`eventpipe` lo exigen en ese momento. La teoría se aprende **justo cuando el problema la pide**.
-2. **Just-In-Time Learning** — los libros, videos y man pages pasan a ser **referencia puntual**, no lectura lineal. Se abren solo cuando el código falla y necesitas la sección exacta. Así usan los libros los engineers en la vida real.
-3. **Code-First Notes + código autodocumentado** — las notas viven en el código, no en Obsidian. Escribes el intento primero y tus comentarios en el `.c` son la nota. Obsidian es un subproducto que la IA genera al cierre.
+2. **Just-In-Time Learning** — los libros, videos y man pages pasan a ser **referencia puntual**, no lectura lineal. Se abren solo cuando el código falla y necesitas la sección exacta. Así usan los libros los engineers en la vida real. *(En nivel 2+; en nivel 0–1 el recurso se abre ANTES, ver contrato.)*
+3. **Code-First Notes + código autodocumentado** — las notas viven en el código, no en Obsidian. Escribes el intento primero y tus comentarios en el `.c` son la nota. Obsidian es un subproducto que la IA genera al cierre. *(Code-first aplica solo desde nivel 2.)*
 
-> El principio detrás de "código primero": **productive failure** (fallar con intención). Intentar resolver antes de ver la solución crea preguntas reales en tu cerebro → el recurso posterior se recuerda mucho mejor que consumirlo primero.
+> El "código primero" (productive failure) aplica **solo desde nivel 2 (listo para kata libre)**.
+> En nivel 0–1 el flujo es explicación → ejemplo resuelto → esqueleto (ver `.agents/teaching-contract.md`).
+> El fracaso productivo exige conocimiento previo suficiente; sin él no es productivo, es bloqueo.
 
-### El flujo diario (reemplaza "teoría → código")
+### El flujo diario (por NIVEL, no "código primero" para todo)
 
-```
-1. Contexto (2 min) — QUÉ hace el concepto, sin el CÓMO.
-   Ej: "fork() crea un nuevo proceso. Tú decides cómo."
-2. Código primero (20-30 min) — intentas usar el concepto sin leer nada.
-   Fallas con propósito → generas preguntas reales.
-   Escribes comentarios en el .c sobre lo que crees que pasa.
-3. Recurso just-in-time (15-25 min) — ahora abres el video/man,
-   buscando respuestas a las preguntas que el código ya te generó.
-4. Corregir + ejercicios progresivos (60-90 min) — ajustas tu código,
-   luego básico → aplicado → integrado con el proyecto.
-5. Comentarios en el .c = notas (10 min) — APRENDÍ / DUDA RESUELTA /
-   CONECTA CON. Ese bloque de comentarios ES tu nota.
-6. La IA genera el Zettel en Obsidian al cierre — a partir de tus
-   comentarios, con la jerarquía conectada (MOC). No tocas Obsidian.
-```
+> La regla única vive en `.agents/teaching-contract.md`; el nivel por concepto en `.agents/knowledge-map.md`.
+> El "código primero sin leer nada" queda **reservado para nivel 2+**; ya no es el default.
 
-> El aprendizaje real ocurre en los pasos 2 y 4 — cuando intentas construir desde tu memoria — no en el video.
+| Nivel | Flujo |
+|-------|-------|
+| 0 (no visto) | Explicación con TODOS los términos + ejemplo resuelto PARALELO + recurso de apoyo + quiz de comprensión → luego esqueleto |
+| 1 (visto) | Completar esqueleto/pasos borrados + `@attempt` → 1 pregunta conceptual |
+| 2 (listo para kata libre) | Kata libre code-first; recurso JIT SOLO si falla |
+| 3 (en frío) | Recuperación sin mirar (domingo, 15 min) |
+
+> El recurso: en nivel 0–1 se abre **ANTES** (apoyo explicativo, verificado y fijado antes del día, después del ejemplo);
+> en nivel 2 es just-in-time (solo si el código falla).
 
 ### El artefacto del día según la fase
 
@@ -70,8 +67,8 @@ Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas
 
 | Día | Horas | Actividad |
 |-----|-------|-----------|
-| Lunes | 4h | Código primero + recurso JIT + ejercicios + bloque del proyecto |
-| Martes – Viernes | 2h c/u | Código primero del tema del día → recurso JIT → comentarios en el `.c` |
+| Lunes | 4h | Kata según nivel (contrato) + ejercicios + bloque del proyecto |
+| Martes – Viernes | 2h c/u | Kata según nivel (contrato) → recurso según nivel → comentarios en el `.c` |
 | Sábado | 4h | Bloque masivo del Proyecto Principal |
 | Domingo | 4h | Refactor, revisar Zettels, ejercicios de integración, planear semana |
 
@@ -230,7 +227,7 @@ Arquitectura y patrones
 
 ### Videos por tema — Fase 1
 
-> Cada video es 15–25 min y se usa **just-in-time**: códigas primero, y el video solo se abre cuando el código falla (busca respuestas a tus preguntas reales). No ver el siguiente hasta implementar el anterior.
+> Cada video es 15–25 min. En **nivel 2** se usa just-in-time (código primero, video solo si falla). En **nivel 0–1** se abre ANTES, como apoyo explicativo. No ver el siguiente hasta cerrar el actual.
 
 **C y memoria:**
 
@@ -438,10 +435,10 @@ v3.0 → S7   historial con linked list
 
 | Día | Actividad |
 |-----|-----------|
-| Lunes (4h) | Código primero: punteros/memoria (intento) → recurso JIT (15 min) → ejercicios progresivos + comentarios en el `.c` |
-| Martes (2h) | Código primero: syscall del tema → recurso JIT (man/video) → implementar + comentarios |
-| Miércoles (2h) | Código primero: Linux internals → recurso JIT → integrar al shell + comentarios |
-| Jueves (2h) | Código primero: DSA — Fiset sección (solo referencia) → implementar estructura en C + comentarios |
+| Lunes (4h) | Kata según nivel: punteros/memoria → recurso según nivel → ejercicios progresivos + comentarios en el `.c` |
+| Martes (2h) | Kata según nivel: syscall del tema → recurso según nivel → implementar + comentarios |
+| Miércoles (2h) | Kata según nivel: Linux internals → recurso según nivel → integrar al shell + comentarios |
+| Jueves (2h) | Kata según nivel: DSA → recurso según nivel → implementar estructura en C + comentarios |
 | Viernes (2h) | GDB/ASan sobre el código de la semana → commit + repasar comentarios del `.c` |
 | Sábado (4h) | Bloque mysh: feature nueva + debuggear + documentar |
 | Domingo (4h) | Refactor, revisar Zettels (IA), ejercicios de integración, planear semana siguiente |

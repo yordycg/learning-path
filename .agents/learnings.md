@@ -6,8 +6,9 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 ---
 
 ## Invariantes y Convenciones del Repositorio
-- **Standard de Anotaciones:** Todo archivo de estudio documenta su aprendizaje usando el bloque `/* @title ... */` con `@phase`, `@learn`, `@open_questions` y `@connect_with`.
-- **Cadencia Semanal:** Lunes a Viernes (Katas atómicas dirigidas por la IA) vs Sábado (Milestone de Proyecto en `projects/` donde el alumno es 100% autor y arquitecto) vs Domingo (Tick semanal y Zettels).
+- **Contrato de Enseñanza (fuente única):** el flujo diario, la escalera por nivel, las pistas, el `@attempt`, el cierre y la recuperación dominical viven en `.agents/teaching-contract.md`; el nivel por concepto vive en `.agents/knowledge-map.md`. El "código primero" ya NO es el default: aplica solo desde nivel 2.
+- **Standard de Anotaciones:** Todo archivo de estudio documenta su aprendizaje usando el bloque `/* @title ... */` con `@phase`, `@learn`, `@open_questions`, `@connect_with` y `@attempt` (desde nivel 1).
+- **Cadencia Semanal:** Lunes a Viernes (katas según nivel) vs Sábado (Milestone de Proyecto en `projects/` donde el alumno es 100% autor y arquitecto) vs Domingo (Tick semanal + recuperación en frío + Zettels).
 - **Autoría Exclusiva en Proyectos:** En `projects/*/docs/` y `projects/*/src/`, el alumno diseña, escribe pseudocódigo y programa. La IA actúa como Peer Reviewer crítico (desafiando edge cases); estrictamente prohibido prefabricar o redactar docs de proyectos.
 - **Single-Focus Invariant:** Máximo 1 pregunta reflexiva o quiz por turno. Cero sobrecarga cognitiva.
 - **Code is the Answer:** Si el alumno responde con código o comandos, se anulan preguntas previas sin acumular deuda.
@@ -99,3 +100,7 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
   - *Decisión del alumno:* un único directorio de primer nivel para DSA (antes `learning-c/3-expert/02-dsa/`), con subcarpetas por lenguaje (`c/` activo; `go/` y `graphs/` futuros, antes `learning-go/07-dsa-go/` y `learning-distributed/07-dsa-graphs/`).
   - *Distinción anclada:* los **conceptos** (Big O, criterios de selección) son agnósticos del lenguaje y viven en Obsidian `MOC - DSA`; el repo solo guarda el **código vehículo**.
   - *Consecuencia operativa:* el panel activo es `learning-dsa/status.md` (S6–S10); `learning-c/status.md` queda en pausa hasta W12–15. `just status` apunta a `learning-dsa/status.md`.
+
+- **[2026-09-21 - S6 D1 / Big O]: Punto ciego — Big O / complejidad algorítmica NO vistos.**
+  - *Hecho:* el alumno no sabía qué es `N`, `ops` ni `O(n)`; el kata del día 1 se asignó asumiendo piso inexistente y el alumno recurrió a Gemini (muleta) por falta de andamiaje.
+  - *Regla fija:* antes de asignar un concepto, consultar `.agents/knowledge-map.md`. Nivel 0 ⇒ quiz de prerrequisitos + explicación con todos los términos + ejemplo resuelto paralelo. Nunca asumir conocimiento no verificado.
