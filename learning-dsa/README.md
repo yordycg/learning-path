@@ -31,10 +31,10 @@ learning-dsa/
 
 ## Recursos
 
-- **Big O / complejidad:** [Fiset — Data Structures intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) · Silver.dev · AlgoMaster OS
+- **Big O / complejidad:** [Fiset — Data Structures intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) · [Silver.dev — Big(O) Notation](https://docs.silver.dev/interview-ready/data-structures-algorithms/big-o-notation) · [AlgoMaster DSA — Big O intro](https://algomaster.io/learn/dsa/big-o-introduction)
 - **Estructuras:** [Data Structures Easy to Advanced — Full (Fiset/freeCodeCamp)](https://www.youtube.com/watch?v=RBSGKlAvoiM) — ver por secciones
 - **Problemas reales por estructura:** [70 Leetcode problems in 5+ hours (Stoney codes)](https://www.youtube.com/watch?v=lvO88XxNAzs) — ver solo la sección de la semana (método JIT)
-- **Libro:** *Cracking the Coding Interview* (CTCI) — [PDF gratis](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book)
+- **Libro (referencia completa):** *Cracking the Coding Interview* (CTCI, 6ª ed. — 189 preguntas) — [copia online](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) (consulta remota) · copia local `cracking-the-coding-interview-189-programming-questions-and-solutions.pdf` (offline, gitignoreada)
 - **Profundizar:** *The Algorithm Design Manual* (Skiena) — caps. 1–4
 
 ## Ritmo y operación
