@@ -12,7 +12,7 @@
 
 ## Gates de subida
 | Subida | Evidencia exigida |
-| 0→1 | explicación + quiz de comprensión acertado **+ producción: predecir un número con n distinto y justificar con tus palabras** |
+| 0→1 | explicación + quiz de comprensión acertado **+ producción: predecir un número con un N no visto y justificar (la salida esperada no se muestra antes)** |
 | 1→2 | esqueleto completado + 1 pregunta conceptual acertada |
 | 2→3 | solo recuperación en frío (domingo) |
 
