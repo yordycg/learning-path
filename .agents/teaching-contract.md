@@ -70,15 +70,15 @@
 - Elegir del `knowledge-map.md` el de mayor nivel con más tiempo sin repasar.
 - Falla ⇒ bajar nivel + actualizar "último repaso". Acierta ⇒ registrar "último repaso".
 
-## Modo A — Kata (Lun–Vie)
+## Día de kata (Lun–Vie)
 Aplicar Paso 0 → escalera → pistas → cierre.
 1. Árbol de contexto + Bridge.
 2. Kata según **nivel** (0 = explicación+paralelo+quiz · 1 = esqueleto · 2 = kata concreta). Nunca asumir 2 si es 0.
 3. Especificación técnica (APIs, flujo, salida, exit code, prueba en 1 línea).
-4. Recurso: **nivel 0–1 ANTES** (apoyo explicativo, DESPUÉS del ejemplo resuelto) · **nivel 2 JIT**. Solo recursos verificados (freeCodeCamp opcional, Beej, CTCI); Fiset / Silver.dev / AlgoMaster NO se citan hasta verificar.
+4. Recurso: **1 PRINCIPAL por tema (★, el ideal, citado primero)** + el resto como **apoyo OPCIONAL**. Nivel 0–1: el principal va DESPUÉS del ejemplo resuelto · nivel 2: JIT.
 5. Plantilla de comentarios + `@attempt` (desde nivel 1).
 
-## Modo B — Reto / Milestone (Sáb)
+## Día de reto / Milestone (Sáb)
 Invariante de Cero Cucharas (alumno 100% autor) + Peer Review Socrático + tag.
 
 ## Regla de calendario

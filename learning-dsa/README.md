@@ -6,10 +6,10 @@
 
 | Week | Dates          | Topic                  | Resource          | Deliverable                                                                                              | ✔ |
 | ---- | -------------- | ---------------------- | ----------------- | -------------------------------------------------------------------------------------------------------- | - |
-| S6   | Sep 21–27      | Big O + dynamic array  | Fiset + Silver.dev | análisis de complejidad + dynamic array; **criterio array vs lista**; GDB/ASan JIT                        | [ ] |
-| S7   | Sep 28 – Oct 4 | Linked list            | Beej 20.3 + Fiset | linked list desde cero + `binary_search`; **criterio lista vs array**                                    | [ ] |
-| S8   | Oct 5–11       | Stack + queue          | Fiset             | stack y queue manuales; **criterio LIFO/FIFO y elección de backing store**                               | [ ] |
-| S9   | Oct 12–18      | Hash table + sorting   | Beej 24 + Fiset   | hash (separate chaining), merge sort; **criterio de búsqueda vs orden**                                  | [ ] |
+| S6   | Sep 21–27      | Big O + dynamic array  | ★ freeCodeCamp (Big O) · ★ Fiset (struct) | análisis de complejidad + dynamic array; **criterio array vs lista**; GDB/ASan JIT                        | [ ] |
+| S7   | Sep 28 – Oct 4 | Linked list            | ★ Fiset · Beej 20.3 (apoyo) | linked list desde cero + `binary_search`; **criterio lista vs array**                                    | [ ] |
+| S8   | Oct 5–11       | Stack + queue          | ★ Fiset             | stack y queue manuales; **criterio LIFO/FIFO y elección de backing store**                               | [ ] |
+| S9   | Oct 12–18      | Hash table + sorting   | ★ Fiset · Beej 24 (apoyo)   | hash (separate chaining), merge sort; **criterio de búsqueda vs orden**                                  | [ ] |
 | S10  | Oct 19–25      | Integración & cierre   | —                 | retos de selección + checklist de fase                                                                   | [ ] |
 
 ## Estructura por lenguaje
@@ -31,16 +31,18 @@ learning-dsa/
 
 ## Recursos
 
-- **Big O / complejidad:** [Fiset — Data Structures intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) · [Silver.dev — Big(O) Notation](https://docs.silver.dev/interview-ready/data-structures-algorithms/big-o-notation) · [AlgoMaster DSA — Big O intro](https://algomaster.io/learn/dsa/big-o-introduction)
-- **Big O nivel 0 (apoyo OPCIONAL, DESPUÉS del ejemplo resuelto):** [freeCodeCamp — What is Big O Notation Explained](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/) — ejemplos en JavaScript (no C). Fiset y AlgoMaster quedan **sin fijar** hasta verificar; Silver.dev es solo método de entrenamiento, no explicación.
-- **Estructuras:** [Data Structures Easy to Advanced — Full (Fiset/freeCodeCamp)](https://www.youtube.com/watch?v=RBSGKlAvoiM) — ver por secciones
-- **Problemas reales por estructura:** [70 Leetcode problems in 5+ hours (Stoney codes)](https://www.youtube.com/watch?v=lvO88XxNAzs) — ver solo la sección de la semana (método JIT, en nivel 2+)
-- **Libro (referencia completa):** *Cracking the Coding Interview* (CTCI, 6ª ed. — 189 preguntas) — [copia online](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) (consulta remota) · copia local `cracking-the-coding-interview-189-programming-questions-and-solutions.pdf` (offline, gitignoreada)
-- **Profundizar:** *The Algorithm Design Manual* (Skiena) — caps. 1–4
+> `★` = principal (ideal, se cita primero); el resto = apoyo opcional.
+
+- **★ Big O (principal, nivel 0):** [freeCodeCamp — What is Big O Notation Explained](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/) — ejemplos en JavaScript (no C); DESPUÉS del ejemplo resuelto.
+- **Big O (apoyo):** [Fiset — Data Structures intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) · [Silver.dev — Big(O) Notation](https://docs.silver.dev/interview-ready/data-structures-algorithms/big-o-notation) · [AlgoMaster DSA — Big O intro](https://algomaster.io/learn/dsa/big-o-introduction)
+- **★ Estructuras (principal):** [Data Structures Easy to Advanced — Full (Fiset/freeCodeCamp)](https://www.youtube.com/watch?v=RBSGKlAvoiM) — ver por secciones
+- **Problemas reales (apoyo, nivel 2+):** [70 Leetcode problems in 5+ hours (Stoney codes)](https://www.youtube.com/watch?v=lvO88XxNAzs) — ver solo la sección de la semana
+- **Libro (apoyo, referencia completa):** *Cracking the Coding Interview* (CTCI, 6ª ed. — 189 preguntas) — [copia online](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) (consulta remota) · copia local `cracking-the-coding-interview-189-programming-questions-and-solutions.pdf` (offline, gitignoreada)
+- **Profundizar (apoyo):** *The Algorithm Design Manual* (Skiena) — caps. 1–4
 
 ## Ritmo y operación
 
 - Panel operativo semanal: [`status.md`](status.md) · Historia: [`session-log.md`](session-log.md)
-- **Por nivel:** el día arranca según `.agents/knowledge-map.md`. Nivel 0–1: explicación + recurso ANTES. Nivel 2: code-first (recurso JIT solo si falla). Ver `.agents/teaching-contract.md`.
+- **Por nivel:** el día arranca según `.agents/knowledge-map.md`. Nivel 0–1: explicación + ejemplo + recurso principal (★, DESPUÉS del ejemplo). Nivel 2: code-first (recurso JIT solo si falla). Ver `.agents/teaching-contract.md`.
 - Compilación estricta: `just run <archivo.c>` (ASan + UBSan).
 - Cadencia: Lun–Vie katas atómicas · Sáb reto de selección · Dom tick + Zettels.
