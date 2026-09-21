@@ -5,12 +5,12 @@
 
 ## Paso 0 — Nivel del concepto (antes de asignar NADA)
 1. Consultar `.agents/knowledge-map.md`.
-2. Si el concepto es **nivel 0** ⇒ NO asignar ejercicio todavía. Ejecutar `quiz` (3–5 preguntas) de **PRERREQUISITOS** del concepto (no el concepto en sí).
+2. Si el concepto es **nivel 0** ⇒ NO asignar ejercicio todavía. Ejecutar la herramienta `quiz` (una interacción; pregunta única del prerrequisito más crítico, nunca texto plano) de **PRERREQUISITOS** del concepto (no el concepto en sí).
 3. Concepto ausente ⇒ `0` y se añade antes de continuar.
 
 ## Carril rápido (nivel 0 → 1)
-- Si el alumno declara "ya lo sé" y acierta una **pregunta de producción en frío**, sube a 1 sin la explicación completa.
-- Si el quiz de prerrequisitos se pasa **sin errores**, la IA puede sugerir el carril rápido.
+- SOLO si el alumno lo pide ("ya lo sé") Y acierta **en frío un ítem de producción sobre el concepto en sí**.
+- NUNCA por pasar el quiz de prerrequisitos (ese quiz mide prerrequisitos, no el concepto).
 
 ## Escalera de andamiaje (según nivel)
 | Nivel | Qué entrega la IA | Recurso |
@@ -53,7 +53,7 @@
 - Ausencia de `@attempt` NO es sanción: se registra en `learnings.md` como dato de calibración.
 
 ## Cierre de kata (obligatorio)
-1. `[x]` en la fila del día + entrada en `session-log.md` + actualizar `knowledge-map.md` (nivel, evidencia con pregunta y respuesta literal, último repaso) — **pidiendo confirmación al alumno antes de cambiar nivel**.
+1. `[x]` en la fila del día + entrada en `session-log.md` + actualizar `knowledge-map.md` (nivel, evidencia con pregunta y **respuesta literal del alumno**, último repaso) — **pidiendo confirmación al alumno antes de cambiar nivel**. La evidencia es SIEMPRE el mensaje literal del alumno; la IA nunca redacta respuestas hipotéticas suyas.
 2. **1 pregunta conceptual** post-resolución.
 3. Generar Zettel (`obsidian-query`).
 

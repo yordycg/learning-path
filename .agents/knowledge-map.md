@@ -1,12 +1,12 @@
 # Knowledge Map — Nivel por Concepto (fuente de verdad del nivel)
 
 > Escala: `0 = no visto` · `1 = visto (con ayuda)` · `2 = listo para kata libre` · `3 = en frío`.
-> Columnas: **evidencia** (qué respalda el nivel, con pregunta y respuesta literal) y **último repaso** (fecha de recuperación en frío).
+> Columnas: **evidencia** (qué respalda el nivel, con pregunta y respuesta literal del alumno) y **último repaso** (fecha de recuperación en frío).
 
 ## Reglas
 - Al abrir un tema, la IA consulta esta tabla (Paso 0 del contrato).
 - Concepto ausente ⇒ `0` y se añade antes de continuar.
-- **En "evidencia" se registra la pregunta y tu respuesta literal.** La IA te pide confirmación ANTES de cambiar cualquier nivel.
+- **En "evidencia" se registra la pregunta y tu respuesta literal (siempre tu mensaje exacto; la IA nunca redacta respuestas hipotéticas tuyas).** La IA te pide confirmación ANTES de cambiar cualquier nivel.
 - Subir de nivel exige evidencia (gates de abajo).
 - `3` solo se gana por recuperación en frío (domingo).
 
