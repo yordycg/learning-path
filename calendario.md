@@ -10,14 +10,14 @@
 
 ## Calendario semestre (LP contiguo, 31 ago – 22 nov 2026)
 
-> Las S-weeks de Fase 1 pasan a **semanas contiguas** (ya no intercaladas con IA). Detalle operativo semanal: [`learning-c/status.md`](../learning-c/status.md).
+> Las S-weeks de Fase 1 pasan a **semanas contiguas** (ya no intercaladas con IA). Detalle operativo semanal: [`learning-dsa/status.md`](../learning-dsa/status.md) (S6–S10, DSA) · [`learning-c/status.md`](../learning-c/status.md) (C/systems, en pausa hasta W12–15).
 
 | Semana universitaria | Fechas | LP |
 |----------------------|--------|----|
 | 4 | 31 ago – 6 sep | S3: procesos fork/exec/wait |
 | 5 | 7–13 sep | S4: señales |
 | 6 | 14–20 sep | S5: pipes |
-| 7 | 21–27 sep | S6: GDB/ASan |
+| 7 | 21–27 sep | S6: DSA Big O + dynamic array |
 | 8 | 28 sep – 4 oct | S7: DSA linked list |
 | 9 | 5–11 oct | S8: stack+queue |
 | 10 | 12–18 oct | S9: hash+sorting |
@@ -44,5 +44,5 @@
 
 ## Estado operativo
 
-- Semana activa: ver [`learning-c/status.md`](../learning-c/status.md) (LP) · [`../ai-learning-path/status.md`](../ai-learning-path/status.md) (IA).
+- Semana activa: ver [`learning-dsa/status.md`](../learning-dsa/status.md) (LP, S6–S10 DSA) · [`learning-c/status.md`](../learning-c/status.md) (LP C/systems, pausa) · [`../ai-learning-path/status.md`](../ai-learning-path/status.md) (IA).
 - Detalle de contenido por fase: cada fase tiene su README de recursos.

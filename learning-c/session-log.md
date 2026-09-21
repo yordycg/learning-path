@@ -16,7 +16,7 @@ Cierre completo de S5 en una sesión: milestone `mysh v2.0` + tick semanal + def
 
 **Zettel:** `C - mysh v2.0 Pipelines` (cara de proyecto; enlaza a la teoría de `MOC - Processes`) con Open Questions heredadas: `pipefail`, `O_CLOEXEC`, tabs.
 **Pendiente del alumno:** commit atómico (`feat(mysh)` + `docs(mysh)`) y `git tag -a v2.0`.
-**Próximo:** S6 D1 — **Big O** en `3-expert/02-dsa/1-big-o.c`.
+**Próximo:** S6 D1 — **Big O** en `learning-dsa/c/1-big-o.c`.
 
 ## 2026-09-18 — S5 D5 / Kata 5: Gotchas de pipes (`SIGPIPE`, buffer, `pipe2`)
 

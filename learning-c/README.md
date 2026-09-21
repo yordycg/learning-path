@@ -27,7 +27,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `4-systems/02-pipes-ipc/`          | `pipe()`, FIFOs                                                                                   | ✅ done (S5)                                                                     |
 | `4-systems/03-file-descriptors/`   | FDs under the hood, `dup`/`dup2`, redirection                                                     | ✅ done (S2/S5)                                                                  |
 | `2-advanced/11-tooling/`           | GDB (breakpoints, backtrace, watch), Valgrind                                                     | 🟡 valgrind→ASan (S1) · **GDB: pliegue JIT en S6–S9** (ya no semana dedicada)    |
-| `3-expert/02-dsa/`                 | Dynamic array, linked list, stack, queue, hash table, binary search, sorting                      | 🔄 **in progress (S6–S9)** — foco en **criterio de selección** (cuándo usar qué) |
+| `3-expert/02-dsa/` (DSA) | ~~Dynamic array, linked list, stack, queue, hash table, binary search, sorting~~ | ➡️ **migrado a [`learning-dsa/`](../learning-dsa/README.md)** |
 
 **Legend:** ✅ done · 🟡 partial (see notes) · 🔄 in progress · 🔴 not started
 
@@ -60,7 +60,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | `2-advanced/10-error-handling/`     | §15.3, §28                          | —                                                                                                                                                                                                                                                                         | solo Beej        |
 | `2-advanced/11-tooling/`            | — (no Beej)                         | [Makefiles](https://www.youtube.com/watch?v=l5KqE0DMG-Q), [auto vars](https://www.youtube.com/watch?v=G5dNorAoeCM), [Valgrind](https://www.youtube.com/watch?v=Sddn1UjzSAo), [GDB+Valgrind](https://www.youtube.com/watch?v=8JEEYwdrexc)                                  | de roadmap       |
 | `3-expert/01-advanced-pointers/`    | §23                                 | —                                                                                                                                                                                                                                                                         | solo Beej        |
-| `3-expert/02-dsa/`                  | §20.3                               | [Fiset intro](https://www.youtube.com/watch?v=Qmt0QwzEmh0) + [Fiset curso](https://www.youtube.com/watch?v=RBSGKlAvoiM)                                                                                                                                                   | Fiset            |
+| `3-expert/02-dsa/` (DSA) | §20.3 | ➡️ **migrado a [`learning-dsa/`](../learning-dsa/README.md)** | |
 | `3-expert/03-oop-emulation/`        | §20.7                               | —                                                                                                                                                                                                                                                                         | solo Beej        |
 | `3-expert/04-bitwise/`              | §24                                 | [What are Bit Masks](https://www.youtube.com/watch?v=Ew2QnDeTCCE) + [Set/Clear/Toggle a bit](https://www.youtube.com/watch?v=F9742wnBWRc) (Sorber)                                                                                                                        |                  |
 | `3-expert/05-threads-atomics/`      | §39, §40                            | [create/join threads](https://www.youtube.com/watch?v=uA8X5zNOGw8), [mutex/locks](https://www.youtube.com/watch?v=9axu8CUvOKY), [semáforos](https://www.youtube.com/watch?v=ukM_zzrIeXs), [making variables atomic](https://www.youtube.com/watch?v=_xX25ThomIo) (Sorber) |                  |
@@ -88,11 +88,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [x] |
 | S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [x] |
 | S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [x] |
-| S6   | Sep 21–27 | DSA: Big O + dynamic array   | Fiset + Silver.dev         | análisis de complejidad + dynamic array; **criterio array vs lista**; GDB/ASan JIT | [ ] |
-| S7   | Sep 28 – Oct 4 | DSA: linked list             | Beej 20.3 + Fiset          | linked list desde cero + `binary_search`; **criterio lista vs array**    | [ ] |
-| S8   | Oct 5–11 | DSA: stack + queue           | Fiset                      | stack y queue manuales; **criterio LIFO/FIFO y elección de backing store** | [ ] |
-| S9   | Oct 12–18 | DSA: hash table + sorting    | Beej 24 + Fiset            | hash (separate chaining), merge sort; **criterio de búsqueda vs orden**  | [ ] |
-| S10  | Oct 19–25 | Integration & close          | —                          | retos de selección + Phase 1 checklist done                              | [ ] |
+| S6–S10 | Sep 21 – Oct 25 | DSA (Big O, arrays, lists, stack/queue, hash, sorting) | Fiset + Silver.dev + Beej 20.3/24 | ➡️ **migrado a [`learning-dsa/`](../learning-dsa/README.md)** | [ ] |
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
@@ -103,17 +99,13 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S3 | ¿Qué es un proceso? (PCB/PID, imagen de memoria) + `execvp` y búsqueda en `PATH` (por qué no `system()`) |
 | S4 | Alcance v1.5 **simplificado**: el shell ignora `SIGINT` mientras espera al hijo. Process groups / terminal de control → diferidos (fuera del alcance de mysh) |
 | S5 | Semántica de pipes: `read` bloquea, EOF al cerrarse todos los write-ends, tamaño de buffer; **diseñar la cadena en papel** antes de codear |
-| S6 | **Big O** (Fiset intro + Silver.dev) y complejidad amortizada — antes de la primera estructura. Valgrind no ejecutable → fallback **AddressSanitizer** para heap checks (JIT). |
-| S7 | Linked list con patrón **head-return** (evita `Node**`, Beej 23 diferido) + tabla de decisión array vs lista. |
-| S8 | (secuela directa de S7 — sin concepto nuevo) |
-| S9 | **Recursión** (día de concepto antes de merge sort) |
-| S10 | — |
+| S6–S10 | ➡️ migrado a [`learning-dsa/`](../learning-dsa/README.md) |
 
 ---
 
 ## Phase 1 Project: mysh
 
-> **⏸️ PAUSADO en `v2.0` (decisión 2026-09-19).** El shell dejó de ser el vehículo de la fase: S6–S9 = DSA en C con foco en criterio de selección. `mysh` **no se borra** — repo congelado en `projects/mysh/` (tags `v0.5`, `v1.0`, `v1.5`, `v2.0`) como pieza de portfolio; `v2.5` (redirección `>` `<` `>>`) y el resto quedan diferidos al bloque reservado W12–15 si se retoma.
+> **⏸️ PAUSADO en `v2.0` (decisión 2026-09-19).** El shell dejó de ser el vehículo de la fase: S6–S10 = DSA en el track [`learning-dsa/`](../learning-dsa/README.md) con foco en criterio de selección. `mysh` **no se borra** — repo congelado en `projects/mysh/` (tags `v0.5`, `v1.0`, `v1.5`, `v2.0`) como pieza de portfolio; `v2.5` (redirección `>` `<` `>>`) y el resto quedan diferidos al bloque reservado W12–15 si se retoma.
 
 A mini UNIX shell written from scratch in C.
 

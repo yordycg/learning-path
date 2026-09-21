@@ -20,7 +20,8 @@ It contains code snippets, atomic exercises, conceptual proofs of concept (PoCs)
 The code is organized by technology, core concepts, and standalone projects:
 
 - [`projects/`](./projects/) - Standalone roadmap projects (e.g., `projects/mysh/`) managed as independent Git repositories with their own commit history, source code (`src/`), build system (`Makefile`), and architecture docs (`docs/`).
-- [`learning-c/`](./learning-c/) - Linux Internals, Memory Management (Stack/Heap), Syscalls, IPC, Signals and basic DSA in C.
+- [`learning-c/`](./learning-c/) - Linux Internals, Memory Management (Stack/Heap), Syscalls, IPC, Signals.
+- [`learning-dsa/`](./learning-dsa/) - Data Structures & Algorithms (criterio de selección), implemented in C (future: Go, graphs).
 - [`learning-go/`](./learning-go/) - Go fundamentals, Concurrency (Goroutines, Channels), idiomatic error handling, testing, and HTTP.
 - [`learning-postgres/`](./learning-postgres/) - Advanced SQL, schema design, index analysis (`EXPLAIN ANALYZE`), and transaction isolation.
 - [`learning-python-base/`](./learning-python-base/) - Python automation scripting, typing (mypy), testing with pytest, and tooling.
@@ -35,7 +36,7 @@ The code is organized by technology, core concepts, and standalone projects:
 El repositorio cuenta con recetas automáticas para compilar y probar código sin teclear flags manuales:
 
 ```bash
-just status       # Despliega el panel operativo de la semana (status.md)
+just status       # Despliega el panel operativo de la semana (learning-dsa/status.md)
 just run <file>   # Compila y ejecuta con ASan + UBSan en C, o -race en Go
 just test <file>  # Ejecuta y valida el código de retorno ($?)
 just check <file> # Comprobación de sintaxis estática rápida

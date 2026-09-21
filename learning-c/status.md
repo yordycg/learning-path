@@ -33,30 +33,17 @@ Al pedir "¿qué toca hoy?", el agente DEBE evaluar si corresponde a una **Kata 
 
 > **Reglas de Interacción:** Single-Focus (1 sola pregunta a la vez). Si el desarrollador modifica código o ejecuta comandos, el código **ES** la respuesta (anular preguntas previas sin acumular deuda). Diagramas en el chat en **cajas ASCII nativas**; el Zettel de Obsidian lo genera la IA al cierre con sintaxis Mermaid.
 
-## Estado actual — S6 (Sep 21 – 27)
+## Estado actual — ⏸️ PAUSADO (track DSA migrado a `learning-dsa/`)
 
-> **🔄 Pivote de rumbo (cierre de S5):** `mysh` se **pausa** en `v2.0` (`git tag v2.0`) y **deja de ser el vehículo** — no se borra; queda para el bloque reservado W12–15 (26 oct – 22 nov). S6–S9 = **DSA en C** con foco en **criterio de selección**: dado un problema, reconocer *qué* estructura y *qué* algoritmo corresponden y *por qué* (trade-offs de acceso / inserción / memoria / orden / complejidad). GDB y ASan se **pliegan JIT** en las semanas de DSA: no hay semana dedicada a GDB.
-> **Recovery (concepto previo al abrir S6):** **Big O** (Fiset intro + Silver.dev) y complejidad amortizada — antes de la primera estructura.
-> **Orden por dependencias:** cada día usa solo lo de días anteriores. Cada estructura se cierra con su **tabla de decisión** ("¿cuándo SÍ y cuándo NO?").
+> **Decisión estructural (S6 D1, 2026-09-21):** el track **DSA** se extrajo de `learning-c/3-expert/02-dsa/` y pasó a ser un directorio de primer nivel [`learning-dsa/`](../learning-dsa/README.md) (S6–S10). El panel activo ahora es [`learning-dsa/status.md`](../learning-dsa/status.md).
+> **`mysh`** sigue **pausado en `v2.0`** (tag + commit pendiente del alumno). No se borra: queda para el bloque reservado W12–15 (26 oct – 22 nov), junto con `mysh v2.5` (redirección `>` `<` `>>`) y el resto del shell.
+> **`learning-c/`** queda en pausa: el track C/systems (S1–S5) está completo; se retoma en W12–15 (threads, bitwise, `mysh` avanzado).
 
-| Día    | Tema                                                                                                                     | Archivo (intento code-first)                    | Recurso JIT                                                                                     | Zettel al cierre (IA)                                              | Estado |
-| ------ | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------ |
-| Lun 21 | **Big O**: qué mide, peor caso, O/Θ/Ω, reglas; complejidad amortizada                                                    | `3-expert/02-dsa/1-big-o.c`                     | Fiset (intro) · Silver.dev · AlgoMaster OS                                                      | `DSA - Big O...` (revisar duplicados)                              | [ ]    |
-| Mar 22 | **Dynamic array**: array vs dinámico, `realloc`, crecimiento amortizado                                                  | `3-expert/02-dsa/2-dynamic-array.c`             | Fiset                                                                                           | `DSA - Dynamic Array...`                                           | [ ]    |
-| Mié 23 | **Criterio array**: acceso O(1) vs inserción/borrado O(n); cache locality                                                | `3-expert/02-dsa/3-array-tradeoffs.c`           | Fiset                                                                                           | `DSA - Array Tradeoffs...`                                         | [ ]    |
-| Jue 24 | **Linked list I**: nodo, `head`, recorrido, insertar/borrar O(1) con puntero                                             | `3-expert/02-dsa/4-linked-list.c`               | Fiset · Beej 20.3 · CTCI                                                                        | `DSA - Linked List...`                                             | [ ]    |
-| Vie 25 | **Criterio lista vs array**: acceso aleatorio vs inserción; patrón head-return                                           | `3-expert/02-dsa/5-list-vs-array.c`             | Fiset · CTCI                                                                                    | `DSA - List vs Array...`                                           | [ ]    |
-| Sáb 26 | **Retos de selección** (vehículo = el problema, NO `mysh`): elegir DS/algoritmo + justificar; implementar el ganador + depurar con GDB/ASan | `3-expert/02-dsa/exercises/`                    | conceptos Lun–Vie                                                                               | revisar                                                            | [ ]    |
-| Dom 27 | Zettels + tick S6                                                                                                        | —                                               | —                                                                                               | Revisar Zettels IA                                                 | [ ]    |
+## Próxima sesión — TODO
 
-- **Blockers S6:** ninguno. `mysh` congelado en `v2.0` (pendiente del commit + `git tag` del alumno). `mysh v2.5` (redirección `>` `<` `>>`) y el resto del shell quedan diferidos al bloque W12–15.
-- **Checkpoint de rumbo — RESUELTO (Sáb 19):** pausar `mysh` y pasar a **DSA en C** con foco en **criterio de selección** (reformulación del alumno: *"saber cuándo usar X estructura y Y algoritmo"*). Descartado continuar S6 (GDB) y descartado el adelanto F2 inmediato; F2 queda en el bloque reservado W12–15.
-
-## Próxima sesión — TODO (S6 D1 · Lun 21)
-
-- **S6 D1 — Kata: Big O (análisis de complejidad).** Code-first en `3-expert/02-dsa/1-big-o.c` **sin abrir el recurso**. La IA entregará el contrato completo (objetivo + spec + salida/exit code + JIT + anotaciones) cuando se pida "¿qué toca hoy?".
-- **Encuadre nuevo:** la meta de S6 no es "implementar para `mysh`", sino **elegir con criterio**. Cada estructura se cierra con su tabla "¿cuándo SÍ / cuándo NO?".
-- **Pendiente tuyo (cierre S5):** `git add` + commit (`feat(mysh): ...` y `docs(mysh): ...`, atómicos) y `git tag -a v2.0`.
+- **En `learning-c/`:** ninguna hasta el bloque W12–15 (26 oct – 22 nov).
+- **Pendiente tuyo (cierre S5):** `git add` + commit (`feat(mysh): ...` y `docs(mysh): ...`, atómicos) y `git tag -a v2.0` en `projects/mysh/`.
+- **Hoy (S6 D1):** la Kata de Big O se responde desde [`learning-dsa/status.md`](../learning-dsa/status.md).
 
 ## Historial
 

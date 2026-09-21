@@ -94,3 +94,8 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 
 - **[2026-09-19 - entorno / vault]: Diferir el commit manual del vault.**
   - Reconfirmado: `ZenNotes` auto-sincroniza el vault; al generar Zettels, verificar `git log`/`git status` del vault después de escribir y no forzar commits manuales.
+
+- **[2026-09-21 - S6 D1 / estructura del repo]: DSA extraído a su propio track `learning-dsa/`.**
+  - *Decisión del alumno:* un único directorio de primer nivel para DSA (antes `learning-c/3-expert/02-dsa/`), con subcarpetas por lenguaje (`c/` activo; `go/` y `graphs/` futuros, antes `learning-go/07-dsa-go/` y `learning-distributed/07-dsa-graphs/`).
+  - *Distinción anclada:* los **conceptos** (Big O, criterios de selección) son agnósticos del lenguaje y viven en Obsidian `MOC - DSA`; el repo solo guarda el **código vehículo**.
+  - *Consecuencia operativa:* el panel activo es `learning-dsa/status.md` (S6–S10); `learning-c/status.md` queda en pausa hasta W12–15. `just status` apunta a `learning-dsa/status.md`.

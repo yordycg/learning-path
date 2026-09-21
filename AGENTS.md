@@ -12,8 +12,9 @@ This document defines the strict constraints and rules that any AI Assistant (LL
 - Canonical Phase 1 structure (`learning-c/`) mirrors the Obsidian C vault in 3 language levels + a systems track. Numbers = study order within each level; `chapter-01/` is the separate K&R track:
   - `1-basics/` — Beej 2–7 + stdlib (hello, variables, data types, operators, flow control, functions, arrays, strings, standard library)
   - `2-advanced/` — Beej 8–19 + tooling (pointers, structs, unions, typedef/type composition, memory mgmt, scope, file I/O, multifile, preprocessor, error handling, gcc/make/gdb/valgrind)
-  - `3-expert/` — Beej 20+ (advanced pointers, DSA, OOP emulation, bitwise, threads/atomics, variadic/jumps, signals, modern C)
+  - `3-expert/` — Beej 20+ (advanced pointers, OOP emulation, bitwise, threads/atomics, variadic/jumps, signals, modern C)
   - `4-systems/` — OS topics NOT in Beej/Obsidian (syscalls, processes, pipes, file descriptors — K&R 8, `man 2`)
+- Canonical DSA track (`learning-dsa/`) is a first-level directory (S6–S10), extracted from `learning-c/3-expert/02-dsa/`. Code lives in `learning-dsa/c/` (future: `go/`, `graphs/`); language-agnostic concepts live in Obsidian `MOC - DSA`. Operational home: `learning-dsa/status.md` (active) + `learning-dsa/README.md`.
 - Roadmap projects live in `projects/<project-name>/` (e.g., `projects/mysh/`) as standalone Git repositories with their own commit history, `Makefile`, `src/`, and `docs/`.
 - **Note Separation & Authorship:** Conceptual theory lives in Obsidian Zettelkasten (`000 Zettelkasten/`). Project architecture, specs, REPL design, and pseudocode live in `projects/<project-name>/docs/` and are **authored 100% by the developer**. The AI acts strictly as peer reviewer and never authors project docs.
 - Each phase keeps a `status.md` (e.g. `learning-c/status.md`) with the current week's operational state, maintained by the AI at the end of every session.

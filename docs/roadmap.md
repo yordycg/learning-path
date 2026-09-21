@@ -345,14 +345,6 @@ learning-c/
 │   └── 11-tooling/       # gcc, make, gdb & valgrind
 ├── 3-expert/             # Beej 20+
 │   ├── 01-advanced-pointers/
-│   ├── 02-dsa/
-│   │   ├── dynamic_array.c
-│   │   ├── linked_list.c
-│   │   ├── stack.c
-│   │   ├── queue.c
-│   │   ├── hash_table.c
-│   │   ├── binary_search.c
-│   │   └── exercises/    # opcional
 │   ├── 03-oop-emulation/
 │   ├── 04-bitwise/
 │   ├── 05-threads-atomics/
@@ -372,6 +364,23 @@ learning-c/
     │   └── exercises/
     └── 03-file-descriptors/
         └── exercises/
+```
+
+### Repositorio — Track DSA (`learning-dsa/`)
+
+```
+learning-dsa/
+├── README.md          # casa operativa: tracker + plan semanal S6–S10
+├── status.md          # panel activo S6–S10
+├── session-log.md
+└── c/                 # DSA en C (S6–S10, activo)
+    ├── 1-big-o.c
+    ├── 2-dynamic-array.c
+    ├── 3-array-tradeoffs.c
+    ├── 4-linked-list.c
+    ├── 5-list-vs-array.c
+    └── exercises/
+# futuros: go/ (← learning-go/07-dsa-go/) · graphs/ (← learning-distributed/07-dsa-graphs/)
 ```
 
 > **Convención `exercises/`:** cada directorio de tema puede tener una carpeta `exercises/` con archivos `01-<desc>.c`, `02-<desc>.c`, `03-<desc>.c`. **Siempre opcionales.** Los crea el estudiante; la IA describe qué implementar en cada uno como parte de la respuesta diaria. El `03-*.c` es siempre la integración con el proyecto de fase (mysh, taskapi, etc.). El archivo del concepto del día (`4-process.c`, `5-fork-basic.c`) es el **intento requerido** — los exercises son profundización opcional.
@@ -406,7 +415,7 @@ El proyecto de cada fase se construye **incrementalmente** — nunca de golpe al
 | Tipo de semana | Qué pasa el sábado |
 |---------------|---------------------|
 | Semana con milestone de mysh | Avanzar mysh a la versión de la semana (código real, commit, `git tag vX.Y`) |
-| Semana DSA sin milestone (S8–S9) | Bloque extendido en `3-expert/02-dsa/` — son los DSA que mysh v3.0 usa |
+| Semana DSA sin milestone (S8–S9) | Bloque extendido en `learning-dsa/c/` — son los DSA que mysh v3.0 usa |
 | Semana de integración (S10) | mysh demo completa + checklist de fase |
 
 ```
@@ -529,11 +538,8 @@ learning-go/
 ├── 03-http-server/
 ├── 04-error-handling/
 ├── 05-testing/
-├── 06-context/
-└── 07-dsa-go/
-    ├── bst.go
-    ├── sorting.go
-    └── sliding_window.go
+└── 06-context/
+# (DSA en Go → learning-dsa/go/)
 
 learning-python-base/
 ├── README.md
@@ -718,12 +724,10 @@ learning-distributed/
 │   └── tracing.go              # OpenTelemetry setup
 ├── 05-circuit-breaker/
 │   └── circuit_breaker.go      # implementación desde cero
-├── 06-cicd/
-│   └── .github/workflows/
-│       └── ci.yml
-└── 07-dsa-graphs/
-    ├── bfs_dfs.go
-    └── consistent_hash.go
+└── 06-cicd/
+    └── .github/workflows/
+        └── ci.yml
+# (DSA grafos → learning-dsa/graphs/)
 ```
 
 ### Proyecto Principal — `resilient-api`
