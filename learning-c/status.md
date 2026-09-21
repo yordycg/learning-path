@@ -1,37 +1,21 @@
 # Status — Phase 1 (learning-c)
 
-> **Estado operativo SOLO.** Conceptos → Obsidian · Historia → [`session-log.md`](session-log.md). Start each session: read this file + `git log -1`.
+> **Estado operativo SOLO.** Conceptos → Obsidian · Historia → [`session-log.md`](session-log.md). Start each session: read this file + `git log -1` + [`.agents/knowledge-map.md`](../.agents/knowledge-map.md) + [`.agents/teaching-contract.md`](../.agents/teaching-contract.md).
 
 ## Cómo operar este archivo
 
-- "¿Qué toca hoy?" → se responde con la fila de hoy de _Current Week_ + el **Contrato diario** de abajo.
+- "¿Qué toca hoy?" → se responde con la fila de hoy de _Current Week_ + el **Contrato de enseñanza** ([`../.agents/teaching-contract.md`](../.agents/teaching-contract.md)).
 - Al cierre de sesión: `[ ]` → `[x]` en la fila del día + entrada al `session-log.md`.
 - Al cerrar la semana (Dom): archivar las filas en el `session-log.md`, abrir la siguiente, dejar resumen de 2 líneas de la semana pasada.
-- **Code-first:** cada día empieza con el intento de código (sin leer). El recurso se abre just-in-time solo cuando el código falla.
+- **Por nivel:** el flujo del día lo dicta `.agents/knowledge-map.md` + `.agents/teaching-contract.md`. Nivel 0–1: explicación + recurso ANTES. Nivel 2: code-first (recurso JIT solo si falla).
 - En el tick semanal (Dom): consultar el **Backlog — conceptos previos** en [`README → Recovery Plan`](README.md#recovery-plan-f1-s0s10) para incluir el concepto pendiente de la semana que se abre.
 - Ritmo semanal: [`calendario.md`](../calendario.md) (fuente única del modelo estacional y el horario).
 
-## Contrato diario de respuesta (obligatorio para la IA)
+## Contrato de enseñanza (fuente única)
 
-Al pedir "¿qué toca hoy?", el agente DEBE evaluar si corresponde a una **Kata de Concepto (Lunes a Viernes)** o a un **Milestone de Proyecto (Sábado / Días de Hito)**:
-
-### 🟢 Modo A: Kata Diaria de Concepto (Lunes a Viernes)
-1. **Árbol de contexto + Milestone Bridge:** Cadena jerárquica (ej. `OS → Process → fork → mysh`) + **Impacto en el Proyecto del Sábado** (1 oración precisa explicando por qué dominar este concepto hoy es indispensable para la versión o feature de `mysh` del sábado).
-2. **La Kata del Día (Reto Principal):** Objetivo preciso en 1 oración + archivo `.c` a crear con ruta exacta + comando de compilación estricto (`gcc -Wall -Wextra -Werror -pedantic -g -fsanitize=address,undefined <archivo>.c -o <bin>` o `just run <archivo.c>`).
-3. **Especificación Técnica (Contrato de Aceptación):** Syscalls/APIs clave requeridas + flujo de ejecución esperado + salida esperada en terminal y código de retorno (`echo $?` o `WIFEXITED`) + comando de prueba en 1 línea.
-4. **Recurso Just-in-Time (JIT):** Nombre + link, se abre **SOLO** si el código falla o falta la firma.
-5. **Plantilla de comentarios estructurada:** cabecera con `@title`, `@phase`, `@learn`, `@open_questions` (dudas que la IA resuelve) y `@connect_with` (enlaces MOC).
-6. *(Opcional)* **Stretch Goal (Romper el Código):** 1 caso de borde para experimentar solo tras superar la Kata principal.
-
-### 🟡 Modo B: Milestone de Integración de Proyecto (Sábado / Días de Hito en `projects/`)
-**Invariante de Cero Cucharas en Diseño:** En días de proyecto, la IA tiene **ESTRICTAMENTE PROHIBIDO** pre-diseñar la arquitectura, sugerir la solución técnica, redactar especificaciones o escribir pseudocódigo. El alumno es el 100% autor y arquitecto.
-1. **El Hito Objetivo:** Versión a alcanzar (ej. `mysh v1.5`) en `projects/mysh/`.
-2. **Transferencia Semanal:** Conceptos de Lun–Vie (disposiciones en fork/exec, SIG_IGN vs SIG_DFL, async-signal-safety) y pregunta socrática de impacto sobre la arquitectura de `mysh`.
-3. **Fase 1 (Diseño por el Alumno):** Indicar al alumno que redacte en `projects/mysh/docs/pseudocode-v1.5.md` su propio análisis (`Problema → Opciones y Trade-offs → Decisión → Pseudocódigo Propio → Checklist`).
-4. **Pausa para Peer Review Socrático:** La IA desafía el diseño con preguntas de casos de borde (carreras, señales, read interrumpido) antes de que el alumno programe en `src/`.
-5. **Fase 2 (Implementación y Tag):** El alumno codifica en `src/mysh.c`, verifica con `just mysh` o GDB y etiqueta la versión (`git tag -a v1.5`).
-
-> **Reglas de Interacción:** Single-Focus (1 sola pregunta a la vez). Si el desarrollador modifica código o ejecuta comandos, el código **ES** la respuesta (anular preguntas previas sin acumular deuda). Diagramas en el chat en **cajas ASCII nativas**; el Zettel de Obsidian lo genera la IA al cierre con sintaxis Mermaid.
+> El contrato completo (Paso 0 → escalera → pistas → cierre → domingo) vive en
+> [`../.agents/teaching-contract.md`](../.agents/teaching-contract.md). Léelo y síguelo al pie; aquí NO se duplica.
+> El skill `status-tracker` referencia el mismo archivo.
 
 ## Estado actual — ⏸️ PAUSADO (track DSA migrado a `learning-dsa/`)
 
