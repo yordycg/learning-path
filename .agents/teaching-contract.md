@@ -21,7 +21,7 @@
 | 2 | **Kata concreta** (archivo + objetivo + spec), sin explicación previa ni plantilla con marcadores (code-first) | JIT (solo si falla) |
 | 3 | Recuperación en frío (sin recurso, sin andamio) | prohibido |
 
-> **Excepción de andamiaje (nivel 1):** el andamio puede contener huecos `/* TODO: … */`. La regla "No Placeholders" NO aplica a andamios pedagógicos.
+> **Excepción de andamiaje (nivel 1):** el andamio puede contener huecos `/* TODO: … */`. La regla "No Placeholders" NO aplica a andamios pedagógicos. **Los TODO describen comportamiento observable ("que valga 1", "que se duplique"), nunca el método ("un bucle simple", "dos bucles anidados").**
 
 ## Gates de subida (exige evidencia)
 | Subida | Evidencia exigida |
