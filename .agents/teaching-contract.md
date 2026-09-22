@@ -7,7 +7,10 @@
 1. Consultar `.agents/knowledge-map.md`.
 2. Si el concepto es **nivel 0** ⇒ NO asignar ejercicio todavía. Ejecutar la herramienta `quiz` (una interacción; pregunta única del prerrequisito más crítico, nunca texto plano) de **PRERREQUISITOS** del concepto (no el concepto en sí).
 3. Concepto ausente ⇒ `0` y se añade antes de continuar.
-4. En nivel 0, la explicación define **N**, **operación** y **ops** ANTES de usarlos, fija una convención de conteo explícita (qué cuenta como 1 op) y **NO** introduce Ω/Θ ni complejidad amortizada (fuera del alcance del día).
+4. En nivel 0, la explicación sigue la convención de vocabulario definida en
+   `.agents/profiles/<perfil-activo>.md` (sección "Convención de vocabulario
+   obligatoria en nivel 0"). Si el perfil activo no define una, usar el
+   default: definir todo término nuevo antes de usarlo.
 
 ## Carril rápido (nivel 0 → 1)
 - SOLO si el alumno lo pide ("ya lo sé") Y acierta **en frío un ítem de producción sobre el concepto en sí**.
@@ -43,8 +46,8 @@
 - La IA **nunca** entrega el código de la kata. Solo ejemplos resueltos paralelos (nivel 0).
 
 ## Cabecera `@attempt` (desde nivel 1)
-- Desde nivel 1. Además de `@title/@phase/@learn/@open_questions/@connect_with`:
-```c
+- Desde nivel 1 (adaptar los delimitadores de comentario al perfil activo). Además de `@title/@phase/@learn/@open_questions/@connect_with`:
+```text
 /* @attempt
  *   probé:    <qué escribí antes de mirar cualquier recurso>
  *   esperaba: <qué pensé que iba a pasar>
@@ -66,7 +69,7 @@
 3. Generar Zettel (`obsidian-query`).
 
 ## Domingo — recuperación en frío (15 min)
-- 15 min en frío de un tema anterior (empezando por C), sin recurso.
+- 15 min en frío de un tema anterior, sin recurso.
 - Elegir del `knowledge-map.md` el de mayor nivel con más tiempo sin repasar.
 - Falla ⇒ bajar nivel + actualizar "último repaso". Acierta ⇒ registrar "último repaso".
 
@@ -87,6 +90,6 @@ Invariante de Cero Cucharas (alumno 100% autor) + Peer Review Socrático + tag.
 
 ## Regla anti-dilución
 - En sesiones de estudio NO se hace mantenimiento del repo (refactors, URLs, PDFs, config, skills).
-- **EXCEPCIÓN:** commits/tags del milestone (incluido el pendiente de `mysh v2.0`) SÍ son cierre.
+- **EXCEPCIÓN:** commits/tags del milestone activo SÍ son cierre.
 - **Actualizar `knowledge-map.md`, `learnings.md` y `session-log.md` al cierre NO es mantenimiento:** es parte del cierre.
 - Mantenimiento real ⇒ anotar en `learnings.md` ("Pendiente de mantenimiento") y tratarlo aparte.
