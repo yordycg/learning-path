@@ -27,7 +27,7 @@
 
 | Día    | Tema                                                                                                                     | Archivo (según nivel) | Recurso (según nivel)                     | Zettel al cierre (IA)                 | Estado |
 | ------ | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------- | ------------------------------- | ------------------------------------- | ------ |
-| Lun 21 | **Big O**: qué mide, peor caso y crecimiento (conteo de ops vs N). Ω/Θ y amortizado quedan FUERA de hoy (nivel 2+)        | `c/1-big-o.c`                | ★ freeCodeCamp · Fiset/Silver.dev/AlgoMaster (apoyo) | `DSA - Big O...` (revisar duplicados) | [ ]    |
+| Lun 21 | **Big O**: qué mide, peor caso y crecimiento (conteo de ops vs N). Ω/Θ y amortizado quedan FUERA de hoy (nivel 2+)        | `c/1-big-o.c`                | ★ freeCodeCamp · Fiset/Silver.dev/AlgoMaster (apoyo) | `DSA - Big O...` (revisar duplicados) | [x]    |
 | Mar 22 | **Dynamic array**: array vs dinámico, `realloc`, crecimiento amortizado                                                  | `c/2-dynamic-array.c`        | ★ Fiset · Beej 8–19 (apoyo)    | `DSA - Dynamic Array...`              | [ ]    |
 | Mié 23 | **Criterio array**: acceso O(1) vs inserción/borrado O(n); cache locality                                                | `c/3-array-tradeoffs.c`      | ★ Fiset · Beej 8–19 (apoyo)    | `DSA - Array Tradeoffs...`            | [ ]    |
 | Jue 24 | **Linked list I**: nodo, `head`, recorrido, insertar/borrar O(1) con puntero                                             | `c/4-linked-list.c`          | ★ Fiset · Beej 20.3 · CTCI (apoyo) | `DSA - Linked List...`                | [ ]    |
@@ -36,13 +36,14 @@
 | Dom 27 | Zettels + tick S6                                                                                                        | —                            | —                               | Revisar Zettels IA                    | [ ]    |
 
 - **Blockers S6:** ninguno.
-- **Pendiente tuyo (cierre S5, en `learning-c`):** `git add` + commit (`feat(mysh): ...` y `docs(mysh): ...`, atómicos) y `git tag -a v2.0` en `projects/mysh/`.
+- ~~Pendiente tuyo (cierre S5)~~ ✅ **mysh v2.0 cerrado** (commit `b8a66cc` + tag `v2.0`).
 
-## Próxima sesión — TODO (S6 D1 · Lun 21)
+## Próxima sesión — TODO (S6 D2 · Mar 22)
 
-- **S6 D1 — Kata: Big O.** Nivel 0 (no visto) → la IA arranca por el **quiz de prerrequisitos**, luego explicación + ejemplo resuelto, luego quiz de comprensión + producción (el esqueleto `c/1-big-o.c` es para nivel 1).
+- **S6 D2 — Kata: Dynamic array.** Nivel 0 (no visto) → quiz de prerrequisitos → explicación + ejemplo resuelto → quiz de comprensión + producción. Array vs dinámico, `realloc`, crecimiento amortizado. Recurso: ★ Fiset · Beej 8–19 (apoyo).
 - **Encuadre:** la meta no es "implementar para `mysh`", sino **elegir con criterio**. Cada estructura se cierra con su tabla "¿cuándo SÍ / cuándo NO?".
 
 ## Historial
 
+- **S6 D1 (2026-09-21) — Big O:** nivel 0→1. Prerrequisitos ✅, quiz comprensión ✅ (nested loops ⇒ O(n²)), producción ✅ (N=40 → 1600 ops, justificada) y pregunta conceptual ✅ (término dominante). Zettel no creado (concepto ya cubierto en vault).
 - *(S6 inicia aquí. Historial C/systems S1–S5 en [`../learning-c/session-log.md`](../learning-c/session-log.md))*

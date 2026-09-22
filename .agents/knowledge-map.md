@@ -23,7 +23,7 @@
 
 | Concepto | Nivel | Evidencia | Último repaso |
 |----------|-------|-----------|---------------|
-| Big O / complejidad algorítmica | 0 (no visto) | — (día 1 falló por asumir piso inexistente) | — |
+| Big O / complejidad algorítmica | 1 (visto con ayuda) | Producción (N=40 no visto): "al ser unos loops anidados, es O(n^2), por lo tanto: 40^2, dando como resultado: 1600 operaciones" ✅ · quiz comprensión "O(n²)" ✅ · ¿entendiste? "s" | — |
 | Dynamic array / `realloc` amortizado | 0 (no visto) | — | — |
 | C — fork/exec/wait | 2 (provisional) | mysh v1.0 taggeado (S3) | — |
 | C — señales / sigaction | 2 (provisional) | mysh v1.5 taggeado (S4) | — |
