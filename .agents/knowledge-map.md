@@ -24,7 +24,7 @@
 | Concepto | Nivel | Evidencia | Último repaso |
 |----------|-------|-----------|---------------|
 | Big O / complejidad algorítmica | 1 (visto con ayuda) | Producción (N=40 no visto): "al ser unos loops anidados, es O(n^2), por lo tanto: 40^2, dando como resultado: 1600 operaciones" ✅ · quiz comprensión "O(n²)" ✅ · ¿entendiste? "s" | — |
-| Dynamic array / `realloc` amortizado | 0 (no visto) | — | — |
+| Dynamic array / `realloc` amortizado | 1 (visto con ayuda) | Producción (N=20, c₀=4): "los x2 ocurren en 4, 8, y 16... por lo tanto son 3 realloc... y la capacidad final es de 32 de capacidad" ✅ · quiz comprensión "realloc ×2 → reasignar → insertar" ✅ · prerrequisito "malloc(N * sizeof(int))" ✅ · ¿entendiste? "s" | — |
 | C — fork/exec/wait | 2 (provisional) | mysh v1.0 taggeado (S3) | — |
 | C — señales / sigaction | 2 (provisional) | mysh v1.5 taggeado (S4) | — |
 | C — pipes / IPC | 2 (provisional) | mysh v2.0 (S5) — commit+tag pendiente | — |

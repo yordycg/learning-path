@@ -104,3 +104,8 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
 - **[2026-09-21 - S6 D1 / Big O]: Punto ciego — Big O / complejidad algorítmica NO vistos.**
   - *Hecho:* el alumno no sabía qué es `N`, `ops` ni `O(n)`; el kata del día 1 se asignó asumiendo piso inexistente y el alumno recurrió a Gemini (muleta) por falta de andamiaje.
   - *Regla fija:* antes de asignar un concepto, consultar `.agents/knowledge-map.md`. Nivel 0 ⇒ quiz de prerrequisitos + explicación con todos los términos + ejemplo resuelto paralelo. Nunca asumir conocimiento no verificado.
+
+- **[2026-09-22 - S6 D2 / Dynamic array]: Confusión de nombres en la derivación de la fórmula de crecimiento.**
+  - *Hecho:* al derivar `capacity(k)`, el alumno propuso `capacity(k) = 4 · capacity^k` — usó la variable `capacity` (el resultado) como base del crecimiento, en vez del factor constante `2`.
+  - *Regla fija:* en derivaciones algebraicas, distinguir explícitamente la **variable resultado** del **factor de crecimiento constante** (doblado ×2 ⇒ base 2, no "capacity").
+  - *Positivo:* con una sola pregunta socrática ("¿por qué número multiplicas en cada salto?") resolvió la confusión y completó la derivación `k = ⌈log₂(N/c₀)⌉` sin ayuda adicional.
