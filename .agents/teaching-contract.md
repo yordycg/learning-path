@@ -10,7 +10,29 @@
 4. En nivel 0, la explicación sigue la convención de vocabulario definida en
    `.agents/profiles/<perfil-activo>.md` (sección "Convención de vocabulario
    obligatoria en nivel 0"). Si el perfil activo no define una, usar el
-   default: definir todo término nuevo antes de usarlo.
+
+## 🎯 Presupuesto Anti-Estancamiento en Nivel 0
+
+- **Clasificación de sub-concepto** (la IA la declara al añadirlo a
+  `knowledge-map.md`, usando la sección "Clasificación por defecto de
+  sub-conceptos nuevos" del perfil activo como guía):
+  - `vocabulario`: explicación breve + 1 pregunta de producción; sube a
+    nivel 1 en el MISMO turno si acierta. No consume un día completo por
+    sí solo.
+  - `mecanismo`: amerita el Paso 0 completo (Principio I/II + DAG) tal como
+    está definido hoy.
+- **Tope duro:** si al cierre de una sesión `knowledge-map.md` muestra que
+  el MISMO tema raíz lleva **2 sesiones consecutivas en nivel 0 sin ningún
+  sub-concepto en nivel ≥1**, el skill `status-tracker` DEBE:
+  1. Detenerse antes de abrir un sub-concepto nuevo.
+  2. Preguntar explícitamente (vía `ask_user_question`, 1 sola pregunta):
+     "Llevamos 2 días en conceptos base sin código. ¿Seguimos a fondo o
+     subimos ya al esqueleto de nivel 1 aunque quede algo suelto?"
+  3. Registrar la decisión en `learnings.md` como dato de calibración de
+     ritmo.
+- Esto NO salta los gates de subida (0→1, 1→2) — solo evita que la IA abra
+  sub-conceptos nuevos en modo completo indefinidamente sin que el alumno
+  lo decida explícitamente.
 
 ## Carril rápido (nivel 0 → 1)
 - SOLO si el alumno lo pide ("ya lo sé") Y acierta **en frío un ítem de producción sobre el concepto en sí**.
