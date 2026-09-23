@@ -43,10 +43,21 @@
 |-------|-------------------|---------|
 | 0 | Explicación con TODOS los términos + ejemplo resuelto PARALELO (mismo concepto, distinto escenario y distinto cuerpo: no copiable a la kata) + recurso de apoyo + quiz de comprensión + producción | ANTES (apoyo, DESPUÉS del ejemplo) |
 | 1 | Ejercicio con esqueleto/pasos borrados: la IA da el andamio (main, contadores, impresión); el alumno escribe la lógica | ANTES |
-| 2 | **Kata concreta** (archivo + objetivo + spec), sin explicación previa ni plantilla con marcadores (code-first) | JIT (solo si falla) |
+| 2 | **Kata concreta** (archivo + objetivo + spec), sin explicación previa ni plantilla con marcadores (code-first). Ver regla de banco abajo. | JIT (solo si falla) |
 | 3 | Recuperación en frío (sin recurso, sin andamio) | prohibido |
 
 > **Excepción de andamiaje (nivel 1):** el andamio puede contener huecos `/* TODO: … */`. La regla "No Placeholders" NO aplica a andamios pedagógicos. **Los TODO describen comportamiento observable ("que valga 1", "que se duplique"), nunca el método ("un bucle simple", "dos bucles anidados").**
+
+> **Banco de katas versionado (nivel 2):**
+> - **Antes de generar una kata nueva en vivo**, buscar en
+>   `.agents/profiles/<tema>/katas/index.md` si ya existe una kata para el
+>   concepto exacto que no se haya usado antes con el alumno (revisar
+>   `session-log.md`). Si existe, usarla tal cual.
+> - Si no existe, generarla en vivo (comportamiento actual) Y, al cierre de la
+>   sesión, guardarla en `.agents/profiles/<tema>/katas/nivel2/<id>-<slug>.md` con el siguiente id
+>   disponible, actualizando `index.md`. Esto SÍ es parte del cierre de
+>   sesión, no mantenimiento (no viola Rule 6 de `AGENTS.md`).
+> - Al resolver cualquier kata (del banco o nueva), incrementar `veces_resuelta` en `index.md`.
 
 ## Gates de subida (exige evidencia)
 | Subida | Evidencia exigida |
