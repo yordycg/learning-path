@@ -25,3 +25,6 @@ Nunca reescribir ni parchar el código del alumno. Guiarlo con, en este orden:
 ## Clasificación por defecto de sub-conceptos nuevos
 - `vocabulario`: sintaxis, tipos, nombres de funciones de la stdlib.
 - `mecanismo`: gestión de memoria, punteros, preprocesador, multifile.
+
+## Verificación externa
+requiere_researcher: false

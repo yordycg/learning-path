@@ -25,3 +25,6 @@
 ## Verdades incondicionales base del tema
 - (completar a medida que aparezcan; ej. "todo algoritmo de comparación tiene
   un límite inferior de Ω(n log n) para ordenar")
+
+## Verificación externa
+requiere_researcher: false
