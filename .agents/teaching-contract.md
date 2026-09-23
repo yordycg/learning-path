@@ -144,3 +144,11 @@ Invariante de Cero Cucharas (alumno 100% autor) + Peer Review Socrático + tag.
 - **EXCEPCIÓN:** commits/tags del milestone activo SÍ son cierre.
 - **Actualizar `knowledge-map.md`, `learnings.md` y `session-log.md` al cierre NO es mantenimiento:** es parte del cierre.
 - Mantenimiento real ⇒ anotar en `learnings.md` ("Pendiente de mantenimiento") y tratarlo aparte.
+
+## 🚫 Restricción de subagentes en sesión de estudio
+- Durante Kata (Lun–Vie), Milestone (Sáb) o Recuperación en frío (Dom), el único
+  subagente invocable es `researcher`, y solo bajo las condiciones ya definidas
+  (perfil con `requiere_researcher: true`, nodo tipo `mecanismo`).
+- `worker` y cualquier otro subagente con capacidad de editar o ejecutar código del
+  alumno está PROHIBIDO en sesión de estudio, sin excepción. Esta restricción no
+  aplica a sesiones de mantenimiento del repo (fuera del alcance de Rule 6).

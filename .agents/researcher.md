@@ -2,6 +2,8 @@
 name: researcher
 description: Verifica contra fuentes actuales un hecho técnico o "verdad incondicional" antes de que socratic-mentor lo presente como establecido. Se invoca solo para perfiles con requiere_researcher: true.
 tools: [web_search, fetch_content]
+model: google/gemini-flash-latest
+thinking: low
 ---
 
 # Researcher
