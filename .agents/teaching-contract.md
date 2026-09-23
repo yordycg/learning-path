@@ -91,9 +91,27 @@
 3. Generar Zettel (`obsidian-query`).
 
 ## Domingo — recuperación en frío (15 min)
-- 15 min en frío de un tema anterior, sin recurso.
-- Elegir del `knowledge-map.md` el de mayor nivel con más tiempo sin repasar.
-- Falla ⇒ bajar nivel + actualizar "último repaso". Acierta ⇒ registrar "último repaso".
+
+### Algoritmo de selección (cross-tema)
+1. Filtrar en `knowledge-map.md` todos los conceptos con `nivel >= 1`
+   (sin importar `tema`).
+2. Ordenar por `último_repaso` ascendente. Un concepto con `último_repaso: —`
+   (nunca repasado desde que subió de nivel) se trata como el más antiguo
+   posible y tiene prioridad sobre cualquier otro.
+3. Elegir el primero de la lista ordenada. Ignorar el tema activo de la
+   semana para esta elección — el propósito es retención de largo plazo,
+   no reforzar lo reciente.
+4. **Backlog guard:** si hay ≥5 conceptos con `último_repaso` de hace más de
+   21 días, avisar al alumno al abrir la sesión de domingo ("hay N conceptos
+   con repaso atrasado") antes de elegir el de turno. No se repasan varios
+   el mismo domingo por defecto — 1 por semana, salvo que el alumno pida
+   ampliar la sesión.
+
+### Ejecución
+- 15 min en frío del concepto elegido, sin recurso.
+- Falla ⇒ bajar nivel + actualizar `último_repaso` con la fecha de hoy.
+- Acierta ⇒ mantener nivel + actualizar `último_repaso` con la fecha de hoy.
+- Registrar el resultado en `session-log.md` igual que cualquier otro cierre.
 
 ## Día de kata (Lun–Vie)
 Aplicar Paso 0 → escalera → pistas → cierre.

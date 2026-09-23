@@ -6,7 +6,7 @@
 > - `tema`: perfil al que pertenece (`c`, `dsa`, `go`, etc.).
 > - `tipo`: `vocabulario` (definición/terminología) o `mecanismo` (lógica/diseño con "por qué" y DAG).
 > - `nivel`: `0` a `3`.
-> - `último_repaso`: fecha de la última recuperación en frío (domingo).
+> - `último_repaso`: fecha ISO (`YYYY-MM-DD`) de la última recuperación en frío (o `—` si nunca se ha repasado tras subir de nivel).
 > - `evidencia`: pregunta y respuesta literal del alumno (o hito/tag que lo respalda).
 
 ## Reglas
