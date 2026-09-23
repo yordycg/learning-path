@@ -109,3 +109,14 @@ Registra el perfil cognitivo del desarrollador, sus puntos ciegos detectados dur
   - *Hecho:* al derivar `capacity(k)`, el alumno propuso `capacity(k) = 4 · capacity^k` — usó la variable `capacity` (el resultado) como base del crecimiento, en vez del factor constante `2`.
   - *Regla fija:* en derivaciones algebraicas, distinguir explícitamente la **variable resultado** del **factor de crecimiento constante** (doblado ×2 ⇒ base 2, no "capacity").
   - *Positivo:* con una sola pregunta socrática ("¿por qué número multiplicas en cada salto?") resolvió la confusión y completó la derivación `k = ⌈log₂(N/c₀)⌉` sin ayuda adicional.
+
+---
+
+## Pendiente de Mantenimiento (Backlog técnico — tratar fuera de sesiones de estudio)
+
+- **[Desacoplamiento / Go]: Generalizar 'Build & Debug Commands' en `AGENTS.md` y `Justfile`:**
+  - *Contexto:* `AGENTS.md` raíz hoy hardcodea `just run <archivo.c>` y el fallback `gcc -Wall...` bajo "Build & Debug Commands".
+  - *Tarea:*
+    1. Delegar esa sección en `AGENTS.md` a la sección "Verificación" del perfil activo (`.agents/profiles/<perfil>.md`), o presentarla como tabla multi-lenguaje.
+    2. En `Justfile`, extender el recipe `check FILE` (que hoy solo corre `gcc -fsyntax-only`) para soportar `.go` (`go vet` / `go build -n`), `.py` (`py_compile`), etc., alineándolo con el runner multi-lenguaje de `just run`.
+  - *Momento:* Resolver antes de iniciar la fase de Go (o al cerrar DSA).
