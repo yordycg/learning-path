@@ -3,6 +3,20 @@
 > Append-only, más reciente arriba. Cada sesión: fecha, archivos, concepto, lecciones, commits.
 > Historia C/systems (S1–S5) en [`../learning-c/session-log.md`](../learning-c/session-log.md).
 
+## 2026-09-24 — S6 D3 · Criterio array (nivel 0 → 1)
+
+- **Concepto:** Criterio array — acceso O(1) vs inserción/borrado O(n); cache locality. La contigüidad como causa raíz de AMBOS (ventaja y costo).
+- **Nivel:** 0 → 1 (confirmado por el alumno).
+- **Evidencia:**
+  - Quiz prerrequisito (¿por qué arr[i] es O(1)?): "El array vive en memoria contigua: la CPU calcula la dirección base + i·sizeof(tipo) y salta directo" ✅
+  - Quiz comprensión (N=1000 insertar índice 0): "1000 — hay que mover todos los elementos para abrir el hueco en el índice 0" ✅
+  - Producción (N=9 borrar índice 2): "correr 6 elementos / izquierda / iniciar loop en i=2, arr[i] = arr[i+1], tener cuidado en la última iteración" ✅ (off-by-one detectado: parar en i < N-1)
+  - Conceptual (grilla de píxeles): "si no se insertan o borran celdas, si el array es la eleccion correcta por su O(1) en el acceso" ✅
+  - ¿Entendiste?: "s"
+- **Lecciones:** insertar en índice i = correr N-i; borrar en i = correr N-i-1 (peor caso O(n)); cache locality = líneas de caché (~64 B) → recorrido secuencial rápido; criterio = por patrón de uso, no por estructura en abstracto.
+- **Archivos:** — (nivel 0, sin kata de código).
+- **Commits:** — (cierre de archivos).
+
 ## 2026-09-22 — S6 D2 · Dynamic array (nivel 0 → 1)
 
 - **Concepto:** Dynamic array — array vs dinámico, `realloc`, crecimiento amortizado (×2). Estructura `{ data, capacity, length }`.

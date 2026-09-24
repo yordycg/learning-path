@@ -41,6 +41,13 @@
   último_repaso: —
   evidencia: "Producción (N=20, c₀=4): \"los x2 ocurren en 4, 8, y 16... por lo tanto son 3 realloc... y la capacidad final es de 32 de capacidad\" ✅ · quiz comprensión \"realloc ×2 → reasignar → insertar\" ✅ · prerrequisito \"malloc(N * sizeof(int))\" ✅ · ¿entendiste? \"s\""
 
+- concepto: Criterio array / tradeoffs (acceso O(1) vs inserción O(n); cache locality)
+  tema: dsa
+  tipo: mecanismo
+  nivel: 1 (visto con ayuda)
+  último_repaso: —
+  evidencia: "Prerrequisito (arr[i] O(1) por contigüidad) ✅ · quiz comprensión (N=1000 insertar índice 0 → \"1000\") ✅ · producción (N=9 borrar índice 2 → \"correr 6 elementos, izquierda, loop arr[i]=arr[i+1] con cuidado en la última iteración\") ✅ · conceptual (grilla de píxeles → \"si el array es la eleccion correcta por su O(1) en el acceso\") ✅ · ¿entendiste? \"s\""
+
 - concepto: C — fork/exec/wait
   tema: c
   tipo: mecanismo
