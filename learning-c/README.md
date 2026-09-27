@@ -92,7 +92,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
-**Conceptos previos por semana** (análisis 2026-08-16): al abrir cada semana, incluir como día de concepto lo que aún no está cubierto. Detalle operativo en `status.md → Backlog`.
+**Conceptos previos por semana**: al abrir cada semana, incluir como día de concepto lo que aún no está cubierto.
 
 | Semana | Concepto previo a incluir al abrirla |
 |--------|---------------------------------------|
@@ -127,5 +127,5 @@ A mini UNIX shell written from scratch in C.
 - [Beej's Guide to C](https://beej.us/guide/bgc/html/split/index.html) – main C language resource for Phase 1.
 - Linux Man Pages – Sections 2 (`man 2 syscall`) and 3 (`man 3 library`).
 - _The Linux Programming Interface_ (TLPI, Kerrisk) – **la referencia definitiva para el track `4-systems`**. Abrir por capítulo al tocar cada tema: FDs (cap. 5), señales (caps. 20–22), procesos (caps. 24–29), process groups (cap. 34), pipes/FIFOs (cap. 44). No lectura lineal — consulta puntual cuando el man page no alcanza.
-- [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/) (OSTEP, Arpaci-Dusseau) – **gratis online**. Para profundizar en procesos/scheduling/memoria: caps. 4–6 (abstracción proceso), 13 (espacio de direcciones). Lectura JIT (en nivel 2+) cuando el código falla o el man page no alcanza.
-- [Operating Systems (AlgoMaster.io)](https://algomaster.io/learn/operating-systems) – **curso interactivo en C**, alineado con el track `4-systems`: procesos (fork/exec/wait, PCB, zombies, signals), scheduling, threads, sync, IPC, I/O, malloc/paging/COW/mmap, file systems, containers. Abrir por **sección/tema** (método JIT, en nivel 2+): S3 procesos → sección "Processes", S5 pipes → "Inter-Process Communication". Complementa a TLPI con explicaciones visuales.
+- [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/) (OSTEP, Arpaci-Dusseau) – **gratis online**. Para profundizar en procesos/scheduling/memoria: caps. 4–6 (abstracción proceso), 13 (espacio de direcciones). Lectura cuando el código falla o el man page no alcanza.
+- Jacob Sorber (YouTube) — videos de C, memoria, syscalls, procesos y señales.

@@ -10,7 +10,7 @@
 
 ## Calendario semestre (LP contiguo, 31 ago – 22 nov 2026)
 
-> Las S-weeks de Fase 1 pasan a **semanas contiguas** (ya no intercaladas con IA). Detalle operativo semanal: [`learning-dsa/status.md`](../learning-dsa/status.md) (S6–S10, DSA) · [`learning-c/status.md`](../learning-c/status.md) (C/systems, en pausa hasta W12–15).
+> Las S-weeks de Fase 1 pasan a **semanas contiguas** (ya no intercaladas con IA). Detalle y seguimiento en: [`learning-dsa/README.md`](learning-dsa/README.md) (S6–S10, DSA) · [`learning-c/README.md`](learning-c/README.md) (C/systems).
 
 | Semana universitaria | Fechas | LP |
 |----------------------|--------|----|
@@ -44,5 +44,5 @@
 
 ## Estado operativo
 
-- Semana activa: ver [`learning-dsa/status.md`](../learning-dsa/status.md) (LP, S6–S10 DSA) · [`learning-c/status.md`](../learning-c/status.md) (LP C/systems, pausa) · [`../ai-learning-path/status.md`](../ai-learning-path/status.md) (IA).
-- Detalle de contenido por fase: cada fase tiene su README de recursos.
+- Seguimiento por fase: [`learning-dsa/README.md`](learning-dsa/README.md) (DSA activo) · [`learning-c/README.md`](learning-c/README.md) (C cerrado en v2.0).
+- Detalle de contenido por fase: ver [`docs/roadmap.md`](docs/roadmap.md) y [`docs/SOURCES.md`](docs/SOURCES.md).
