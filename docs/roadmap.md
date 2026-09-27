@@ -1,573 +1,129 @@
-# Roadmap 18 Meses — Backend & Data Engineer
-> **Sistema de mentoreo personal** | Ingeniería en Informática 3er año → Junior Backend/Data Engineer
-> Duración: 18 meses · ~25 horas semanales · Linux (Arch/Fedora) · Neovim · Warp terminal
+# Roadmap — Backend & Data Engineer
+
+> **Ingeniería en Informática 3er año → Junior Backend/Data Engineer Ruta principal:** 18 meses (F1–F6). Extensiones diferidas sin fecha fija: F7 (Cloud/AWS) y F8 (Mobile).
+
+> **Stack:** Linux (Arch/Fedora), C, Go, Python, PostgreSQL, Docker, Kafka, dbt/DuckDB.
+
+> **Fuentes de este documento:** estructura y fases del roadmap original + recursos
+> verificados en `SOURCES.md` (metodología: 2 IAs con búsqueda web + comparación cruzada +
+> verificación propia). Donde SOURCES.md investigó un tema, sus recursos reemplazan a los
+> originales. Donde no lo investigó, se mantienen los recursos originales sin marca especial
+> salvo que se indique lo contrario.
 
 ---
 
-## Cómo aprender en este roadmap — El método ajustado (ago 2026)
+## Resumen de fases
 
-Tu cerebro aprende por **activación**, no por recepción pasiva. Tres técnicas guían todo el roadmap:
+| Fase   | Período                     | Foco                                                                       |
+| ------ | --------------------------- | -------------------------------------------------------------------------- |
+| F1     | jun 14 – dic 13 2026        | Linux Internals, C & DSA base                                              |
+| F2     | oct 19 2026 – ene 18 2027   | Go + Python base + PostgreSQL + Seguridad                                  |
+| F3     | ene 19 – abr 18 2027        | Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD            |
+| F4     | abr 19 – jul 18 2027        | Data Engineering + Python idiomático                                       |
+| F5     | jul 19 – oct 18 2027        | System Design, Arquitectura & DDD                                          |
+| F6     | oct 19 2027 – ene 18 2028   | Portfolio (Backend + Data Engineering) & Job Hunt                          |
+| **F7** | **Diferida, post-18 meses** | **Cloud (AWS)** — aplicar el stack ya construido a servicios administrados |
+| **F8** | **Diferida, después de F7** | **Mobile multiplataforma** (Kotlin + Compose Multiplatform / KMP)          |
 
-1. **Inverted Project-Based Learning** — el proyecto genera la necesidad, no al revés. No estudias teoría "por si acaso"; cada concepto entra porque `mysh`/`taskapi`/`eventpipe` lo exigen en ese momento. La teoría se aprende **justo cuando el problema la pide**.
-2. **Just-In-Time Learning** — los libros, videos y man pages pasan a ser **referencia puntual**, no lectura lineal. Se abren solo cuando el código falla y necesitas la sección exacta. Así usan los libros los engineers en la vida real. *(En nivel 2+; en nivel 0–1 el recurso se abre ANTES, ver contrato.)*
-3. **Code-First Notes + código autodocumentado** — las notas viven en el código, no en Obsidian. Escribes el intento primero y tus comentarios en el `.c` son la nota. Obsidian es un subproducto que la IA genera al cierre. *(Code-first aplica solo desde nivel 2.)*
+**Disciplinas que atraviesan varias fases:**
 
-> El "código primero" (productive failure) aplica **solo desde nivel 2 (listo para kata libre)**.
-> En nivel 0–1 el flujo es explicación → ejemplo resuelto → esqueleto (ver `.agents/teaching-contract.md`).
-> El fracaso productivo exige conocimiento previo suficiente; sin él no es productivo, es bloqueo.
-
-### El flujo diario (por NIVEL, no "código primero" para todo)
-
-> La regla única vive en `.agents/teaching-contract.md`; el nivel por concepto en `.agents/knowledge-map.md`.
-> El "código primero sin leer nada" queda **reservado para nivel 2+**; ya no es el default.
-
-| Nivel | Flujo |
-|-------|-------|
-| 0 (no visto) | Explicación con TODOS los términos + ejemplo resuelto PARALELO + recurso de apoyo + quiz de comprensión → luego esqueleto |
-| 1 (visto) | Completar esqueleto/pasos borrados + `@attempt` → 1 pregunta conceptual |
-| 2 (listo para kata libre) | Kata libre code-first; recurso JIT SOLO si falla |
-| 3 (en frío) | Recuperación sin mirar (domingo, 15 min) |
-
-> El recurso: en nivel 0–1 se abre **ANTES** (apoyo explicativo, verificado y fijado antes del día, después del ejemplo);
-> en nivel 2 es just-in-time (solo si el código falla).
-
-### El artefacto del día según la fase
-
-"Code-first" no siempre es un archivo `.c`. El principio es el mismo — **produce antes de consumir, falla con intención** — pero el artefacto cambia por fase:
-
-| Fase / Tema | "Código primero" es | Artefacto del día |
-|-------------|---------------------|-------------------|
-| F1 · Lenguajes (C) | Archivo `.c` | `4-fork-basic.c`, `linked_list.c` |
-| F2 · Go / Python | Archivo `.go` / `.py` | `goroutine_demo.go`, `log_parser.py` |
-| F2 · PostgreSQL | Escribir la query primero | `index_query.sql` + `EXPLAIN ANALYZE` |
-| F3 · Docker / CI | Config primero | `Dockerfile`, `docker-compose.yml`, `.github/workflows/ci.yml` |
-| F3 · Redis | Código `.go` + CLI | `cache_aside.go`, comandos `redis-cli` |
-| F4 · Kafka / dbt | Producer/modelo primero | `producer.py`, `stg_events.sql` |
-| **F5 · System Design** | **Diseño primero — no es código** | Whiteboard 45 min + `url-shortener.md` (ADR/RFC) |
-| **F6 · AWS / Cloud** | **Acción primero — no es archivo** | Intentar en consola/CLI/Terraform, fallar, luego docs |
-| F7 · Mobile (Kotlin) | Archivo `.kt` | `MainActivity.kt`, `Composable.kt` |
-
-> En F5 y AWS no hay `.c` que escribir: el "fallar primero" se hace sobre el **diseño** (whiteboard/ADR) y sobre la **consola/CLI** respectivamente. El principio se mantiene — producción antes de referencia.
-
-### Fuentes transversales de consulta (AlgoMaster)
-
-[AlgoMaster.io](https://algomaster.io/courses) es una fuente única con cursos interactivos que cubren casi todo el roadmap. No son videos para "ver antes" — son **lectura JIT** cuando el código falla o el concepto no hace click. Uso por fase:
-
-| Fase | Curso AlgoMaster | Cuándo abrirlo |
-|------|------------------|----------------|
-| F1 | [Operating Systems](https://algomaster.io/learn/operating-systems) | S3-S10: procesos, signals, pipes, FDs, malloc, threads |
-| F2 | [SQL Interview](https://algomaster.io/learn/sql-interview/course-roadmap) | índices, EXPLAIN, ACID/MVCC, normalización |
-| F4 | [SQL Interview](https://algomaster.io/learn/sql-interview/course-roadmap) | window functions, star/snowflake, patrones DE |
-| F5 | [System Design Fundamentals](https://algomaster.io/learn/system-design/course-introduction) | casi todo el temario de F5 + hands-on en código |
-| F6 | [AI Engineering](https://algomaster.io/learn/ai-engineering/course-roadmap) | LLMs, RAG, agents (opcional) |
-
-**Repo gratuito:** [awesome-system-design-resources](https://github.com/ashishps1/awesome-system-design-resources) — referencia abierta del mismo autor para System Design, sin paywall.
-
-### Horario semanal base (20h/semana)
-
-| Día | Horas | Actividad |
-|-----|-------|-----------|
-| Lunes | 4h | Kata según nivel (contrato) + ejercicios + bloque del proyecto |
-| Martes – Viernes | 2h c/u | Kata según nivel (contrato) → recurso según nivel → comentarios en el `.c` |
-| Sábado | 4h | Bloque masivo del Proyecto Principal |
-| Domingo | 4h | Refactor, revisar Zettels, ejercicios de integración, planear semana |
-
-> Fuente del ritmo semanal: [`calendario.md`](calendario.md). Durante el semestre (31 ago – 22 nov 2026) este roadmap es LP 100%; en vacaciones el sprint IA absorbe las horas (30–35h/sem).
-
----
-
-## Vista general de las 7 fases
-
-| Fase | Período | Foco | Stack |
-|------|---------|------|-------|
-| F1 | jun 14 – dic 13 2026 | Linux Internals, C & DSA base | C, GCC, Makefiles, Syscalls, DSA en C |
-| F2 | oct 19 2026 – ene 18 2027 | Go + Python base + PostgreSQL + Seguridad | Go, Python, PostgreSQL, sqlx |
-| F3 | ene 19 – abr 18 2027 | Sistemas Distribuidos + Docker + Redis + Observabilidad | Docker, Redis, CI/CD, OpenTelemetry |
-| F4 | abr 19 – jul 18 2027 | Data Engineering + Python Experto | Python avanzado, Kafka, dbt, DuckDB |
-| F5 | jul 19 – oct 18 2027 | System Design, Arquitectura Formal & DDD | CQRS, Event Sourcing, Saga, K8s conceptual |
-| F6 | oct 19 2027 – ene 18 2028 | Portfolio, OSS, IA en proyectos & Job Hunt | Capstone, RAG básico, entrevistas |
-| F7 | Diferida — post-F6, sin fecha fija | Mobile multiplataforma | Kotlin, Compose Multiplatform, KMP, Ktor, SQLDelight |
-
-> **Re-baseline (ago 2026):** La Fase 1 se extendió de 3 a ~6 meses (jun 14 – dic 13 2026) por el modelo de **20h/semana** (Lun/Sáb/Dom 4h + Mar–Vie 2h) y la operación en **bloques estacionales** con el track de IA: **semestre universitario (31 ago – 22 nov 2026) = LP 100%**, sprint de IA en vacaciones (desde 23 nov 2026). Fuente del ritmo: [`calendario.md`](../calendario.md). **Nota:** las fechas de F2–F6 se recalculan tras medir el ritmo real de la primera S-week (S3) y no están fijadas aún.
-
----
-
-## Cuándo entra cada disciplina transversal
-
-```
-DSA
-├── F1 (M1-3)  → Arrays, punteros, linked lists, hash tables implementados en C
-├── F2 (M4-6)  → Árboles binarios, sorting, sliding window en Go
-├── F3 (M7-9)  → Grafos BFS/DFS, consistent hashing con contexto real
-└── F6 (M16-18)→ Repaso entrevistas, 80 problemas Leetcode
-
-Modelado
-├── F2 (M4-6)  → ER diagrams, normalización, schema design en PostgreSQL
-└── F5 (M13-15)→ DDD: bounded contexts, entities, aggregates
-
-Infraestructura
-├── F3 (M7-9)  → CI/CD con GitHub Actions
-├── F5 (M13-15)→ Kubernetes conceptual
-└── F6 (M16-18)→ Terraform básico (opcional)
-
-Cloud (AWS)
-├── F3 (M7-9)  → Núcleo universal (IAM, EC2, S3, Lambda, VPC, CloudWatch) + deploy resilient-api a AWS (ECS + RDS + Secrets Manager)
-├── F4 (M10-12)→ Data lake en AWS: S3 + Glue + Athena; Kinesis/MSK opcional (par con Kafka)
-└── F6 (M16-18)→ Capstone en AWS + certificaciones (CLF-C02 → SAA-C03 + DEA-C01)
-
-Observabilidad
-└── F3 (M7-9)  → Logs JSON + Prometheus/Grafana + OpenTelemetry
-
-Seguridad
-└── F2 (M4-6)  → OWASP Top 10, secrets management, JWT correcto
-
-IA como herramienta
-├── F2 (M4-6)  → Usar IA con criterio: verificar, no confiar ciegamente
-└── F6 (M16-18)→ Integrar IA en proyectos: embeddings, RAG básico
-
-Comunicación técnica
-└── F5 (M13-15)→ ADRs, RFCs, post-mortems, C4 diagrams
-
-Arquitectura y patrones
-├── F2 (M4-6)  → Repository Pattern (cuando la API crece)
-├── F3 (M7-9)  → Circuit Breaker, Retry, Cache-aside
-├── F4 (M10-12)→ Lambda Architecture, Kappa Architecture
-└── F5 (M13-15)→ CQRS, Event Sourcing, Saga, Microservicios
-```
-
----
-
-## Disciplina transversal — Cloud (AWS)
-
-> **Por qué entra:** el stack del roadmap (PostgreSQL, Redis, Kafka, dbt, Docker) mapea 1:1 con servicios AWS. En el mercado LatAm AWS domina. Sin cloud, el perfil Backend/Data Engineer queda incompleto. La estrategia es *integrarlo* a los proyectos existentes, no crear semanas nuevas.
-
-### Servicios a aprender (no "todo AWS")
-
-**Núcleo universal** — aparece en toda oferta, aprender en F3:
-
-| Servicio | Por qué |
-|----------|---------|
-| IAM | Seguridad e identidad — el primero que se aprende |
-| EC2 | Cómputo base — entender servidores en la nube |
-| S3 | Object storage — storage universal + data lake |
-| Lambda | Serverless — event-driven + integración de pipelines |
-| VPC | Networking conceptual — subnets, security groups |
-| CloudWatch | Logs + métricas — par directo de Prometheus/OTel |
-
-**Backend (F3 — deploy de `resilient-api`):**
-
-| Servicio | Qué reemplaza/complementa |
-|----------|--------------------------|
-| ECS / EKS | Docker compose → deploy de contenedores en AWS |
-| RDS (PostgreSQL) | Tu PostgreSQL de `taskapi` manejado en la nube |
-| API Gateway | Frente al Go HTTP server |
-| Secrets Manager | Variables de entorno y secrets en producción |
-| CloudFront | CDN + distribución global |
-
-**Data Engineering (F4 — variante AWS de `eventpipe`):**
-
-| Servicio | Rol en el pipeline |
-|----------|--------------------|
-| S3 | Data lake — almacena eventos raw |
-| Glue | ETL serverless — equivalente a dbt runner |
-| Athena | SQL sobre S3 — equivalente a DuckDB en la nube |
-| Redshift | Data warehouse analítico |
-| Kinesis Data Streams | Streaming — par conceptual de Kafka |
-| MSK (Managed Kafka) | Tu Kafka de `eventpipe` manejado en AWS |
-| Step Functions | Orquestación de pipelines — equivalente a Airflow/MWAA |
-| EventBridge | Event bus — integra todos los servicios |
-
-**IaC:** Terraform (ya en F6 como opcional, cloud-agnostic) o CloudFormation/CDK.
-
-### Recursos de aprendizaje
-
-| Recurso | Tipo | Cuándo |
-|---------|------|--------|
-| [AWS Skill Builder](https://skillbuilder.aws) | Cursos oficiales gratuitos + labs | F3 — inicio |
-| [AWS Ramp-Up Guide: Data Engineer](https://aws.amazon.com/training/ramp-up-guides/) | Ruta oficial de aprendizaje | F4 |
-| [freeCodeCamp — AWS Certified Cloud Practitioner](https://www.youtube.com/watch?v=NhDYbskXRgc) | Video 4h gratuito | F3 — CLF intro |
-| TechWorld with Nana (ya en roadmap F3) | Docker + deploy a AWS | F3 |
-| [AWS Academy](https://aws.amazon.com/training/awsacademy/) | **Vía tu universidad** — Learner Lab con créditos + vouchers de examen | Desde ya |
-
-> **Cuenta AWS:** ya tienes $50 de créditos del curso de Admin de BD. Úsalos. Estrategia de costo: **free tier + budget alert en $5** (AWS Console → Billing → Budgets) + preferir servicios serverless (Lambda, S3, Athena cobran por uso; casi gratis en escala de estudiante).
-
-### Certificaciones — al final del roadmap (F6)
-
-> Estrategia: **primero construyes la base + el hands-on** (F1–F5), luego el examen se rinde cuando ya tienes experiencia de proyecto. Esto hace que el examen sea revisión, no estudio desde cero.
-
-| Cert | Foco | Cuándo | Costo |
-|------|------|--------|-------|
-| CLF-C02 Cloud Practitioner | Fundamentos cloud + overview de servicios | F6 inicio | ~$100 USD |
-| SAA-C03 Solutions Architect Associate | Arquitectura backend + deploy | F6 | ~$150 USD |
-| DEA-C01 Data Engineer Associate | Data pipelines + S3/Glue/Athena/Redshift | F6 | ~$150 USD |
-
-**Cómo conseguir vouchers gratuitos o con descuento:**
-- **AWS Academy** (vía universidad): vouchers 50–100% off + Learner Labs gratuitos. Consultar a tu institución si está inscrita.
-- **AWS 16 Days of Cloud** (evento anual ~abril/mayo y noviembre/diciembre): vouchers 100% gratis para CLF y descuentos para Associate. Monitorear [@AWScloud](https://twitter.com/awscloud) y el newsletter de AWS.
-- **50% off voucher**: al aprobar cualquier certificación AWS, recibes automáticamente un voucher del 50% para el siguiente examen.
-- **AWS re/Start / AWS Educate**: programas estudiantiles con acceso gratuito a labs y materiales.
+- **DSA:** F1 (arrays, punteros, linked lists, hash tables en C) → F2 (árboles, sorting, sliding window en Go) → F3 (grafos, consistent hashing) → F6 (repaso de entrevista).
+- **Seguridad:** F2 (OWASP, JWT, secrets).
+- **Arquitectura:** F2 (Repository) → F3 (Circuit Breaker, Retry, Cache-aside) → F4 (Lambda/Kappa) → F5 (CQRS, Event Sourcing, Saga; sin sección propia de Design Patterns GoF — ver F5).
+- **Comunicación técnica:** F5 (ADRs, RFCs, post-mortems, C4).
 
 ---
 
 ## FASE 1 — Linux Internals, C & DSA Fundamentos
-**Período:** Jun 14 – Dic 13 2026 (~6 meses)
-**Núcleo:** Fundamentos absolutos del sistema. Sin esto, todo lo demás es magia negra.
 
-### Objetivos técnicos
+**Período:** jun 14 – dic 13 2026 (~6 meses) [Re-definir]
 
-- Aritmética de punteros y gestión manual de heap
-- Modelo de memoria: Stack vs Heap vs BSS vs Text segment
-- Syscalls directas: `read`, `write`, `open`, `fork`, `exec`, `wait`
-- Señales UNIX: `SIGINT`, `SIGCHLD`, `SIGPIPE`
-- IPC con pipes y FIFOs
-- Makefiles: compilación, tests, limpieza
-- GDB y Valgrind cuando hay heap que inspeccionar (valgrind → S1, GDB → S6)
-- DSA: arrays, linked lists, stacks, queues, hash tables — implementados en C desde cero
-- Complejidad algorítmica: razonar sobre O(N), O(log N), O(1)
+### Objetivos
 
-### Videos por tema — Fase 1
+- Aritmética de punteros y gestión manual de heap. Modelo de memoria (Stack/Heap/BSS/Text).
+- Syscalls directas (`read`, `write`, `open`, `fork`, `exec`, `wait`), señales UNIX, IPC con pipes/FIFOs.
+- Makefiles, GDB y Valgrind.
+- DSA en C desde cero: arrays, linked lists, stacks, queues, hash tables. Complejidad algorítmica.
 
-> Cada video es 15–25 min. En **nivel 2** se usa just-in-time (código primero, video solo si falla). En **nivel 0–1** se abre ANTES, como apoyo explicativo. No ver el siguiente hasta cerrar el actual.
+### C, memoria, threads, Linux Internals, debugging
 
-**C y memoria:**
+**Confirmado en la práctica** (ya completado por el estudiante hasta `mysh` v2.0):
 
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| Intro a C | [Learn C in minutes (lesson 0)](https://www.youtube.com/watch?v=SC8uWXmDJs4) | Jacob Sorber | 10 min |
-| Tipos, arrays, structs, punteros | [Learning C: Basic Types](https://www.youtube.com/watch?v=mib3ahMbq_0) | Jacob Sorber | 15 min |
-| Tipos y cómo se estructuran en memoria | [They're Just Bits! Types and Structuring Memory in C](https://www.youtube.com/watch?v=phYM4L1BBjI) | Jacob Sorber | 15 min |
-| Variables y memoria virtual | [Your Variables are Not Real](https://www.youtube.com/watch?v=YO6K5K1TUj4) | Jacob Sorber | 12 min |
-| El Heap por dentro | [Pulling Back the Curtain on the Heap](https://www.youtube.com/watch?v=GIWeQ2I67rk) | Jacob Sorber | 18 min |
-| Verificar punteros en runtime | [How to Check Your Pointers at Runtime](https://www.youtube.com/watch?v=yM9zteeTCiI) | Jacob Sorber | 14 min |
-| Bitwise: máscaras | [What are Bit Masks, and how do I use them?](https://www.youtube.com/watch?v=Ew2QnDeTCCE) | Jacob Sorber | 3 min |
-| Bitwise: set/clear/toggle un bit | [How do I Set, Clear, and Toggle a Single Bit?](https://www.youtube.com/watch?v=F9742wnBWRc) | Jacob Sorber | 6 min |
+- Canal principal: **Jacob Sorber** (YouTube) — C, memoria, pthreads, syscalls, Makefiles, GDB/Valgrind. [Playlist C](https://www.youtube.com/playlist?list=PLs87dCfSJbLf-nPShgl5WhVkcgxRKZndb) · [Playlist Debugging](https://www.youtube.com/playlist?list=PL9IEJIKnBJjHGWPN_S9NS_Ky1-tC8ZrUI)
+- Referencia futura (reputación conocida): [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/) para sockets en Go (F2); **OSTEP** (Operating Systems: Three Easy Pieces) para profundizar procesos/memoria si hace falta.
+- Libros de referencia puntual: _The C Programming Language_ (K&R), _CS:APP_ (Bryant & O'Hallaron), _The Algorithm Design Manual_ caps. 1–4 (Skiena).
+- Extra: [CMU 15-213 — playlist completa](https://www.youtube.com/playlist?list=PLMDSb3PWPnvhsmuSZ5R7c1JY2kaSdYYdh)
 
-**Threads y sincronización (pthreads):**
+### DSA
 
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| Crear y unir threads | [How to create and join threads in C (pthreads)](https://www.youtube.com/watch?v=uA8X5zNOGw8) | Jacob Sorber | 14 min |
-| Race conditions, mutex y locks | [Safety and Speed Issues with Threads](https://www.youtube.com/watch?v=9axu8CUvOKY) | Jacob Sorber | 9 min |
-| Semáforos | [What is a semaphore? (Example in C)](https://www.youtube.com/watch?v=ukM_zzrIeXs) | Jacob Sorber | 13 min |
-| Variables atómicas | [Making variables atomic in C](https://www.youtube.com/watch?v=_xX25ThomIo) | Jacob Sorber | 8 min |
+| Rol                        | Recurso                                       | Confianza | Notas                                                                |
+| -------------------------- | --------------------------------------------- | --------- | -------------------------------------------------------------------- |
+| Concepto (videos)          | [Princeton Algorithms Part I](https://www.coursera.org/learn/algorithms-part1) — solo los videos | Alta      | Gratis (audit). En Java — se implementa en C/Go                      |
+| Apoyo interactivo          | [OpenDSA](https://opendsa-server.cs.vt.edu/)  | Alta      | Gratis, ejercicios interactivos de código                            |
+| Apoyo interactivo          | [VisuAlgo](https://visualgo.net/)             | Media     | No verificado con búsqueda dedicada, pero muy recomendado en general |
+| Práctica (hilo permanente) | [NeetCode — Blind 75 → 150](https://neetcode.io/practice) | Alta      | Mayormente gratis, Pro opcional. Resolver en Go                      |
+| Referencia                 | [Open Data Structures](https://opendatastructures.org/) | Media     | Recomendado, no verificado con búsqueda dedicada                     |
+| Repaso espaciado           | [Anki](https://apps.ankiweb.net/) (escritorio) | —         | Una tarjeta por error cometido                                       |
 
-**Makefiles:**
+**Plan:** 3 semanas en C (dynamic array, linked list, hash table), resto de estructuras (stack, queue, BST, sorting) directo en Go desde F2 (~3h/semana, 2-3 problemas nuevos + 1h de repaso espaciado). Si tras 30-45 min no sale un problema: ver la solución en NeetCode, entender el patrón, y al día siguiente reescribirlo desde cero. Repasos a 1 día, 3 días, 1 semana, 2 semanas, 1 mes, 3 meses.
 
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| Makefiles básicos | [Why that "Perfect" Makefile Doesn't Work](https://www.youtube.com/watch?v=l5KqE0DMG-Q) | Jacob Sorber | 12 min |
-| Variables automáticas en Make | [More make: automatic variables](https://www.youtube.com/watch?v=G5dNorAoeCM) | Jacob Sorber | 10 min |
+**Complementos del roadmap original (no verificados por SOURCES.md, útiles como práctica adicional):** [Data Structures Easy to Advanced](https://www.youtube.com/watch?v=RBSGKlAvoiM) (freeCodeCamp/Fiset, ver por secciones); [70 Leetcode problems](https://www.youtube.com/watch?v=lvO88XxNAzs) (Stoney codes, problemas reales por estructura).
 
-**Linux Internals y Syscalls:**
+### Proyecto principal — `mysh` (Mini Shell UNIX en C)
 
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| File descriptors explicados | [Inside Linux File Descriptors](https://www.youtube.com/watch?v=saMebwRO-Q8) | YouTube 2024 | 20 min |
-| Crear procesos con fork() | [Creating new processes with fork()](https://www.youtube.com/watch?v=ss1-REMJ9GA) | Jacob Sorber | 15 min |
-| Pipes y syscall pipe() | [Understanding the Pipe System Call](https://www.youtube.com/watch?v=8AXEHrQTf3I) | Jacob Sorber | 18 min |
-| Señales: kill, signal, sigaction | [Sending and Handling Signals in C](https://www.youtube.com/watch?v=83M5-NPDeWs) | YouTube | 15 min |
-| Señales — intro corta | [Short introduction to signals in C](https://www.youtube.com/watch?v=5We_HtLlAbs) | YouTube | 10 min |
-
-**Debugging:**
-
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| Valgrind para memory errors | [Finding memory errors with Valgrind](https://www.youtube.com/watch?v=Sddn1UjzSAo) | Jacob Sorber | 12 min |
-| GDB + Valgrind juntos | [Using GDB and Valgrind together](https://www.youtube.com/watch?v=8JEEYwdrexc) | YouTube | 15 min |
-| Ejecución reversa en GDB | [How to reverse execution in GDB](https://www.youtube.com/watch?v=237r-yWTSSg) | Jacob Sorber | 10 min |
-
-**DSA:**
-
-| Tema | Video | Canal | Duración aprox |
-|------|-------|-------|----------------|
-| Intro a estructuras de datos | [Data Structures intro — William Fiset](https://www.youtube.com/watch?v=Qmt0QwzEmh0) | WilliamFiset | 12 min |
-| Curso completo de estructuras | [Data Structures Easy to Advanced — Full](https://www.youtube.com/watch?v=RBSGKlAvoiM) | freeCodeCamp/Fiset | 8h (ver por secciones) |
-| Problemas reales por estructura | [70 Leetcode problems in 5+ hours (every data structure)](https://www.youtube.com/watch?v=lvO88XxNAzs) | Stoney codes | 5h+ (ver por secciones) |
-
-> Para el curso de Fiset: ver solo la sección que corresponde al tema de la semana. No es para ver completo de una vez.
-> El video de Stoney codes es referencia de **problemas reales por estructura** (arrays, hashmap, stack, tree, etc.) — útil para el `03-*.c` integrado con mysh y para F6 (Leetcode). Ver solo la sección de la estructura de la semana, método JIT.
-
-**Método de práctica (Silver.dev, en español):**
-- [Big(O) Notation + método de entrenamiento](https://docs.silver.dev/interview-ready/data-structures-algorithms/big-o-notation) — el método de práctica de entrevistas (resolver sin ver solución → ver → repetir → grabarse) refuerza el code-first. Útil en S7 cuando se abre Big O.
-- [PDF de CTCI (Cracking the Coding Interview)](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) — gratis, libro clásico con ejercicios de cada estructura. Referencia de consulta.
-
-**Playlists de referencia del canal Jacob Sorber:**
-- [C programming playlist](https://www.youtube.com/playlist?list=PLs87dCfSJbLf-nPShgl5WhVkcgxRKZndb)
-- [Debugging C playlist](https://www.youtube.com/playlist?list=PL9IEJIKnBJjHGWPN_S9NS_Ky1-tC8ZrUI)
-
-**Clases universitarias CMU (CS:APP) — para cuando quieras profundidad extra:**
-- [CMU 15-213 Introduction to Computer Systems — Playlist completa](https://www.youtube.com/playlist?list=PLMDSb3PWPnvhsmuSZ5R7c1JY2kaSdYYdh)
-
-### Libros como referencia (no lectura lineal)
-
-| Libro | Cuándo abrirlo |
-|-------|----------------|
-| *The C Programming Language* — K&R | Cuando no entiendes algo del video de C |
-| *CS:APP* — Bryant & O'Hallaron | Para entender qué hace el hardware con tu código |
-| *The Algorithm Design Manual* — Skiena | Caps. 1–4 cuando necesites profundizar en DSA |
-
-**Lectura JIT interactiva (AlgoMaster):**
-- [Operating Systems (AlgoMaster)](https://algomaster.io/learn/operating-systems) — curso interactivo de OS en C: procesos (fork/exec/wait, PCB, zombies, signals, process groups), scheduling, threads, sync, IPC (pipes/FIFOs/sockets), I/O (epoll/io_uring), malloc/paging/COW/mmap, file systems (FDs, inodes), containers. Abrir por **sección/tema** como referencia cuando el man page o el video no hacen click (método JIT). Ej: S3 procesos → sección "Processes".
-
-### Repositorio — Fase 1
-
-```
-learning-c/
-├── Makefile
-├── README.md
-├── chapter-01/           # K&R (ruta aparte)
-├── 1-basics/             # Beej 2–7 + stdlib
-│   ├── 06-functions/
-│   │   ├── functions.c
-│   │   └── exercises/    # opcional: 01-*.c, 02-*.c, 03-*.c
-│   ├── 07-arrays/
-│   │   └── exercises/
-│   ├── 08-strings/
-│   │   └── exercises/
-│   └── 09-standard-library/
-│       └── exercises/
-├── 2-advanced/           # Beej 8–19 + tooling
-│   ├── 01-pointers/
-│   │   ├── pointer-arithmetic.c
-│   │   └── exercises/    # opcional
-│   ├── 02-structs/
-│   ├── 03-unions/
-│   ├── 04-typedef-types/
-│   ├── 05-memory-management/
-│   ├── 06-scope/
-│   ├── 07-file-io/
-│   ├── 08-multifile-projects/
-│   ├── 09-preprocessor/
-│   ├── 10-error-handling/
-│   └── 11-tooling/       # gcc, make, gdb & valgrind
-├── 3-expert/             # Beej 20+
-│   ├── 01-advanced-pointers/
-│   ├── 03-oop-emulation/
-│   ├── 04-bitwise/
-│   ├── 05-threads-atomics/
-│   ├── 06-variadic-jumps/
-│   ├── 07-signals/
-│   │   └── exercises/
-│   └── 08-modern-c/
-└── 4-systems/            # OS: K&R 8, man 2 (no en Beej)
-    ├── 01-syscalls-processes/
-    │   ├── 1-open-close.c
-    │   ├── 2-read-write.c
-    │   ├── 3-dup2-redirect.c
-    │   ├── 4-process.c   # concepto del día (intento requerido)
-    │   ├── 5-fork-basic.c
-    │   └── exercises/    # opcional: 01-fork-pid.c, 02-fork-zombie.c, 03-fork-mysh.c
-    ├── 02-pipes-ipc/
-    │   └── exercises/
-    └── 03-file-descriptors/
-        └── exercises/
-```
-
-### Repositorio — Track DSA (`learning-dsa/`)
-
-```
-learning-dsa/
-├── README.md          # casa operativa: tracker + plan semanal S6–S10
-├── status.md          # panel activo S6–S10
-├── session-log.md
-└── c/                 # DSA en C (S6–S10, activo)
-    ├── 1-big-o.c
-    ├── 2-dynamic-array.c
-    ├── 3-array-tradeoffs.c
-    ├── 4-linked-list.c
-    ├── 5-list-vs-array.c
-    └── exercises/
-# futuros: go/ (← learning-go/07-dsa-go/) · graphs/ (← learning-distributed/07-dsa-graphs/)
-```
-
-> **Convención `exercises/`:** cada directorio de tema puede tener una carpeta `exercises/` con archivos `01-<desc>.c`, `02-<desc>.c`, `03-<desc>.c`. **Siempre opcionales.** Los crea el estudiante; la IA describe qué implementar en cada uno como parte de la respuesta diaria. El `03-*.c` es siempre la integración con el proyecto de fase (mysh, taskapi, etc.). El archivo del concepto del día (`4-process.c`, `5-fork-basic.c`) es el **intento requerido** — los exercises son profundización opcional.
-
-### Proyecto Principal — `mysh`
-
-**Mini shell UNIX desde cero en C**
-
-- Parsear comandos del usuario
-- Ejecutar con `fork` + `exec` (sin `system()`)
-- Pipes: `cmd1 | cmd2 | cmd3`
-- Redirección: `>`, `<`, `>>`
-- `Ctrl+C` no mata el shell — solo el proceso hijo
-- Historial en memoria usando tu propia linked list
-- Built-ins: `cd`, `exit`, `echo`
-
-**Cómo registrar bugs en Obsidian:**
-```
-Bug #001 - YYYY-MM-DD
-Síntoma: segfault al ejecutar pipe de 3 comandos
-Hypothesis: FD del pipe intermedio queda abierto en el padre
-Herramienta: GDB backtrace
-Root cause: close() del read-end no se llama en el proceso correcto
-Fix: mover close() antes del waitpid()
-Lección: cada extremo del pipe debe cerrarse en TODOS los procesos que no lo usan
-```
-
-### Ritmo del proyecto semana a semana
-
-El proyecto de cada fase se construye **incrementalmente** — nunca de golpe al final. La regla del sábado:
-
-| Tipo de semana | Qué pasa el sábado |
-|---------------|---------------------|
-| Semana con milestone de mysh | Avanzar mysh a la versión de la semana (código real, commit, `git tag vX.Y`) |
-| Semana DSA sin milestone (S8–S9) | Bloque extendido en `learning-dsa/c/` — son los DSA que mysh v3.0 usa |
-| Semana de integración (S10) | mysh demo completa + checklist de fase |
-
-```
-v0.5 → S2   REPL read→parse→execute (pseudocódigo, hecho)
-v1.0 → S3   comandos externos: fork + execvp + PATH (sin system())
-v1.5 → S4   señales: Ctrl+C mata solo al hijo
-v2.0 → S5   pipes: cmd1 | cmd2 | cmd3
-v2.5 → S6   redirección: > < >>
-v3.0 → S7   historial con linked list
-```
-
-**Git workflow (`projects/mysh/` es su propio repo):**
-- Commits por feature durante el bloque del sábado (Conventional Commits, ej: `feat(mysh): add execvp PATH lookup`)
-- Al cerrar cada versión: `git tag v1.0`, `git tag v1.5`, etc.
-- El historial refleja exactamente cuándo entró cada feature
-
-> El patrón del sábado se repite en todas las fases con su proyecto: F2 `taskapi`, F3 `resilient-api`, F4 `eventpipe`, F5 `architecture-docs`, F6 `capstone`. Siempre incremental, una versión/feature por semana.
-
-### Horario semanal — Fase 1
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes (4h) | Kata según nivel: punteros/memoria → recurso según nivel → ejercicios progresivos + comentarios en el `.c` |
-| Martes (2h) | Kata según nivel: syscall del tema → recurso según nivel → implementar + comentarios |
-| Miércoles (2h) | Kata según nivel: Linux internals → recurso según nivel → integrar al shell + comentarios |
-| Jueves (2h) | Kata según nivel: DSA → recurso según nivel → implementar estructura en C + comentarios |
-| Viernes (2h) | GDB/ASan sobre el código de la semana → commit + repasar comentarios del `.c` |
-| Sábado (4h) | Bloque mysh: feature nueva + debuggear + documentar |
-| Domingo (4h) | Refactor, revisar Zettels (IA), ejercicios de integración, planear semana siguiente |
-
-### Notas Zettelkasten — Fase 1
-
-```
-C - Stack vs Heap Memory Model.md
-C - Pointer Arithmetic and Dereferencing.md
-C - malloc free and Memory Leak Patterns.md
-C - Memory Leak Detection with Valgrind.md
-Linux - Process Creation with fork-exec.md
-Linux - File Descriptors and open-read-write.md
-Linux - IPC with Pipes and FIFOs.md
-Linux - Signal Handling SIGINT SIGCHLD.md
-Linux - Zombie Processes and waitpid.md
-DSA - Big O Notation and Complexity Analysis.md
-DSA - Dynamic Array vs Linked List Tradeoffs.md
-DSA - Hash Table Collision Resolution.md
-DSA - Binary Search and Loop Invariants.md
-```
-
-### Recovery Plan F1 — S0 a S10
-
-> El plan semanal operativo de la fase vive en [`learning-c/README.md`](../learning-c/README.md). Las tablas semanales nunca van en el roadmap — solo en el README de la fase.
+Parseo de comandos, ejecución con `fork`+`exec` (sin `system()`), pipes (`cmd1 | cmd2 | cmd3`), redirección (`>`, `<`, `>>`), manejo de `Ctrl+C` sin matar el shell, historial en memoria con linked list propia, built-ins (`cd`, `exit`, `echo`).
 
 ---
 
-## FASE 2 — Go + Python Base + PostgreSQL Avanzado + Seguridad
-**Período:** Oct 19 2026 – Ene 18 2027
-**Núcleo:** Tu primer lenguaje de producción + Python desde ya + base de datos real + defensive coding.
+## FASE 2 — Go + Python Base + PostgreSQL + Seguridad
 
-### Sobre los dos lenguajes
+**Período:** [Por Definir]
 
-**Go** es tu lenguaje de sistemas y backend. Lo que aprendiste en C se traduce directamente — compilado, tipado, concurrencia explícita. Para APIs, microservicios y sistemas de alto throughput.
+### Go
 
-**Python** entra aquí porque no puedes esperar a la Fase 4. Scripts de automatización, tests de integración, y herramientas de data aparecen antes de lo que imaginas. El objetivo en esta fase es Python sólido — no experto aún. El nivel experto llega en Fase 4.
+| Rol                 | Recurso                                                                                                                                         | Confianza  | Notas                                                                        |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------- |
+| Arranque            | [A Tour of Go](https://go.dev/tour/)                                                                                                            | Alta       | Oficial, gratis, ejercicios en el navegador                                  |
+| Principal           | [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests)                                                                              | Alta       | Gratis, TDD. Interfaces, DI, mocking, concurrencia, context, HTTP con stdlib |
+| Práctica idiomática | Exercism — pista de Go                                                                                                                          | Media-alta | Gratis, 165 ejercicios, mentoría humana voluntaria                           |
+| Referencia          | [Go by Example](https://gobyexample.com/), [Effective Go](https://go.dev/doc/effective_go), [go.dev/doc/tutorial](https://go.dev/doc/tutorial/) | Media-alta | Consulta mientras se construye                                               |
+| Opcional            | Gophercises                                                                                                                                     | Media-baja | Gratis pero antiguo (~2018), dependencias pueden requerir adaptación         |
+| Repaso posterior    | 100 Go Mistakes (versión web)                                                                                                                   | —          | Cuando ya haya código real escrito                                           |
 
-### Videos por tema — Fase 2
+Complemento: canal [Anthony GG](https://www.youtube.com/@anthonygg_) (proyectos reales en Go); charlas de Rob Pike ([Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs), [Advanced Concurrency](https://www.youtube.com/watch?v=QDDwwePbDtw)); _The Go Programming Language_ (Donovan & Kernighan).
 
-**Go — fundamentos y concurrencia:**
+### PostgreSQL
 
-| Tema | Video | Canal | Duración |
-|------|-------|-------|----------|
-| Tour oficial Go interactivo | [go.dev/tour](https://go.dev/tour) | Oficial | Semana 1 |
-| Goroutines y channels | [Master Go Concurrency Patterns (40 min)](https://www.youtube.com/watch?v=qDi5M3bU3GQ) | YouTube | 40 min |
-| HTTP server en Go sin frameworks | [Starting a HTTP Server in Go](https://www.youtube.com/watch?v=wKzX6qYA7sM) | YouTube | 15 min |
-| Proyectos reales en Go | [Canal Anthony GG](https://www.youtube.com/@anthonygg_) | Anthony GG | varios |
+| Rol                  | Recurso                                                            | Confianza | Notas                                                   |
+| -------------------- | ------------------------------------------------------------------ | --------- | ------------------------------------------------------- |
+| Principal (SQL)      | [pgexercises.com](https://pgexercises.com)                         | Alta      | Gratis, listado en recursos oficiales de postgresql.org |
+| Apoyo interactivo    | [Postgres Playground](https://www.snowflake.com/en/developers/postgres/learn-postgres-tutorials/) (Snowflake / ex-Crunchy Data) | Media     | Verificar el link vigente antes de usar                 |
+| Índices              | [Use The Index, Luke](https://use-the-index-luke.com)              | Alta      | Gratis, mantenido activamente                           |
+| Referencia           | Documentación oficial — [Concurrency Control](https://www.postgresql.org/docs/current/mvcc.html) y [Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html) | Alta      | Transacciones, aislamiento, `EXPLAIN`                   |
+| Consulta rápida      | [postgresqltutorial.com](https://www.postgresqltutorial.com/) (alojado en Neon) | Media     | Solo para sintaxis puntual                              |
+| Profundidad opcional | [CMU 15-445](https://www.youtube.com/playlist?list=PLSE8ODhjZXjaKScG3l0nuOiDTTqpfnWFf) (Andy Pavlo, YouTube) | —         | Storage, índices, transacciones                         |
 
-**Go — concurrencia patrones de Rob Pike (clásicos):**
+Complemento: [Database Indexing Explained](https://www.youtube.com/watch?v=-qNSXK7s7_w) (Hussein Nasser); _PostgreSQL: Up and Running_ (Regina Obe).
 
-| Tema | Video | Canal |
-|------|-------|-------|
-| Go Concurrency Patterns | [Google I/O 2012 — Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs) | Google/Rob Pike |
-| Advanced Go Concurrency | [Google I/O 2013 — Advanced Concurrency](https://www.youtube.com/watch?v=QDDwwePbDtw) | Google |
+### Modelado de datos / ER
 
-**PostgreSQL — índices y optimización:**
+| Rol           | Recurso                                           | Confianza | Notas                                                             |
+| ------------- | ------------------------------------------------- | --------- | ----------------------------------------------------------------- |
+| Principal     | [CS50 SQL (Harvard OCW)](https://cs50.harvard.edu/sql/) — semanas 1-4 | Alta      | Gratis. Lecture 2 "Designing" cubre schemas, tipos, normalización |
+| Apoyo (video) | [freeCodeCamp — "Learn Relational Database Design"](https://www.youtube.com/watch?v=ztHopE5Wnpc) | Alta      | El curso es gratis (el libro en que se basa, no)                  |
+| Referencia    | [UC Berkeley CS 186, Note 13 (DB Design)](https://cs186berkeley.net/notes/note13/) | Media     | No verificado con búsqueda dedicada                               |
 
-| Tema | Video | Canal | Duración |
-|------|-------|-------|----------|
-| Indexing explicado con PostgreSQL | [Database Indexing Explained (PostgreSQL)](https://www.youtube.com/watch?v=-qNSXK7s7_w) | Hussein Nasser | 25 min |
-| Deep dive en índices PG | [A Deep Dive Into PostgreSQL Indexes](https://www.youtube.com/watch?v=pfbohxaZOSI) | YouTube | 45 min |
-| Queries más rápidas con EXPLAIN | [Make PostgreSQL Queries Faster](https://www.youtube.com/watch?v=y4o2fKOK8go) | YouTube | 30 min |
-| Ejercicios SQL interactivos | [pgexercises.com](https://pgexercises.com) | Web | diario |
+### Seguridad backend
 
-**DSA en esta fase:**
+| Rol                  | Recurso                                                                                                          | Confianza | Notas                                                    |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------- |
+| Principal (práctica) | [PortSwigger Web Security Academy](https://portswigger.net/web-security) — solo SQL Injection, Authentication y JWT | Alta      | 100% gratis. Enfoque en explotar — traducir a la defensa |
+| Apoyo (checklist)    | [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/) — Password Storage, JWT, Input Validation, SQL Injection Prevention, Secrets Management | Alta      | Es checklist, no curso                                   |
+| Referencia           | [OWASP Top 10](https://owasp.org/www-project-top-ten/) (versión **2025**, la vigente)                           | Alta      | —                                                        |
 
-| Tema | Video | Canal |
-|------|-------|-------|
-| Árboles binarios | [Fiset playlist — Binary Trees sección](https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu) | WilliamFiset |
-| Sliding window technique | Buscar "sliding window technique neetcode" en YouTube | NeetCode |
+Flujo sugerido: resolver el lab de PortSwigger → volver al código en Go y aplicar la cheat sheet correspondiente.
 
-**Recursos web de referencia:**
-- [use-the-index-luke.com](https://use-the-index-luke.com) — cómo funcionan los B-Tree indexes. Gratuito. Leer cuando trabajes con índices en el proyecto.
-- [go.dev/tour](https://go.dev/tour) — empezar aquí la semana 1 de Go.
-- [SQL Interview (AlgoMaster.io)](https://algomaster.io/learn/sql-interview/course-roadmap) — curso interactivo de SQL de bases a avanzado: window functions, joins, subqueries/CTEs, índices + EXPLAIN, ACID/MVCC, normalización, star/snowflake, patrones de entrevista. Abrir por **sección/tema** (método JIT) cuando el código SQL o el `EXPLAIN ANALYZE` no hagan click.
-
-### Libros como referencia
-
-| Libro | Cuándo abrirlo |
-|-------|----------------|
-| *The Go Programming Language* — Donovan & Kernighan | Cuando el video no alcanza para entender un concept de Go |
-| *PostgreSQL: Up and Running* — Regina Obe | Referencia de PostgreSQL cuando necesitas más profundidad |
-| DDIA cap. 2 — Kleppmann | Al mes 5, cuando diseñes el schema de taskapi |
-
-### Repositorio — Fase 2
-
-```
-learning-go/
-├── Makefile
-├── README.md
-├── 01-types-interfaces/
-├── 02-goroutines-channels/
-├── 03-http-server/
-├── 04-error-handling/
-├── 05-testing/
-└── 06-context/
-# (DSA en Go → learning-dsa/go/)
-
-learning-python-base/
-├── README.md
-├── 01-types-and-hints/
-├── 02-error-handling/
-├── 03-io-json-csv/
-├── 04-testing-pytest/
-└── 05-automation-scripts/
-    ├── db_seed.py          # poblar PostgreSQL con datos de prueba
-    └── log_parser.py       # parsear logs de tu taskapi
-
-learning-postgres/
-├── Makefile                # levanta PG con Docker
-├── 01-schema-design/
-│   ├── erd.md              # diagrama ER antes de escribir código
-│   └── schema.sql
-├── 02-indexes-btree/
-├── 03-transactions-isolation/
-├── 04-query-optimization/
-└── 05-window-functions/
-```
-
-### Arquitectura que entra en esta fase
-
-> **Repository Pattern — al mes 5, cuando duela:**
-> Cuando tu HTTP server tenga 5+ endpoints y los handlers hagan queries directas, sentirás el dolor de mezclar lógica de negocio con acceso a datos. Ese momento: estudias Repository Pattern. No antes.
-
-> **Modelado de datos — al mes 5-6:**
-> Antes de escribir una sola línea de SQL de taskapi, dibuja el ER diagram. Normalización: cuándo aplicarla y cuándo desnormalizar conscientemente.
-
-### Seguridad — checklist obligatorio antes de terminar la Fase 2
+**Checklist obligatorio antes de cerrar F2:**
 
 ```
 [ ] Todas las queries son parametrizadas (cero string interpolation)
@@ -580,865 +136,427 @@ learning-postgres/
 [ ] Inputs validados antes de llegar a la DB
 ```
 
-**Video recomendado para OWASP:** buscar "OWASP Top 10 explained 2023" en YouTube — hay versiones de 20 min muy buenas.
+### Proyecto principal — `taskapi` (REST API con Go + PostgreSQL)
 
-### IA como herramienta — introducción (mes 4)
-
-- Ver los primeros 2 videos del tema con IA apagada. Luego úsala para explorar.
-- Regla: si no puedes explicar el código que la IA generó línea por línea, no lo incluyas.
-- Úsala para: generar casos de prueba borde, explorar APIs desconocidas, refactorizar código ya entendido.
-
-### Proyecto Principal — `taskapi`
-
-**REST API productiva con Go + PostgreSQL**
-
-- CRUD de tasks y usuarios con schema modelado (ER diagram primero, código después)
-- JWT implementado sin librerías de auth — entender el algoritmo
-- Passwords con bcrypt, secrets en variables de entorno
-- Rate limiting con goroutines y channels
-- Índices parciales en PostgreSQL (ej: solo tasks activas)
-- Transacciones en operaciones multi-step
-- Connection pool con `pgxpool`
-- SQL puro con `sqlx` — cero ORMs
-- Tests unitarios con mocking del repositorio vía interfaces
-- Script Python para poblar la DB y parsear logs
-
-**Benchmark que debes poder correr:**
-```bash
-wrk -t4 -c100 -d30s http://localhost:8080/api/tasks
-```
-
-### Horario semanal — Fase 2
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes–Martes (4h/2h) | Go: código primero (goroutines/channels/interfaces) → recurso JIT → ejercicios + comentarios |
-| Miércoles (2h) | PostgreSQL: código primero (índices o EXPLAIN) → recurso JIT → queries en el proyecto + comentarios |
-| Jueves (2h) | Python: scripts de automatización reales para taskapi (1h) + DSA un problema (1h) |
-| Viernes (2h) | Seguridad: aplicar checklist a taskapi (1h) + modelado de datos (1h) |
-| Sábado (4h) | Bloque taskapi: features + tests + benchmarks |
-| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
-
-### Notas Zettelkasten — Fase 2
-
-```
-Go - Goroutines and the Go Scheduler.md
-Go - Channels Unbuffered vs Buffered.md
-Go - Interface Satisfaction and Duck Typing.md
-Go - Error Wrapping with fmt.Errorf and errors.Is.md
-Python - Type Hints and mypy.md
-Python - pytest Fixtures and Parametrize.md
-DB - B-Tree Index Internal Structure.md
-DB - ACID Transactions and Isolation Levels.md
-DB - EXPLAIN ANALYZE Output Reading.md
-DB - Schema Design Normalization Tradeoffs.md
-DB - ER Diagram Notation.md
-Pattern - Repository Pattern in Go.md
-Security - OWASP Top 10 Applied to Backend.md
-Security - JWT Implementation Pitfalls.md
-Security - Secrets Management Best Practices.md
-DSA - Binary Search Tree Operations.md
-DSA - Sliding Window Technique.md
-AI - How to Write Effective Technical Prompts.md
-```
+CRUD de tasks/usuarios con schema modelado (ER diagram primero), JWT propio (sin librerías de auth), bcrypt, rate limiting con goroutines/channels, índices parciales, transacciones multi-step, `pgxpool`, `sqlx` (cero ORMs), tests con mocking vía interfaces, script Python para poblar la DB y parsear logs.
 
 ---
 
 ## FASE 3 — Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD
-**Período:** Ene 19 – Abr 18 2027
-**Núcleo:** Tu sistema tiene múltiples piezas. Algo siempre falla. Y ahora puedes verlo.
 
-### Videos por tema — Fase 3
+**Período:** [Por Definir]
 
-**Docker:**
+### Docker
 
-| Tema | Video | Canal | Duración |
-|------|-------|-------|----------|
-| Docker crash course completo | [Docker Crash Course for Absolute Beginners](https://www.youtube.com/watch?v=pg19Z8LL06w) | TechWorld with Nana | 1h |
-| Docker tutorial completo 3h | [Docker Tutorial for Beginners (Full 3h)](https://www.youtube.com/watch?v=3c-iBn73dDE) | TechWorld with Nana | 3h (ver en bloques) |
-| Playlist Docker paso a paso | [Docker Tutorial for Beginners — Playlist](https://www.youtube.com/playlist?list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs) | TechWorld with Nana | varios |
+| Rol                               | Recurso                                                                    | Confianza | Notas                                                                           |
+| --------------------------------- | -------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------- |
+| Principal                         | [docker-curriculum.com](https://docker-curriculum.com) (Prakhar Srivastav) | Alta      | Gratis, MIT license, activamente mantenido. Autor es Docker Captain             |
+| Apoyo interactivo                 | [Docker 101 Tutorial](https://www.docker.com/101-tutorial/)                | Alta      | Oficial. No requiere Docker Desktop ("Play with Docker" o Docker Engine nativo) |
+| Para entender "no es magia negra" | [Liz Rice — Build Your Own Container](https://www.youtube.com/watch?v=8fi7uSYlOdc) ([charla](https://www.youtube.com/watch?v=8fi7uSYlOdc) + [repo en Go](https://github.com/lizrice/containers-from-scratch)) | Alta | Conecta con procesos/namespaces/syscalls de F1 |
+| Referencia                        | [Documentación oficial — Dockerfile best practices](https://docs.docker.com/build/building/best-practices/) | Alta      | Multi-stage build de `taskapi`                                                  |
 
-**Redis:**
+Complemento: canal TechWorld with Nana (crash course, playlist) para formato video largo.
 
-| Tema | Video | Canal |
-|------|-------|-------|
-| Redis internals y patterns | [Canal Confluent — Redis patterns](https://www.youtube.com/@Confluent) | Confluent |
-| Cache-aside explicado | Buscar "cache aside pattern redis" en YouTube | varios |
+### Redis
 
-**Observabilidad (los tres pilares):**
+| Rol        | Recurso                                                          | Confianza  | Notas                                                          |
+| ---------- | ---------------------------------------------------------------- | ---------- | -------------------------------------------------------------- |
+| Principal  | [Redis University — "Get Started with Redis"](https://university.redis.com/) | Alta       | Gratis. El curso reemplazó al antiguo "RU101" en 2024          |
+| Apoyo      | [Build Your Own Redis (CodeCrafters)](https://codecrafters.io/challenges/redis), en Go | Media-alta | Verificar si la capa gratuita alcanza para el material teórico |
+| Referencia | Documentación oficial de Redis — [Data Types](https://redis.io/docs/latest/develop/data-types/) + [Commands Reference](https://redis.io/docs/latest/commands/) | Alta       | Cada comando trae su complejidad Big-O                         |
 
-| Tema | Recurso |
-|------|---------|
-| OpenTelemetry docs oficiales | [opentelemetry.io/docs](https://opentelemetry.io/docs) |
-| Prometheus docs | [prometheus.io/docs](https://prometheus.io/docs) |
-| Buscar en YouTube | "opentelemetry golang tutorial 2024" y "prometheus grafana go tutorial" |
+### Observabilidad (Prometheus + Grafana + OpenTelemetry)
 
-**CI/CD con GitHub Actions:**
+| Rol                      | Recurso                                                                                                                              | Confianza | Notas                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------- |
+| Principal                | [Monitor a Golang application with Prometheus and Grafana](https://docs.docker.com/guides/go-prometheus-monitoring/) (Docker Guides) | Alta      | Guía oficial de Docker, código Go completo, `compose.yml` funcional |
+| Apoyo (tracing)          | OpenTelemetry Go — [Getting Started](https://opentelemetry.io/docs/languages/go/getting-started/)                                    | Alta      | Oficial, spans, contexto, exportación OTLP a Jaeger                 |
+| Referencia               | Prometheus Docs — [Understanding metric types](https://prometheus.io/docs/tutorials/understanding_metric_types/)                     | Alta      | Counter vs gauge vs histogram                                       |
+| Marco teórico (opcional) | Peter Bourgon — "Metrics, tracing, and logging"                                                                                      | Media     | Explica el "por qué"                                                |
 
-| Tema | Recurso |
-|------|---------|
-| Docs oficiales GitHub Actions | [docs.github.com/actions](https://docs.github.com/en/actions) |
-| Buscar en YouTube | "github actions golang ci cd tutorial" |
+> OpenTracing y `jaeger-client-go` están oficialmente obsoletos, reemplazados por OpenTelemetry.
 
-**Patrones de resiliencia:**
+### CI/CD (GitHub Actions)
 
-| Tema | Recurso |
-|------|---------|
-| Circuit Breaker — artículo original | [martinfowler.com/bliki/CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html) |
-| Buscar en YouTube | "circuit breaker pattern golang implementation" |
+| Rol                      | Recurso                                                                                                                                                                      | Confianza | Notas                                                                         |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------- |
+| Principal                | [GitHub Skills — Continuous Integration](https://github.com/skills/continuous-integration)                                                                                   | Alta      | Curso interactivo real, <2h                                                   |
+| Apoyo                    | [Tutorials for GitHub Actions](https://docs.github.com/en/actions/tutorials)                                                                                                 | Alta      | 12 tutoriales, incl. build/test en Go, service containers de Postgres y Redis |
+| Referencia               | [Quickstart](https://docs.github.com/en/actions/get-started/quickstart) + [Building and testing your code](https://docs.github.com/en/actions/tutorials/build-and-test-code) | Alta      | —                                                                             |
+| Apoyo teórico (opcional) | [Full Stack Open — Part 11: CI/CD](https://fullstackopen.com/en/part11)                                                                                                      | Media     | Proyecto en Node/JS — adaptar comandos                                        |
 
-**DSA — Grafos:**
+### Circuit Breaker / Patrones de resiliencia
 
-| Tema | Video | Canal |
-|------|-------|-------|
-| BFS y DFS | [Fiset playlist — Graph Theory sección](https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu) | WilliamFiset |
+| Rol                       | Recurso                                                                                                                              | Confianza  | Notas                                                               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ------------------------------------------------------------------- |
+| Principal (fundamentos)   | [sony/gobreaker](https://github.com/sony/gobreaker)                                                                                  | Alta       | Estándar de facto para Circuit Breaker en Go                        |
+| Principal (rate limiting) | [golang.org/x/time/rate](https://pkg.go.dev/golang.org/x/time/rate)                                                                  | Alta       | Oficial, Token Bucket. Solo en memoria local — para réplicas, Redis |
+| Apoyo                     | [failsafe-go](https://github.com/failsafe-go/failsafe-go)                                                                            | Alta       | Retry, Circuit Breaker, Bulkhead, Rate Limiter, Timeout, Fallback   |
+| Apoyo (práctica aplicada) | [threedots.tech](https://threedots.tech/) (Three Dots Labs)                                                                          | Media-alta | —                                                                   |
+| Referencia                | [Azure Architecture Center — Circuit Breaker pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker) | Alta       | Agnóstica al lenguaje                                               |
+| Apoyo teórico (opcional)  | [kat-co/concurrency-in-go-src](https://github.com/kat-co/concurrency-in-go-src)                                                      | Alta       | Bulkhead/Timeout con stdlib desde cero                              |
 
-### Libros como referencia
+Complemento: artículo original de Martin Fowler ([martinfowler.com/bliki/CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html)); _Release It!_ (Michael Nygard).
 
-| Libro | Cuándo abrirlo |
-|-------|----------------|
-| DDIA caps. 5, 7, 8 — Kleppmann | Al estudiar replication, transactions distribuidas, CAP theorem |
-| *Release It!* — Michael Nygard | Al implementar Circuit Breaker — para entender por qué existe |
+### Proyecto principal — `resilient-api`
 
-### Repositorio — Fase 3
-
-```
-learning-distributed/
-├── Makefile
-├── README.md
-├── 01-docker-fundamentals/
-│   ├── Dockerfile              # multi-stage build de taskapi
-│   └── .dockerignore
-├── 02-docker-compose-multi/
-│   └── docker-compose.yml      # api + postgres + redis + prometheus + grafana
-├── 03-redis-patterns/
-│   ├── cache_aside.go
-│   ├── rate_limiter.go         # sliding window con sorted sets + Lua
-│   └── pubsub_demo.go
-├── 04-observability/
-│   ├── structured_logger.go    # logger JSON con slog
-│   ├── metrics.go              # Prometheus counters e histogramas
-│   └── tracing.go              # OpenTelemetry setup
-├── 05-circuit-breaker/
-│   └── circuit_breaker.go      # implementación desde cero
-└── 06-cicd/
-    └── .github/workflows/
-        └── ci.yml
-# (DSA grafos → learning-dsa/graphs/)
-```
-
-### Proyecto Principal — `resilient-api`
-
-**taskapi con Redis, múltiples servicios, observabilidad y CI/CD**
-
-- `api-service` (Go): taskapi dockerizada con observabilidad completa
-- `notifications-service` (Go): servicio separado con healthcheck
-- Redis: cache-aside + rate limiting distribuido con Lua
-- Circuit Breaker manual: se activa si notifications-service falla
-- Logs JSON con `request_id` propagado entre servicios
-- Métricas Prometheus: latencia, cache hit/miss, estado del Circuit Breaker
-- Tracing OpenTelemetry: ver el flujo completo en un trace
-- `docker compose up` levanta todo
-- GitHub Actions: PR bloqueado si tests fallan
-- **(Cloud — opcional F3)** Deploy de `resilient-api` a AWS: ECS Fargate + RDS PostgreSQL + Secrets Manager para credentials + CloudWatch para logs. Free tier alcanza para la demo. Seguir tutorial TechWorld Nana "Deploy Docker to AWS ECS".
-
-**Verificar que el Circuit Breaker funciona:**
-```bash
-docker compose stop notifications-service
-wrk -t2 -c50 -d10s http://localhost:8080/api/tasks
-# En Grafana: circuit_breaker_state == open
-# api-service sigue respondiendo — no cayó con él
-```
-
-### Horario semanal — Fase 3
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes–Martes (4h/2h) | Docker: código primero (dockerizar taskapi) → recurso JIT (docs/video) → corregir + comentarios |
-| Miércoles (2h) | Redis: código primero (cache-aside) → recurso JIT (docs) → corregir + comentarios |
-| Jueves (2h) | DDIA cap. correspondiente (solo referencia puntual) + observabilidad (Prometheus/OTel) en código |
-| Viernes (2h) | CI/CD con GitHub Actions + DSA grafos (1h c/u) |
-| Sábado (4h) | Bloque resilient-api: integrar todo, verificar en Grafana |
-| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
-
-### Notas Zettelkasten — Fase 3
-
-```
-Pattern - Circuit Breaker Pattern.md
-Pattern - Retry with Exponential Backoff and Jitter.md
-Pattern - Cache-Aside Pattern.md
-Distributed - CAP Theorem.md
-Distributed - Eventual Consistency.md
-Observability - Structured Logging JSON.md
-Observability - Prometheus Metrics Types.md
-Observability - Distributed Tracing with OpenTelemetry.md
-Observability - The Three Pillars Logs Metrics Traces.md
-Redis - Sorted Sets and Use Cases.md
-Redis - Lua Scripts for Atomic Operations.md
-Docker - Multi-stage Build Optimization.md
-Infra - GitHub Actions CI CD Pipeline.md
-DSA - Graph BFS DFS Applications.md
-DSA - Consistent Hashing Ring.md
-```
+`taskapi` con Redis (cache-aside + rate limiting distribuido con Lua), un segundo servicio (`notifications-service`) con Circuit Breaker manual, logs JSON con `request_id` propagado, métricas Prometheus, tracing OpenTelemetry, `docker compose up`, CI con GitHub Actions bloqueando el PR si fallan los tests.
 
 ---
 
-## FASE 4 — Data Engineering + Python Experto
-**Período:** Abr 19 – Jul 18 2027
-**Núcleo:** El camino del Data Engineer. Python al nivel que el mercado paga bien.
+## FASE 4 — Data Engineering + Python Idiomático
 
-### Videos por tema — Fase 4
+**Período:** [Por Definir]
 
-**Python nivel experto:**
+### Python idiomático para backend/pipelines
 
-| Tema | Video/Recurso | Canal |
-|------|---------------|-------|
-| Generators y decorators | Buscar "python generators decorators real python" en YouTube | Real Python channel |
-| Async/await y asyncio | Buscar "python asyncio explained 2024" en YouTube | varios |
-| Profiling con cProfile | Buscar "python profiling cprofile tutorial" en YouTube | varios |
+El objetivo es Python de producción real (generators, context managers, type hints, testing, empaquetado) — no metaclasses ni internals del intérprete.
 
-> Para Python experto, el libro *Fluent Python* de Ramalho es tan denso y bueno que en este caso sí recomiendo leer los capítulos específicos: caps. 14 (iterables/generators), 7 (decorators), 18 (async). Son capítulos con código en cada página — no lectura pasiva.
+| Rol                      | Recurso                                                                                                              | Confianza | Notas                                                                                    |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------- |
+| Principal                | [Practical Python Programming](https://dabeaz-course.github.io/practical-python/Notes/Contents.html) (David Beazley) | Alta      | Gratis, CC-BY-SA-4.0. Foco en Secciones 2-4 y 6-7                                        |
+| Referencia               | [Documentación oficial de Python — tutorial](https://docs.python.org/3/tutorial/)                                    | Alta      | Functions, Modules, I/O, Errors and Exceptions, Classes, Virtual Environments            |
+| Referencia (complemento) | [`contextlib`](https://docs.python.org/3/library/contextlib.html), [`typing`](https://docs.python.org/3/library/typing.html), [`datetime`](https://docs.python.org/3/library/datetime.html) + [`zoneinfo`](https://docs.python.org/3/library/zoneinfo.html), [`asyncio`](https://docs.python.org/3/library/asyncio.html) | Alta | Context managers, `Protocol` (≈ interfaces de Go), fechas timezone-aware, async básico |
+| Arquitectura/diseño      | [Architecture Patterns with Python ("Cosmic Python")](https://www.cosmicpython.com/book/preface.html)                | Alta      | Versión web gratuita bajo CC. Repository Pattern y Unit of Work desde `interfaces` de Go |
+| Testing                  | [pytest — documentación oficial](https://docs.pytest.org/en/stable/)                                                 | Alta      | Fixtures, parametrización, `monkeypatch`                                                 |
+| Empaquetado              | [Python Packaging User Guide](https://packaging.python.org/) → luego [uv](https://docs.astral.sh/uv/)                | Alta      | `uv` es lo recomendado hoy sobre Poetry para proyectos nuevos                            |
+| Proyecto de cierre       | [Data Engineering Zoomcamp — Módulo 1](https://github.com/DataTalksClub/data-engineering-zoomcamp)                   | Alta      | API pública → chunks con pandas/generators → Postgres en Docker                          |
 
-**Apache Kafka:**
+**Ruta sugerida (5 semanas):**
 
-| Tema | Video | Canal | Duración |
-|------|-------|-------|----------|
-| Kafka tutorial beginner completo | [Kafka Tutorial — Everything to get started](https://www.youtube.com/watch?v=QkdkLdMBuL0) | TechWorld with Nana | 30 min |
-| Kafka para beginners práctico | [Apache Kafka for beginners practical](https://www.youtube.com/watch?v=HfJwUnW2EQ8) | YouTube 2025 | 45 min |
-| Playlist Kafka — Confluent | [Apache Kafka for Beginners playlist](https://www.youtube.com/playlist?list=PLt1SIbA8guusxiHz9bveV-UHs_biWFegU) | Confluent oficial | varios |
-| DataExpert boot camp — Data Engineering | [6-week DE Boot Camp — Zach Wilson](https://www.youtube.com/watch?v=HU2T03ckAno) | DataExpert.io | boot camp completo |
-| Data modeling — Day 1 DataExpert | [Data Modeling Complex Types — Day 1](https://www.youtube.com/watch?v=5U-BbZ9G_xU) | DataExpert.io | 1h |
+1. Núcleo idiomático: Practical Python 2-4 + docs oficiales. Proyecto: lector de CSV/JSON con clases y type hints.
+2. Generators y recursos: Practical Python sección 6 + `contextlib`. Proyecto: pipeline línea por línea sin cargar todo en memoria.
+3. APIs y fechas: cliente HTTP con timeout/reintentos/paginación; `datetime`+`zoneinfo`. Proyecto: extraer de API pública y cargar en Postgres.
+4. Testing y arquitectura: pytest + Cosmic Python caps. 1-2. Tests de integración contra Postgres en Docker.
+5. Async y empaquetado: `asyncio` básico, migrar a `pyproject.toml`+`uv`. Cierre con Módulo 1 del Zoomcamp.
 
-**Canal principal de Data Engineering:**
-- [Data with Zach — YouTube](https://www.youtube.com/c/datawithzach) — experiencia real en Facebook y Netflix
+### Apache Kafka
 
-**dbt y DuckDB:**
+| Rol                      | Recurso                                                                                                                                                          | Confianza  | Notas                                                                                                                                        |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Principal (curso)        | [Confluent Developer — Apache Kafka 101](https://developer.confluent.io/courses/apache-kafka/events/) + Kafka Streams 101 + ksqlDB 101                           | Alta       | Gratis para el contenido teórico; labs interactivos pueden empujar a Confluent Cloud — usar el Quickstart oficial para lo local              |
+| Apoyo (CLI, sin Java)    | [Conduktor Kafkademy](https://www.conduktor.io/kafka/)                                                                                                           | Media-alta | Ignorar la promoción de su herramienta comercial                                                                                             |
+| Práctica local (oficial) | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/)                                                                                                  | Alta       | Kafka 4.x (oct 2024) eliminó ZooKeeper por completo — KRaft es el único modo soportado. Ignorar tutoriales con ZooKeeper aunque sean de 2023 |
+| Referencia densa         | [Kafka: The Definitive Guide, 2ª ed.](https://www.confluent.io/resources/ebook/kafka-the-definitive-guide/)                                                      | Media      | Gratis vía formulario de Confluent. De 2021 — código en Java, mapear a `segmentio/kafka-go` o `confluent-kafka-go`                           |
+| Referencia (sistemas)    | [Documentación oficial — sección Design](https://kafka.apache.org/documentation/#design)                                                                         | Alta       | Log append-only, `sendfile` (zero-copy), page cache, particiones                                                                             |
+| Ensayo fundacional       | Jay Kreps — ["The Log"](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying) (2013) | Alta       | Del cocreador de Kafka. Lectura corta y muy citada                                                                                           |
+| Práctica integrada       | [Data Engineering Zoomcamp — módulo de Kafka](https://github.com/DataTalksClub/data-engineering-zoomcamp)                                                        | Alta       | Producer/consumer, particionado, replicación, Kafka Streams, ksqlDB, Avro                                                                    |
 
-| Tema | Recurso |
-|------|---------|
-| Tutorial oficial dbt | [docs.getdbt.com](https://docs.getdbt.com) — seguir el tutorial oficial |
-| DuckDB docs | [duckdb.org/docs](https://duckdb.org/docs) |
-| Buscar en YouTube | "dbt tutorial beginner 2024" y "duckdb python tutorial" |
+**Ruta sugerida (6 semanas):** modelo mental (Kafka 101 + "The Log") → producer/consumer → persistencia y garantías de entrega → integración (Connect, Schema Registry, Avro) → Go nativo (`segmentio/kafka-go`) → proyecto final con DLQ y Docker Compose.
 
-**SQL analítico (AlgoMaster):**
-- [SQL Interview (AlgoMaster.io)](https://algomaster.io/learn/sql-interview/course-roadmap) — secciones clave para Data Engineering: window functions (running totals, gaps and islands), patrones de entrevista (funnel/cohorts, sessionization, top-N per group), star/snowflake schema, EXPLAIN. Abrir por **sección/tema** (método JIT) al modelar marts en dbt o escribir queries analíticas en DuckDB.
+### Analytics Engineering — dbt + DuckDB
 
-### Arquitecturas de datos — al mes 11
+| Rol                    | Recurso                                                                                                              | Confianza  | Notas                                                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------- |
+| Principal              | [Quickstart dbt Core v1 con DuckDB + Jaffle Shop](https://docs.getdbt.com/guides/duckdb)                             | Alta       | Gratis, oficial, sin cuenta de warehouse cloud. Rama estable (preferir sobre "v2"/Fusion en alpha) |
+| Práctica local         | [jaffle_shop_duckdb](https://github.com/dbt-labs/jaffle_shop_duckdb)                                                 | Alta       | Playground reutilizable                                                                            |
+| Adaptador (referencia) | [dbt-duckdb](https://github.com/duckdb/dbt-duckdb)                                                                   | Alta       | Apache-2.0. Leer desde S3/R2/Parquet vía `profiles.yml`                                            |
+| DuckDB — referencia    | [DuckDB Guides](https://duckdb.org/docs/current/guides/overview)                                                     | Alta       | CSV/JSON/Parquet, HTTP/S3, Postgres, API de Go                                                     |
+| DuckDB — tutorial      | ["Fully Local Data Transformation with dbt and DuckDB"](https://duckdb.org/2025/04/04/dbt-duckdb.html)               | Media-alta | Modelo dimensional completo, materializations, reverse ETL — mejor como proyecto de semana 4-5     |
+| Buenas prácticas       | [dbt — How we style our dbt projects](https://docs.getdbt.com/best-practices/how-we-style/6-how-we-style-conclusion) | Alta       | Estructura `staging/intermediate/marts`                                                            |
+| Práctica integrada     | [Data Engineering Zoomcamp — Analytics Engineering](https://github.com/DataTalksClub/data-engineering-zoomcamp)      | Alta       | Módulo 4 — usar como cierre integrador, no primer recurso                                          |
 
-> Cuando diseñes tu pipeline y necesites decidir entre batch y streaming, ESE momento estudias estas arquitecturas.
+**Ruta sugerida (5 semanas):** DuckDB básico → datos externos → dbt local → calidad y modelado (tests, seeds, macros, materializations) → proyecto de portfolio integrador.
 
-**Videos:**
+### Arquitecturas de datos (Lambda / Kappa)
 
-| Tema | Recurso |
-|------|---------|
-| Lambda vs Kappa | Buscar "lambda architecture vs kappa architecture explained" en YouTube — ByteByteGo tiene buenos videos |
-| DDIA caps. 10–11 | Abrir el libro en esos capítulos como referencia al estudiar Kafka |
+| Rol                               | Recurso                                                                                                                             | Confianza | Notas                                                                                                            |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| Fuente primaria (Kappa)           | Jay Kreps — ["Questioning the Lambda Architecture"](https://www.oreilly.com/radar/questioning-the-lambda-architecture/) (2014)      | Alta      | Propone Kappa: mantener dos bases de código (batch/stream) para la misma lógica es la falla que señala           |
+| Fuente primaria (base técnica)    | Jay Kreps — ["The Log"](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying) (2013) | Alta | Por qué Kappa funciona: log inmutable + replay |
+| Fuente primaria (Lambda)          | Nathan Marz — post original ["How to beat the CAP theorem"](http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html)            | Media     | El libro _Big Data_ (Manning, 2015) es pago — el post gratis alcanza                                             |
+| Síntesis (Lambda)                 | Ericsson — [Lambda and Kappa](https://www.ericsson.com/en/blog/2015/11/data-processing-architectures--lambda-and-kappa)             | Media     | De 2015, patrón conceptual estable                                                                               |
+| Síntesis (Kappa)                  | Materialize — [Does Kappa architecture improve on Lambda?](https://materialize.com/blog/does-kappa-architecture-improve-on-lambda/) | Media     | 2026, fuente con interés comercial en streaming                                                                  |
+| Práctica integrada                | [Data Engineering Zoomcamp — Streaming](https://github.com/DataTalksClub/data-engineering-zoomcamp)                                 | Alta      | Da las piezas (Kafka, ventanas, Flink/PyFlink) para comparar ambas arquitecturas                                 |
+| Referencia (motor Kappa)          | [Apache Flink — Concepts](https://nightlies.apache.org/flink/flink-docs-stable/docs/concepts/overview/)                             | Alta      | Alcanza con los conceptos, no hace falta dominarlo                                                               |
+| Complemento gratuito de streaming | Tyler Akidau — ["Streaming 101"](https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/) y ["Streaming 102"](https://www.oreilly.com/radar/streaming-102-the-world-beyond-batch/) | Alta | Watermarks, event time vs. processing time, windowing — la base gratuita del libro comercial _Streaming Systems_ |
 
-### Libros como referencia
+Nota: es el tema más teórico de F4 — el objetivo es razonar sobre trade-offs, no construir algo desde cero. Se convierte más adelante en un write-up técnico (ver F6).
 
-| Libro | Cuándo abrirlo |
-|-------|----------------|
-| *Fundamentals of Data Engineering* — Reis & Housley | Referencia del campo — leer caps. correspondientes al tema de la semana |
-| *Fluent Python* — Ramalho | Caps. 7, 14, 18 — los únicos que recomiendo leer de corrido por su densidad |
-| DDIA caps. 10–11 | Batch y stream processing — al estudiar Kafka y dbt |
+### Proyecto principal — `eventpipe`
 
-### Repositorio — Fase 4
-
-```
-learning-data-engineering/
-├── Makefile            # levanta Kafka + PostgreSQL + dbt con Docker
-├── README.md
-├── 01-python-expert/
-│   ├── generators.py
-│   ├── decorators.py
-│   ├── async_demo.py
-│   └── profiling_demo.py
-├── 02-pandas-polars-etl/
-│   ├── pandas_transforms.py
-│   ├── polars_intro.py
-│   └── data_cleaning.py
-├── 03-kafka-fundamentals/
-│   ├── docker-compose.yml
-│   ├── producer_basic.py
-│   └── consumer_basic.py
-├── 04-kafka-advanced/
-│   ├── producer_events.py
-│   ├── consumer_group.py   # commit manual de offsets
-│   └── dlq_handler.py
-├── 05-dbt-models/
-│   ├── dbt_project.yml
-│   └── models/
-│       ├── raw/
-│       ├── staging/
-│       └── mart/
-├── 06-duckdb-analytics/
-│   └── analytics_queries.sql
-└── 07-pipeline-patterns/
-    ├── idempotent_pipeline.py
-    └── backfill_strategy.py
-```
-
-### Proyecto Principal — `eventpipe`
-
-**Pipeline completo de datos end-to-end**
-
-```
-[Go API: taskapi] → produce events → [Kafka: task.events]
-                                            ↓
-                              [Python Consumer: event_processor.py]
-                                            ↓
-                                   [PostgreSQL: events_raw]
-                                            ↓
-                                   [dbt: staging → marts]
-                                            ↓
-                                  [DuckDB: analytics queries]
-                                            ↓
-                        [Go API: endpoint /analytics/summary]
-```
-
-**Prueba de idempotencia obligatoria:**
-```bash
-psql -c "SELECT COUNT(*) FROM events_raw"   # guardar número
-# Reset consumer al offset 0 y reprocesar
-kafka-consumer-groups.sh --reset-offsets --to-earliest --group event-processor --execute
-python event_processor.py
-psql -c "SELECT COUNT(*) FROM events_raw"   # debe ser IDÉNTICO
-```
-
-**Variante AWS (opcional F4) — mismo pipeline en la nube:**
-```
-[taskapi en ECS] → produce events → [MSK (Kafka manejado)]
-                                           ↓
-                             [Lambda o ECS: event_processor]
-                                           ↓
-                                    [S3: events_raw/]           ← data lake
-                                           ↓
-                                 [Glue ETL: staging → marts]
-                                           ↓
-                              [Athena: analytics queries SQL]
-```
-> Usar esta variante para practicar los servicios DEA-C01. Free tier de S3/Athena/Glue alcanza para un pipeline de prueba. MSK tiene costo — usar Kinesis Data Streams como alternativa free-tier.
-
-### Horario semanal — Fase 4
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes–Martes (4h/2h) | Python experto: código primero (generators/decorators/async) → recurso JIT (Fluent Python cap. puntual) → corregir + comentarios |
-| Miércoles (2h) | Kafka: código primero (producer + consumer) → recurso JIT (video/docs) → corregir + comentarios |
-| Jueves (2h) | DDIA caps. 10–11 (solo referencia puntual) + Lambda/Kappa en diseño del pipeline |
-| Viernes (2h) | dbt models + DuckDB analytics sobre datos propios (1h c/u) |
-| Sábado (4h) | Bloque eventpipe: integrar todos los componentes |
-| Domingo (4h) | Refactor, Zettels (IA), ejercicios de integración, planear |
-
-### Notas Zettelkasten — Fase 4
-
-```
-Python - Generator Functions and yield Expression.md
-Python - Decorators and Higher Order Functions.md
-Python - Async Await and the Event Loop.md
-Python - Profiling with cProfile.md
-Kafka - Topic Partitioning and Ordering Guarantees.md
-Kafka - Consumer Groups and Offset Management.md
-Kafka - Dead Letter Queue Pattern.md
-Kafka - Producer Acknowledgment Levels.md
-Data - Lambda Architecture.md
-Data - Kappa Architecture.md
-Data - Idempotent Pipeline Design.md
-Data - Schema Evolution Strategies.md
-dbt - Model Layers Raw Staging Mart.md
-dbt - Testing Data Quality with dbt test.md
-```
+Pipeline de datos end-to-end: `taskapi` produce eventos → Kafka (`task.events`) → consumer en Python → PostgreSQL (`events_raw`) → dbt (staging → marts) → DuckDB (analytics) → endpoint `/analytics/summary`. Incluye prueba de idempotencia obligatoria (reset de offsets + reprocesamiento, el conteo final debe ser idéntico).
 
 ---
 
-## FASE 5 — System Design, Arquitectura Formal, DDD & Infraestructura
-**Período:** Jul 19 – Oct 18 2027
-**Núcleo:** Todo lo que sufriste ahora tiene nombre, diagrama y tradeoffs documentados.
+## FASE 5 — System Design, Arquitectura de Software & DDD
 
-### Por qué el mes 13 y no antes
+**Período:** [Por Definir]
 
-A estas alturas has construido un shell en C, una REST API en Go, un sistema distribuido con Circuit Breaker, y un pipeline de datos con Kafka. Cuando leas "diseñar un sistema de mensajería a escala de WhatsApp", cada componente tendrá un rostro concreto. System Design sin experiencia previa es memorización. Con experiencia previa es **reconocimiento**.
+### System Design
 
-### Videos por tema — Fase 5
+| Rol                               | Recurso                                                                                                                                                                                                                                                                                                                                                              | Confianza | Notas                                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------ |
+| Principal — práctica dura         | [MIT 6.5840 (Distributed Systems)](https://pdos.csail.mit.edu/6.824/)                                                                                                                                                                                                                                                                                                | Alta      | Labs 100% en Go (MapReduce, Raft, KV tolerante a fallos, sharded KV). Público, sin paywall |
+| Principal — retos con validación  | [Fly.io Distributed Systems Challenges (Gossip Glomers)](https://fly.io/dist-sys/)                                                                                                                                                                                                                                                                                   | Alta      | 6 retos con validación automática (Maelstrom). SDK nativo en Go. Requiere JDK              |
+| Apoyo — vocabulario/entrevista    | [System Design Primer](https://github.com/donnemartin/system-design-primer)                                                                                                                                                                                                                                                                                          | Alta      | Compendio + casos resueltos + flashcards Anki                                              |
+| Apoyo — patrones internos         | [Catalog of Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)                                                                                                                                                                                                                                                     | Alta      | Cómo están hechos por dentro Kafka, Cassandra, etcd                                        |
+| Referencia — operación real       | [Google SRE Book](https://sre.google/sre-book/)                                                                                                                                                                                                                                                                                                                      | Alta      | SLOs, error budgets, monitoring                                                            |
+| Referencia — papers fundacionales | [Dynamo](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf), [GFS](https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf), [Bigtable](https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf) (originales, libres) | Alta | Origen real de los patrones enseñados en todos los cursos |
+| Preparación de entrevista         | [ByteByteGo](https://www.youtube.com/@ByteByteGo), [Arpit Bhayani](https://www.youtube.com/channel/UC_b1GUJv_2QiMP4BxC9-Dxg), _System Design Interview Vol. 1 & 2_ (Alex Xu), [Silver.dev — System Design Meta](https://docs.silver.dev/interview-ready/system-design-interviews/system-design-meta) (en español), [HelloInterview](https://www.hellointerview.com/) | —         | Complementario a la profundidad técnica de arriba                                          |
 
-**System Design — canal principal:**
+**Ruta sugerida (10-12 semanas):** fundamentos/estimaciones (System Design Primer) → consistencia/replicación (Fly.io retos 1-4) → mensajería/consenso (Fly.io retos 5-6 o MIT Labs 1-2) → APIs robustas a escala → simulacros cronometrados.
 
-| Canal | URL | Por qué |
-|-------|-----|---------|
-| ByteByteGo | [youtube.com/@ByteByteGo](https://www.youtube.com/@ByteByteGo) | Alex Xu, animaciones visuales, 1.2M subs. Empezar aquí. |
-| Arpit Bhayani | [youtube.com/channel/UC_b1GUJv_2QiMP4BxC9-Dxg](https://www.youtube.com/channel/UC_b1GUJv_2QiMP4BxC9-Dxg) | Ex-Staff Engineer Google. Profundidad técnica real, sin simplificaciones. |
-| Gaurav Sen | Buscar "Gaurav Sen system design" en YouTube | Muy didáctico para entrevistas |
+### Patrones de Arquitectura de Software
 
-**Videos de System Design específicos (ByteByteGo):**
+> **Decisión de scope:** no hay sección propia de "Design Patterns" estilo Gang of Four.
+> En Go pesan menos que en Java/C# (composición e interfaces implícitas), y el terreno ya
+> se cubrió parcialmente con Repository/Unit of Work en Cosmic Python (F4). Los
+> equivalentes idiomáticos de Go quedan como nota breve abajo.
 
-| Tema | Video |
-|------|-------|
-| System Design fundamentals free PDF | [bytebytego.com newsletter](https://bytebytego.com) — suscribirse gratis |
-| Arpit — cómo abordar System Design | [System Design with Arpit](https://www.youtube.com/watch?v=TEV7I1xYDlE) |
+| Rol                           | Recurso                                                                                                                                        | Confianza  | Notas                                                                                                       |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| Principal — código real en Go | [Wild Workouts (Three Dots Labs)](https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example)                                               | Alta       | Refactorización progresiva a Clean Architecture + CQRS. Correrlo local exige Docker                         |
+| Apoyo — estructura comparada  | [go-structure-examples](https://github.com/katzien/go-structure-examples) (Kat Zien)                                                           | Alta       | Mismo servicio bajo 4 filosofías (flat, layered, hexagonal, domain-driven). De 2018-19, sin actualizaciones |
+| Apoyo — EDA/CQRS conceptual   | Martin Fowler — ["What do you mean by Event-Driven?"](https://martinfowler.com/articles/201701-event-driven.html)                              | Alta       | Antídoto contra usar CQRS/Event Sourcing por defecto                                                        |
+| Referencia — patrones cloud   | [Azure Architecture Center — Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/)                                         | Alta       | CQRS, Event Sourcing, Compensating Transaction, Throttling                                                  |
+| Referencia — monolito modular | [Modular Monolith with DDD](https://github.com/kamilgrzybek/modular-monolith-with-ddd)                                                         | Media-alta | C#/.NET, pero Outbox pattern mapea a Postgres/Go                                                            |
+| Referencia — diseño de APIs   | [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines) + [Google API Design Guide](https://cloud.google.com/apis/design) | Alta       | Usar como checklist, no dogma                                                                               |
 
-**DDD — fundamentos:**
+**Nota — patrones idiomáticos de Go (reemplazo del catálogo GoF):**
 
-| Tema | Recurso |
-|------|---------|
-| DDD intro | Buscar "domain driven design bounded contexts explained" en YouTube |
-| Libro de referencia | *Domain-Driven Design Distilled* — Vaughn Vernon (caps. 1–4 como referencia) |
+- **Functional Options:** `type Option func(*Server)` → `NewServer(addr, WithTimeout(5*time.Second))`.
+- **Strategy vía interfaces implícitas:** cualquier struct que satisfaga una interfaz de un solo método actúa como estrategia intercambiable.
+- **Decorator vía middleware/embedding:** `func(http.Handler) http.Handler`, o struct embedding.
+- **Interfaces definidas en el consumidor, no en el productor.**
 
-**Kubernetes conceptual:**
+**Ruta sugerida (6-8 semanas):** Hexagonal/Clean Architecture → monolito modular vs. microservicios → Event-Driven/CQRS/Event Sourcing → diseño de APIs y contratos.
 
-| Tema | Recurso |
-|------|---------|
-| K8s conceptual | Buscar "kubernetes explained in 15 minutes techworld nana" en YouTube — TechWorld with Nana tiene un video perfecto |
+### Domain-Driven Design (DDD)
 
-### Método de System Design Interview (45 min)
+| Rol                         | Recurso                                                                                                                                                  | Confianza  | Notas                                                            |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------- |
+| Principal — táctico en Go   | [DDD Lite / Three Dots Labs](https://threedots.tech/) — series `ddd-lite-in-go`, `repository-pattern-in-go`, `basic-cqrs-in-go`                          | Alta       | Refactors reales de modelo anémico a modelo rico                 |
+| Principal — estratégico     | [DDD-Crew — Bounded Context Canvas](https://github.com/ddd-crew/bounded-context-canvas) + [Context Mapping](https://github.com/ddd-crew/context-mapping) | Alta       | Plantillas abiertas, adoptadas en DDD Europe/GOTO                |
+| Referencia — filosofía      | ["The First 15 Years"](https://leanpub.com/ddd_first_15_years) (Leanpub)                                                                                 | Alta       | Gratis ($0.00). Ensayos de Fowler, Coplien, Khononov, Brandolini |
+| Referencia extra            | ["The Anatomy of DDD"](https://leanpub.com/theanatomyofdomain-drivendesign) y ["DDD Referenz"](https://leanpub.com/ddd-referenz) (Eric Evans)            | Alta       | Ambos gratis (pay-what-you-want)                                 |
+| Apoyo — modelado con código | [DDD by Examples: Library](https://github.com/ddd-by-examples/library)                                                                                   | Media-alta | Java/Spring, pero diagramas/Context Maps son agnósticos          |
+| Apoyo — package layout      | Ben Johnson — ["Standard Package Layout"](https://medium.com/@benbjohnson/standard-package-layout-7cd488332d16)                                          | Alta       | Citado en la wiki oficial de Go                                  |
+| Índice adicional            | [DDD-Crew — Free DDD Learning Resources](https://github.com/ddd-crew/free-ddd-learning-resources)                                                        | Alta       | Colección curada oficial                                         |
 
-```
-00-05 min → Clarify requirements
-            "¿Cuántos usuarios? ¿Read-heavy o write-heavy? ¿Global?"
-05-10 min → Capacity estimation
-            "100M users × 10 req/día = ~12K QPS. Storage: 1KB × 100M = 100GB/día"
-10-25 min → High-level design
-            Componentes principales, flujo de datos, APIs
-25-35 min → Deep dive
-            El componente más crítico o el que el entrevistador elija
-35-45 min → Tradeoffs
-            "¿Qué sacrificaste? ¿Alternativas consideradas? ¿Qué fallaría primero?"
-```
+**Mapeo DDD → Go:**
 
-### Libros como referencia
+| Concepto DDD          | Equivalente en Go                                                   |
+| --------------------- | ------------------------------------------------------------------- |
+| Value Object          | Struct inmutable por convención, igualdad por comparación de campos |
+| Entity                | Struct con ID explícito e inmutable                                 |
+| Aggregate Root        | Struct con campos no exportados, mutación solo vía métodos          |
+| Domain Event          | Struct con timestamp+payload, se despacha tras persistir (Outbox)   |
+| Repository            | `interface` definida en el dominio, no en el productor              |
+| Anti-Corruption Layer | Paquete adaptador con función traductora pura                       |
 
-| Libro | Cuándo abrirlo |
-|-------|----------------|
-| *System Design Interview Vol. 1 & 2* — Alex Xu | Al preparar cada caso de SD |
-| [system-design-primer](https://github.com/donnemartin/system-design-primer) | Referencia gratuita completa — GitHub |
-| DDIA completo — Kleppmann | Terminar los capítulos restantes |
-| *Building Microservices* — Sam Newman | Al estudiar microservicios vs monolito |
-| [microservices.io](https://microservices.io) | Catálogo de patrones — Chris Richardson |
+**Ruta sugerida (5-6 semanas):** estratégico/Bounded Contexts → Value Objects/Entidades → Agregados → Repositorios/UoW/ACL → Domain Events y Outbox hacia Kafka.
 
-**Cómo evalúa el entrevistador (Silver.dev):**
-- [System Design Meta](https://docs.silver.dev/interview-ready/system-design-interviews/system-design-meta) — las 3 escuelas de entrevistadores (teórico / pragmático / problem-solver) y qué espera cada una. Saber esto cambia cómo preparas y presentas. En español.
-- [System Design: OpenSea](https://docs.silver.dev/interview-ready/system-design-interviews/open-sea) — caso real resuelto.
-- [HelloInterview — challenge gratuito bit.ly](https://www.hellointerview.com/practice/system-design/cmh10dwcb00y307adjz132feh?q=non-functional-requirements) — practicar SD con o sin entrevistador real.
+### Kubernetes (conceptual)
 
-**Lectura JIT interactiva (AlgoMaster):**
-- [System Design Fundamentals (AlgoMaster.io)](https://algomaster.io/learn/system-design/course-introduction) — curso interactivo completo que cubre el temario de F5: core concepts (scalability, CAP, consistent hashing), networking, load balancing, APIs (REST/gRPC/JWT/OAuth), caching, databases (B+/LSM trees, sharding, replicas), arquitecturas (microservices, CQRS, event sourcing), distributed systems (Raft, SAGA, outbox), big data (Lambda/Kappa), observabilidad, seguridad. Con **ejercicios hands-on en código** — encaja con el método code-first. Abrir por **sección/tema** como referencia puntual.
+| Rol                              | Recurso                                                                                                                            | Confianza | Notas                                                                                                      |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+| Principal — mecánica del sistema | [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)                                              | Alta      | Licencia Apache 2.0. 14 labs manuales (PKI/TLS, etcd HA, `systemd`, `containerd`). Adaptable a VMs locales |
+| Apoyo — de proceso a Pod         | Ian Lewis — ["What are Kubernetes Pods anyway?"](https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway) (4 partes)           | Alta      | Construye un "Pod" a mano con `unshare(1)`/`setns(2)`                                                      |
+| Apoyo — red a bajo nivel         | Arthur Chiao — ["Kubernetes Networking: Behind the Scenes"](https://arthurchiao.art/blog/k8s-net-journey/)                         | Alta      | Service/ClusterIP con iptables/IPVS y `veth`                                                               |
+| Apoyo — control plane en Go      | ["A Deep Dive into Kubernetes Controllers"](https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html) | Alta      | Reflector/Informer/WorkQueue de `client-go`                                                                |
+| Referencia formal                | [Kubernetes Docs — Concepts/Architecture](https://kubernetes.io/docs/concepts/architecture/)                                       | Alta      | Oficial, CNCF                                                                                              |
 
-### Repositorio — Fase 5
+**Ruta sugerida (3-4 semanas):** la unidad atómica (Ian Lewis) → el plano de control como sistema distribuido → red sin magia (Arthur Chiao) → anatomía de un clúster real (Kubernetes the Hard Way).
 
-```
-architecture-docs/
-├── README.md
-├── adr/
-│   ├── template.md
-│   ├── 001-why-go-over-java.md
-│   ├── 002-postgresql-over-mongodb.md
-│   └── 003-kafka-over-rabbitmq.md
-├── rfc/
-│   ├── template.md
-│   └── 001-adding-search-to-taskapi.md
-├── postmortem/
-│   ├── template.md
-│   └── 001-circuit-breaker-misconfiguration.md
-├── c4-diagrams/
-│   ├── taskapi/
-│   └── eventpipe/
-├── system-design-cases/
-│   ├── url-shortener.md
-│   ├── notification-system.md
-│   ├── news-feed.md
-│   └── chat-system.md
-└── ddd/
-    ├── taskapi-domain-model.md
-    └── bounded-contexts.md
-```
+### Proyecto principal — `architecture-docs`
 
-### Proyecto Principal — `architecture-docs`
+C4 (Nivel 1 y 2) de `taskapi` y `eventpipe`, 4 ADRs reales, 1 RFC ("cómo agregaría full-text search a taskapi"), 1 post-mortem de un incidente real, 5 casos de System Design resueltos (método de 45 min), documento DDD de `taskapi` (bounded contexts, entities, aggregates).
 
-**Re-arquitecturar tus proyectos como si fueran para 1M usuarios**
-
-1. C4 Level 1 y 2 de `taskapi` y `eventpipe`
-2. 4 ADRs reales de decisiones tomadas en tus proyectos
-3. 1 RFC: "How would I add full-text search to taskapi?"
-4. 1 post-mortem de un incidente real que hayas tenido
-5. 5 casos de System Design resueltos con el método de 45 min
-6. Documento DDD de taskapi: bounded contexts, entities, aggregates
-
-### Horario semanal — Fase 5
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes (4h) | Código primero del patrón del tema (CQRS, Saga, etc.) → recurso JIT (ByteByteGo/system-design-primer sección) → corregir + comentarios |
-| Martes (2h) | Implementar patrón de la semana en código de prueba |
-| Miércoles (2h) | Alex Xu libro cap. correspondiente (solo referencia puntual) + escribir ADR o RFC |
-| Jueves (2h) | DDD: modelar dominio de taskapi. DDIA cap. restante (referencia puntual). |
-| Viernes (2h) | Mock System Design 45 min (timer, papel) + 2 problemas Leetcode medium |
-| Sábado (4h) | Bloque architecture-docs: caso SD completo o diagrama C4 |
-| Domingo (4h) | Refactor, Zettels (IA), revisar ADRs/RFCs, planear |
-
-### Notas Zettelkasten — Fase 5
-
-```
-Architecture - CQRS Command Query Responsibility Segregation.md
-Architecture - Event Sourcing vs CRUD.md
-Architecture - Saga Pattern Choreography vs Orchestration.md
-Architecture - Consistent Hashing Ring.md
-Architecture - C4 Model for Documentation.md
-Architecture - ADR Architecture Decision Record.md
-Architecture - RFC Request for Comments Template.md
-Architecture - Post-mortem Template and Blameless Culture.md
-Architecture - Microservices vs Monolith Tradeoffs.md
-Architecture - Database Sharding Strategies.md
-Architecture - Rate Limiting Algorithms Token Bucket.md
-DDD - Ubiquitous Language.md
-DDD - Bounded Contexts.md
-DDD - Entities vs Value Objects.md
-DDD - Aggregates and Invariants.md
-Infra - Kubernetes Core Concepts Pod Deployment Service.md
-System Design - URL Shortener.md
-System Design - Notification System.md
-System Design - News Feed Timeline.md
-System Design - Chat System.md
-```
+**Método de entrevista de System Design (45 min):** clarificar requerimientos (0-5) → estimación de capacidad (5-10) → diseño de alto nivel (10-25) → deep dive del componente crítico (25-35) → trade-offs (35-45).
 
 ---
 
-## FASE 6 — Portfolio, OSS, IA en Proyectos & Job Hunt
-**Período:** Oct 19 2027 – Ene 18 2028
-**Núcleo:** Convertir 15 meses de trabajo en empleo.
+## FASE 6 — Portfolio (Backend + Data Engineering) + Entrevistas
 
-### Videos por tema — Fase 6
+**Período:** [Por Definir]
 
-**IA en proyectos — RAG y embeddings:**
+### Portfolio
 
-| Tema | Recurso |
-|------|---------|
-| Embeddings explicados | Buscar "embeddings explained simply 2024" en YouTube |
-| RAG architecture | Buscar "RAG retrieval augmented generation tutorial python 2024" en YouTube |
-| pgvector PostgreSQL | [github.com/pgvector/pgvector](https://github.com/pgvector/pgvector) — docs oficiales |
-| Modelos locales sin API | [ollama.ai](https://ollama.ai) — correr LLMs localmente en Linux, gratis |
+**Regla central:** 2-3 proyectos de alta fidelidad, no 8-10 a medias.
 
-**Interviews — System Design:**
+**Filtro para decidir qué proyecto mostrar:**
 
-| Canal | URL |
-|-------|-----|
-| Gaurav Sen | Buscar "Gaurav Sen system design" en YouTube |
-| ByteByteGo | [youtube.com/@ByteByteGo](https://www.youtube.com/@ByteByteGo) |
-| Arpit Bhayani | [canal de Arpit](https://www.youtube.com/channel/UC_b1GUJv_2QiMP4BxC9-Dxg) |
+1. ¿Se levanta con un solo comando? (`docker compose up -d` → sistema corriendo con métricas vivas en ~90s).
+2. ¿Muestra qué pasa cuando algo falla? (DLQ, timeouts, circuit breaker — no solo el camino feliz).
+3. ¿Hay un benchmark medible? ("throughput de 450 a 3,800 req/s con p99 bajo 25ms" vale más que "usé Redis para mejorar el rendimiento").
 
-**Mock interviews:**
-- [interviewing.io](https://interviewing.io) — anónimas con engineers reales
+**Mapeo de proyectos a case studies:**
 
-### Entrevistas y ofertas — Silver.dev (recursos en español)
+| Case study                                       | De qué sale                                          | Qué valida                                                                                         |
+| ------------------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Pipeline streaming (Backend/Distributed Systems) | Go + Postgres + Kafka de F2-F4                       | Concurrencia real, backpressure, garantías de entrega, resiliencia (retries, circuit breaker, DLQ) |
+| Plataforma analítica (Data Engineering)          | dbt + DuckDB de F4                                   | Modelado dimensional, transformaciones idempotentes, tests de calidad, linaje                      |
+| (Opcional) Systems/Distributed primitive         | Shell en C de F1, o mejor, Gossip Glomers/Raft de F5 | Diferencia real frente a otros candidatos                                                          |
 
-> [Silver.dev](https://docs.silver.dev/) es una agencia argentina (startups EEUU + devs LatAm) con documentación abierta de preparación de entrevistas, en español. Cubre el gap de F6: CV, screening, behavioral y negociación. Método: "resolver sin ver solución → ver → repetir → grabarse" — alineado con el code-first.
+**README que convierte:** título + problema en una línea → diagrama de arquitectura → stack → decisiones de diseño explicadas → métricas/resultados → cómo correrlo (3-4 comandos) → links.
 
-**Consiguiendo entrevistas (CV + LinkedIn):**
-- [Preparando LinkedIn](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/preparando-linkedin)
-- [Preparando el CV](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/preparando-el-cv)
-- [Consiguiendo Entrevistas](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/consiguiendo-entrevistas)
+**Qué hacer con el resto:** el shell en C no se descarta, se usa como contexto narrativo en la entrevista. El ejercicio comparativo Lambda vs. Kappa (F4) se convierte en un write-up técnico/ADR, no queda como código suelto. Observabilidad/CI-CD sueltos quedan como evidencia secundaria en el README de perfil.
 
-**Recruiter screening (la primera llamada):**
-- [Trabajando con Recruiters](https://docs.silver.dev/interview-ready/recruiter-screening/trabajando-con-recruiters)
-- [Guía de Screening Call](https://docs.silver.dev/interview-ready/recruiter-screening/guia-de-screening)
-- [Entendiendo Procesos de Entrevistas](https://docs.silver.dev/interview-ready/recruiter-screening/procesos-de-entrevistas)
+### Entrevistas — contenido técnico Data/Backend
 
-**Behavioral (preguntas clásicas + storytelling):**
-- [Behavioral I: Preguntas Clásicas](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-preguntas-clasicas) — lista de preguntas con DO/DON'Ts (contame de vos, por qué esta posición, valores, conflicto, desafío técnico, proyecto fallido)
-- [Behavioral II: Storytelling](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-storytelling)
-- [Behavioral III: Cultura Americana](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-cultura-americana)
+| Tema                           | Qué evalúan realmente                                                                                                            | Recurso                                                                  |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| SQL avanzado                   | Modelo mental del motor (`FROM→WHERE→GROUP BY→HAVING→SELECT→WINDOW→ORDER BY`), window functions, "Gaps and Islands", SARGability | [Use The Index, Luke!](https://use-the-index-luke.com)                   |
+| Optimización / EXPLAIN ANALYZE | Seq Scan vs Index Scan vs Bitmap Index Scan, algoritmos de join                                                                  | Práctica con `EXPLAIN (ANALYZE, BUFFERS)` sobre dataset sintético grande |
+| Diseño de pipelines            | Trade-offs batch vs. streaming justificados por SLA, datos sucios/duplicados                                                     | Conecta con Lambda/Kappa de F4                                           |
+| Kafka en entrevista            | Orden a nivel de partición, rebalance, "effectively once"                                                                        | Conecta con Kafka de F4                                                  |
+| dbt en entrevista              | `view`/`table`/`incremental`/`ephemeral`, "late arriving facts"                                                                  | Conecta con dbt+DuckDB de F4                                             |
+| Práctica con problemas reales  | [StrataScratch](https://www.stratascratch.com/) (freemium, ~$30/mes), [DataDriven.io](https://datadriven.io/) (gratis, guía 8-10 semanas) | Confianza media |
 
-**Manejando ofertas (negociación):**
-- [Negociando Salarios](https://docs.silver.dev/interview-ready/manejando-ofertas/negociando-salarios) — framework Harvard: intereses vs posiciones, palanca, tácticas (screening call, "improve this offer", "compensation philosophy", soft NO)
-- [Evaluando Equities & Ofertas](https://docs.silver.dev/interview-ready/manejando-ofertas/evaluando-ofertas)
-- [Entendiendo Perfiles y Seniority](https://docs.silver.dev/interview-ready/manejando-ofertas/perfiles-y-seniority)
+### Behavioral
 
-**Takehomes y live coding:**
-- [Guía de Takehomes](https://docs.silver.dev/interview-ready/takehomes/guia-de-takehomes)
-- [Code Reviewing](https://docs.silver.dev/interview-ready/takehomes/code-reviewing)
-- [Automated Challenges](https://docs.silver.dev/interview-ready/live-coding/automated-challenges)
+Framework **STAR** (Situation, Task, Action, Result), 20/10/60/10. Contar los proyectos de estudio como casos reales, con trade-offs de ingeniería explícitos ("hice un tutorial de Kafka" no sirve).
 
-**Recursos transversales:**
-- [PDF de CTCI (Cracking the Coding Interview)](https://github.com/conanbatt/interview-ready/tree/main/technical-fundamentals/cracking-the-coding-interview/book) — gratis, clásico de entrevistas
-- [Repo de challenges Interview Ready](https://github.com/conanbatt/interview-ready) — práctica por tema
-- [HelloInterview](https://www.hellointerview.com/) — práctica de system design con/sin entrevistador real (paga, challenge gratuito bit.ly)
+### Plataformas de preparación LatAm → EE.UU./Europa
 
-### Proyecto Final — `capstone`
+**Silver.dev** — agencia LatAm↔startups EE.UU. fundada por Gabriel Benmergui (OpenSea, Robinhood, Scribd, CircleMedical). Recursos gratuitos en español: [LinkedIn/CV](https://docs.silver.dev/interview-ready/consiguiendo-entrevistas/preparando-linkedin), [recruiter screening](https://docs.silver.dev/interview-ready/recruiter-screening/trabajando-con-recruiters), behavioral ([I](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-preguntas-clasicas), [II](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-storytelling), [III](https://docs.silver.dev/interview-ready/hiring-manager-screening/behavioral-cultura-americana)), [negociación](https://docs.silver.dev/interview-ready/manejando-ofertas/negociando-salarios), [takehomes](https://docs.silver.dev/interview-ready/takehomes/guia-de-takehomes). El curso pago "Interview Ready" no está verificado en precio/contenido — probar primero el canal gratuito.
 
-```
-[Go API: taskapi v3]
-    ├── produce events → [Kafka: task.events]
-    │                          ↓
-    │              [Python: event_processor]
-    │                          ↓
-    │                  [PostgreSQL + pgvector]
-    │                          ↓
-    │                  [dbt: staging → marts]
-    │                          ↓
-    │                  [DuckDB: analytics]
-    │
-    ├── GET /analytics/summary → consulta marts
-    └── GET /search/semantic?q=... → RAG con pgvector
+**Otras plataformas:** [DataDriven.io](https://datadriven.io/) (gratis); [Pramp](https://www.pramp.com/) / [Exponent](https://www.tryexponent.com/) free tier (mocks P2P gratis); [interviewing.io](https://interviewing.io/) (mocks pagos $150-250/sesión, pero su [canal de YouTube gratis](https://www.youtube.com/@interviewing_io) es de alto valor); [DataExpert.io](https://www.dataexpert.io/) (blog de behavioral gratis).
 
-Observabilidad: Prometheus + Grafana + OpenTelemetry
-CI/CD: GitHub Actions
-Deployment: docker compose up
-```
+### Negociación salarial sin historial previo en USD
 
-**Entregables:**
-```
-capstone/
-├── README.md           # arquitectura, cómo correrlo, decisiones técnicas
-├── ARCHITECTURE.md     # C4 diagrams + ADRs
-├── BENCHMARKS.md       # throughput Kafka, latencia queries, tiempo dbt
-├── RUNBOOK.md          # cómo operar y debuggear
-└── docker-compose.yml
-```
+Fuente: Patrick McKenzie (patio11) — ["Salary Negotiation"](https://www.kalzumeus.com/2012/01/23/salary-negotiation/) y ["Kalzumeus Podcast Ep. 12"](https://www.kalzumeus.com/2016/06/03/kalzumeus-podcast-episode-12-salary-negotiation-with-josh-doody/).
 
-### Open Source — dónde contribuir
+Principios: nunca dar un número primero (anclar con investigación de mercado, no con salario previo en moneda local); definir 3 números antes de negociar (aspiracional, target, mínimo); negociar por valor de mercado, no por costo de vida; negociar el total comp; nunca aceptar en la llamada — pedir 48hs.
 
-```bash
-# Buscar en GitHub:
-label:"good first issue" language:Go
-label:"good first issue" language:Python
-```
+**Ruta sugerida (8 semanas):** SQL avanzado + `EXPLAIN` → arquitectura de pipelines documentada → behavioral en inglés (historias STAR grabadas) → simulacros y prospección activa.
 
-**Proyectos relevantes al stack:**
-- `sqlc` — Go SQL code generator: documentación, tests
-- `dbt-core` — Python: mejoras a tests o documentación
-- `pgx` — Go PostgreSQL driver: issues good-first-issue
-- `polars` — Python/Rust: documentación o ejemplos
+### Proyecto principal — `capstone`
 
-### Leetcode — distribución de los 80 problemas
+Sistema integrado: `taskapi v3` → eventos a Kafka → consumer Python → PostgreSQL → dbt (staging → marts) → DuckDB → endpoint `/analytics/summary`. Observabilidad completa, CI/CD, `docker compose up`. Entregables: `README.md`, `ARCHITECTURE.md`, `BENCHMARKS.md`, `RUNBOOK.md`.
 
-| Categoría | Cantidad | Por qué |
-|-----------|----------|---------|
-| SQL medium (window functions, CTEs, joins) | 25 | Directo al core de Data Engineering |
-| Arrays y hashmaps en Go | 30 | El 80% de las preguntas de backend |
-| Strings en Go | 15 | Común en entrevistas |
-| Árboles básicos | 10 | Para completar el perfil |
+### Open Source y repaso de entrevista técnica
 
-> No necesitas dynamic programming avanzado para roles Backend/Data Jr.
-
-**Recursos de patrones de solución:**
-- [70 Leetcode problems in 5+ hours (every data structure)](https://www.youtube.com/watch?v=lvO88XxNAzs) — Stoney codes. Recorre 70 problemas cubriendo todas las estructuras (arrays, hashmap, stack, queue, linked list, tree, graph) con la lógica de solución de cada uno. Ver por secciones como referencia de patrones mientras resuelves los 80 problemas.
-
-### Certificaciones AWS — F6 (job hunt)
-
-> Al llegar a F6 ya tienes 15 meses de build + los proyectos desplegados en AWS (F3/F4). Los exámenes se vuelven revisión, no estudio desde cero.
-
-**Ruta recomendada:**
-1. **CLF-C02** Cloud Practitioner — entrada (~$100). Rápido (1–2 semanas de repaso). Da el voucher 50% off para el siguiente.
-2. **SAA-C03** Solutions Architect Associate — el estándar para backend. Con el 50% off: ~$75.
-3. **DEA-C01** Data Engineer Associate — mapea directo a tu track DE (F4). Con el 50% off: ~$75.
-
-**Estrategia de costo cero / bajo:**
-- **AWS Academy** (vía universidad): vouchers 50–100% off + labs. Confirmar con tu institución si está inscrita.
-- **AWS 16 Days of Cloud** (~abril y noviembre cada año): vouchers 100% gratis para CLF.
-- Orden sugerido: CLF → SAA → DEA-C01. Total con descuentos: ~$150–$250 para las tres.
-
-**Capstone en AWS:** al terminar F6, el capstone corre en la nube (ECS + RDS + S3/Glue/Athena). Esto es demo real para entrevistas y refuerza las certs.
-
-### Horario semanal — Fase 6
-
-| Día | Actividad |
-|-----|-----------|
-| Lunes (4h) | Capstone: código primero del feature de la semana → recurso JIT → corregir + comentarios |
-| Martes–Viernes (2h c/u) | Leetcode o contribución OSS — 1h máximo. No más. Resto: portfolio/apps/posts |
-| Sábado (4h) | Mock interview (45 min) + trabajo en capstone |
-| Domingo (4h) | Retrospectiva semanal de job hunt, revisar Zettels, ajustar estrategia |
-
-### Notas Zettelkasten — Fase 6
-
-```
-AI - Embeddings and Cosine Similarity.md
-AI - RAG Retrieval Augmented Generation Architecture.md
-AI - pgvector Vector Search in PostgreSQL.md
-AI - When Not to Use AI in a System.md
-AI - Effective Technical Prompting.md
-Career - Technical README Structure.md
-Career - System Design Interview Framework 45min.md
-Career - Elevator Pitch for Technical Projects.md
-Interview - Capacity Estimation Cheatsheet.md
-```
+Buscar `label:"good first issue"` en Go/Python. Proyectos relevantes al stack: `sqlc`, `dbt-core`, `pgx`, `polars`. Distribución sugerida de ~80 problemas de práctica: SQL medium (25), arrays/hashmaps en Go (30), strings en Go (15), árboles básicos (10) — no hace falta dynamic programming avanzado para roles Backend/Data Jr.
 
 ---
 
-## FASE 7 — Mobile Multiplataforma (KMP + Compose Multiplatform)
-**Período:** Diferida — post-F6. Sin fecha fija. Ocurre en paralelo a la búsqueda de empleo y a los primeros meses del primer empleo.
-**Núcleo:** Kotlin y Compose Multiplatform como cliente de tu propio stack. Es el producto de salida que consume lo que construiste en F1–F6. No es un requisito de empleabilidad — es crecimiento posterior.
+## FASE 7 — Cloud (AWS)
 
-> **Decisiones de diseño de esta fase (fijadas):**
-> - UI escrita en **Compose Multiplatform desde el día 1** (no Jetpack Compose Android primero): el código UI ya queda iOS-ready y el target iOS solo se compila cuando haya Mac.
-> - **Navegación multiplatform** (Voyager o Decompose) en vez de Navigation-Compose (Android-only) para no rehacerla al llegar iOS.
-> - **SQLDelight** (no Room), **Koin** (no Kodein).
-> - **Diferido hasta tener hardware/cuentas:** target iOS (requiere Mac + Xcode), publishing en Play Store/TestFlight (solo local/emulador por ahora). El código compartido queda listo para ambos.
+**Período:** diferida, después de F6, sin fecha fija.
+**Núcleo:** aplicar el stack ya construido (PostgreSQL, Redis, Kafka, dbt, Docker) a servicios administrados de AWS — el mercado LatAm lo pide casi siempre.
 
-### Orden de aprendizaje
+> Esta fase todavía no pasó por el proceso de verificación de `SOURCES.md`. El contenido de
+> abajo es el que traía el roadmap original, sin corroborar vigencia de nombres de
+> servicios, precios de certificación ni condiciones de los programas de descuento.
 
-1. **Kotlin lenguaje** — corrutinas y Flow mapeados contra goroutines/channels de Go; null-safety, sealed, extension functions, kotlinx.serialization. *(Opcional como intermezzo durante F1–F6 si necesitas respiro del stack backend.)*
-2. **Fundamentos de plataforma Android + Compose** — lifecycle, activity, ViewModel + StateFlow, state hoisting. Se aprende Android real (la plataforma disponible); no es rework, es base.
-3. **Núcleo KMP compartido** — mecanismo `expect/actual`, módulo shared, Ktor Client (mental model de tus APIs REST en Go se reutiliza), SQLDelight, Koin, kotlinx.serialization.
-4. **Estados de UI y Offline-First** — estados loading/error/empty sistemáticos; escritura local en SQLite y sincronización con Go + PostgreSQL al recuperar conexión; auth JWT con refresh.
-5. **Proyecto `mobile-app`** — integrador: consume `resilient-api`/`taskapi`/`capstone`.
+### Servicios a aprender
 
-### Proyecto Principal — `mobile-app`
+**Núcleo universal:** IAM, EC2, S3, Lambda, VPC, CloudWatch.
+**Backend:** ECS/EKS, RDS (PostgreSQL), API Gateway, Secrets Manager, CloudFront — deploy de `resilient-api`.
+**Data Engineering:** S3 (data lake), Glue (ETL serverless), Athena (SQL sobre S3), Redshift, Kinesis Data Streams, MSK, Step Functions, EventBridge — variante AWS de `eventpipe`.
+**IaC:** Terraform (cloud-agnostic) o CloudFormation/CDK.
 
-**Cliente multiplatform (Android primero, iOS al tener Mac) del propio stack:**
+### Recursos de aprendizaje
 
-- Auth JWT con refresh (Keychain / EncryptedSharedPreferences)
-- Dashboard reactivo consumiendo `/analytics/summary` con estados loading/empty/error
-- Búsqueda semántica consumiendo `/search/semantic` (RAG con pgvector)
-- Offline-First: crear/leer tareas desde SQLite local, sincronizar con Go + PostgreSQL al volver en línea
-- Misma UI corriendo en Android e iOS desde un solo código Compose Multiplatform
+| Recurso                                                                                        | Tipo                                     |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [AWS Skill Builder](https://skillbuilder.aws)                                                  | Cursos oficiales gratuitos + labs        |
+| [AWS Ramp-Up Guide: Data Engineer](https://aws.amazon.com/training/ramp-up-guides/)            | Ruta oficial                             |
+| [freeCodeCamp — AWS Certified Cloud Practitioner](https://www.youtube.com/watch?v=NhDYbskXRgc) | Video 4h gratuito                        |
+| [AWS Academy](https://aws.amazon.com/training/awsacademy/)                                     | Vía universidad — Learner Lab + vouchers |
 
-**Entregables:** README + ARCHITECTURE.md del módulo shared · app corriendo en emulador · (iOS + stores cuando haya Mac/cuentas).
+**Cuenta AWS:** créditos disponibles del curso de Admin de BD. Estrategia: free tier + budget alert en $5 + preferir servicios serverless.
 
-### Estructura de carpetas (se crea cuando llegue la fase, como el resto de `learning-*`)
+### Certificaciones
 
-```
-learning-mobile/
-├── README.md
-├── status.md
-├── 1-kotlin-language/
-├── 2-android-compose/
-├── 3-kmp-core/
-├── 4-mobile-ui-states/
-└── mobile-app/
-```
+| Cert                                  | Foco                                     | Costo aprox. |
+| ------------------------------------- | ---------------------------------------- | ------------ |
+| CLF-C02 Cloud Practitioner            | Fundamentos cloud                        | ~$100 USD    |
+| SAA-C03 Solutions Architect Associate | Arquitectura backend + deploy            | ~$150 USD    |
+| DEA-C01 Data Engineer Associate       | Data pipelines (S3/Glue/Athena/Redshift) | ~$150 USD    |
 
-### Notas Zettelkasten — Fase 7
+Orden sugerido: CLF → SAA → DEA-C01. Vouchers: AWS Academy (universidad), AWS 16 Days of Cloud (~abril/noviembre), 50% off tras aprobar cualquier examen, AWS re/Start / AWS Educate.
 
-```
-Kotlin - Coroutines vs Goroutines Mental Model.md
-Kotlin - Flow StateFlow SharedFlow.md
-Mobile - expect actual Mechanism.md
-Mobile - Compose Multiplatform Architecture.md
-Mobile - Offline First Sync Strategy.md
-Mobile - JWT Refresh Token Storage.md
-KMP - Ktor Client vs Retrofit.md
-KMP - SQLDelight Typed Queries.md
-Mobile - UI State Loading Error Empty.md
-```
+**Proyectos a extender con esta fase:** deploy de `resilient-api` a ECS Fargate + RDS + Secrets Manager + CloudWatch; variante AWS de `eventpipe` (S3 + Glue + Athena, Kinesis o MSK); `capstone` corriendo en la nube como demo final de empleabilidad.
+
+---
+
+## FASE 8 — Mobile Multiplataforma (KMP + Compose Multiplatform)
+
+**Período:** diferida, después de F7, sin fecha fija.
+**Núcleo:** Kotlin y Compose Multiplatform como cliente del propio stack backend.
+
+> Esta fase tampoco pasó por el proceso de verificación de `SOURCES.md` (Kotlin, Compose
+> Multiplatform, KMP, Ktor, SQLDelight, Koin no fueron investigados). Se mantiene tal cual
+> el roadmap original.
+
+**Decisiones de diseño fijadas:** UI en Compose Multiplatform desde el día 1 (código UI ya iOS-ready); navegación multiplatform (Voyager o Decompose) en vez de Navigation-Compose; SQLDelight (no Room); Koin (no Kodein); target iOS y publishing diferidos hasta tener Mac/cuentas.
+
+**Orden de aprendizaje:** Kotlin (corrutinas/Flow ≈ goroutines/channels de Go, null-safety, sealed classes, extension functions) → fundamentos de plataforma Android + Compose → núcleo KMP compartido (`expect`/`actual`, Ktor Client, SQLDelight, Koin) → estados de UI y Offline-First → proyecto `mobile-app`.
+
+**Proyecto principal — `mobile-app`:** cliente multiplatform (Android primero, iOS al tener Mac) que consume `resilient-api`/`taskapi`/`capstone`. Auth JWT con refresh, dashboard reactivo consumiendo `/analytics/summary` con estados loading/empty/error, Offline-First (SQLite local, sync con Go + PostgreSQL al volver en línea), misma UI en Android e iOS desde un solo código Compose Multiplatform.
 
 ---
 
 ## El libro que amarra todo — DDIA
 
-*Designing Data-Intensive Applications* de Kleppmann. No se lee de corrido — se abre como referencia en el momento que corresponde:
+_Designing Data-Intensive Applications_ (Kleppmann). No se lee de corrido — se abre como referencia en el momento que corresponde:
 
-| Capítulos | Fase | Por qué en ese momento |
-|-----------|------|------------------------|
-| Cap. 2 — Data Models | F2 (M5) | Cuando diseñas el schema de taskapi |
-| Cap. 5 — Replication | F3 (M7) | Cuando tu sistema tiene múltiples nodos |
-| Cap. 7 — Transactions | F3 (M8) | Cuando implementas transacciones distribuidas |
-| Cap. 8 — Distributed Problems | F3 (M9) | CAP Theorem, clocks, consensus |
-| Cap. 10 — Batch Processing | F4 (M10) | Lambda Architecture |
-| Cap. 11 — Stream Processing | F4 (M11) | Kappa Architecture, Kafka internals |
-| Caps. 1, 3, 4, 6, 9, 12 | F5 (M13-14) | Completar el libro con toda la base construida |
+| Capítulos                     | Fase | Por qué en ese momento                         |
+| ----------------------------- | ---- | ---------------------------------------------- |
+| Cap. 2 — Data Models          | F2   | Al diseñar el schema de `taskapi`              |
+| Cap. 5 — Replication          | F3   | Cuando el sistema tiene múltiples nodos        |
+| Cap. 7 — Transactions         | F3   | Al implementar transacciones distribuidas      |
+| Cap. 8 — Distributed Problems | F3   | CAP Theorem, clocks, consensus                 |
+| Cap. 10 — Batch Processing    | F4   | Lambda Architecture                            |
+| Cap. 11 — Stream Processing   | F4   | Kappa Architecture, Kafka internals            |
+| Caps. 1, 3, 4, 6, 9, 12       | F5   | Completar el libro con toda la base construida |
 
 ---
 
 ## Resumen de proyectos principales
 
-| Fase | Proyecto | Stack | Qué demuestra |
-|------|----------|-------|---------------|
-| F1 | `mysh` — Mini Shell UNIX | C, GCC, Make | Procesos, memoria, syscalls, DSA aplicado |
-| F2 | `taskapi` — REST API segura | Go, Python, PostgreSQL | Backend productivo, seguridad, modelado |
-| F3 | `resilient-api` — API distribuida | Go, Docker, Redis, OTel | Resiliencia, observabilidad, CI/CD |
-| F4 | `eventpipe` — Pipeline de datos | Python experto, Kafka, dbt | Data Engineering end-to-end |
-| F5 | `architecture-docs` — Docs técnicas | C4, ADRs, RFCs, DDD | Pensar y comunicar arquitectura |
-| F6 | `capstone` — Sistema integrado | Todo el stack + RAG | Portfolio de empleabilidad |
+| Fase | Proyecto                                      | Stack                              | Qué demuestra                             |
+| ---- | --------------------------------------------- | ---------------------------------- | ----------------------------------------- |
+| F1   | `mysh` — Mini Shell UNIX                      | C, GCC, Make                       | Procesos, memoria, syscalls, DSA aplicado |
+| F2   | `taskapi` — REST API segura                   | Go, Python, PostgreSQL             | Backend productivo, seguridad, modelado   |
+| F3   | `resilient-api` — API distribuida             | Go, Docker, Redis, OTel            | Resiliencia, observabilidad, CI/CD        |
+| F4   | `eventpipe` — Pipeline de datos               | Python idiomático, Kafka, dbt      | Data Engineering end-to-end               |
+| F5   | `architecture-docs` — Docs técnicas           | C4, ADRs, RFCs, DDD                | Pensar y comunicar arquitectura           |
+| F6   | `capstone` — Sistema integrado                | Todo el stack                      | Portfolio de empleabilidad                |
+| F7   | `resilient-api`/`eventpipe`/`capstone` en AWS | ECS, RDS, S3, Glue, Athena         | Deploy y operación en la nube             |
+| F8   | `mobile-app`                                  | Kotlin, Compose Multiplatform, KMP | Cliente multiplatform del propio stack    |
 
 ---
 
-## Canales de YouTube — referencia rápida
-
-| Canal | Fases | Especialidad |
-|-------|-------|-------------|
-| [Jacob Sorber](https://www.youtube.com/channel/UCwd5VFu4KoJNjkWJZMFJGHQ) | F1 | C, Linux, sistemas UNIX |
-| [WilliamFiset](https://www.youtube.com/channel/UCD8yeTczadqdARzQUp29PJw) | F1–F3 | DSA, estructuras de datos |
-| [Anthony GG](https://www.youtube.com/@anthonygg_) | F2 | Go proyectos reales |
-| [TechWorld with Nana](https://www.youtube.com/c/techworldwithnana) | F3 | Docker, Kubernetes, CI/CD |
-| [Confluent oficial](https://www.youtube.com/@Confluent) | F4 | Kafka internals y patterns |
-| [Data with Zach](https://www.youtube.com/c/datawithzach) | F4 | Data Engineering real |
-| [DataExpert.io](https://www.youtube.com/@DataExpertio) | F4 | Boot camp Data Engineering gratuito |
-| [ByteByteGo](https://www.youtube.com/@ByteByteGo) | F5–F6 | System Design visual |
-| [Arpit Bhayani](https://www.youtube.com/channel/UC_b1GUJv_2QiMP4BxC9-Dxg) | F5–F6 | System Design profundo |
-
----
-
-## Stack completo al mes 18
+## Stack completo
 
 ```
 Sistemas y bajo nivel:     C, GCC, Makefiles, Linux Internals, GDB, Valgrind
-Backend:                   Go (APIs, microservicios) + Python (data, scripting, IA)
-Base de datos:             PostgreSQL (transaccional + vector) + DuckDB (analytics)
+Backend:                   Go (APIs, microservicios) + Python (data, scripting)
+Base de datos:             PostgreSQL (transaccional) + DuckDB (analytics)
 Mensajería:                Apache Kafka
 Transformaciones:          dbt
 Caché:                     Redis
 Infraestructura:           Docker + Compose + GitHub Actions
 Observabilidad:            Prometheus + Grafana + OpenTelemetry
-Cloud (AWS):               S3 · ECS · RDS · Lambda · Glue · Athena · Kinesis · IAM · CloudWatch
-IA aplicada:               Embeddings + pgvector + RAG básico
 Arquitectura:              System Design, CQRS, Event Sourcing, Saga, DDD, C4, ADRs
-Certificaciones (F6):      AWS CLF-C02 · SAA-C03 · DEA-C01 (Data Engineer Associate)
-Móvil (F7, diferido):      Kotlin + Compose Multiplatform + KMP (Ktor, SQLDelight, Koin)
+
+— Extensiones diferidas —
+Cloud (F7):                AWS: S3 · ECS · RDS · Lambda · Glue · Athena · Kinesis · IAM · CloudWatch
+Certificaciones (F7):      AWS CLF-C02 · SAA-C03 · DEA-C01
+Móvil (F8):                Kotlin + Compose Multiplatform + KMP (Ktor, SQLDelight, Koin)
 ```
 
 ---
 
-## Perfil al mes 18
+## Perfil al cierre de F6 (18 meses)
 
-El engineer que sale de este roadmap:
+- Entiende qué hace el kernel cuando llama a `fork()` y puede explicarlo.
+- Construye APIs que aguantan carga porque entiende concurrencia real.
+- Diseña pipelines de datos que no fallan silenciosamente.
+- Cuando algo explota en producción, sabe mirarlo: logs, métricas, traces.
+- Puede dibujar la arquitectura de un sistema y defender cada decisión.
+- Escribe código seguro por defecto, no como afterthought.
 
-- Entiende qué hace el kernel cuando llama a `fork()` y puede explicarlo
-- Construye APIs que aguantan carga porque entiende concurrencia real
-- Diseña pipelines de datos que no fallan silenciosamente
-- Cuando algo explota en producción, sabe mirarlo: logs, métricas, traces
-- Puede dibujar la arquitectura de un sistema y defender cada decisión
-- Escribe código seguro por defecto, no como afterthought
-- Despliega y opera sistemas en AWS — no solo localmente en docker compose
-- Usa IA con criterio — como herramienta, no como muleta
-
-Ese perfil es competitivo para roles mid-level desde el primer empleo.
+Con F7 y F8 sumados: despliega y opera en AWS (no solo en docker compose local) y tiene un cliente multiplatform funcional sobre su propio backend.
 
 ---
 
-*Idioma del código: English only*
-*Sistema de notas: Código autodocumentado (comentarios en `.c`) + Obsidian MOC generado por IA*
-*Entorno: Linux (Arch/Fedora), Neovim, Warp terminal*
+## Notas de investigación
 
----
-
-## Apéndice opcional — Linux Admin (RHCSA)
-
-> **Fuera de ruta crítica.** El track principal (F1–F6) te lleva a Backend/Data Engineer. Este apéndice cubre temas de **administración de sistemas** que RHCSA incluye pero que F1 no toca directamente. Útil para el curso universitario de Admin de BD, para entornos sin contenedores, y como diferencial DevOps-adjacent. No agrega semanas al roadmap — se estudia en tiempos muertos (vacaciones, entre fases, o mientras usas el servidor de la materia).
-
-### Temas RHCSA no cubiertos por F1
-
-| Tema | Comandos clave | Por qué importa |
-|------|---------------|-----------------|
-| Gestión de paquetes | `dnf install/remove/update`, `rpm -qa`, `yum` | Administrar servidores RHEL/Fedora/CentOS |
-| Gestión de servicios (systemd) | `systemctl enable/disable/start/stop/status`, `journalctl -u` | Gestionar servicios en producción Linux |
-| Configuración de red | `nmcli`, `ip a`, `ip route`, `ss -tuln` | Diagnosticar conectividad en servidores |
-| Firewall | `firewall-cmd --add-port`, `firewall-cmd --list-all` | Abrir puertos para servicios (complementa F3 security) |
-| SSH | `sshd_config`, `ssh-keygen`, `authorized_keys` | Acceso remoto a servidores/EC2 |
-| SELinux | `getenforce`, `setenforce`, `restorecon`, `chcon` | Seguridad MAC en RHEL — común en entornos corporativos |
-| Usuarios y grupos avanzado | `id`, `groups`, `visudo`, sudoers | Administración multiusuario real |
-| Montaje de discos | `lsblk`, `mount`, `umount`, `/etc/fstab` | Gestión de storage en servidores |
-| Bash scripting básico | `for`, `while`, `if`, `cron`, `crontab -e` | Automatización de tareas admin |
-
-> **Nota:** F1 ya cubre procesos (`ps`, `kill`, `fork`), permisos (`chmod`, `chown`) y la jerarquía del filesystem a mayor profundidad. Los temas de la tabla son los que F1 **no** cubre.
-
-### Recursos
-
-| Recurso | Tipo |
-|---------|------|
-| Guía básica del profesor (en `~/Downloads/`) | Punto de partida — cheat-sheet de comandos |
-| [Guía Completa de Comandos Linux — Linuxize](https://linuxize.com) | Referencia web, buscar por comando |
-| [Fundamentals of Red Hat Enterprise Linux — edX](https://www.edx.org/learn/linux/red-hat-red-hat-enterprise-linux-technical-overview) | **Gratis**, curso oficial Red Hat |
-| [Linux Filesystem Hierarchy — TLD Project](https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/) | Referencia del filesystem |
-| [GNU Bash Reference](https://www.gnu.org/software/bash/manual/bash.html) | Referencia oficial scripting |
-
-### Certificación RHCSA (muy opcional)
-
-La certificación RHCSA (EX200) cuesta ~$400 USD y requiere examen práctico en vivo (3 horas en una terminal RHEL). Es valiosa para roles de SRE/DevOps/Sysadmin, pero **no es la ruta principal de este roadmap**. Si en algún momento trabajas en un entorno RHEL corporativo o te interesa el track SRE/Infra, este apéndice es la base. Mejor momento para considerarla: después de F6, si el primer empleo apunta a infra/DevOps en lugar de backend puro.
+- **Removidos/reemplazados durante la verificación con SOURCES.md:** SQLShed (dbt/DuckDB, no corroborado), `runbook.academy` y `systeminternals.dev` (Kubernetes, no corroborados), el libro _Streaming Systems_ como recurso gratuito (es pago — reemplazado por los ensayos gratis de Akidau), _Fluent Python_ como lectura obligatoria (ya no aplica al alcance idiomático de F4), AlgoMaster.io (nunca verificado, se sacó del documento), nombre "RU101" de Redis University (desactualizado), tutoriales de Kafka con ZooKeeper (desactualizados desde Kafka 4.x), OpenTracing/`jaeger-client-go` (obsoletos), la URL "threedots.labs" (no existe, es threedots.tech), la licencia CC BY-NC-SA atribuida a _Kubernetes the Hard Way_ (es Apache 2.0), y el libro _Big Data_ de Nathan Marz como "gratis" (es pago).
+- **Fuera de scope de este roadmap:** RAG/Embeddings — se cubre en el roadmap paralelo de AI Engineering.
+- **No verificado por SOURCES.md, se mantiene sin marca especial de riesgo por tratarse de referencias muy conocidas y de bajo riesgo de identidad/licencia:** DDIA (Kleppmann), AWS (F7 completa), Mobile/KMP (F8 completa), canales de YouTube complementarios (Fiset, Stoney codes, Anthony GG, TechWorld with Nana), OSS good-first-issue y distribución de Leetcode.
