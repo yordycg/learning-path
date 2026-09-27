@@ -1,14 +1,9 @@
-# Justfile — Learning Path Cockpit (C, Systems & Inverted PBL)
-# Automatización ergonómica para el desarrollador y agentes de IA.
+# Automatización ergonómica para compilación y pruebas.
 
 set shell := ["bash", "-uc"]
 
 default:
     @just --list
-
-# Muestra el panel operativo actual de la fase activa (DSA S6–S10)
-status:
-    @head -n 50 learning-dsa/status.md
 
 # Compila y ejecuta un archivo C con AddressSanitizer y UndefinedBehaviorSanitizer
 run FILE:
