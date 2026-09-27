@@ -4,17 +4,17 @@ Track de primer nivel de Fase 1 (semanas S6–S10), enfocado en **criterio de se
 
 ---
 
-## Plan de Estudio & Progreso (S6–S10)
+## Plan de Estudio & Progreso (28 Sep – 1 Nov 2026)
 
-| Semana | Fechas | Tema | Recursos Principales | Entregable / Práctica | Estado |
+| Semana | Fechas (2026) | Tema | Recursos Principales | Entregable / Práctica | Estado |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **S6** | Sep 21–27 | Big O + Dynamic Array | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [OpenDSA](https://opendsa-server.cs.vt.edu/) · [freeCodeCamp Big O](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/) | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c`; criterio array vs lista | 🔄 En curso (D1-D3 listos) |
-| **S7** | Sep 28 – Oct 4 | Linked List | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [VisuAlgo](https://visualgo.net/) | `c/4-linked-list.c`, `c/5-list-vs-array.c`; criterio lista vs array | [ ] Pendiente |
-| **S8** | Oct 5–11 | Stack + Queue | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [OpenDSA](https://opendsa-server.cs.vt.edu/) | Stack y queue manuales; criterio LIFO/FIFO y backing store | [ ] Pendiente |
-| **S9** | Oct 12–18 | Hash Table + Sorting | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [Open Data Structures](https://opendatastructures.org/) | Hash table (separate chaining), merge sort; criterio búsqueda vs orden | [ ] Pendiente |
-| **S10** | Oct 19–25 | Integración & Cierre | [NeetCode](https://neetcode.io/practice) · Retos integradores | Ejercicios de selección y cierre de fase | [ ] Pendiente |
+| **S1** | **28 Sep – 4 Oct** | **Big O + Dynamic Array (desde cero)** | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [OpenDSA](https://opendsa-server.cs.vt.edu/) · [freeCodeCamp Big O](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/) | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c`; criterio array vs lista | 🔄 Arranca mañana |
+| **S2** | **5 – 11 Oct** | **Linked List** | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [VisuAlgo](https://visualgo.net/) | `c/4-linked-list.c`, `c/5-list-vs-array.c`; criterio lista vs array | [ ] Pendiente |
+| **S3** | **12 – 18 Oct** | **Stack + Queue** | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [OpenDSA](https://opendsa-server.cs.vt.edu/) | Stack y queue manuales; criterio LIFO/FIFO y backing store | [ ] Pendiente |
+| **S4** | **19 – 25 Oct** | **Hash Table + Sorting** | [Princeton Part I](https://www.coursera.org/learn/algorithms-part1) · [Open Data Structures](https://opendatastructures.org/) | Hash table (separate chaining), merge sort; criterio búsqueda vs orden | [ ] Pendiente |
+| **S5** | **26 Oct – 1 Nov** | **Integración & Cierre F1** | [NeetCode](https://neetcode.io/practice) · Retos integradores | Retos de selección de estructuras y checklist de cierre | [ ] Pendiente |
 
-*Nota:* Las 3 primeras semanas se resuelven en C (dynamic array, linked list, hash table) para afianzar el modelo de memoria. A partir de Fase 2 (Go), DSA se mantiene como un hilo continuo de práctica semanal (~3h/semana con [NeetCode Blind 75/150](https://neetcode.io/practice)).
+*Nota:* Las 5 semanas de DSA en C afianzan el modelo de memoria manual y criterio algorítmico (cierre F1 el 1 de noviembre). A partir de Fase 2 (Go), DSA se mantiene como un hilo continuo de práctica semanal (~3h/semana con [NeetCode Blind 75/150](https://neetcode.io/practice)).
 
 ---
 

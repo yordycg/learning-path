@@ -1,48 +1,59 @@
-# Calendario Maestro — Modelo Estacional
+# Calendario Maestro — Modelo Semestre y Vacaciones
 
-> **Fuente única** del ritmo de estudio. Este roadmap (`learning-path`) y el de IA (`../ai-learning-path/`) operan en **bloques estacionales**: semestre universitario = LP full-time; vacaciones = sprint IA. Cualquier cambio de ritmo se hace AQUÍ y se propaga a los README de fase y al roadmap.
+> **Fuente única** del ritmo y cronograma de estudio. Define los regímenes de dedicación según el período lectivo universitario y las vacaciones.
 
-## Regla (bloques estacionales)
+---
 
-- **Semestre restante (31 ago – 22 nov 2026, 12 semanas):** solo este roadmap (**LP 100%**). El de IA queda pausado (Fase 0 cerrada el 30 ago).
-- **Vacaciones (23 nov 2026 – ~feb 2027, ≥3 meses):** sprint del roadmap de IA (30–35h/sem) + fundamentos LP absorbidos *just-in-time* por los proyectos de IA (Go, PostgreSQL, Redis, Docker, OpenTelemetry). LP en mantenimiento.
-- **Ancla:** Semana 4 universitaria = 31 ago 2026 = LP S3. Semana 15 = 16–22 nov (fin de semestre). Vacaciones desde el 23 nov.
+## 1. Regímenes de Horas y Dedicación
 
-## Calendario semestre (LP contiguo, 31 ago – 22 nov 2026)
+| Período | Rango de Fechas | Esquema Diario | Total Semanal |
+| :--- | :--- | :--- | :--- |
+| **Régimen Semestre** | 28 Sep – 22 Nov 2026 | Mar–Vie: 1h/día (4h) · Sáb–Dom–Lun: 4h/día (12h) | **16 horas / semana** |
+| **Régimen Vacaciones** | Desde 23 Nov 2026 | 4 horas / día $\times$ 7 días *(a confirmar según trabajo)* | **28 horas / semana** |
 
-> Las S-weeks de Fase 1 pasan a **semanas contiguas** (ya no intercaladas con IA). Detalle y seguimiento en: [`learning-dsa/README.md`](learning-dsa/README.md) (S6–S10, DSA) · [`learning-c/README.md`](learning-c/README.md) (C/systems).
+- **Días de semana (Mar–Vie, 1h):** Asimilación de conceptos, lectura de documentación/papers y katas atómicas.
+- **Fin de semana + Lunes (Sáb–Dom–Lun, 4h):** Bloques de deep work para implementación, testing, depuración (ASan/GDB) y proyectos de fin de fase.
 
-| Semana universitaria | Fechas | LP |
-|----------------------|--------|----|
-| 4 | 31 ago – 6 sep | S3: procesos fork/exec/wait |
-| 5 | 7–13 sep | S4: señales |
-| 6 | 14–20 sep | S5: pipes |
-| 7 | 21–27 sep | S6: DSA Big O + dynamic array |
-| 8 | 28 sep – 4 oct | S7: DSA linked list |
-| 9 | 5–11 oct | S8: stack+queue |
-| 10 | 12–18 oct | S9: hash+sorting |
-| 11 | 19–25 oct | S10: integración |
-| 12–15 | 26 oct – 22 nov | **F1 continuación** (a definir en sesiones: DSA experto, threads, bitwise, `mysh` avanzado) |
+---
 
-> Nota: semanas 12–15 = espacio reservado. Se planifica en las sesiones de LP al llegar (posible adelanto de LP F2: Go + PostgreSQL).
+## 2. Calendario del Semestre Universitario (Hasta 22 Nov 2026, 16h/sem)
 
-## Sprint de vacaciones (IA, 23 nov 2026 – ~feb 2027)
+| Sem. Univ. | Fechas (2026) | Módulo / Fase | Foco Técnico | Estado |
+| :--- | :--- | :--- | :--- | :--- |
+| **4** | 31 ago – 6 sep | F1 · C/Systems | Procesos (`fork`, `exec`, `wait`, zombies) | ✅ Cerrado (`mysh v1.0`) |
+| **5** | 7 – 13 sep | F1 · C/Systems | Señales (`sigaction`, `SIGINT`, `SIGCHLD`) | ✅ Cerrado (`mysh v1.5`) |
+| **6** | 14 – 20 sep | F1 · C/Systems | Pipes e IPC (`pipe`, FIFOs, descriptores) | ✅ Cerrado (`mysh v2.0`) |
+| **7** | 21 – 27 sep | Transición | C/Linux cerrado; revisión de fuentes y roadmap | ✅ Cerrado |
+| **8** | **28 sep – 4 oct** | **F1 · DSA S1** | **Big O + Dynamic Array (desde cero)** | 🔄 Arranca mañana |
+| **9** | **5 – 11 oct** | **F1 · DSA S2** | **Linked Lists** (nodos, punteros, `binary_search`) | [ ] Pendiente |
+| **10** | **12 – 18 oct** | **F1 · DSA S3** | **Stack + Queue** (LIFO/FIFO, backing stores) | [ ] Pendiente |
+| **11** | **19 – 25 oct** | **F1 · DSA S4** | **Hash Table + Sorting** (colisiones, merge sort) | [ ] Pendiente |
+| **12** | **26 oct – 1 nov** | **F1 · DSA S5** | **Integración & Cierre Fase 1** (criterio de selección) | [ ] **Cierre F1 (1 Nov)** |
+| **13** | **2 – 8 nov** | **F2 · Go S1** | Fundamentos de Go (sintaxis, structs, slices, pointers) | [ ] Inicio Fase 2 |
+| **14** | **9 – 15 nov** | **F2 · Go S2** | Go Idiomático & TDD (*Learn Go with Tests*, interfaces, mocking) | [ ] Pendiente |
+| **15** | **16 – 22 nov** | **F2 · Go S3** | Concurrencia en Go (goroutines, channels, context) | [ ] **Fin de clases (22 Nov)** |
 
-> Plan semana a semana en `../ai-learning-path/calendario.md`. Este roadmap aporta los prerrequisitos que cada fase de IA arrastra just-in-time.
+---
 
-## Modelo de horas diarias (CONFIRMADO ago 2026)
+## 3. Régimen Intensivo de Vacaciones (Desde 23 Nov 2026, 28h/sem proyectadas)
 
-| Día | Horas |
-|-----|-------|
-| Lunes | 4h |
-| Martes – Viernes | 2h c/u |
-| Sábado | 4h |
-| Domingo | 4h |
-| **Total semana** | **20h** |
+*(Sujeto a confirmación según compromisos laborales / pasantía).*
 
-> Aplicable al semestre (LP). En vacaciones el sprint de IA sube a ~30–35h/sem (ritmo de jornada completa).
+### Continuación de Fase 2 (Go + PostgreSQL + Seguridad + `taskapi`)
+- **Semana 23 – 29 Nov 2026 (28h):** PostgreSQL y Modelado ER (pgexercises, CS50 SQL Designing, normalización).
+- **Semana 30 Nov – 6 Dic 2026 (28h):** Índices y Rendimiento (`EXPLAIN ANALYZE`, MVCC, aislamiento, transacciones).
+- **Semana 7 – 13 Dic 2026 (28h):** Seguridad Backend (PortSwigger labs: SQLi, Auth, JWT; defensas OWASP, bcrypt).
+- **Semanas 14 – 27 Dic 2026 (56h):** Proyecto `taskapi` (REST API segura en Go + Postgres, tests de integración, Docker básico) y pulido final.
+> 🎯 **Cierre Definitivo de Fase 2:** **27 de Diciembre de 2026**.
 
-## Estado operativo
+### Fase 3: Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD
+- **28 Dic 2026 – 21 Feb 2027 (8 semanas a 28h = 224 horas):** Docker multi-stage, Redis caché y rate limiting, OpenTelemetry + Prometheus/Grafana, Circuit Breaker, CI/CD con GitHub Actions y proyecto `resilient-api`.
+> 🎯 **Cierre Definitivo de Fase 3:** **21 de Febrero de 2027**.
 
-- Seguimiento por fase: [`learning-dsa/README.md`](learning-dsa/README.md) (DSA activo) · [`learning-c/README.md`](learning-c/README.md) (C cerrado en v2.0).
-- Detalle de contenido por fase: ver [`docs/roadmap.md`](docs/roadmap.md) y [`docs/SOURCES.md`](docs/SOURCES.md).
+---
+
+## 4. Estado Operativo y Enlaces
+
+- **Seguimiento diario de DSA:** [`learning-dsa/README.md`](learning-dsa/README.md)
+- **Hoja de ruta estratégica completa:** [`docs/roadmap.md`](docs/roadmap.md)
+- **Fuentes técnicas verificadas:** [`docs/SOURCES.md`](docs/SOURCES.md)

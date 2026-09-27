@@ -16,12 +16,12 @@
 
 | Fase   | Período                     | Foco                                                                       |
 | ------ | --------------------------- | -------------------------------------------------------------------------- |
-| F1     | jun 14 – dic 13 2026        | Linux Internals, C & DSA base                                              |
-| F2     | oct 19 2026 – ene 18 2027   | Go + Python base + PostgreSQL + Seguridad                                  |
-| F3     | ene 19 – abr 18 2027        | Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD            |
-| F4     | abr 19 – jul 18 2027        | Data Engineering + Python idiomático                                       |
-| F5     | jul 19 – oct 18 2027        | System Design, Arquitectura & DDD                                          |
-| F6     | oct 19 2027 – ene 18 2028   | Portfolio (Backend + Data Engineering) & Job Hunt                          |
+| F1     | 14 jun – 1 nov 2026         | Linux Internals, C & DSA base                                              |
+| F2     | 2 nov – 27 dic 2026         | Go + Python base + PostgreSQL + Seguridad                                  |
+| F3     | 28 dic 2026 – 21 feb 2027   | Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD            |
+| F4     | 22 feb – 30 may 2027        | Data Engineering + Python idiomático                                       |
+| F5     | 31 may – 29 ago 2027        | System Design, Arquitectura & DDD                                          |
+| F6     | 30 ago – 28 nov 2027        | Portfolio (Backend + Data Engineering) & Job Hunt                          |
 | **F7** | **Diferida, post-18 meses** | **Cloud (AWS)** — aplicar el stack ya construido a servicios administrados |
 | **F8** | **Diferida, después de F7** | **Mobile multiplataforma** (Kotlin + Compose Multiplatform / KMP)          |
 
@@ -36,7 +36,7 @@
 
 ## FASE 1 — Linux Internals, C & DSA Fundamentos
 
-**Período:** jun 14 – dic 13 2026 (~6 meses) [Re-definir]
+**Período:** 14 jun – 1 nov 2026
 
 ### Objetivos
 
@@ -77,7 +77,7 @@ Parseo de comandos, ejecución con `fork`+`exec` (sin `system()`), pipes (`cmd1 
 
 ## FASE 2 — Go + Python Base + PostgreSQL + Seguridad
 
-**Período:** [Por Definir]
+**Período:** 2 nov – 27 dic 2026
 
 ### Go
 
@@ -144,7 +144,7 @@ CRUD de tasks/usuarios con schema modelado (ER diagram primero), JWT propio (sin
 
 ## FASE 3 — Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD
 
-**Período:** [Por Definir]
+**Período:** 28 dic 2026 – 21 feb 2027
 
 ### Docker
 
@@ -206,7 +206,7 @@ Complemento: artículo original de Martin Fowler ([martinfowler.com/bliki/Circui
 
 ## FASE 4 — Data Engineering + Python Idiomático
 
-**Período:** [Por Definir]
+**Período:** 22 feb – 30 may 2027
 
 ### Python idiomático para backend/pipelines
 
@@ -281,7 +281,7 @@ Pipeline de datos end-to-end: `taskapi` produce eventos → Kafka (`task.events`
 
 ## FASE 5 — System Design, Arquitectura de Software & DDD
 
-**Período:** [Por Definir]
+**Período:** 31 may – 29 ago 2027
 
 ### System Design
 
@@ -369,7 +369,7 @@ C4 (Nivel 1 y 2) de `taskapi` y `eventpipe`, 4 ADRs reales, 1 RFC ("cómo agrega
 
 ## FASE 6 — Portfolio (Backend + Data Engineering) + Entrevistas
 
-**Período:** [Por Definir]
+**Período:** 30 ago – 28 nov 2027
 
 ### Portfolio
 
