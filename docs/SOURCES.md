@@ -287,92 +287,22 @@ tabla y, sobre todo, con el proyecto comparativo de abajo.
 
 ---
 
-## F5 — System Design + Patrones de Arquitectura + DDD + Kubernetes (conceptual)
+## F5 — System Design, Patrones de Arquitectura, Patrones de Diseño (GoF), DDD & Kubernetes (conceptual)
 
-**Decisión de scope tomada al planificar esta fase:** se descartó una sección propia de
-"Design Patterns" estilo Gang of Four. En Go estos patrones pesan mucho menos que en
-Java/C# (el lenguaje favorece composición e interfaces implícitas sobre herencia), y
-parte del terreno ya se cubrió con Repository Pattern/Unit of Work en Cosmic Python
-(F4). En su lugar, los patrones idiomáticos de Go que cumplen ese rol (Functional
-Options, Strategy vía interfaces, Decorator vía middleware/embedding) quedan como nota
-breve dentro del bloque de Arquitectura, no como ruta de estudio propia.
+**Organización en 4 niveles (de negocio a código):**
+Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pregunta distinta y se apoya en el anterior:
+- **Nivel 0 — DDD (el negocio):** Bounded Contexts y modelado de reglas de negocio.
+- **Nivel 1 — System Design (la infraestructura):** Comunicación a escala, consenso, colas, bases distribuidas.
+- **Nivel 2 — Patrones de Arquitectura (la estructura del servicio):** Hexagonal / Clean Architecture, aislamiento del dominio.
+- **Nivel 3 — Patrones de Diseño (el código):** Catálogo GoF clásico aprendido en Python canónico y mapeado a Go idiomático.
+- **Plataforma subyacente:** Kubernetes (conceptual).
 
----
-
-### System Design
-
-| Rol                               | Recurso                                                                                                                                         | Confianza | Notas                                                                                                                                                                                                                                                               |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Principal — práctica dura         | [MIT 6.5840 (Distributed Systems)](https://pdos.csail.mit.edu/6.824/)                                                                           | Alta      | Coincide en ambas IAs, ambas la llaman "gold standard". Labs 100% en Go (MapReduce, Raft, KV service tolerante a fallos, sharded KV con balanceo dinámico). Material completamente público, sin paywall — solo la evaluación oficial es exclusiva de alumnos de MIT |
-| Principal — retos con validación  | [Fly.io Distributed Systems Challenges (Gossip Glomers)](https://fly.io/dist-sys/)                                                              | Alta      | 6 retos con validación automática de consistencia (Maelstrom, del creador de Jepsen). SDK de referencia nativo en Go, coste de adaptación ~0%. Requiere JDK instalado para correr el orquestador Clojure de Maelstrom, dato menor a tener en cuenta                 |
-| Apoyo — vocabulario/entrevista    | [System Design Primer](https://github.com/donnemartin/system-design-primer)                                                                     | Alta      | Coincide en ambas IAs. No es un curso lineal, es un compendio de referencia + casos resueltos (Pastebin, Twitter timeline, web crawler) + flashcards Anki. Bueno para la cadencia de una entrevista, no para profundidad de implementación                          |
-| Apoyo — patrones internos         | [Catalog of Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/) (Unmesh Joshi / Martin Fowler) | Alta      | Desarma la "magia" de cómo están hechos por dentro Kafka, Cassandra, etcd (WAL, Leader-Follower, Quorum, Idempotent Receiver). Ejemplos en Java pero a nivel de socket/disco/buffer, mapea directo a Linux/Go                                                       |
-| Referencia — operación real       | [Google SRE Book](https://sre.google/sre-book/)                                                                                                 | Alta      | No es un curso de entrevista, es sobre cómo se opera en producción a escala (SLOs, error budgets, monitoring). Complementa bien tu base de observabilidad de F3                                                                                                     |
-| Referencia — papers fundacionales | Dynamo, GFS, Bigtable (papers originales de Amazon/Google, libres)                                                                              | Alta      | Lectura densa pero son el origen real de los patrones que se enseñan en todos los cursos de arriba — vale la pena para el nivel de profundidad que ya tenés                                                                                                         |
-
-**Ruta sugerida (10-12 semanas, ~10-12h/semana):**
-
-1. **S1-2 — Fundamentos y estimaciones:** back-of-the-envelope, load balancing L4 vs L7,
-   caching (write-through, cache-aside), particionado (range/hash/consistent hashing).
-   Material: System Design Primer.
-2. **S3-5 — Consistencia y replicación en Go:** CAP/PACELC real, leader/follower vs.
-   multi-leader vs. sin líder, CRDTs, gossip protocols. Práctica: retos 1-4 de Fly.io.
-3. **S6-8 — Mensajería, logs distribuidos y consenso:** WAL, semánticas de entrega
-   (at-least-once, idempotent receiver), Raft. Práctica: retos 5-6 de Fly.io o Labs 1-2
-   de MIT 6.5840 (esto conecta directo con Kafka de F4).
-4. **S9-10 — APIs robustas a escala:** rate limiting distribuido (token bucket/leaky
-   bucket sobre Redis), idempotencia, circuit breakers a nivel de gateway, Sagas vs. 2PC.
-5. **S11-12 — Simulacros de entrevista:** 6-8 casos clásicos cronometrados (45 min),
-   foco en trade-offs (latencia vs. consistencia, escala vertical vs. horizontal).
+**Restitución del Catálogo GoF (Nivel 3):**
+Se incorpora formalmente el catálogo clásico "Gang of Four" (Creacionales, Estructurales, De Comportamiento). Como el catálogo asume OOP clásica completa (herencia, clases abstractas, interfaces explícitas), el estándar pedagógico es aprenderlo primero en **Python** (aprovechando la base de F4: `abc.ABC`, `typing.Protocol`, `dataclasses`) y luego mapear cada patrón a su forma idiomática en **Go** (Functional Options, interfaces implícitas, struct embedding/middleware).
 
 ---
 
-### Patrones de Arquitectura de Software
-
-| Rol                           | Recurso                                                                                                                                              | Confianza  | Notas                                                                                                                                                                                                                                                                                                                    |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Principal — código real en Go | [Wild Workouts (Three Dots Labs)](https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example)                                                     | Alta       | **Verificado hoy:** repo real y activo, con la serie completa de artículos de refactorización progresiva (de "app demasiado moderna" a Clean Architecture + CQRS). Integra gRPC, HTTP/OpenAPI y eventos con Watermill — correrlo completo en local exige Docker                                                          |
-| Apoyo — estructura comparada  | [go-structure-examples](https://github.com/katzien/go-structure-examples) (Kat Zien, charla GopherCon)                                               | Alta       | **Verificado hoy:** real, mismo servicio de juguete implementado bajo 4 filosofías (flat, layered, hexagonal, domain-driven) para comparar directamente. **De 2018-2019, sin actualizaciones desde entonces** — el contenido (estructura de carpetas) envejece lento, pero hay que marcarlo como desactualizado en fecha |
-| Apoyo — EDA/CQRS conceptual   | Martin Fowler — ["What do you mean by Event-Driven?"](https://martinfowler.com/articles/201701-event-driven.html) + artículos de CQRS/Event Sourcing | Alta       | Antídoto contra usar CQRS/Event Sourcing por defecto en vez de como herramienta especializada. Taxonomía de 4 tipos de evento que es estándar citado en la industria                                                                                                                                                     |
-| Referencia — patrones cloud   | [Microsoft Azure Architecture Center — Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/)                                     | Alta       | Ya la tenías parcialmente de F3 (Circuit Breaker) — se reutiliza acá para CQRS, Event Sourcing, Compensating Transaction, Throttling. Agnóstico a Go, sin código, solo definiciones y trade-offs                                                                                                                         |
-| Referencia — monolito modular | [Modular Monolith with DDD](https://github.com/kamilgrzybek/modular-monolith-with-ddd) (Kamil Grzybek)                                               | Media-alta | Implementación de referencia en C#/.NET, pero sin "magia" de framework — Outbox pattern transaccional y segregación de esquemas SQL mapean línea por línea a Postgres/Go. Útil si te interesa monolito modular vs. microservicios prematuros                                                                             |
-| Referencia — diseño de APIs   | [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines) + [Google API Design Guide](https://cloud.google.com/apis/design)       | Alta       | Estándares battle-tested para versionado, paginación por cursor, idempotencia, errores canónicos. Aplicarlos completos a un microservicio de 2 endpoints es excesivo — usarlos como checklist, no como dogma                                                                                                             |
-
-**Nota técnica — patrones idiomáticos de Go (reemplazo del catálogo GoF, tal como se
-acordó no darle sección propia):**
-
-- **Functional Options** (reemplaza Builder/constructores sobrecargados): `type Option
-func(*Server)`, permite `NewServer(addr, WithTimeout(5*time.Second))` con defaults
-  seguros.
-- **Strategy vía interfaces implícitas**: cualquier struct/función que satisfaga una
-  interfaz de un solo método (como `io.Reader`) actúa como estrategia intercambiable,
-  sin árboles de herencia.
-- **Decorator vía middleware/embedding**: el patrón estándar `func(http.Handler)
-http.Handler` en HTTP/gRPC, o struct embedding para envolver una interfaz y añadir
-  métricas/logs/caché.
-- **Interfaces definidas en el consumidor, no en el productor**: a diferencia de
-  Java/C#, en Go idiomático el paquete de dominio declara `type UserSaver interface {
-SaveUser(...) error }` con solo lo que necesita — desacopla sin mocks gigantescos.
-
-**Ruta sugerida (6-8 semanas, ~10-12h/semana):**
-
-1. **S1-2 — Hexagonal/Clean Architecture en Go:** estudiar `go-structure-examples`
-   (comparar carpeta `hexagonal` vs. `module`) + primeros artículos de Wild Workouts.
-   Práctica: refactorizar un CRUD propio separando dominio de adaptadores (Postgres,
-   Chi/Gin).
-2. **S3-4 — Monolito modular vs. microservicios:** diagramas C4/ADRs de Modular
-   Monolith Primer. Práctica: simular comunicación entre módulos con interfaces de
-   paquetes internos (`internal/pkg/...`) antes de saltar a red.
-3. **S5-6 — Event-Driven, CQRS y Event Sourcing:** ensayo de Fowler + eventos en Wild
-   Workouts con Watermill. Identificar el umbral real donde CQRS deja de ser
-   sobre-ingeniería.
-4. **S7-8 — Diseño de APIs y contratos:** guías de Microsoft/Google. Práctica: diseñar
-   un contrato gRPC (.proto) + uno REST/OpenAPI, implementar middleware de idempotencia
-   con `Idempotency-Key` en Redis.
-
----
-
-### Domain-Driven Design (DDD)
+### Nivel 0 — Domain-Driven Design (DDD)
 
 | Rol                                  | Recurso                                                                                                                                                                                                          | Confianza  | Notas                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -414,6 +344,102 @@ SaveUser(...) error }` con solo lo que necesita — desacopla sin mocks gigantes
    Transactional Outbox hacia Kafka/Watermill (conecta directo con Kafka de F4).
    Práctica: extender el agregado para registrar eventos y conectar con una tabla
    outbox.
+
+---
+
+### Nivel 1 — System Design (la infraestructura)
+
+| Rol                               | Recurso                                                                                                                                         | Confianza | Notas                                                                                                                                                                                                                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Principal — práctica dura         | [MIT 6.5840 (Distributed Systems)](https://pdos.csail.mit.edu/6.824/)                                                                           | Alta      | Coincide en ambas IAs, ambas la llaman "gold standard". Labs 100% en Go (MapReduce, Raft, KV service tolerante a fallos, sharded KV con balanceo dinámico). Material completamente público, sin paywall — solo la evaluación oficial es exclusiva de alumnos de MIT |
+| Principal — retos con validación  | [Fly.io Distributed Systems Challenges (Gossip Glomers)](https://fly.io/dist-sys/)                                                              | Alta      | 6 retos con validación automática de consistencia (Maelstrom, del creador de Jepsen). SDK de referencia nativo en Go, coste de adaptación ~0%. Requiere JDK instalado para correr el orquestador Clojure de Maelstrom, dato menor a tener en cuenta                 |
+| Apoyo — vocabulario/entrevista    | [System Design Primer](https://github.com/donnemartin/system-design-primer)                                                                     | Alta      | Coincide en ambas IAs. No es un curso lineal, es un compendio de referencia + casos resueltos (Pastebin, Twitter timeline, web crawler) + flashcards Anki. Bueno para la cadencia de una entrevista, no para profundidad de implementación                          |
+| Apoyo — patrones internos         | [Catalog of Patterns of Distributed Systems](https://martinfowler.com/articles/patterns-of-distributed-systems/) (Unmesh Joshi / Martin Fowler) | Alta      | Desarma la "magia" de cómo están hechos por dentro Kafka, Cassandra, etcd (WAL, Leader-Follower, Quorum, Idempotent Receiver). Ejemplos en Java pero a nivel de socket/disco/buffer, mapea directo a Linux/Go                                                       |
+| Referencia — operación real       | [Google SRE Book](https://sre.google/sre-book/)                                                                                                 | Alta      | No es un curso de entrevista, es sobre cómo se opera en producción a escala (SLOs, error budgets, monitoring). Complementa bien tu base de observabilidad de F3                                                                                                     |
+| Referencia — papers fundacionales | Dynamo, GFS, Bigtable (papers originales de Amazon/Google, libres)                                                                              | Alta      | Lectura densa pero son el origen real de los patrones que se enseñan en todos los cursos de arriba — vale la pena para el nivel de profundidad que ya tenés                                                                                                         |
+
+**Ruta sugerida (10-12 semanas, ~10-12h/semana):**
+
+1. **S1-2 — Fundamentos y estimaciones:** back-of-the-envelope, load balancing L4 vs L7,
+   caching (write-through, cache-aside), particionado (range/hash/consistent hashing).
+   Material: System Design Primer.
+2. **S3-5 — Consistencia y replicación en Go:** CAP/PACELC real, leader/follower vs.
+   multi-leader vs. sin líder, CRDTs, gossip protocols. Práctica: retos 1-4 de Fly.io.
+3. **S6-8 — Mensajería, logs distribuidos y consenso:** WAL, semánticas de entrega
+   (at-least-once, idempotent receiver), Raft. Práctica: retos 5-6 de Fly.io o Labs 1-2
+   de MIT 6.5840 (esto conecta directo con Kafka de F4).
+4. **S9-10 — APIs robustas a escala:** rate limiting distribuido (token bucket/leaky
+   bucket sobre Redis), idempotencia, circuit breakers a nivel de gateway, Sagas vs. 2PC.
+5. **S11-12 — Simulacros de entrevista:** 6-8 casos clásicos cronometrados (45 min),
+   foco en trade-offs (latencia vs. consistencia, escala vertical vs. horizontal).
+
+---
+
+### Nivel 2 — Patrones de Arquitectura (la estructura del servicio)
+
+| Rol                           | Recurso                                                                                                                                              | Confianza  | Notas                                                                                                                                                                                                                                                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Principal — código real en Go | [Wild Workouts (Three Dots Labs)](https://github.com/ThreeDotsLabs/wild-workouts-go-ddd-example)                                                     | Alta       | **Verificado hoy:** repo real y activo, con la serie completa de artículos de refactorización progresiva (de "app demasiado moderna" a Clean Architecture + CQRS). Integra gRPC, HTTP/OpenAPI y eventos con Watermill — correrlo completo en local exige Docker                                                          |
+| Apoyo — estructura comparada  | [go-structure-examples](https://github.com/katzien/go-structure-examples) (Kat Zien, charla GopherCon)                                               | Alta       | **Verificado hoy:** real, mismo servicio de juguete implementado bajo 4 filosofías (flat, layered, hexagonal, domain-driven) para comparar directamente. **De 2018-2019, sin actualizaciones desde entonces** — el contenido (estructura de carpetas) envejece lento, pero hay que marcarlo como desactualizado en fecha |
+| Apoyo — EDA/CQRS conceptual   | Martin Fowler — ["What do you mean by Event-Driven?"](https://martinfowler.com/articles/201701-event-driven.html) + artículos de CQRS/Event Sourcing | Alta       | Antídoto contra usar CQRS/Event Sourcing por defecto en vez de como herramienta especializada. Taxonomía de 4 tipos de evento que es estándar citado en la industria                                                                                                                                                     |
+| Referencia — patrones cloud   | [Microsoft Azure Architecture Center — Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/)                                     | Alta       | Ya la tenías parcialmente de F3 (Circuit Breaker) — se reutiliza acá para CQRS, Event Sourcing, Compensating Transaction, Throttling. Agnóstico a Go, sin código, solo definiciones y trade-offs                                                                                                                         |
+| Referencia — monolito modular | [Modular Monolith with DDD](https://github.com/kamilgrzybek/modular-monolith-with-ddd) (Kamil Grzybek)                                               | Media-alta | Implementación de referencia en C#/.NET, pero sin "magia" de framework — Outbox pattern transaccional y segregación de esquemas SQL mapean línea por línea a Postgres/Go. Útil si te interesa monolito modular vs. microservicios prematuros                                                                             |
+| Referencia — diseño de APIs   | [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines) + [Google API Design Guide](https://cloud.google.com/apis/design)       | Alta       | Estándares battle-tested para versionado, paginación por cursor, idempotencia, errores canónicos. Aplicarlos completos a un microservicio de 2 endpoints es excesivo — usarlos como checklist, no como dogma                                                                                                             |
+
+**Ruta sugerida (6-8 semanas, ~10-12h/semana):**
+
+1. **S1-2 — Hexagonal/Clean Architecture en Go:** estudiar `go-structure-examples`
+   (comparar carpeta `hexagonal` vs. `module`) + primeros artículos de Wild Workouts.
+   Práctica: refactorizar un CRUD propio separando dominio de adaptadores (Postgres,
+   Chi/Gin).
+2. **S3-4 — Monolito modular vs. microservicios:** diagramas C4/ADRs de Modular
+   Monolith Primer. Práctica: simular comunicación entre módulos con interfaces de
+   paquetes internos (`internal/pkg/...`) antes de saltar a red.
+3. **S5-6 — Event-Driven, CQRS y Event Sourcing:** ensayo de Fowler + eventos en Wild
+   Workouts con Watermill. Identificar el umbral real donde CQRS deja de ser
+   sobre-ingeniería.
+4. **S7-8 — Diseño de APIs y contratos:** guías de Microsoft/Google. Práctica: diseñar
+   un contrato gRPC (.proto) + uno REST/OpenAPI, implementar middleware de idempotencia
+   con `Idempotency-Key` en Redis.
+
+---
+
+### Nivel 3 — Patrones de Diseño (el código)
+
+El catálogo clásico "Gang of Four" (Creacionales, Estructurales, De Comportamiento): Factory, Builder, Singleton, Adapter, Decorator, Facade, Strategy, Observer, State, Command, etc.
+
+> **Lenguaje: Python, no Go.** El catálogo GoF asume OOP clásica completa (herencia,
+> clases abstractas, interfaces explícitas, visibilidad). El estándar de facto para
+> *aprenderlo por primera vez* es Java/C#; Python es la alternativa reconocida cuando no
+> se quiere sumar un lenguaje nuevo solo para esto (hay literatura seria que enseña los
+> patrones en Java+Python+TypeScript en paralelo). Go, en cambio, no es un buen primer
+> lenguaje para este catálogo: al no tener herencia ni interfaces explícitas, varios
+> patrones (Builder, Singleton, parte de Factory) se disuelven o cambian de forma antes de
+> verse en su forma canónica — incluso el material oficial de Go sobre el tema asume que el
+> lector ya conoce los patrones desde Java/C#/Python. Como ya tenés Python de F4 (clases,
+> `abc.ABC`, `typing.Protocol`, `dataclasses`), no hace falta aprender un lenguaje nuevo:
+> se escribe el patrón en su forma de libro en Python, y **después** se compara con su
+> equivalente idiomático en Go (ver nota al final) — así se ve tanto el concepto puro como
+> la simplificación real que ya usás en el día a día.
+
+| Rol | Recurso | Confianza | Notas |
+|-----|---------|-----------|-------|
+| Principal — catálogo conceptual | [Refactoring.Guru — Design Patterns](https://refactoring.guru/design-patterns) | Alta | El catálogo web (los 23 patrones GoF, con intención, estructura y pros/contras de cada uno) es gratis para leer online. El "ebook" descargable es un producto pago aparte — no hace falta comprarlo |
+| Principal — código en Python | [RefactoringGuru/design-patterns-python](https://github.com/RefactoringGuru/design-patterns-python) | Alta | Repo oficial del mismo proyecto: los 23 patrones GoF en Python 3.7+, con ejemplo "Conceptual" (estructura pura) y "RealWorld" (aplicado) por cada uno |
+| Referencia — catálogo extendido | [java-design-patterns.com](https://java-design-patterns.com/patterns) (iluwatar) | Media-alta | Va más allá de los 23 de GoF (incluye Circuit Breaker, CQRS, DAO — algunos ya vistos en Nivel 1-2). Código en Java, la referencia "de libro" si hace falta comparar contra el estándar más estricto |
+| Referencia — texto original | *Design Patterns: Elements of Reusable Object-Oriented Software* (Gamma, Helm, Johnson, Vlissides — "GoF") | — | El libro que originó el catálogo. Es pago y los ejemplos son en C++/Smalltalk; Refactoring.Guru cubre el mismo contenido gratis y en Python — no es necesario comprarlo salvo interés histórico |
+
+**De vuelta a Go — dónde el lenguaje simplifica el patrón clásico** (no reemplaza el concepto que ya viste en Python, cambia la implementación):
+- **Strategy** → interfaces implícitas: cualquier struct que satisfaga una interfaz de un solo método ya es una estrategia intercambiable, sin jerarquía de clases.
+- **Decorator** → middleware/embedding: `func(http.Handler) http.Handler`, o struct embedding para envolver una interfaz.
+- **Builder** → Functional Options: `type Option func(*Server)` → `NewServer(addr, WithTimeout(5*time.Second))`.
+- **Singleton** → generalmente se evita: en Go se prefiere inyectar la dependencia explícitamente (pasar el `*sql.DB` o el logger) en vez de un singleton global.
+
+**Ruta sugerida (3-4 semanas, ~8-10h/semana):**
+1. **S1 — Creacionales:** Factory Method, Builder, Singleton en Python + comparación con constructores y Functional Options en Go.
+2. **S2 — Estructurales:** Adapter, Decorator, Facade, Composite en Python + comparación con middleware `http.Handler` y embedding en Go.
+3. **S3 — De Comportamiento I:** Strategy, Observer, State en Python + comparación con `io.Reader`/`io.Writer` y channels en Go.
+4. **S4 — De Comportamiento II & Síntesis:** Command, Template Method, Chain of Responsibility en Python + selección de 3-4 patrones para el entregable de `architecture-docs`.
 
 ---
 
