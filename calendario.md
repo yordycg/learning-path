@@ -1,6 +1,6 @@
-# Calendario Maestro — Modelo Semestre y Vacaciones
+# Calendario Maestro — Modelo Semestre, Vacaciones y Dos Etapas
 
-> **Fuente única** del ritmo y cronograma de estudio. Define los regímenes de dedicación según el período lectivo universitario y las vacaciones.
+> **Fuente única** del ritmo y cronograma de estudio. Define los regímenes de dedicación según el período lectivo universitario, las vacaciones y la estrategia en Dos Etapas.
 
 ---
 
@@ -8,15 +8,15 @@
 
 | Período | Rango de Fechas | Esquema Diario | Total Semanal |
 | :--- | :--- | :--- | :--- |
-| **Régimen Semestre** | 28 Sep – 22 Nov 2026 | Mar–Vie: 1h/día (4h) · Sáb–Dom–Lun: 4h/día (12h) | **16 horas / semana** |
-| **Régimen Vacaciones** | Desde 23 Nov 2026 | 4 horas / día $\times$ 7 días *(a confirmar según trabajo)* | **28 horas / semana** |
+| **Régimen Semestre** | 28 Sep – 22 Nov 2026 (y semestres 2027) | Mar–Vie: 1h/día (4h) · Sáb–Dom–Lun: 4h/día (12h) | **16 horas / semana** |
+| **Régimen Vacaciones** | Ene–Feb 2027 (y pausas académicas) | 4 horas / día $\times$ 7 días *(ajustable según trabajo)* | **20–28 horas / semana** |
 
 - **Días de semana (Mar–Vie, 1h):** Asimilación de conceptos, lectura de documentación/papers y katas atómicas.
 - **Fin de semana + Lunes (Sáb–Dom–Lun, 4h):** Bloques de deep work para implementación, testing, depuración (ASan/GDB) y proyectos de fin de fase.
 
 ---
 
-## 2. Calendario del Semestre Universitario (Hasta 22 Nov 2026, 16h/sem)
+## 2. Calendario Semestral Inmediato (Hasta 22 Nov 2026, 16h/sem)
 
 | Sem. Univ. | Fechas (2026) | Módulo / Fase | Foco Técnico | Estado |
 | :--- | :--- | :--- | :--- | :--- |
@@ -35,24 +35,29 @@
 
 ---
 
-## 3. Régimen Intensivo de Vacaciones (Desde 23 Nov 2026, 28h/sem proyectadas)
+## 3. Cronograma Maestro Etapa 1: Pre-Graduación (Hasta Dic 2027)
 
-*(Sujeto a confirmación según compromisos laborales / pasantía).*
-
-### Continuación de Fase 2 (Go + PostgreSQL + Seguridad + `taskapi`)
-- **Semana 23 – 29 Nov 2026 (28h):** PostgreSQL y Modelado ER (pgexercises, CS50 SQL Designing, normalización).
-- **Semana 30 Nov – 6 Dic 2026 (28h):** Índices y Rendimiento (`EXPLAIN ANALYZE`, MVCC, aislamiento, transacciones).
-- **Semana 7 – 13 Dic 2026 (28h):** Seguridad Backend (PortSwigger labs: SQLi, Auth, JWT; defensas OWASP, bcrypt).
-- **Semanas 14 – 27 Dic 2026 (56h):** Proyecto `taskapi` (REST API segura en Go + Postgres, tests de integración, Docker básico) y pulido final.
-> 🎯 **Cierre Definitivo de Fase 2:** **27 de Diciembre de 2026**.
-
-### Fase 3: Sistemas Distribuidos + Docker + Redis + Observabilidad + CI/CD
-- **28 Dic 2026 – 21 Feb 2027 (8 semanas a 28h = 224 horas):** Docker multi-stage, Redis caché y rate limiting, OpenTelemetry + Prometheus/Grafana, Circuit Breaker, CI/CD con GitHub Actions y proyecto `resilient-api`.
-> 🎯 **Cierre Definitivo de Fase 3:** **21 de Febrero de 2027**.
+| Fase | Período Proyectado | Duración | Foco Técnico Principal | Proyecto / Hito |
+| :--- | :--- | :--- | :--- | :--- |
+| **F1** | 14 jun – 1 nov 2026 | 20 sem. | Linux Internals, C & DSA Fundamentos | `mysh v2.0` (cerrado) + DSA en C |
+| **F2** | 2 nov 2026 – 31 ene 2027 | 13 sem. | Go Idiomático + PostgreSQL + Seguridad | Proyecto `taskapi` (REST API segura) |
+| **F3** | 1 feb – 28 mar 2027 | 8 sem. | Docker + Redis + Observabilidad + CI/CD | Proyecto `resilient-api` (microservicio resiliente) |
+| **F4** | 29 mar – 13 jun 2027 | 11 sem. | Arquitectura Hexagonal, DDD & System Design | Proyecto `architecture-docs` (Fly.io retos 1-4, C4, ADRs) |
+| **F5** | 14 jun – 29 ago 2027 | 11 sem. | Portfolio de Alto Impacto & Preparación Entrevistas | 2 proyectos estrella pulidos + mocks STAR (Silver.dev) |
+| **BUFFER** | **30 ago – 15 dic 2027** | **~15 sem.** | **Tesis de grado, exámenes finales y postulaciones remotas USD** | 🎓 **Graduación universitaria con empleo en USD** |
 
 ---
 
-## 4. Estado Operativo y Enlaces
+## 4. Etapa 2: Especializaciones Post-Graduación (2028+)
+
+Especializaciones a cursar mientras se trabaja en la industria o se emprende:
+- **Especialización A — Data Engineering:** Python idiomático, Apache Kafka streaming, dbt Core, DuckDB, arquitecturas Lambda/Kappa (`eventpipe`).
+- **Especialización B — Cloud (AWS) & Kubernetes:** AWS (ECS/EKS, RDS, S3), *Kubernetes the Hard Way*, Terraform, certificaciones AWS SAA-C03.
+- **Especialización C — Mobile Multiplataforma:** Kotlin Multiplatform (KMP) + Compose Multiplatform para Android e iOS (`mobile-app`).
+
+---
+
+## 5. Estado Operativo y Enlaces
 
 - **Seguimiento diario de DSA:** [`learning-dsa/README.md`](learning-dsa/README.md)
 - **Hoja de ruta estratégica completa:** [`docs/roadmap.md`](docs/roadmap.md)
