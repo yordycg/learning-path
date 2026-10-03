@@ -1,20 +1,20 @@
 # DSA Track — Data Structures & Algorithms en C (S1 a S5)
 
-> **Cockpit de Estudio Autónomo.** El objetivo central es dominar la memoria manual en C y el **criterio de selección**: dado un problema, reconocer qué estructura de datos corresponde y por qué (acceso, inserción, memoria, orden, complejidad Big-O y *cache locality*).
+> **Cockpit de Estudio Autónomo.** El objetivo central es dominar la memoria manual en C y el **criterio de selección**: dado un problema, reconocer qué estructura de datos corresponde y por qué (acceso, inserción, memoria, orden, complejidad Big-O y _cache locality_).
 
 ---
 
 ## 1. Progreso Semanal
 
-| Semana | Fechas (2026) | Tema Central | Archivos Clave | Estado |
-| :--- | :--- | :--- | :--- | :--- |
-| **S1** | **28 Sep – 4 Oct** | **Big O & Dynamic Array** | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c` | 🔄 **Activa** |
-| **S2** | **5 – 11 Oct** | **Singly & Doubly Linked Lists** | `c/4-linked-list.c`, `c/5-list-vs-array.c` | [ ] Pendiente |
-| **S3** | **12 – 18 Oct** | **Stack & Queue (Circular Buffer)** | `c/6-stack.c`, `c/7-queue.c` | [ ] Pendiente |
-| **S4** | **19 – 25 Oct** | **Hash Table & Sorting (Merge Sort)** | `c/8-hash-table.c`, `c/9-merge-sort.c` | [ ] Pendiente |
-| **S5** | **26 Oct – 1 Nov** | **Integración NeetCode & Cierre F1** | `c/exercises/*.c` + Checklist Cierre F1 | [ ] Pendiente |
+| Semana | Fechas (2026)      | Tema Central                          | Archivos Clave                                                | Estado        |
+| :----- | :----------------- | :------------------------------------ | :------------------------------------------------------------ | :------------ |
+| **S1** | **28 Sep – 4 Oct** | **Big O & Dynamic Array**             | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c` | 🔄 **Activa** |
+| **S2** | **5 – 11 Oct**     | **Singly & Doubly Linked Lists**      | `c/4-linked-list.c`, `c/5-list-vs-array.c`                    | [ ] Pendiente |
+| **S3** | **12 – 18 Oct**    | **Stack & Queue (Circular Buffer)**   | `c/6-stack.c`, `c/7-queue.c`                                  | [ ] Pendiente |
+| **S4** | **19 – 25 Oct**    | **Hash Table & Sorting (Merge Sort)** | `c/8-hash-table.c`, `c/9-merge-sort.c`                        | [ ] Pendiente |
+| **S5** | **26 Oct – 1 Nov** | **Integración NeetCode & Cierre F1**  | `c/exercises/*.c` + Checklist Cierre F1                       | [ ] Pendiente |
 
-*Nota:* El 1 de noviembre concluyen las 5 semanas de DSA en C, cerrando formalmente la **Fase 1**. A partir del 2 de noviembre (Fase 2 en Go), DSA se mantiene como un hábito continuo de 3h/semana resolviendo NeetCode Blind 75/150 en Go.
+_Nota:_ El 1 de noviembre concluyen las 5 semanas de DSA en C, cerrando formalmente la **Fase 1**. A partir del 2 de noviembre (Fase 2 en Go), DSA se mantiene como un hábito continuo de 3h/semana resolviendo NeetCode Blind 75/150 en Go.
 
 ---
 
@@ -24,12 +24,12 @@
 
 ### 📍 Semana 1: Big O & Dynamic Array (28 Sep – 4 Oct)
 
-- [ ] **Paso 1 — Fundamentos Big O (Lectura rápida, ~15 min):**
+- [x] **Paso 1 — Fundamentos Big O (Lectura rápida, ~15 min):**
   - Leer [freeCodeCamp — Big O Notation Explained](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/).
   - Crear `c/1-big-o.c`: Comparar con `clock()` el tiempo de CPU de un bucle $O(n)$ contra un bucle anidado $O(n^2)$.
 - [ ] **Paso 2 — Concepto Dynamic Array (Video troncal, ~30 min):**
   - Ver [William Fiset — Dynamic Arrays](https://www.youtube.com/watch?v=RBSGKlAvoiM&t=765s) (YouTube: min 12:45 a 45:10).
-  - Entender modelo mental: puntero `data*`, `size`, `capacity`, resize $2\times$ amortizado. *(Apoyo visual si hace falta: [VisuAlgo Array](https://visualgo.net/))*.
+  - Entender modelo mental: puntero `data*`, `size`, `capacity`, resize $2\times$ amortizado. _(Apoyo visual si hace falta: [VisuAlgo Array](https://visualgo.net/))_.
 - [ ] **Paso 3 — Implementación Base:**
   - Crear `c/2-dynamic-array.c`: Implementar `struct DynamicArray` con `darray_create`, `darray_destroy` y `darray_push_back` con crecimiento multiplicativo.
 - [ ] **Paso 4 — Operaciones y Trade-offs:**
