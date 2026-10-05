@@ -27,15 +27,15 @@ _Nota:_ El 1 de noviembre concluyen las 5 semanas de DSA en C, cerrando formalme
 - [x] **Paso 1 — Fundamentos Big O (Lectura rápida, ~15 min):**
   - Leer [freeCodeCamp — Big O Notation Explained](https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/).
   - Crear `c/1-big-o.c`: Comparar con `clock()` el tiempo de CPU de un bucle $O(n)$ contra un bucle anidado $O(n^2)$.
-- [ ] **Paso 2 — Concepto Dynamic Array (Video troncal, ~30 min):**
+- [x] **Paso 2 — Concepto Dynamic Array (Video troncal, ~30 min):**
   - Ver [William Fiset — Dynamic Arrays](https://www.youtube.com/watch?v=RBSGKlAvoiM&t=765s) (YouTube: min 12:45 a 45:10).
   - Entender modelo mental: puntero `data*`, `size`, `capacity`, resize $2\times$ amortizado. _(Apoyo visual si hace falta: [VisuAlgo Array](https://visualgo.net/))_.
-- [ ] **Paso 3 — Implementación Base:**
+- [x] **Paso 3 — Implementación Base:**
   - Crear `c/2-dynamic-array.c`: Implementar `struct DynamicArray` con `darray_create`, `darray_destroy` y `darray_push_back` con crecimiento multiplicativo.
-- [ ] **Paso 4 — Operaciones y Trade-offs:**
+- [x] **Paso 4 — Operaciones y Trade-offs:**
   - En `c/2-dynamic-array.c`: Implementar `darray_get`, `darray_set` (con bounds checking) y `darray_pop`.
   - Crear `c/3-array-tradeoffs.c`: Demostrar el costo de insertar en índice 0 ($O(n)$ por desplazamiento de memoria con `memmove`) vs insertar al final ($O(1)$ amortizado).
-- [ ] **Paso 5 — Validación DoD & Cierre de Semana:**
+- [x] **Paso 5 — Validación DoD & Cierre de Semana:**
   - Ejecutar: `just run learning-dsa/c/2-dynamic-array.c` insertando 100.000 elementos.
   - Verificar: **0 leaks y 0 errores de memoria** con AddressSanitizer.
   - Commit: `feat(dsa): implementar dynamic array con resize amortizado en c`.
