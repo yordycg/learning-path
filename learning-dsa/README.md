@@ -8,6 +8,8 @@
 > **Decisión Técnica: Cierre del Track en C y Transición Estratégica a Go (21 Oct 2026)**
 > - **Objetivo de bajo nivel consolidado:** Los fundamentos de memoria física contigua vs. no contigua, punteros y gestión en el heap quedaron asimilados mediante `mysh v2.0`, `1-big-o.c`, `2-dynamic-array.c`, `3-array-tradeoffs.c` y la base de `4-linked-list.c` (verificados sin fugas con AddressSanitizer).
 > - **Maximización del ROI para Backend & Entrevistas:** Implementar desde cero estructuras auxiliares en C (stack, queue, hash table) aporta rendimientos decrecientes frente a la meta laboral. El entrenamiento algorítmico se traslada directamente a **Go** (`learning-dsa/go/` y NeetCode Blind 75), priorizando el **reconocimiento de patrones** (Two Pointers, Sliding Window, Monotonic Stack, Hash Sets), la fluidez idiomática con `slices` y `maps`, y el análisis de trade-offs en tiempo y espacio.
+> - **Qué se gana y qué se sacrifica:** se sacrifica la implementación manual de hash table en C; se compensa leyendo los internals de `map` en Go (Swiss tables) y resolviendo la categoría Arrays & Hashing de NeetCode. El criterio de selección se conserva; solo cambia el lenguaje de práctica.
+> - **Pausa explícita de DSA:** DSA queda en pausa durante las tres primeras semanas de Go (26 oct – 15 nov) para no competir con la asimilación sintáctica. Se reactiva cuando `slices`, `maps`, `structs` y punteros estén dominados, a razón de 1–2 katas/semana.
 
 ---
 
@@ -18,10 +20,10 @@
 | **S1** | **28 Sep – 4 Oct** | **Big O & Dynamic Array**             | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c` | ✅ **Cerrado** |
 | **S2** | **5 – 11 Oct**     | **Doubly Linked List (Base)**         | `c/4-linked-list.c`                                           | ✅ **Cerrado** |
 | **S3** | **12 – 18 Oct**    | **Stack & Queue (LIFO / FIFO)**       | Migrado a Go (Fase 2 / NeetCode)                              | ⏩ **Pivote a Go** |
-| **S4** | **19 – 25 Oct**    | **Hash Table & Sorting**              | Migrado a Go (Fase 2 / NeetCode)                              | ⏩ **Pivote a Go** |
-| **S5** | **26 Oct – 1 Nov** | **Integración NeetCode & Cierre F1**  | `learning-dsa/go/` (Blind 75 en Go)                           | 🔄 **En preparación** |
+| **S4** | **19 – 25 Oct**    | **Hash Table & Sorting**              | Migrado a Go (F2 / NeetCode) — sin implementación en C        | ⏩ **Pivote a Go** |
+| **S5** | **26 Oct – 1 Nov** | **Cierre F1 + Rampa Go (sin DSA)**    | `learning-go/` (Tour + Learn Go with Tests)                   | 🔄 **En preparación** |
 
-_Nota de transición:_ A partir del arranque de la **Fase 2**, DSA se mantiene como un hábito continuo de 3h/semana resolviendo NeetCode Blind 75/150 directamente en Go.
+_Nota de transición:_ DSA queda en pausa durante las tres primeras semanas de la **Fase 2** (Go, 26 oct – 15 nov). Se reactiva después como un hábito continuo de 1–2 katas/semana resolviendo NeetCode Blind 75/150 directamente en Go, cuando `slices`, `maps`, `structs` y punteros estén dominados.
 
 ---
 
@@ -63,12 +65,12 @@ _Nota de transición:_ A partir del arranque de la **Fase 2**, DSA se mantiene c
 
 ---
 
-### 📍 Transición: NeetCode & DSA en Go (Fase 2 en adelante)
+### 📍 Transición: NeetCode & DSA en Go (reactivación tras la rampa de Go)
 
-A partir de la Fase 2, el estudio de DSA se ejecuta directamente en Go con la pista de **NeetCode Blind 75 / 150**:
+DSA se reactiva cuando el estudiante ya escribe `slices`, `maps`, `structs` y punteros con soltura (estimado: segunda mitad de noviembre), con la pista de **NeetCode Blind 75 / 150**:
 
 - **Foco:** Resolución de problemas por categorías (Arrays & Hashing $\to$ Two Pointers $\to$ Sliding Window $\to$ Stack $\to$ Binary Search $\to$ Trees).
-- **Régimen:** Hábito continuo de 3h semanales integradas con el estudio de Go idiomático.
+- **Régimen:** Hábito continuo de 1–2 katas/semana (~2–3h) integrado con el estudio de Go idiomático.
 - **Entregables:** Soluciones comentadas y estructuradas en el directorio `learning-dsa/go/`.
 
 ---
@@ -83,7 +85,7 @@ learning-dsa/
 │   ├── 2-dynamic-array.c  # Dynamic array con realloc amortizado
 │   ├── 3-array-tradeoffs.c# Inserción O(n) vs acceso O(1)
 │   └── 4-linked-list.c    # Doubly linked list manual limpia con ASan
-├── go/                    # Activo (F2 en adelante) — Problemas NeetCode Blind 75 en Go
+├── go/                    # En pausa hasta dominar fundamentos de Go — luego Blind 75
 └── graphs/                # Futuro (F3/F5) — Algoritmos de grafos distribuidos
 ```
 

@@ -33,7 +33,7 @@
 
 **Disciplinas que atraviesan varias fases:**
 
-- **DSA:** F1 (arrays, punteros, linked lists, hash tables en C) → F2 (árboles, sorting, slices en Go) → F3 (consistent hashing, caching) → F5 (repaso continuo para entrevistas en Go).
+- **DSA:** F1 (arrays, punteros y linked lists en C) → F2 (stack, queue, hash table, árboles, sorting, slices en Go) → F3 (consistent hashing, caching) → F5 (repaso continuo para entrevistas en Go).
 - **Seguridad:** F2 (OWASP, JWT, secrets, bcrypt).
 - **Arquitectura & Patrones:** F2 (Repository, interfaces) → F3 (Circuit Breaker, Retry, Cache-aside) → F4 (Clean Architecture/Hexagonal, DDD táctico, Monolito Modular, Fly.io retos distribuidos).
 - **Comunicación técnica:** F4 (ADRs, RFCs, post-mortems, C4) → F5 (READMEs que convierten, behavioral STAR).
@@ -49,7 +49,7 @@
 - Aritmética de punteros y gestión manual de heap. Modelo de memoria (Stack/Heap/BSS/Text).
 - Syscalls directas (`read`, `write`, `open`, `fork`, `exec`, `wait`), señales UNIX, IPC con pipes/FIFOs.
 - Makefiles, GDB y Valgrind.
-- DSA en C desde cero: arrays, linked lists, stacks, queues, hash tables. Complejidad algorítmica.
+- DSA en C desde cero: complejidad algorítmica, dynamic array y linked list. Stack, queue y hash table se cubren directamente en Go (F2) para no duplicar el costo de memoria ya aprendido.
 
 ### C, memoria, threads, Linux Internals, debugging
 
@@ -71,7 +71,7 @@
 | Referencia                 | [Open Data Structures](https://opendatastructures.org/) | Media     | Recomendado, no verificado con búsqueda dedicada                     |
 | Repaso espaciado           | [Anki](https://apps.ankiweb.net/) (escritorio) | —         | Una tarjeta por error cometido                                       |
 
-**Plan:** 3 semanas en C (dynamic array, linked list, hash table), resto de estructuras (stack, queue, BST, sorting) directo en Go desde F2 (~3h/semana, 2-3 problemas nuevos + 1h de repaso espaciado). Si tras 30-45 min no sale un problema: ver la solución en NeetCode, entender el patrón, y al día siguiente reescribirlo desde cero. Repasos a 1 día, 3 días, 1 semana, 2 semanas, 1 mes, 3 meses.
+**Plan:** 2 semanas en C (dynamic array, linked list — donde la memoria manual enseña algo), resto de estructuras (stack, queue, hash table, BST, sorting) directo en Go desde F2 (~3h/semana, 2-3 problemas nuevos + 1h de repaso espaciado). DSA se pausa las tres primeras semanas de Go (26 oct – 15 nov) y se reactiva después como hábito ligero de 1–2 katas/semana. Si tras 30-45 min no sale un problema: ver la solución en NeetCode, entender el patrón, y al día siguiente reescribirlo desde cero. Repasos a 1 día, 3 días, 1 semana, 2 semanas, 1 mes, 3 meses.
 
 **Complementos del roadmap original (no verificados por SOURCES.md, útiles como práctica adicional):** [Data Structures Easy to Advanced](https://www.youtube.com/watch?v=RBSGKlAvoiM) (freeCodeCamp/Fiset, ver por secciones); [70 Leetcode problems](https://www.youtube.com/watch?v=lvO88XxNAzs) (Stoney codes, problemas reales por estructura).
 
@@ -86,6 +86,8 @@ Parseo de comandos, ejecución con `fork`+`exec` (sin `system()`), pipes (`cmd1 
 **Período:** 2 nov 2026 – 31 ene 2027 (~13 semanas: semestre + vacaciones + buffer)
 
 ### Go
+
+**Rampa de arranque (26 oct – 1 nov):** el módulo [`learning-go/`](../learning-go/README.md) arranca antes del 2 nov con *A Tour of Go* y los primeros capítulos de *Learn Go with Tests*, sin tocar DSA. Orden prescriptivo: Tour → `hello-world` → `integers` → `iteration` → `arrays-slices` → `structs-methods-interfaces` → `pointers-errors` → `maps` → DI → mocking → concurrencia → HTTP/JSON (`context` se aprende con el servidor HTTP). HTTP, JSON y `context` se cierran antes de `taskapi` porque son su base directa.
 
 | Rol                 | Recurso                                                                                                                                         | Confianza  | Notas                                                                        |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------- |

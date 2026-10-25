@@ -33,11 +33,13 @@ con linked list no implementados, decisión consciente de cerrar aquí).
 
 ---
 
-### DSA — **ACTIVO** (S6–S10 en C, luego hilo permanente en Go desde F2)
+### DSA — **ACTIVO** (S1–S2 en C, luego hilo permanente en Go desde F2)
 
-**Plan:** 3 semanas en C (dynamic array, linked list, hash table — donde la memoria
-manual enseña algo), resto de estructuras (stack, queue, BST, sorting) directo en Go.
-Desde F2 en adelante: ~3h/semana, 2-3 problemas nuevos + 1h de repaso espaciado.
+**Plan:** 2 semanas en C (dynamic array, linked list — donde la memoria
+manual enseña algo), resto de estructuras (stack, queue, hash table, BST,
+sorting) directo en Go. DSA se pausa las tres primeras semanas de Go
+(26 oct – 15 nov) y se reactiva como hábito de 1–2 katas/semana (~3h), 1h de
+repaso espaciado.
 
 | Rol                        | Recurso                                                               | Confianza | Notas                                                                                                  |
 | -------------------------- | --------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------ |

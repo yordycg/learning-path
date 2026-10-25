@@ -24,14 +24,16 @@
 | **5** | 7 – 13 sep | F1 · C/Systems | Señales (`sigaction`, `SIGINT`, `SIGCHLD`) | ✅ Cerrado (`mysh v1.5`) |
 | **6** | 14 – 20 sep | F1 · C/Systems | Pipes e IPC (`pipe`, FIFOs, descriptores) | ✅ Cerrado (`mysh v2.0`) |
 | **7** | 21 – 27 sep | Transición | C/Linux cerrado; revisión de fuentes y roadmap | ✅ Cerrado |
-| **8** | **28 sep – 4 oct** | **F1 · DSA S1** | **Big O + Dynamic Array (desde cero)** | 🔄 Arranca mañana |
-| **9** | **5 – 11 oct** | **F1 · DSA S2** | **Linked Lists** (nodos, punteros, `binary_search`) | [ ] Pendiente |
-| **10** | **12 – 18 oct** | **F1 · DSA S3** | **Stack + Queue** (LIFO/FIFO, backing stores) | [ ] Pendiente |
-| **11** | **19 – 25 oct** | **F1 · DSA S4** | **Hash Table + Sorting** (colisiones, merge sort) | [ ] Pendiente |
-| **12** | **26 oct – 1 nov** | **F1 · DSA S5** | **Integración & Cierre Fase 1** (criterio de selección) | [ ] **Cierre F1 (1 Nov)** |
-| **13** | **2 – 8 nov** | **F2 · Go S1** | Fundamentos de Go (sintaxis, structs, slices, pointers) | [ ] Inicio Fase 2 |
-| **14** | **9 – 15 nov** | **F2 · Go S2** | Go Idiomático & TDD (*Learn Go with Tests*, interfaces, mocking) | [ ] Pendiente |
-| **15** | **16 – 22 nov** | **F2 · Go S3** | Concurrencia en Go (goroutines, channels, context) | [ ] **Fin de clases (22 Nov)** |
+| **8** | **28 sep – 4 oct** | **F1 · DSA S1** | **Big O + Dynamic Array (desde cero)** | ✅ Cerrado |
+| **9** | **5 – 11 oct** | **F1 · DSA S2** | **Doubly Linked List** (nodos, punteros, heap disperso) | ✅ Cerrado |
+| **10** | **12 – 18 oct** | **F1 · DSA S3** | Stack + Queue → **migrado a Go** (F2 / NeetCode) | ⏩ Pivote a Go |
+| **11** | **19 – 25 oct** | **F1 · DSA S4** | Hash Table + Sorting → **migrado a Go** (F2 / NeetCode) | ⏩ Pivote a Go |
+| **12** | **26 oct – 1 nov** | **F1 · Transición → F2** | **Rampa Go** (*A Tour of Go*) + **Cierre F1 (1 Nov)** | 🔄 En curso |
+| **13** | **2 – 8 nov** | **F2 · Go S1** | Tour + `hello-world`, `integers`, `iteration`, `arrays-slices` | [ ] Pendiente |
+| **14** | **9 – 15 nov** | **F2 · Go S2** | Structs/interfaces, pointers-errors, maps, DI, mocking | [ ] Pendiente |
+| **15** | **16 – 22 nov** | **F2 · Go S3** | Concurrencia (goroutines, channels, `select`, `sync`) | [ ] **Fin de clases (22 Nov)** |
+
+> **Nota de transición (25 Oct 2026):** La implementación de estructuras auxiliares en C (stack, queue, hash table) se cierra aquí por ROI: los fundamentos de memoria ya quedaron consolidados con `mysh v2.0`, dynamic array y doubly linked list. Esas estructuras y el resto del track se cubren en Go desde F2. La rampa de Go arranca en la semana 12, por lo que **DSA se pausa por completo durante las tres primeras semanas de Go (26 oct – 15 nov)** y se reactiva después como hábito de 1–2 katas/semana. Detalle operativo: [`learning-dsa/README.md`](learning-dsa/README.md) y [`learning-go/README.md`](learning-go/README.md).
 
 ---
 
@@ -60,5 +62,6 @@ Especializaciones a cursar mientras se trabaja en la industria o se emprende:
 ## 5. Estado Operativo y Enlaces
 
 - **Seguimiento diario de DSA:** [`learning-dsa/README.md`](learning-dsa/README.md)
+- **Seguimiento diario de Go (F2):** [`learning-go/README.md`](learning-go/README.md)
 - **Hoja de ruta estratégica completa:** [`docs/roadmap.md`](docs/roadmap.md)
 - **Fuentes técnicas verificadas:** [`docs/SOURCES.md`](docs/SOURCES.md)

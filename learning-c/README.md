@@ -88,7 +88,7 @@ This phase covers the absolute foundations of systems programming. By working wi
 | S3   | Aug 31 – Sep 6 | Processes                    | K&R 8, Sorber (fork) video | `fork/exec/wait`, zombies; **mysh v1.0** (no `system()`)                 | [x] |
 | S4   | Sep 7–13 | Signals                      | Beej 29 + videos           | `sigaction`; **mysh v1.5** (Ctrl+C only kills child)                     | [x] |
 | S5   | Sep 14–20 | Pipes / IPC                  | Sorber (pipe) video        | `pipe()`, FIFOs; **mysh v2.0** (`cmd1 \| cmd2 \| cmd3`)                  | [x] |
-| S6–S10 | Sep 21 – Oct 25 | DSA (Big O, arrays, lists, stack/queue, hash, sorting) | Fiset + Silver.dev + Beej 20.3/24 | ➡️ **migrado a [`learning-dsa/`](../learning-dsa/README.md)** | [ ] |
+| S6–S10 | Sep 21 – Oct 25 | DSA en C (Big O, arrays, lists); stack/queue/hash se cubren en Go | Fiset + Silver.dev + Beej 20.3/24 | ➡️ **migrado a [`learning-dsa/`](../learning-dsa/README.md)** | [ ] |
 
 > Beej resource: [beej.us/guide/bgc](https://beej.us/guide/bgc/html/split/index.html). Beej does NOT cover syscalls/processes/pipes/GDB/makefiles: those come from roadmap videos, `man 2`, and K&R ch. 8.
 
