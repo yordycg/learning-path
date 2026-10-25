@@ -9,25 +9,54 @@
 > - **Objetivo de bajo nivel consolidado:** Los fundamentos de memoria física contigua vs. no contigua, punteros y gestión en el heap quedaron asimilados mediante `mysh v2.0`, `1-big-o.c`, `2-dynamic-array.c`, `3-array-tradeoffs.c` y la base de `4-linked-list.c` (verificados sin fugas con AddressSanitizer).
 > - **Maximización del ROI para Backend & Entrevistas:** Implementar desde cero estructuras auxiliares en C (stack, queue, hash table) aporta rendimientos decrecientes frente a la meta laboral. El entrenamiento algorítmico se traslada directamente a **Go** (`learning-dsa/go/` y NeetCode Blind 75), priorizando el **reconocimiento de patrones** (Two Pointers, Sliding Window, Monotonic Stack, Hash Sets), la fluidez idiomática con `slices` y `maps`, y el análisis de trade-offs en tiempo y espacio.
 > - **Qué se gana y qué se sacrifica:** se sacrifica la implementación manual de hash table en C; se compensa leyendo los internals de `map` en Go (Swiss tables) y resolviendo la categoría Arrays & Hashing de NeetCode. El criterio de selección se conserva; solo cambia el lenguaje de práctica.
-> - **Pausa explícita de DSA:** DSA queda en pausa durante las tres primeras semanas de Go (26 oct – 15 nov) para no competir con la asimilación sintáctica. Se reactiva cuando `slices`, `maps`, `structs` y punteros estén dominados, a razón de 1–2 katas/semana.
+> - **DSA es hilo permanente, no fase:** arranca con la F2 (26 oct 2026) a **2–3 problemas/semana**, en paralelo a Go. Es requisito de entrevista, no un extra; por eso no se posterga ni se hace sprint final. Los problemas se resuelven **en Go** desde el inicio.
+> - **Meta:** **~100–120 problemas** al cierre de F5 (nov 2027), organizados por patrón, con repaso de errores.
+
+---
+
+## 0. Objetivos y meta
+
+| Aspecto | Definición |
+| :--- | :--- |
+| **Cadencia** | 2–3 problemas/semana (~3 h, incluyendo 1 h de repaso) |
+| **Meta a nov 2027** | ~100–120 problemas |
+| **Lenguaje** | Go (C solo como historia: memoria y punteros ya cubiertos) |
+| **Fuente** | [NeetCode — Blind 75 → 150](https://neetcode.io/practice) por categorías |
+| **Métrica real** | % de problemas que puedes reescribir desde cero una semana después |
+| **Regla** | Si no puedes explicar el patrón en voz alta, el problema no cuenta |
+
+**Progresión por patrones (orden sugerido):**
+`Arrays & Hashing` → `Two Pointers` → `Sliding Window` → `Stack` → `Binary Search` → `Linked List` → `Trees` → `Heap / Priority Queue` → `Backtracking` → `Graphs` → `1-D DP` → `Greedy` → `Intervals`.
 
 ---
 
 ## 1. Progreso Semanal
 
+### Track C — cerrado
+
 | Semana | Fechas (2026)      | Tema Central                          | Archivos Clave                                                | Estado        |
 | :----- | :----------------- | :------------------------------------ | :------------------------------------------------------------ | :------------ |
 | **S1** | **28 Sep – 4 Oct** | **Big O & Dynamic Array**             | `c/1-big-o.c`, `c/2-dynamic-array.c`, `c/3-array-tradeoffs.c` | ✅ **Cerrado** |
 | **S2** | **5 – 11 Oct**     | **Doubly Linked List (Base)**         | `c/4-linked-list.c`                                           | ✅ **Cerrado** |
-| **S3** | **12 – 18 Oct**    | **Stack & Queue (LIFO / FIFO)**       | Migrado a Go (Fase 2 / NeetCode)                              | ⏩ **Pivote a Go** |
-| **S4** | **19 – 25 Oct**    | **Hash Table & Sorting**              | Migrado a Go (F2 / NeetCode) — sin implementación en C        | ⏩ **Pivote a Go** |
-| **S5** | **26 Oct – 1 Nov** | **Cierre F1 + Rampa Go (sin DSA)**    | `learning-go/` (Tour + Learn Go with Tests)                   | 🔄 **En preparación** |
+| **S3** | **12 – 25 Oct**    | **Stack & Queue / Hash Table**        | Pivote a Go — no se implementan en C                          | ⏩ **Cerrado por decisión** |
 
-_Nota de transición:_ DSA queda en pausa durante las tres primeras semanas de la **Fase 2** (Go, 26 oct – 15 nov). Se reactiva después como un hábito continuo de 1–2 katas/semana resolviendo NeetCode Blind 75/150 directamente en Go, cuando `slices`, `maps`, `structs` y punteros estén dominados.
+### Track Go — activo
+
+| Semana | Fechas | Patrón | Objetivo |
+| :--- | :--- | :--- | :--- |
+| **G1** | 26 oct – 1 nov | Arrays & Hashing | 3 problemas: `contains duplicate`, `valid anagram`, `two sum` |
+| **G2** | 2 – 8 nov | Arrays & Hashing / Two Pointers | 3 problemas |
+| **G3** | 9 – 15 nov | Two Pointers / Sliding Window | 3 problemas |
+| **G4** | 16 – 22 nov | Stack | 3 problemas |
+| **G5** | 23 – 29 nov | **Repaso** (exámenes) | Rehacer los 3 problemas que peor salieron |
+| **dic 2026 – feb 2027** | Vacaciones | Binary Search → Linked List → Trees | 3/semana · acumulado ~40 |
+
+> No hay pausa: la cadencia es baja a propósito (2–3/semana) para que sea sostenible durante 13 meses. Es preferible 3 problemas bien repasados que 10 vistos una vez.
 
 ---
 
-## 2. Syllabus Secuencial Prescriptivo
+## 2. Historia: syllabus en C (cerrado, se conserva como referencia)
+
 
 ### 📍 Semana 1: Big O & Dynamic Array (28 Sep – 4 Oct) — [Cerrado ✅]
 
@@ -65,13 +94,15 @@ _Nota de transición:_ DSA queda en pausa durante las tres primeras semanas de l
 
 ---
 
-### 📍 Transición: NeetCode & DSA en Go (reactivación tras la rampa de Go)
+### 📍 Activo: NeetCode & DSA en Go
 
-DSA se reactiva cuando el estudiante ya escribe `slices`, `maps`, `structs` y punteros con soltura (estimado: segunda mitad de noviembre), con la pista de **NeetCode Blind 75 / 150**:
+DSA está activo desde la semana 1 de F2, con la pista de **NeetCode Blind 75 / 150**:
 
 - **Foco:** Resolución de problemas por categorías (Arrays & Hashing $\to$ Two Pointers $\to$ Sliding Window $\to$ Stack $\to$ Binary Search $\to$ Trees).
-- **Régimen:** Hábito continuo de 1–2 katas/semana (~2–3h) integrado con el estudio de Go idiomático.
-- **Entregables:** Soluciones comentadas y estructuradas en el directorio `learning-dsa/go/`.
+- **Régimen:** 2–3 problemas/semana (~3 h con repaso) integrado con el estudio de Go.
+- **Entregables:** Soluciones comentadas y estructuradas en el directorio `learning-dsa/go/`, con el patrón y la complejidad anotados en el propio código.
+- **Repaso:** cada error genera una nota breve; los problemas fallados se rehacen a los 3 días, 1 semana y 1 mes.
+- **Criterio de avance:** no se pasa a un patrón nuevo hasta poder resolver un problema representativo del anterior sin mirar.
 
 ---
 
@@ -85,8 +116,8 @@ learning-dsa/
 │   ├── 2-dynamic-array.c  # Dynamic array con realloc amortizado
 │   ├── 3-array-tradeoffs.c# Inserción O(n) vs acceso O(1)
 │   └── 4-linked-list.c    # Doubly linked list manual limpia con ASan
-├── go/                    # En pausa hasta dominar fundamentos de Go — luego Blind 75
-└── graphs/                # Futuro (F3/F5) — Algoritmos de grafos distribuidos
+├── go/                    # ACTIVO — NeetCode Blind 75/150, 2–3 problemas/semana
+└── graphs/                # Futuro (F5 en adelante) — grafos y problemas de sistemas
 ```
 
 ---
