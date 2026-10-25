@@ -10,7 +10,7 @@ It contains code snippets, atomic exercises, conceptual proofs of concept (PoCs)
 
 - **Roadmap:** [`docs/roadmap.md`](./docs/roadmap.md) — Two-Stage strategic plan: Pre-Graduation (Phases 1–5 + Career Buffer, Go Backend focus) and Post-Graduation Specializations (A: Data Engineering, B: Cloud & K8s, C: Mobile KMP).
 - **Verified Sources:** [`docs/SOURCES.md`](./docs/SOURCES.md) — Exhaustive catalog of verified learning resources, official documentation, courses, and design papers.
-- **Calendar & Dedication:** [`calendario.md`](./calendario.md) — Seasonal model (University semester vs. Vacation AI sprint) and 20h/week study structure.
+- **Calendar & Dedication:** [`calendario.md`](./calendario.md) — Seasonal model (university semester vs. vacation) and study rhythm (16h/week during semester, 20–28h/week on breaks).
 
 ---
 
@@ -30,10 +30,10 @@ The repository is organized by active modules, planned roadmap phases, and stand
 ### Active Modules & Projects
 - [`projects/`](./projects/) — Standalone roadmap projects (e.g., [`projects/mysh/`](./projects/mysh/)) managed as independent Git repositories with their own commit history, source code (`src/`), build system (`Makefile`), and architecture docs (`docs/`).
 - [`learning-c/`](./learning-c/) — Linux Internals, Memory Management (Stack/Heap), Syscalls, IPC, Signals (Phase 1, complete up to `mysh v2.0`).
-- [`learning-dsa/`](./learning-dsa/) — Data Structures & Algorithms (criterio de selección), implemented in C (S6–S10; future: Go, graphs).
+- [`learning-dsa/`](./learning-dsa/) — Data Structures & Algorithms (selection criteria): Big-O, dynamic array and doubly linked list in C; stack/queue/hash table and NeetCode practice move to Go in Phase 2.
+- [`learning-go/`](./learning-go/) — Go fundamentals and idiomatic Go via TDD (*A Tour of Go* + *Learn Go with Tests*): slices, maps, structs, interfaces, errors, testing, concurrency, HTTP stdlib (Phase 2).
 
 ### Planned Roadmap Modules (Created on module arrival)
-- `learning-go/` — Go fundamentals, Concurrency (Goroutines, Channels), idiomatic error handling, testing (TDD), and HTTP stdlib (Phase 2).
 - `learning-postgres/` — Advanced SQL, schema design, ER modeling, index analysis (`EXPLAIN ANALYZE`), and transaction isolation (Phase 2).
 - `learning-distributed/` — Containerization (Docker Compose), caching (Redis), resilience patterns (Circuit Breaker, Rate Limiting), and observability (Prometheus, OpenTelemetry) (Phase 3).
 - `learning-architecture/` — Software Architecture, DDD pragmático, System Design fundamentals, and Design Patterns (GoF pragmático) (Phase 4).
@@ -51,8 +51,12 @@ El repositorio cuenta con recetas automáticas para compilar y probar código si
 ```bash
 just              # Lista las recetas disponibles
 just run <file>   # Compila y ejecuta con ASan + UBSan en C, o -race en Go
-just test <file>  # Ejecuta y valida el código de retorno ($?)
-just check <file> # Comprobación de sintaxis estática rápida
+just test <file>  # Ejecuta y reporta el código de retorno real ($?)
+just check <file> # Comprobación estática rápida (gcc / gofmt + go vet)
+just test-go      # Todos los tests de learning-go con -race
+just bench-go     # Benchmarks de learning-go
+just fmt-go       # Aplica gofmt a learning-go
+just lint-go      # go vet sobre learning-go
 just mysh         # Compila el proyecto semanal mysh
 just clean        # Limpia binarios generados en build/
 ```
