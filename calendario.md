@@ -1,67 +1,91 @@
-# Calendario Maestro — Modelo Semestre, Vacaciones y Dos Etapas
+# Calendario Maestro — Modelo Semestre/Vacaciones y Dos Etapas
 
-> **Fuente única** del ritmo y cronograma de estudio. Define los regímenes de dedicación según el período lectivo universitario, las vacaciones y la estrategia en Dos Etapas.
+> **Fuente única** del ritmo y cronograma de estudio. Define los regímenes de dedicación según el período lectivo, los hitos de empleabilidad y la estrategia en Dos Etapas.
 
 ---
 
 ## 1. Regímenes de Horas y Dedicación
 
-| Período | Rango de Fechas | Esquema Diario | Total Semanal |
+| Período | Rango de Fechas | Esquema | Total Semanal |
 | :--- | :--- | :--- | :--- |
-| **Régimen Semestre** | 28 Sep – 22 Nov 2026 (y semestres 2027) | Mar–Vie: 1h/día (4h) · Sáb–Dom–Lun: 4h/día (12h) | **16 horas / semana** |
-| **Régimen Vacaciones** | Ene–Feb 2027 (y pausas académicas) | 4 horas / día $\times$ 7 días *(ajustable según trabajo)* | **20–28 horas / semana** |
+| **Semestre** | Oct–Nov 2026 · mar–may 2027 · ago–nov 2027 | Lun–Vie 2 h/día · Sáb–Dom–Lun 5 h/día | **20–23 h / semana** |
+| **Vacaciones** | dic 2026 – feb 2027 · jun–jul 2027 | 5 h/día × 5–6 días | **25–30 h / semana** |
+| **Semanas de exámenes** | Según calendario universitario | 2–3 h/día | **8–10 h / semana** |
 
-- **Días de semana (Mar–Vie, 1h):** Asimilación de conceptos, lectura de documentación/papers y katas atómicas.
-- **Fin de semana + Lunes (Sáb–Dom–Lun, 4h):** Bloques de deep work para implementación, testing, depuración (ASan/GDB) y proyectos de fin de fase.
+- **Regla del 80%:** planifica como máximo el 80% de tu capacidad. El 20% restante es para exámenes, imprevistos, salud y vida.
+- **Días de deep work (Sáb–Dom–Lun):** implementación, testing, debug (`go test`, `-race`, `go vet`, `dlv`) y proyectos.
+- **Días de semana (Lun–Vie, 2 h):** conceptos, documentación, katas atómicas y lectura.
+- **Nunca** se compensa una semana perdida duplicando horas: se recorta alcance.
 
 ---
 
-## 2. Calendario Semestral Inmediato (Hasta 22 Nov 2026, 16h/sem)
+## 2. Calendario Inmediato (Oct 2026 – Nov 2027)
 
-| Sem. Univ. | Fechas (2026) | Módulo / Fase | Foco Técnico | Estado |
+| Periodo | Fase | Situación | Foco | Hito |
 | :--- | :--- | :--- | :--- | :--- |
-| **4** | 31 ago – 6 sep | F1 · C/Systems | Procesos (`fork`, `exec`, `wait`, zombies) | ✅ Cerrado (`mysh v1.0`) |
-| **5** | 7 – 13 sep | F1 · C/Systems | Señales (`sigaction`, `SIGINT`, `SIGCHLD`) | ✅ Cerrado (`mysh v1.5`) |
-| **6** | 14 – 20 sep | F1 · C/Systems | Pipes e IPC (`pipe`, FIFOs, descriptores) | ✅ Cerrado (`mysh v2.0`) |
-| **7** | 21 – 27 sep | Transición | C/Linux cerrado; revisión de fuentes y roadmap | ✅ Cerrado |
-| **8** | **28 sep – 4 oct** | **F1 · DSA S1** | **Big O + Dynamic Array (desde cero)** | ✅ Cerrado |
-| **9** | **5 – 11 oct** | **F1 · DSA S2** | **Doubly Linked List** (nodos, punteros, heap disperso) | ✅ Cerrado |
-| **10** | **12 – 18 oct** | **F1 · DSA S3** | Stack + Queue → **migrado a Go** (F2 / NeetCode) | ⏩ Pivote a Go |
-| **11** | **19 – 25 oct** | **F1 · DSA S4** | Hash Table + Sorting → **migrado a Go** (F2 / NeetCode) | ⏩ Pivote a Go |
-| **12** | **26 oct – 1 nov** | **F1 · Transición → F2** | **Rampa Go** (*A Tour of Go*) + **Cierre F1 (1 Nov)** | 🔄 En curso |
-| **13** | **2 – 8 nov** | **F2 · Go S1** | Tour + `hello-world`, `integers`, `iteration`, `arrays-slices` | [ ] Pendiente |
-| **14** | **9 – 15 nov** | **F2 · Go S2** | Structs/interfaces, pointers-errors, maps, DI, mocking | [ ] Pendiente |
-| **15** | **16 – 22 nov** | **F2 · Go S3** | Concurrencia (goroutines, channels, `select`, `sync`) | [ ] **Fin de clases (22 Nov)** |
+| **26 oct – 29 nov 2026** | F2 (arranque) | Últimas 5 semanas del 6to semestre | Tour de Go + esqueleto de `taskapi` + diagnóstico de inglés | `taskapi` esqueleto con Postgres en Docker |
+| **dic 2026 – feb 2027** | F2 | Vacaciones (3 meses) | Go aplicado + `taskapi v1` + inglés intensivo | **`taskapi v1` desplegada**, tests, CI, README/ADRs · B1 en curso |
+| **mar – may 2027** | F3 | 7mo semestre | Endurecer `taskapi` + SQL + Docker/CI + postulaciones | 30+ postulaciones, entrevistas, `taskapi v2` |
+| **jun – jul 2027** | F4 | Vacaciones | Portfolio + system design básico + benchmark | README/ADRs pulidos, benchmark reproducible |
+| **ago – nov 2027** | F5 | 8vo semestre | **Tesis (bloque reservado)** + entrevistas + remoto USD | Tesis cerrada · oferta o pipeline activo |
+| **nov/dic 2027** | — | Graduación | Cierre de Etapa 1 | Titulación · B1+ |
+| **dic 2027 – feb 2028** | Buffer | Post-graduación | Negociación, plan B, primeras semanas de empleo | Oferta aceptada o plan B en marcha |
 
-> **Nota de transición (25 Oct 2026):** La implementación de estructuras auxiliares en C (stack, queue, hash table) se cierra aquí por ROI: los fundamentos de memoria ya quedaron consolidados con `mysh v2.0`, dynamic array y doubly linked list. Esas estructuras y el resto del track se cubren en Go desde F2. La rampa de Go arranca en la semana 12, por lo que **DSA se pausa por completo durante las tres primeras semanas de Go (26 oct – 15 nov)** y se reactiva después como hábito de 1–2 katas/semana. Detalle operativo: [`learning-dsa/README.md`](learning-dsa/README.md) y [`learning-go/README.md`](learning-go/README.md).
+> **Tesis:** la universidad aún no asigna tema ni fechas. F5 la reserva como bloque de 15–18 h/semana y se ajusta cuando exista información. Hasta entonces no se planifica `project X` en detalle.
 
 ---
 
-## 3. Cronograma Maestro Etapa 1: Pre-Graduación (Hasta Dic 2027)
+## 3. Hitos de Empleabilidad
 
-| Fase | Período Proyectado | Duración | Foco Técnico Principal | Proyecto / Hito |
+| Fecha | Hito | Dónde se trabaja |
+| :--- | :--- | :--- |
+| Nov 2026 | `taskapi` esqueleto + entorno Go listo | `learning-go/` |
+| Feb 2027 | `taskapi v1` pública + CV, LinkedIn y GitHub listos | `learning-go/` + [`yordycg-portfolio`](https://github.com/yordycg/yordycg-portfolio) |
+| Mar–May 2027 | 30+ postulaciones, 2+ entrevistas técnicas | `yordycg-portfolio` |
+| Jun 2027 | Inglés B1 (fuera de este repo) | Plan personal |
+| Jul 2027 | Portfolio pulido + benchmark reproducible | `yordycg-portfolio` |
+| Ago–Nov 2027 | Tesis + postulaciones full-time/remoto | Universidad + `yordycg-portfolio` |
+| Nov/Dic 2027 | Graduación + B1+ | — |
+
+> **Búsqueda laboral:** el detalle (CV, LinkedIn, tracker, canales, outreach) vive en [`yordycg-portfolio`](https://github.com/yordycg/yordycg-portfolio). Aquí solo se registran los hitos que condicionan el estudio.
+
+---
+
+## 4. Cronograma Maestro — Etapa 1: Pre-Graduación
+
+| Fase | Período | Duración | Foco Técnico Principal | Entregable / Hito |
 | :--- | :--- | :--- | :--- | :--- |
-| **F1** | 14 jun – 1 nov 2026 | 20 sem. | Linux Internals, C & DSA Fundamentos | `mysh v2.0` (cerrado) + DSA en C |
-| **F2** | 2 nov 2026 – 31 ene 2027 | 13 sem. | Go Idiomático + PostgreSQL + Seguridad | Proyecto `taskapi` (REST API segura) |
-| **F3** | 1 feb – 28 mar 2027 | 8 sem. | Docker + Redis + Observabilidad + CI/CD | Proyecto `resilient-api` (microservicio resiliente) |
-| **F4** | 29 mar – 13 jun 2027 | 11 sem. | Arquitectura Hexagonal, DDD & System Design | Proyecto `architecture-docs` (Fly.io retos 1-4, C4, ADRs) |
-| **F5** | 14 jun – 29 ago 2027 | 11 sem. | Portfolio de Alto Impacto & Preparación Entrevistas | 2 proyectos estrella pulidos + mocks STAR (Silver.dev) |
-| **BUFFER** | **30 ago – 15 dic 2027** | **~15 sem.** | **Tesis de grado, exámenes finales y postulaciones remotas USD** | 🎓 **Graduación universitaria con empleo en USD** |
+| **F1** | 14 jun – 30 sep 2026 | ~15 sem. | Linux Internals, C & DSA Fundamentos | `mysh v2.0` + dynamic array + linked list |
+| **F2** | 26 oct 2026 – 28 feb 2027 | ~18 sem. | Go, HTTP, PostgreSQL, testing, deploy | `taskapi v1` desplegada |
+| **F3** | 1 mar – 31 may 2027 | 13 sem. | Hardening, SQL, Docker/CI, primera experiencia | `taskapi v2` + 30+ postulaciones |
+| **F4** | 1 jun – 31 jul 2027 | 9 sem. | Portfolio, system design básico, benchmark | Portfolio listo para entrevistas |
+| **F5** | 1 ago – 30 nov 2027 | 17 sem. | Tesis, entrevistas, remoto USD, cierre | Titulación + oferta/pipeline |
+| **BUFFER** | dic 2027 – feb 2028 | ~10 sem. | Negociación, plan B, inserción laboral | Primer empleo o puente freelance |
+| **ETAPA 2** | 2028+ | — | Especializaciones (Data, Cloud, Mobile) | Después del primer empleo |
+
+**Disciplinas transversales:**
+
+- **DSA:** 2–3 problemas/semana desde nov 2026; ~100–120 al cierre de F5. Patrones, no problemas sueltos.
+- **Inglés:** fuera de este repo. Hito B1 en jun 2027 y B1+ en dic 2027.
+- **Empleo:** postulaciones desde mar 2027; el detalle vive en `yordycg-portfolio`.
+- **Documentación:** README/ADRs dentro de `taskapi`; no hay fase separada de arquitectura.
 
 ---
 
-## 4. Etapa 2: Especializaciones Post-Graduación (2028+)
+## 5. Etapa 2: Especializaciones Post-Graduación (2028+)
 
-Especializaciones a cursar mientras se trabaja en la industria o se emprende:
-- **Especialización A — Data Engineering:** Python idiomático, Apache Kafka streaming, dbt Core, DuckDB, arquitecturas Lambda/Kappa (`eventpipe`).
-- **Especialización B — Cloud (AWS) & Kubernetes:** AWS (ECS/EKS, RDS, S3), *Kubernetes the Hard Way*, Terraform, certificaciones AWS SAA-C03.
-- **Especialización C — Mobile Multiplataforma:** Kotlin Multiplatform (KMP) + Compose Multiplatform para Android e iOS (`mobile-app`).
+Especializaciones a cursar **después del primer empleo**, no en paralelo con la tesis:
+- **Especialización A — Data Engineering:** Python idiomático, Kafka streaming, dbt Core, DuckDB, arquitecturas Lambda/Kappa (`eventpipe`).
+- **Especialización B — Cloud (AWS) & Kubernetes:** AWS (ECS/EKS, RDS, S3), *Kubernetes the Hard Way*, Terraform, certificación AWS SAA-C03.
+- **Especialización C — Mobile Multiplataforma:** Kotlin Multiplatform (KMP) + Compose Multiplatform.
+- **Transversal — Arquitectura:** DDD táctico, Clean/Hexagonal, patrones GoF idiomáticos. Se estudia cuando el trabajo lo pida, no antes.
 
 ---
 
-## 5. Estado Operativo y Enlaces
+## 6. Estado Operativo y Enlaces
 
+- **Seguimiento diario de Go:** [`learning-go/README.md`](learning-go/README.md)
 - **Seguimiento diario de DSA:** [`learning-dsa/README.md`](learning-dsa/README.md)
-- **Seguimiento diario de Go (F2):** [`learning-go/README.md`](learning-go/README.md)
-- **Hoja de ruta estratégica completa:** [`docs/roadmap.md`](docs/roadmap.md)
+- **Hoja de ruta estratégica:** [`docs/roadmap.md`](docs/roadmap.md)
 - **Fuentes técnicas verificadas:** [`docs/SOURCES.md`](docs/SOURCES.md)
+- **Carrera, CV y postulaciones:** [`yordycg-portfolio`](https://github.com/yordycg/yordycg-portfolio)
