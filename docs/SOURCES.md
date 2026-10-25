@@ -1,10 +1,10 @@
-# SOURCES.md — Fuentes de aprendizaje verificadas
+# SOURCES.md — Catálogo de fuentes por tema
 
-> Documento vivo. Cada fase tiene un estado (CERRADO / ACTIVO / LISTO, sin empezar).
-
-> Metodología: para cada tema se investigó con 2 IAs (con búsqueda web), se compararon
-
-> resultados. "Confianza" indica qué tan verificado quedó cada recurso, no su calidad.
+> **Este documento es un catálogo de recursos, no un calendario.** Responde "con qué aprendo X". El qué, cuándo y con qué entregable vive en [`docs/roadmap.md`](roadmap.md) y [`calendario.md`](../calendario.md).
+>
+> Documento vivo. Cada bloque tiene un estado: **CERRADO** · **ACTIVO** · **DIFERIDO** (Etapa 2, 2028+) · **ON DEMAND** (se consulta cuando el proyecto lo exige, sin bloque dedicado).
+>
+> Metodología: para cada tema se investigó con 2 IAs (con búsqueda web) y se compararon resultados. "Confianza" indica qué tan verificado quedó cada recurso, no su calidad.
 
 ---
 
@@ -33,13 +33,16 @@ con linked list no implementados, decisión consciente de cerrar aquí).
 
 ---
 
-### DSA — **ACTIVO** (S1–S2 en C, luego hilo permanente en Go desde F2)
+### DSA — **ACTIVO** (hilo permanente, 2–3 problemas/semana desde nov 2026)
 
 **Plan:** 2 semanas en C (dynamic array, linked list — donde la memoria
 manual enseña algo), resto de estructuras (stack, queue, hash table, BST,
-sorting) directo en Go. DSA se pausa las tres primeras semanas de Go
-(26 oct – 15 nov) y se reactiva como hábito de 1–2 katas/semana (~3h), 1h de
-repaso espaciado.
+sorting) directo en Go. Cadencia sostenida de **2–3 problemas/semana** (~3 h,
+incluyendo 1 h de repaso espaciado), por patrón y no por problema suelto.
+Meta: **~100–120 problemas al cierre de F5** (nov 2027).
+
+DSA **no se pausa** durante F2: arranca en la semana 1 con 3 problemas
+semanales de arrays/hash maps, en paralelo al Tour de Go.
 
 | Rol                        | Recurso                                                               | Confianza | Notas                                                                                                  |
 | -------------------------- | --------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------ |
@@ -56,7 +59,9 @@ día, 3 días, 1 semana, 2 semanas, 1 mes, 3 meses.
 
 ---
 
-## F2 — Go + PostgreSQL + Seguridad + Modelado de Datos
+## F2 — Go + HTTP + PostgreSQL + Deploy (26 oct 2026 – 28 feb 2027) — **ACTIVO**
+
+> Todo lo de esta fase se aprende **construyendo `taskapi`**. No hay bloque de teoría previa: el Tour de Go y los primeros capítulos van en paralelo al primer endpoint. Los capítulos de DI, mocking y concurrencia se consultan cuando el proyecto los pide (ON DEMAND).
 
 ### Go
 
@@ -108,7 +113,9 @@ correspondiente.
 
 ---
 
-## F3 — Docker + Redis + Observabilidad + CI/CD + Resiliencia
+## F3 — Hardening + SQL profundo + Docker + Redis + Observabilidad (1 mar – 31 may 2027)
+
+> Fase de endurecimiento sobre `taskapi`. Redis, métricas y resiliencia **no forman un proyecto aparte**: se integran en `taskapi v2`. El bloque de Circuit Breaker/patrones queda como consulta puntual (ON DEMAND): en esta fase basta con timeout, reintentos con backoff, idempotencia y rate limiting.
 
 ### Docker
 
@@ -173,10 +180,15 @@ Cualquier tutorial que las use está desactualizado.
 
 ---
 
-## F4 — Arquitectura de Software, DDD & System Design Práctico
+## F4 — Portfolio, Benchmark & System Design básico (1 jun – 31 jul 2027)
 
-**Organización en 4 niveles (de negocio a código):**
-Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pregunta distinta y se apoya en el anterior:
+> **Solo el Nivel 1 (System Design) es material de esta fase**, y acotado a lo que ya construiste: estimaciones de capacidad, caché, colas, rate limiting distribuido, idempotencia y consistencia. Los retos de Fly.io Gossip Glomers son opcionales.
+>
+> **Niveles 0 (DDD), 2 (Hexagonal/Clean) y 3 (GoF) están DIFERIDOS.** No son una fase ni un bloque de estudio: se consultan cuando el tamaño del sistema los justifique (ON DEMAND / Etapa 2). En esta etapa el sustituto es un ADR de un párrafo por decisión relevante dentro de `taskapi`.
+>
+> **`resilient-api` y `architecture-docs` dejan de ser proyectos.** Sus piezas útiles (Redis, rate limiting, métricas, ADRs, C4) se absorben en `taskapi v2` y su documentación.
+
+### Organización en 4 niveles (solo Nivel 1 activo) — referencia conceptual
 - **Nivel 0 — DDD (el negocio):** Bounded Contexts y modelado de reglas de negocio en Go.
 - **Nivel 1 — System Design (la infraestructura):** Comunicación a escala, consistencia, colas, bases distribuidas (Fly.io Gossip Glomers retos 1-4).
 - **Nivel 2 — Patrones de Arquitectura (la estructura del servicio):** Hexagonal / Clean Architecture, aislamiento del dominio.
@@ -184,7 +196,7 @@ Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pr
 
 ---
 
-### Nivel 0 — Domain-Driven Design (DDD)
+### Nivel 0 — Domain-Driven Design (DDD) — **DIFERIDO (Etapa 2 / ON DEMAND)**
 
 | Rol                                  | Recurso                                                                                                                                                                                                          | Confianza  | Notas                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -232,7 +244,7 @@ Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pr
 
 ---
 
-### Nivel 2 — Patrones de Arquitectura (la estructura del servicio)
+### Nivel 2 — Patrones de Arquitectura (la estructura del servicio) — **DIFERIDO (Etapa 2 / ON DEMAND)**
 
 | Rol                           | Recurso                                                                                                                                              | Confianza  | Notas                                                                                                                                                                                                                                                                                                                    |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -249,7 +261,7 @@ Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pr
 
 ---
 
-### Nivel 3 — Patrones de Diseño (GoF idiomático en Go)
+### Nivel 3 — Patrones de Diseño (GoF idiomático en Go) — **DIFERIDO (ON DEMAND)**
 
 | Rol | Recurso | Confianza | Notas |
 |---|---|---|---|
@@ -264,36 +276,35 @@ Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pr
 - **Singleton:** Evitado en favor de inyección explícita de dependencias.
 - **Adapter:** Struct adaptador que implementa una interfaz del dominio.
 
-**Ruta sugerida (1-2 semanas):** Catálogo GoF en Refactoring.Guru → identificación y mapeo a equivalentes idiomáticos en Go dentro de `taskapi` y `resilient-api`.
+**Ruta sugerida (1-2 semanas, ON DEMAND):** Catálogo GoF en Refactoring.Guru → identificación y mapeo a equivalentes idiomáticos en Go dentro de `taskapi`.
 ---
 
-## F5 — Portfolio de Alto Impacto & Preparación de Entrevistas
+## F5 — Tesis (bloque reservado) + Entrevistas + Cierre (1 ago – 30 nov 2027)
 
-**Nota de estrategia:** F5 consolida la Etapa 1 (Pre-Graduación). El objetivo es tener un portfolio de **2 proyectos estrella de nivel de producción en Go** listos para deslumbrar en entrevistas técnicas remotas en USD, además de dominar los filtros de algoritmos, SQL y System Design antes de graduarse.
+**Nota de estrategia:** F5 cierra la Etapa 1. La **tesis y el proyecto X son la prioridad universitaria** (bloque reservado de 15–18 h/semana, sin detalle hasta que la universidad asigne tema). El resto es mantener el portfolio estable, atender entrevistas y cerrar la búsqueda. No se agregan features nuevas en esta fase.
 
 ---
 
 ### Portfolio (Backend & Systems Engineering)
 
-**La regla central:** **2 proyectos de alta fidelidad, no 8-10 a medias.** Los reclutadores y hiring managers técnicos escanean en segundos: título, stack, diagrama C4, problema/solución en 2-3 frases, y métricas reproducibles (latencia p99, throughput, uptime) — no leen código crudo antes de decidir si entrevistar.
+**La regla central:** **un proyecto estrella + un segundo artefacto opcional, no 8-10 a medias.** Los reclutadores y hiring managers técnicos escanean en segundos: título, stack, diagrama, problema/solución en 2-3 frases, y métricas reproducibles (latencia p99, throughput, uptime) — no leen código crudo antes de decidir si entrevistar.
 
 **Filtro para decidir qué proyecto mostrar:**
 
-1. **¿Se levanta con un solo comando?** Si `docker compose up -d` no deja el sistema corriendo con métricas vivas en ~90 segundos, el proyecto "no existe" para quien lo evalúa.
-2. **¿Muestra qué pasa cuando algo falla?** Un proyecto junior muestra el camino feliz. Uno mid muestra Circuit Breakers actuando, rate limiting distribuido con Lua en Redis, transacciones seguras con Outbox Pattern, y graceful shutdown drenando peticiones activas.
+1. **¿Se levanta con un solo comando?** Si `docker compose up -d` no deja el sistema corriendo en ~90 segundos, el proyecto "no existe" para quien lo evalúa.
+2. **¿Muestra qué pasa cuando algo falla?** Un proyecto junior muestra solo el camino feliz. Uno serio muestra timeouts, reintentos, rate limiting y graceful shutdown drenando peticiones activas.
 3. **¿Hay un benchmark medible?** "Usé Redis para mejorar el rendimiento" es teoría. "El throughput pasó de 450 a 3,800 req/s con p99 cayendo de 180ms a 14ms bajo k6" es una entrevista asegurada.
-4. **¿Tiene documentación de arquitectura profesional?** Diagramas C4, ADRs justificando trade-offs, y Runbook operativo.
+4. **¿Tiene documentación de arquitectura honesta?** Diagrama de arquitectura, ADRs justificando trade-offs y Runbook operativo.
 
 **Mapeo de proyectos del portfolio:**
 
-| Proyecto estrella | De qué ejercicios sale | Qué señal valida ante el mercado |
+| Proyecto | De qué fase sale | Qué señal valida ante el mercado |
 |---|---|---|
-| **`taskapi` (Backend Production-Ready)** | Go + PostgreSQL + Hexagonal Architecture + DDD táctico + Outbox Pattern de F2 y F4 | Concurrencia real en Go, transacciones ACID estrictas sin ORMs mágicos, arquitectura limpia desacoplada y autenticación JWT segura |
-| **`resilient-api` (Distributed & Resilient Backend)** | Go + Docker + Redis + Circuit Breaker + OpenTelemetry + CI/CD de F3 | Resiliencia distribuida (rate limiting en Redis con Lua, circuit breaker manual), observabilidad completa en producción (Prometheus, Grafana, Jaeger) y automatización CI/CD con GitHub Actions |
-| *(Diferenciador narrativo)* **`mysh`** | Shell en C de F1 | Fundamentos de sistemas operativos y bajo nivel: gestión manual de memoria (ASan/UBSan), syscalls POSIX (`fork`, `execvp`, `pipe`), demostrando que no se depende de abstracciones a ciegas |
-| *(Suite documental)* **`architecture-docs`** | Diagramas C4, 4 ADRs, 1 RFC, 1 Post-mortem, 5 casos de System Design de F4 | Capacidad de diseñar sistemas a gran escala, comunicar trade-offs arquitectónicos y defender decisiones ante ingenieros senior |
+| **`taskapi` (el proyecto estrella)** | F2 (`v1`) → F3 (`v2`: Redis, rate limiting, métricas) → F4 (benchmark, ADRs, RUNBOOK) | Backend completo: concurrencia segura, Postgres sin ORM, auth, tests, CI/CD, deploy público, observabilidad y métricas reproducibles |
+| *(Opcional, uno solo)* **cola con `SKIP LOCKED`** o **`mini-redis`** o **2 PRs reales** | F4 | Profundidad en sistemas o capacidad de trabajar en código ajeno; solo si el proyecto estrella ya está cerrado |
+| *(Diferenciador narrativo)* **`mysh`** | F1 | Fundamentos de sistemas operativos y bajo nivel: gestión manual de memoria (ASan/UBSan), syscalls POSIX (`fork`, `execvp`, `pipe`), demostrando que no se depende de abstracciones a ciegas |
 
-**Estructura de README que convierte (case-study, no manual de instalación):** título + una línea de problema → 1 diagrama de arquitectura (C4 Nivel 2) → stack → decisiones de diseño explicadas con trade-offs → métricas/benchmarks medibles con k6 → cómo correrlo (3 comandos) → links a `ARCHITECTURE.md` y `RUNBOOK.md`.
+**Estructura de README que convierte (case-study, no manual de instalación):** título + una línea de problema → 1 diagrama de arquitectura → stack → decisiones de diseño explicadas con trade-offs → métricas/benchmarks medibles con k6 → cómo correrlo (3 comandos) → links a `ARCHITECTURE.md` y `RUNBOOK.md`.
 
 ---
 
@@ -312,11 +323,11 @@ Esta fase se estructura en 4 niveles jerárquicos donde cada uno responde una pr
 
 Framework estándar: **STAR** (Situation, Task, Action, Result), con distribución de tiempo sugerida 20/10/60/10. La clave para proyectos de estudio sin experiencia laboral formal: contarlos igual que casos reales, con **trade-offs de ingeniería explícitos**.
 
-Ejemplo de estructura (usando `resilient-api`):
-- _Situation_: "Peticiones concurrentes a un microservicio dependiente degradaban el tiempo de respuesta del backend principal bajo ráfagas de 4,000 req/s."
-- _Task_: "Garantizar resiliencia ante caídas del servicio externo sin saturar los recursos de red ni bloquear peticiones de otros usuarios."
-- _Action_: "Implementé un Circuit Breaker manual con estados Closed/Open/Half-Open, un rate limiter distribuido en Redis ejecutado mediante scripts atómicos en Lua, y propagación de `request_id` a través de OpenTelemetry."
-- _Result_: "Throughput de 450 a 3,800 req/s con p99 cayendo de 180ms a 14ms bajo k6. Descubrí cómo el pooling de conexiones HTTP en Go evita agotamiento de file descriptors en Linux."
+Ejemplo de estructura (usando `taskapi`):
+- _Situation_: "Las peticiones concurrentes al endpoint de listado degradaban la latencia bajo ráfagas de 4,000 req/s y la base de datos agotaba conexiones."
+- _Task_: "Garantizar respuestas estables bajo carga sin saturar el pool de conexiones ni bloquear peticiones de otros usuarios."
+- _Action_: "Agregué un rate limiter con Redis, cache-aside para lecturas repetidas, timeouts y reintentos con backoff, instrumenté métricas Prometheus y propagué un `request_id` en los logs estructurados."
+- _Result_: "Throughput de 450 a 3,800 req/s con p99 cayendo de 180ms a 14ms bajo k6. Descubrí cómo el pooling de conexiones y el `context` de Go evitan agotamiento de file descriptors en Linux."
 
 #### Plataformas para preparación LatAm → EE.UU./Europa
 
@@ -344,27 +355,22 @@ Principios centrales:
 4. **Negociar el total compensation** (salario base, equity, bono anual, equipamiento, días libres).
 5. **Nunca aceptar en vivo:** Pedir 48 horas para analizar los detalles de la oferta escrita.
 
-**Ruta sugerida (8 semanas, ~8-10h/semana):**
-1. **S1-2 — SQL avanzado y planes de ejecución:** problemas diarios de window functions/joins complejos + `EXPLAIN (ANALYZE, BUFFERS)` en Postgres local.
-2. **S3-4 — Estructuras de datos y algoritmos en Go:** 2-3 problemas diarios en NeetCode / LeetCode en Go puro.
-3. **S5-6 — Behavioral en inglés técnico:** ensayar y grabar en voz alta 6 historias STAR basadas en `taskapi`, `resilient-api` y `mysh`.
-4. **S7-8 — Mocks y prospección activa:** simulacros P2P en Pramp, postulaciones a través de Silver.dev y redes de empleo remoto USD.
+**Ruta sugerida (continuo, no bloque):** SQL avanzado y planes de ejecución se practican desde F3 dentro de `taskapi` (`EXPLAIN ANALYZE`, window functions cuando el caso lo pida). Las historias STAR se graban en F4–F5, en inglés, sobre `taskapi` y `mysh`. Los mocks y la prospección activa son parte de la rutina semanal de búsqueda de empleo, no de un sprint final.
 
 ---
 
-### Buffer Pre-Graduación y Búsqueda Laboral (30 ago – 15 dic 2027, ~15 semanas)
+### Buffer Post-Graduación (dic 2027 – feb 2028, ~10 semanas)
 
-**Objetivo:** Proteger el cierre de la carrera universitaria y ejecutar la búsqueda laboral remota en USD sin saturación.
-- **Universidad:** Dedicación plena a la tesis de grado y asignaturas finales de Ingeniería en Informática.
-- **Búsqueda activa:** Postulaciones personalizadas a startups de EE.UU./Europa y empresas globales para puestos Backend Go Jr/Mid.
-- **Entrevistas:** Atender entrevistas técnicas en vivo, live-coding y pruebas take-home con la mente descansada.
-- **Mantenimiento:** 4-6h semanales: 1 kata semanal en Go y 1 simulación de entrevista cada 15 días.
+**Objetivo:** negociar, insertarse o ejecutar el plan B, no estudiar.
+- **Si hay oferta:** negociar (48 h de análisis, nunca aceptar en vivo) y adaptarse a las primeras semanas de empleo.
+- **Si no hay oferta:** plan B (nearshore, part-time, freelance con cliente) y reintento del remoto USD con más inglés y experiencia.
+- **Mantenimiento:** 4–6 h semanales, sin plan de estudio nuevo.
 
 ---
 
 # ETAPA 2 — Especializaciones Post-Graduación (2028+)
 
-> **Estrategia Post-Graduación:** Estas especializaciones se abordan **después de titularse y mientras se trabaja como ingeniero**, o como pivot estratégico según oportunidades laborales reales o emprendimientos.
+> **Estrategia Post-Graduación:** Estas especializaciones se abordan **después de titularse y mientras se trabaja como ingeniero**, o como pivot estratégico según oportunidades laborales reales. **No se planifican en detalle hoy:** se decide en la revisión de fin de Etapa 1 con datos del mercado y del primer empleo. Todo lo de esta sección es un catálogo de recursos en estado **DIFERIDO**.
 
 ## ESPECIALIZACIÓN A — Data Engineering (Post-Graduación)
 
@@ -462,12 +468,12 @@ Objetivo: no repetir fundamentos (ya aprendidos en Go), sino dominar lo idiomát
 
 ---
 
-## Próximos pasos (actualizado)
+## Próximos pasos
 
 - [x] RAG/Embeddings removido de scope — cubierto en el roadmap paralelo de AI Engineering (F2: `doc-rag`, pgvector, chunking)
-- [x] Roadmap reestructurado en Modelo de Dos Etapas: Etapa 1 Pre-Graduación (F1 a F5 + Buffer de 15 semanas) y Etapa 2 Post-Graduación (Especializaciones A, B y C)
+- [x] Roadmap reestructurado a horizonte real (oct 2026 – nov 2027) con Etapa 2 diferida a 2028+
 - [ ] Al llegar a F2 en la práctica: validar la integración de `pgx` y `sqlc` en `taskapi`
-- [ ] Al llegar a F3 en la práctica: validar Redis rate limiting con scripts Lua y tracing con OpenTelemetry
-- [ ] Al llegar a F4 en la práctica: completar los Retos 1 al 4 de Fly.io Gossip Glomers en Go
+- [ ] Al llegar a F3 en la práctica: validar Redis rate limiting y métricas Prometheus en `taskapi v2`
+- [ ] Al llegar a F4 en la práctica: validar `k6`/`vegeta` para el benchmark y 1–2 mock interviews
 - [ ] Al llegar a F5 en la práctica: aplicar primero por el canal gratuito de Silver.dev antes de evaluar programas pagos; preparar historias STAR grabadas
 - [ ] En Especialización B (post-graduación): validar la ejecución de Kubernetes the Hard Way sobre VMs locales
