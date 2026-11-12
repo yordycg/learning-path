@@ -42,7 +42,7 @@ The repository is organized by active modules, planned roadmap phases, and stand
 - `learning-data-engineering/` — Event streaming (Kafka KRaft), analytics engines (DuckDB), data transformation (dbt), and pipeline architectures (Lambda/Kappa) (Post-Graduation Specialization A).
 
 ### Sister Repositories
-- [`ai-learning-path`](../ai-learning-path/) — AI Engineering track (LLMs, RAG, Agentic Systems, Evaluation, Production). Operates in seasonal blocks during vacation periods.
+- [`ai-learning-path`](https://github.com/yordycg/ai-learning-path) — AI Engineering track (LLMs, RAG, Agentic Systems, Evaluation, Production). **Archivado en 2026-11; roadmap, módulos y proyectos importados al vault (`10 Aprender/IA`).**
 - [`yordycg-portfolio`](https://github.com/yordycg/yordycg-portfolio) — CV, LinkedIn, job tracker and outreach for the remote job search (from June 2027).
 
 ---
